@@ -16,6 +16,11 @@ class DatabaseSeeder extends Seeder
            DiagnosisTypeTableSeeder::class,
            ExpedientTableSeeder::class,
            DiagnosesTableSeeder::class,
+           ProvincesTableSeeder::class,
+           LocationsTableSeeder::class,
+           AddressesTableSeeder::class,
+           GenresTableSeeder::class,
+           PersonsTableSeeder::class,
            ]
        );
     }
