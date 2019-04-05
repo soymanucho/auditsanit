@@ -15,9 +15,9 @@ class CreateDiagnosesTable extends Migration
     {
         Schema::create('diagnoses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('id_diagnosisType');
-            $table->integer('id_expedient');
-            $table->integer('id_patient');
+            $table->integer('diagnosisType_id');
+            $table->integer('expedient_id');
+            $table->integer('patient_id');
             $table->timestamps();
         });
     }

@@ -8,6 +8,6 @@ class Audit extends Model
 {
     public function expedient()
     {
-      return $this->hasOne(Expedient::class,'id_expedient');
+      return $this->hasOne(Expedient::class,'expedient_id');
     }
 }

@@ -15,8 +15,8 @@ class CreateExpedientsTable extends Migration
     {
         Schema::create('expedients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('id_client');
-            $table->integer('id_patient');
+            $table->integer('client_id');
+            $table->integer('patient_id');
             $table->string('title');
             $table->timestamps();
         });

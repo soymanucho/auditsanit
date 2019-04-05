@@ -10,12 +10,12 @@ class Diagnosis extends Model
 {
   public function expedient()
   {
-     return $this->hasOne(Expedient::class,'id_expedient');
+     return $this->belongsTo(Expedient::class,'expedient_id');
   }
 
   public function diagnosisType()
   {
-    return $this->hasOne(DiagnosisType::class,'id_diagnosisType');
+    return $this->belongsTo(DiagnosisType::class,'diagnosisType_id');
   }
 
 }
