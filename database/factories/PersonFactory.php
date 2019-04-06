@@ -7,8 +7,8 @@ $factory->define(App\Person::class, function (Faker $faker) {
     return [
       'name'=>$faker->firstName(),
       'surname'=>$faker->lastName(),
-      'dni'=>$faker->randomNumber($nbDigits = 8, $strict = false),
-      'birth_date'=>$faker->dateTime($max = 'now', $timezone = null),
+      'dni'=>$faker->randomNumber(8, false),
+      'birth_date'=>$faker->dateTime('now', null),
       'genre_id'=> Genre::orderByRaw('RAND()')->first(),
     ];
 });

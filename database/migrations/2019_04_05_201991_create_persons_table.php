@@ -19,7 +19,12 @@ class CreatePersonsTable extends Migration
             $table->string('surname');
             $table->integer('dni');
             $table->datetime('birth_date');
+<<<<<<< HEAD
             $table->bigInteger('genre_id')->unsigned();
+=======
+            $table->integer('genre_id')->unsigned()->index()->nullable();
+            // $table->foreign('genre_id')->references('id')->on('genres');
+>>>>>>> 4ee63da2575da7107de97064af03ff159dc4854b
             $table->timestamps();
         });
 
