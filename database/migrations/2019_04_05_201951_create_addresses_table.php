@@ -20,13 +20,7 @@ class CreateAddressesTable extends Migration
             $table->string('floor')->nullable();
             $table->double('latitude')->nullable()->index();
             $table->double('longitude')->nullable()->index();
-<<<<<<< HEAD
             $table->bigInteger('location_id')->unsigned();
-
-=======
-            $table->integer('location_id')->nullable()->index()->unsigned();
-            // $table->foreign('location_id')->references('id')->on('locations');
->>>>>>> 4ee63da2575da7107de97064af03ff159dc4854b
             $table->timestamps();
         });
 
