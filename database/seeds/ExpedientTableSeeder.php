@@ -13,6 +13,6 @@ class ExpedientTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(Expedient::class, 50)->create();
+      //factory(Expedient::class, 50)->create(); //creted on the audit factory one to one
    }
 }
