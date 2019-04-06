@@ -9,9 +9,7 @@ $factory->define(App\Address::class, function (Faker $faker) {
       'number'=> $faker->buildingNumber(),
       'floor'=> $faker->randomDigitNotNull(),
       'location_id'=> Location::orderByRaw('RAND()')->first(),
-
-      'latitude'=> $faker->latitude(-90, 90),
-      'longitude'=> $faker->longitude(-180, 180),
-
+      'latitude'=> $faker->latitude(-60, -15),
+      'longitude'=> $faker->longitude(-80, -45),
     ];
 });

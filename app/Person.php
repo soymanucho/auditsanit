@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Gender;
 use App\Adress;
+use App\Auditor;
 
 class Person extends Model
 {
@@ -20,6 +21,10 @@ class Person extends Model
     public function adress()
     {
       return $this->belongsTo(Adress::class);
+    }
+    public function auditors()
+    {
+      return $this->hasMany(Auditor::class);
     }
 
 }

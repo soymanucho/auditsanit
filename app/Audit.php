@@ -10,4 +10,9 @@ class Audit extends Model
     {
       return $this->hasOne(Expedient::class,'expedient_id');
     }
+
+    public function recommendations()
+    {
+      return $this->belongsToMany(Recommendation::class,'audit_recommendations');
+    }
 }

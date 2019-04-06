@@ -21,6 +21,19 @@ class DatabaseSeeder extends Seeder
            AddressesTableSeeder::class,
            GendersTableSeeder::class,
            PeopleTableSeeder::class,
+           RecommendationsTableSeeder::class,
+           AuditsRecommendationsTableSeeder::class,
+           ModuleTypesTableSeeder::class,
+           AuditorsTableSeeder::class,
+           MedicalServiceTypesTableSeeder::class,
+           VendorsTableSeeder::class,
+           ServicesTableSeeder::class,
+           ServiceSchedulesTableSeeder::class,
+           TransportServicesTableSeeder::class,
+           ModuleTypeCategoriesTableSeeder::class,
+           ModuleTypeModuleTypeCategoriesTableSeeder::class,
+           ExpedientModulesTableSeeder::class,
+           MedicalServicesTableSeeder::class,
            ]
        );
     }

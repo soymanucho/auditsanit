@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Location;
 use App\Person;
+use App\Vendor;
 
 class Address extends Model
 {
@@ -18,6 +19,10 @@ class Address extends Model
   public function persons()
   {
     return $this->hasMany(Person::class);
+  }
+  public function vendors()
+  {
+    return $this->hasMany(Vendor::class);
   }
 
 }
