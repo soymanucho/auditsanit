@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Genre;
+use App\Gender;
 
 $factory->define(App\Person::class, function (Faker $faker) {
     return [
@@ -9,6 +9,6 @@ $factory->define(App\Person::class, function (Faker $faker) {
       'surname'=>$faker->lastName(),
       'dni'=>$faker->randomNumber(8, false),
       'birth_date'=>$faker->dateTime('now', null),
-      'genre_id'=> Genre::orderByRaw('RAND()')->first(),
+      'gender_id'=> Gender::orderByRaw('RAND()')->first(),
     ];
 });

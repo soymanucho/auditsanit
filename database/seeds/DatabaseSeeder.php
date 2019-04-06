@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
            ProvincesTableSeeder::class,
            LocationsTableSeeder::class,
            AddressesTableSeeder::class,
-           GenresTableSeeder::class,
-           PersonsTableSeeder::class,
+           GendersTableSeeder::class,
+           PeopleTableSeeder::class,
            CommentsTableSeeder::class,
            ]
        );

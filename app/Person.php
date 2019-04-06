@@ -3,18 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Genre;
+use App\Gender;
 use App\Adress;
 
 class Person extends Model
 {
 
-    protected $fillable = ['name','surname','dni','birth_date','id_genre'];
+    protected $fillable = ['name','surname','dni','birth_date','gender_id'];
 
 
-    public function genre()
+    public function gender()
     {
-      return $this->belongsTo(Genre::class);
+      return $this->belongsTo(Gender::class);
     }
 
     public function adress()
