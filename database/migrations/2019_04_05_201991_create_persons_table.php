@@ -13,15 +13,19 @@ class CreatePersonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('persons', function (Blueprint $table) {
+        Schema::create('people', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('surname');
             $table->integer('dni');
             $table->datetime('birth_date');
-            $table->integer('genre_id')->unsigned()->index()->nullable();
-            $table->foreign('genre_id')->references('id')->on('genres');
+            $table->bigInteger('genre_id')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('people', function (Blueprint $table) {
+
+            $table->foreign('genre_id')->references('id')->on('genres');
         });
     }
 
@@ -32,6 +36,6 @@ class CreatePersonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('persons');
+        Schema::dropIfExists('people');
     }
 }

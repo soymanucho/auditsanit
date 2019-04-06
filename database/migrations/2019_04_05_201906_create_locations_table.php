@@ -14,10 +14,16 @@ class CreateLocationsTable extends Migration
     public function up()
     {
         Schema::create('locations', function (Blueprint $table) {
+
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
-            $table->integer('province_id')->unsigned()->index()->nullable();
+            $table->bigInteger('province_id')->unsigned();
+
+        });
+
+        Schema::table('locations', function (Blueprint $table) {
+
             $table->foreign('province_id')->references('id')->on('provinces');
         });
     }

@@ -20,9 +20,14 @@ class CreateAddressesTable extends Migration
             $table->string('floor')->nullable();
             $table->double('latitude')->nullable()->index();
             $table->double('longitude')->nullable()->index();
-            $table->integer('location_id')->nullable()->index()->unsigned();
-            $table->foreign('location_id')->references('id')->on('locations');
+            $table->bigInteger('location_id')->unsigned();
+
             $table->timestamps();
+        });
+
+        Schema::table('addresses', function (Blueprint $table) {
+
+            $table->foreign('location_id')->references('id')->on('locations');
         });
     }
 

@@ -9,6 +9,6 @@ $factory->define(App\Person::class, function (Faker $faker) {
       'surname'=>$faker->lastName(),
       'dni'=>$faker->randomNumber($nbDigits = 8, $strict = false),
       'birth_date'=>$faker->dateTime($max = 'now', $timezone = null),
-      'id_genre'=> Genre::orderByRaw('RAND()')->first(),
+      'genre_id'=> Genre::orderByRaw('RAND()')->first(),
     ];
 });

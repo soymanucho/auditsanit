@@ -8,7 +8,7 @@ use App\Adress;
 
 class Location extends Model
 {
-  private $fillable = ['name','province_id'];
+  protected $fillable = ['name','province_id'];
 
   public function province()
   {

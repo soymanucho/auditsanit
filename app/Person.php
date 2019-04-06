@@ -8,7 +8,7 @@ use App\Adress;
 
 class Person extends Model
 {
-    private $fillable = ['name','surname','dni','birth_date','id_genre'];
+    protected $fillable = ['name','surname','dni','birth_date','id_genre'];
 
     public function genre()
     {
@@ -19,5 +19,5 @@ class Person extends Model
     {
       return $this->belongsTo(Adress::class);
     }
-    
+
 }
