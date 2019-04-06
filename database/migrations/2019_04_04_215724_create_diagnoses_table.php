@@ -15,10 +15,15 @@ class CreateDiagnosesTable extends Migration
     {
         Schema::create('diagnoses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('diagnosisType_id');
-            $table->integer('expedient_id');
-            $table->integer('patient_id');
+            $table->bigInteger('diagnosisType_id')->unsigned();
+            $table->bigInteger('expedient_id')->unsigned();
+            $table->bigInteger('patient_id')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('diagnoses', function (Blueprint $table) {
+              $table->foreign('expedient_id')->references('id')->on('expedients');
+              $table->foreign('diagnosisType_id')->references('id')->on('diagnosis_types');
         });
     }
 

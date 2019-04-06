@@ -15,10 +15,14 @@ class CreateExpedientsTable extends Migration
     {
         Schema::create('expedients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('client_id');
-            $table->integer('patient_id');
+            $table->bigInteger('client_id')->unsigned();
+            $table->bigInteger('patient_id')->unsigned();
             $table->string('title');
             $table->timestamps();
+        });
+
+        Schema::table('expedients', function (Blueprint $table) {
+              $table->foreign('client_id')->references('id')->on('clients');
         });
     }
 

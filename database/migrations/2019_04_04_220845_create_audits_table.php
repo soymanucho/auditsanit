@@ -15,10 +15,15 @@ class CreateAuditsTable extends Migration
     {
         Schema::create('audits', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('expedient_id');
+            $table->bigInteger('expedient_id')->unsigned()->unique();
             $table->string('conclution');
             $table->string('report');
             $table->timestamps();
+        });
+
+        Schema::table('audits', function (Blueprint $table) {
+              $table->foreign('expedient_id')->references('id')->on('expedients');
+              
         });
     }
 
