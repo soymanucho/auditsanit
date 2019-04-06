@@ -18,7 +18,7 @@ class CreateLocationsTable extends Migration
             $table->string('name');
             $table->timestamps();
             $table->integer('province_id')->unsigned()->index()->nullable();
-            $table->foreign('province_id')->references('id')->on('provinces');
+            // $table->foreign('province_id')->references('id')->on('provinces');
         });
     }
 

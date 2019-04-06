@@ -8,7 +8,7 @@ use App\Person;
 
 class Address extends Model
 {
-  private $fillable = ['street','number','floor','location_id','latitude','longitude'];
+  protected $fillable = ['street','number','floor','location_id','latitude','longitude'];
 
   public function location()
   {

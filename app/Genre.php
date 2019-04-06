@@ -7,7 +7,7 @@ use App\Person;
 
 class Genre extends Model
 {
-    private $fillable = ['name'];
+    protected $fillable = ['name'];
     public function persons()
     {
       return $this->hasMany(Person::class);

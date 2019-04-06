@@ -7,7 +7,7 @@ use App\Location;
 
 class Province extends Model
 {
-  private $fillable = ['name'];
+  protected $fillable = ['name'];
 
   public function locations()
   {
