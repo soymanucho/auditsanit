@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Audit;
+
 class AuditTableSeeder extends Seeder
 {
     /**
@@ -11,6 +12,6 @@ class AuditTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Audit::class, 50)->create();
+      factory(Audit::class, 50)->create();
     }
 }
