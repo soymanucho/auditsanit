@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder
          $this->call([
            ClientTableSeeder::class,
            DiagnosisTypeTableSeeder::class,
+           StatusesTableSeeder::class,
+           InstructionsTableSeeder::class,
+           ObjetivesTableSeeder::class,
            AuditTableSeeder::class,
            DiagnosesTableSeeder::class,
            ProvincesTableSeeder::class,
@@ -21,6 +24,7 @@ class DatabaseSeeder extends Seeder
            AddressesTableSeeder::class,
            GenresTableSeeder::class,
            PersonsTableSeeder::class,
+           CommentsTableSeeder::class,
            ]
        );
     }
