@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
            AuditTableSeeder::class,
            DiagnosesTableSeeder::class,
            CommentsTableSeeder::class,
+           MedicTableSeeder::class,
            ]
        );
     }

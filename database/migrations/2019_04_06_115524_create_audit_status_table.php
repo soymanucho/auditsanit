@@ -14,8 +14,8 @@ class CreateAuditStatusTable extends Migration
     public function up()
     {
         Schema::create('audits_statuses', function (Blueprint $table) {
-          $table->bigInteger('audit_id')->unsigned();
-          $table->bigInteger('status_id')->unsigned();
+            $table->bigInteger('audit_id')->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->timestamps();
         });
 
