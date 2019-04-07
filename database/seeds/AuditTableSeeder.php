@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\Audit;
-
+use App\Objetive;
+use App\Instruction;
 class AuditTableSeeder extends Seeder
 {
     /**
@@ -12,6 +13,16 @@ class AuditTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(Audit::class, 50)->create();
+      $audits = factory(Audit::class, 50)->create();
+
+      $audits->each(function ($audit) {
+        $audit->objetives()->attach(Objetive::orderByRaw('RAND()')->first());
+        $audit->save();
+       });
+
+       $audits->each(function ($audit) {
+         $audit->instructions()->attach(Instruction::orderByRaw('RAND()')->first());
+         $audit->save();
+        });
     }
 }
