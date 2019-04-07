@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExpedientModule extends Model
 {
-  protected $fillable = ['module_type_module_type_category_id','price','expedient_id','recommended_module_type_module_type_category_id'];
+  protected $fillable = ['mod_typ_mod_typ_cat_id','price','expedient_id','recommended_mod_typ_mod_typ_cat_id'];
 
   public function moduleTypeModuleTypeCategoryRecommended()
   {

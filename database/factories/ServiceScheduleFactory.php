@@ -5,9 +5,9 @@ use App\Service;
 
 $factory->define(App\ServiceSchedule::class, function (Faker $faker) {
     return [
-      $init = $faker->dateTime('now',null);
-      'initial_datetime'=> $init,
-      'final_datetime'=> $faker->dateTime($init,null),
+
+      'initial_datetime'=> $faker->dateTime('now',null),
+      'final_datetime'=> $faker->dateTime('initial_datetime',null),
       'service_id'=> Service::orderByRaw('RAND()')->first(),
 
     ];

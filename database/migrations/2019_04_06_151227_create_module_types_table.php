@@ -13,7 +13,7 @@ class CreateModuleTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('module_type_id', function (Blueprint $table) {
+        Schema::create('module_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();

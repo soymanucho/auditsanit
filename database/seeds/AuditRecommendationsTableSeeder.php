@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\MedicalService;
+use App\AuditRecommendation;
 
-class MedicalServicesTableSeeder extends Seeder
+class AuditRecommendationsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class MedicalServicesTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(MedicalService::class, 25)->create();
+      factory(AuditRecommendation::class, 5)->create();
     }
 }

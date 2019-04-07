@@ -13,7 +13,7 @@ class CreateModuleTypeCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('module_type_categories', function (Blueprint $table) {
+        Schema::create('mod_typ_cat', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateModuleTypeCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('module_type_categories');
+        Schema::dropIfExists('mod_typ_cat');
     }
 }

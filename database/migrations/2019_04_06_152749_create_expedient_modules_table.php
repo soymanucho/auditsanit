@@ -15,16 +15,16 @@ class CreateExpedientModulesTable extends Migration
     {
         Schema::create('expedient_modules', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('module_type_module_type_category_id')->unsigned();
+            $table->bigInteger('mod_typ_mod_typ_cat_id')->unsigned();
             $table->decimal('price',12,2);
             $table->bigInteger('expedient_id')->unsigned();
-            $table->bigInteger('recommended_module_type_module_type_category_id')->nullable()->unsigned();
+            $table->bigInteger('recommended_mod_typ_mod_typ_cat_id')->nullable()->unsigned();
             $table->timestamps();
         });
         Schema::table('expedient_modules', function (Blueprint $table) {
-            $table->foreign('module_type_module_type_category_id')->references('id')->on('module_type_module_type_category');
+            $table->foreign('mod_typ_mod_typ_cat_id')->references('id')->on('mod_typ_mod_typ_cat');
             $table->foreign('expedient_id')->references('id')->on('expedients');
-            $table->foreign('recommended_module_type_module_type_category_id')->references('id')->on('module_type_module_type_category');
+            $table->foreign('recommended_mod_typ_mod_typ_cat_id')->references('id')->on('mod_typ_mod_typ_cat');
           });
     }
 

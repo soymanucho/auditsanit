@@ -13,16 +13,16 @@ class CreateModuleTypeModuleTypeCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('module_type_module_type_categories', function (Blueprint $table) {
+        Schema::create('mod_typ_mod_typ_cat', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('module_type_id');
-            $table->bigInteger('module_type_category_id');
+            $table->bigInteger('mod_typ_id')->unsigned();
+            $table->bigInteger('mod_typ_cat_id')->unsigned();
             $table->decimal('price',12,2);
             $table->timestamps();
         });
-        Schema::table('module_type_module_type_categories', function (Blueprint $table) {
-            $table->foreign('module_type_category_id')->references('id')->on('module_type_categories');
-            $table->foreign('module_type_id')->references('id')->on('module_type_id');
+        Schema::table('mod_typ_mod_typ_cat', function (Blueprint $table) {
+            $table->foreign('mod_typ_cat_id')->references('id')->on('mod_typ_cat');
+            $table->foreign('mod_typ_id')->references('id')->on('module_types');
           });
     }
 
@@ -33,6 +33,6 @@ class CreateModuleTypeModuleTypeCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('module_type_module_type_categories');
+        Schema::dropIfExists('mod_typ_mod_typ_cat');
     }
 }

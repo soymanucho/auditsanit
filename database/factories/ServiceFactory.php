@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 use App\Vendor;
-use App\MedicalService;
+use App\MedicalServiceType;
 
 $factory->define(App\Service::class, function (Faker $faker) {
     return [

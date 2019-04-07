@@ -9,7 +9,8 @@ use App\ExpedientModule;
 
 class ModuleTypeModuleTypeCategory extends Model
 {
-  protected $fillable = ['module_type_id','module_type_category_id','price'];
+  protected $fillable = ['mod_typ_id','mod_typ_cat_id','price'];
+  protected $table = 'mod_typ_mod_typ_cat';
 
   public function moduleType()
   {
