@@ -23,4 +23,6 @@ class Expedient extends Model
       return $this->hasOne(Audit::class,'id','expedient_id');
     }
 
+
+
 }

@@ -22,12 +22,13 @@ class DatabaseSeeder extends Seeder
            AddressesTableSeeder::class,
            GendersTableSeeder::class,
            PeopleTableSeeder::class,
+           MedicTableSeeder::class,
+           IndicationTypesTableSeeder::class,
            PatientTableSeeder::class,
            AuditTableSeeder::class,
            DiagnosesTableSeeder::class,
            CommentsTableSeeder::class,
-           MedicTableSeeder::class,
-           IndicationTypesTableSeeder::class,
+
            ]
        );
     }

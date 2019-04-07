@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Diagnosis;
+use App\Indication;
 
 class DiagnosesTableSeeder extends Seeder
 {
@@ -12,6 +13,11 @@ class DiagnosesTableSeeder extends Seeder
      */
     public function run()
     {
-          factory(Diagnosis::class, 50)->create();
+          $diagnoses = factory(Diagnosis::class, 50)->create();
+
+          $diagnoses->each(function ($diagnosis) {
+              $diagnosis->indications()->attach(factory(Indication::class,2)->create());
+              $diagnosis->save();
+             });
     }
 }
