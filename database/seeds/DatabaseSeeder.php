@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
            DiagnosesTableSeeder::class,
            CommentsTableSeeder::class,
            MedicTableSeeder::class,
+           IndicationTypesTableSeeder::class,
            ]
        );
     }
