@@ -15,11 +15,11 @@ class Audit extends Model
       return $this->hasOne(Expedient::class,'expedient_id');
     }
 
-<<<<<<< HEAD
+
     public function recommendations()
     {
       return $this->belongsToMany(Recommendation::class,'audit_recommendations');
-=======
+    }
     public function instructions()
     {
       return $this->belongsToMany(Instruction::class,'audits_instructions');
@@ -43,6 +43,6 @@ class Audit extends Model
     public function currentStatus()
     {
       # TODO: get latest state
->>>>>>> Development
+
     }
 }
