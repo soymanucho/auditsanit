@@ -23,6 +23,7 @@ class CreateExpedientsTable extends Migration
 
         Schema::table('expedients', function (Blueprint $table) {
               $table->foreign('client_id')->references('id')->on('clients');
+              $table->foreign('patient_id')->references('id')->on('patients');
         });
     }
 

@@ -17,13 +17,14 @@ class DatabaseSeeder extends Seeder
            StatusesTableSeeder::class,
            InstructionsTableSeeder::class,
            ObjetivesTableSeeder::class,
-           AuditTableSeeder::class,
-           DiagnosesTableSeeder::class,
            ProvincesTableSeeder::class,
            LocationsTableSeeder::class,
            AddressesTableSeeder::class,
            GendersTableSeeder::class,
            PeopleTableSeeder::class,
+           PatientTableSeeder::class,
+           AuditTableSeeder::class,
+           DiagnosesTableSeeder::class,
            CommentsTableSeeder::class,
            ]
        );

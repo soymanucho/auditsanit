@@ -2,6 +2,7 @@
 
 use App\Expedient;
 use App\Client;
+use App\Patient;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -20,6 +21,6 @@ $factory->define(Expedient::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence( 6, true),
         'client_id' =>  Client::orderByRaw('RAND()')->first(),
-        'patient_id' =>  0, //copiar lo de arriba cuando tengamos la lista de pasientes
+        'patient_id' =>  Patient::orderByRaw('RAND()')->first(),
     ];
 });
