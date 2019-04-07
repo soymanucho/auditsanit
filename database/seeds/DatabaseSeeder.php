@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
            GendersTableSeeder::class,
            PeopleTableSeeder::class,
            RecommendationsTableSeeder::class,
-
            ModuleTypesTableSeeder::class,
            AuditorsTableSeeder::class,
            MedicalServiceTypesTableSeeder::class,
@@ -40,7 +39,6 @@ class DatabaseSeeder extends Seeder
            AuditTableSeeder::class,
            ExpedientModulesTableSeeder::class,
            MedicalServicesTableSeeder::class,
-           AuditRecommendationsTableSeeder::class,
            DiagnosesTableSeeder::class,
            CommentsTableSeeder::class,
            ]
