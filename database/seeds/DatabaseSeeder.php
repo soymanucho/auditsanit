@@ -15,8 +15,9 @@ class DatabaseSeeder extends Seeder
            UsersTableSeeder::class,
            ClientTableSeeder::class,
            DiagnosisTypeTableSeeder::class,
-           AuditTableSeeder::class,
-           DiagnosesTableSeeder::class,
+           StatusesTableSeeder::class,
+           InstructionsTableSeeder::class,
+           ObjetivesTableSeeder::class,
            ProvincesTableSeeder::class,
            LocationsTableSeeder::class,
            AddressesTableSeeder::class,
@@ -35,6 +36,12 @@ class DatabaseSeeder extends Seeder
            ModuleTypeModuleTypeCategoriesTableSeeder::class,
            ExpedientModulesTableSeeder::class,
            MedicalServicesTableSeeder::class,
+           MedicTableSeeder::class,
+           IndicationTypesTableSeeder::class,
+           PatientTableSeeder::class,
+           AuditTableSeeder::class,
+           DiagnosesTableSeeder::class,
+           CommentsTableSeeder::class,
            ]
        );
     }

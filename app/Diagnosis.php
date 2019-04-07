@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Expedient;
 use App\DiagnosisType;
+use App\Indications;
 
 class Diagnosis extends Model
 {
@@ -18,4 +19,8 @@ class Diagnosis extends Model
     return $this->belongsTo(DiagnosisType::class,'diagnosisType_id');
   }
 
+  public function indications()
+  {
+    return $this->belongsToMany(Indication::class,'diagnosis_indications');
+  }
 }

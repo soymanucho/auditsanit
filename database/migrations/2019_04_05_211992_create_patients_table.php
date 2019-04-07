@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuditsTable extends Migration
+class CreatePatientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateAuditsTable extends Migration
      */
     public function up()
     {
-        Schema::create('audits', function (Blueprint $table) {
+        Schema::create('patients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('expedient_id')->unsigned()->unique();
-            $table->string('conclution');
-            $table->string('report');
+            $table->bigInteger('person_id')->unsigned();
             $table->timestamps();
         });
 
-        Schema::table('audits', function (Blueprint $table) {
-              $table->foreign('expedient_id')->references('id')->on('expedients');
-              
+        Schema::table('patients', function (Blueprint $table) {
+            $table->foreign('person_id')->references('id')->on('people');
+
         });
     }
 
@@ -34,6 +32,6 @@ class CreateAuditsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('audits');
+        Schema::dropIfExists('patients');
     }
 }
