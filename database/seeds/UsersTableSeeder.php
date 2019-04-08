@@ -13,5 +13,11 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
       factory(User::class, 5)->create();
+
+      $user = new App\User();
+      $user->password = Hash::make('admin');
+      $user->email = 'admin@admin.com';
+      $user->name = 'Administrador';
+      $user->save();
     }
 }
