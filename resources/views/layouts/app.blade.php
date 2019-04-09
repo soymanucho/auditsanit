@@ -59,7 +59,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b class="fa fa-stethoscope "></b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Auditoría Sanitaria <b class="fa fa-stethoscope  "></b></span>
+      <span class="logo-lg">Auditoría Sanitaria <b class="fa fa-stethoscope"></b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -251,10 +251,10 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href=""><i class="fa fa-search"></i> Medicos</a></li>
-                <li><a href=""><i class="fa fa-plus-circle "></i> Auditores</a></li>
-                <li><a href=""><i class="fa fa-plus-circle "></i> Pacientes</a></li>
-                <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li>
+                <li><a href="{{route('show-medics')}}"><i class="fa fa-search"></i> Medicos</a></li>
+                <li><a href="{{route('show-auditors')}}"><i class="fa fa-plus-circle "></i> Auditores</a></li>
+                <li><a href="{{route('show-patients')}}"><i class="fa fa-plus-circle "></i> Pacientes</a></li>
+                {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
               </ul>
             </li>
 
