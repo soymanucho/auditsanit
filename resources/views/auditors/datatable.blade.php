@@ -5,6 +5,7 @@
     <th>Nombre</th>
     <th>Apellido</th>
     <th>DNI</th>
+    <th>E-mail</th>
 
 
 
@@ -17,6 +18,7 @@
         <td>  {{ $auditor->person->name}} </td>
         <td>  {{ $auditor->person->surname}} </td>
         <td>  {{ $auditor->person->dni}} </td>
+        <td> <a href="mailto:{{$auditor->user->email}}"> {{ $auditor->user->email}} </a></td>
         {{-- <td>  {{ $category->subcategory->name }} </td>
         <td>  {{ $category->products()->count()}} </td>
         <td>  {{ $category->products()->sum('stock')}} </td> --}}
