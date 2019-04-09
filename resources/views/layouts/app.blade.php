@@ -257,6 +257,24 @@
                 {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
               </ul>
             </li>
+
+            <li class=" treeview">
+              <a href="#">
+                <i class="fa fa-users"></i> <span> Modulos</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{route('show-moduletypes')}}"><i class="fa fa-search"></i> Tipos de modulo</a></li>
+
+              </ul>
+            </li>
+
+
+
+
+
             <li class=" treeview">
               <a href="#">
                 <i class="fa fa-users"></i> <span> Auditorías</span>

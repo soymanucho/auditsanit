@@ -42,3 +42,6 @@ Route::get('/objetivos/', 'ObjectiveController@show')->name('show-objectives');
 
 //RECOMMENDATIONS
 Route::get('/recomendaciones/', 'RecommendationController@show')->name('show-recommendations');
+
+//MODULE TYPE
+Route::get('/tiposdemodulo/', 'ModueTypeController@show')->name('show-moduletypes');
