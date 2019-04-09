@@ -20,12 +20,14 @@ class CreatePeopleTable extends Migration
             $table->integer('dni');
             $table->datetime('birth_date');
 
+            $table->bigInteger('address_id')->unsigned();
             $table->bigInteger('gender_id')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('people', function (Blueprint $table) {
 
+            $table->foreign('address_id')->references('id')->on('addresses');
             $table->foreign('gender_id')->references('id')->on('genders');
         });
     }

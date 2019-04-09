@@ -26,6 +26,11 @@ Route::get('/medicos/', 'MedicController@show')->name('show-medics');
 Route::get('/auditores/', 'AuditorController@show')->name('show-auditors');
 
 
+//AUDITS
+Route::get('/auditorias/', 'AuditController@show')->name('show-audits');
+Route::get('/auditoria/{audit}', 'AuditController@detail')->name('audit-detail');
+
+
 //PATIENTS
 Route::get('/pacientes/', 'PatientController@show')->name('show-patients');
 

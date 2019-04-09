@@ -11,10 +11,11 @@ class StatusesTableSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('statuses')->insert(['name' => "Estado 1"]);
-      DB::table('statuses')->insert(['name' => "Estado 2"]);
-      DB::table('statuses')->insert(['name' => "Estado 3"]);
-      DB::table('statuses')->insert(['name' => "Estado 4"]);
-      DB::table('statuses')->insert(['name' => "Estado 5"]);
+      DB::table('statuses')->insert(['name' => "Carga de expedientes"]);
+      DB::table('statuses')->insert(['name' => "Cargados"]);
+      DB::table('statuses')->insert(['name' => "Inicial"]);
+      DB::table('statuses')->insert(['name' => "Verificación de coordinación de auditoría"]);
+      DB::table('statuses')->insert(['name' => "Verificación de administrador"]);
+      DB::table('statuses')->insert(['name' => "Finalizada"]);
 }
 }

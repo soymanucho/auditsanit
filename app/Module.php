@@ -3,23 +3,23 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\ModuleTypeCategory;
+use App\ModuleCategory;
 use App\ModuleType;
 use App\Expedient;
 use App\ExpedientModule;
 
 class Module extends Model
 {
-  protected $fillable = ['mod_typ_id','mod_typ_cat_id','price'];
+  protected $fillable = ['module_type_id','module_category_id','price'];
 
 
   public function moduleType()
   {
     return $this->belongsTo(ModuleType::class);
   }
-  public function moduleTypeCategory()
+  public function moduleCategory()
   {
-    return $this->belongsTo(ModuleTypeCategory::class);
+    return $this->belongsTo(ModuleCategory::class);
   }
   public function expedientModules()
   {

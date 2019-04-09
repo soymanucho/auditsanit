@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Client;
 use App\Diagnosis;
 use App\Audit;
+use App\ExpedientModule;
 
 class Expedient extends Model
 {
@@ -23,6 +24,13 @@ class Expedient extends Model
       return $this->hasOne(Audit::class,'id','expedient_id');
     }
 
+    public function patient()
+    {
+       return $this->belongsTo(Patient::class);
+    }
 
-
+    public function expedientModules()
+    {
+      return $this->hasMany(ExpedientModule::class);
+    }
 }

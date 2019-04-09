@@ -5,8 +5,8 @@
     <th>Nombre</th>
     <th>Apellido</th>
     <th>DNI</th>
-    <th>Licensia</th>
-    <th>Es Licensia Nacional</th>
+    <th>Licencia</th>
+    <th>Es Licencia Nacional</th>
 
 
 
@@ -19,7 +19,12 @@
         <td>  {{ $medic->person->surname}} </td>
         <td>  {{ $medic->person->dni}} </td>
         <td>  {{ $medic->license }} </td>
-        <td>  {{ $medic->isNationalLicense }} </td>
+        <td>  @if ($medic->isNationalLicense)
+                Si
+              @else
+                No
+              @endif
+        </td>
         {{-- <td>  {{ $category->subcategory->name }} </td>
         <td>  {{ $category->products()->count()}} </td>
         <td>  {{ $category->products()->sum('stock')}} </td> --}}

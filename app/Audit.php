@@ -12,7 +12,7 @@ class Audit extends Model
 {
     public function expedient()
     {
-      return $this->hasOne(Expedient::class,'expedient_id');
+      return $this->hasOne(Expedient::class,'id');
     }
 
 
@@ -39,7 +39,16 @@ class Audit extends Model
     {
       return $this->belongsToMany(Status::class,'audits_statuses');
     }
-
+    public function auditors()
+    {
+      $auditors = collect([]);
+      foreach ($this->expedient->expedientModules as $expedientModule) {
+        foreach ($expedientModule->medicalServices as $medicalService) {
+          $auditors->push($medicalService->service->vendor->auditor);
+        }
+      }
+      return $auditors;
+    }
     public function currentStatus()
     {
       # TODO: get latest state

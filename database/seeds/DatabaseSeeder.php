@@ -42,6 +42,7 @@ class DatabaseSeeder extends Seeder
            MedicalServicesTableSeeder::class,
            DiagnosesTableSeeder::class,
            CommentsTableSeeder::class,
+
            ]
        );
     }
