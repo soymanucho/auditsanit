@@ -45,3 +45,6 @@ Route::get('/recomendaciones/', 'RecommendationController@show')->name('show-rec
 
 //MODULE TYPE
 Route::get('/tiposdemodulo/', 'ModueTypeController@show')->name('show-moduletypes');
+
+//MODULE CATEGORY
+Route::get('/categoriasdemodulo/', 'ModueleCategoryController@show')->name('show-modulecategories');
