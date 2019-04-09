@@ -28,3 +28,9 @@ Route::get('/auditores/', 'AuditorController@show')->name('show-auditors');
 
 //PATIENTS
 Route::get('/pacientes/', 'PatientController@show')->name('show-patients');
+
+//INSTRUCTIONS
+Route::get('/instrucciones/', 'InstructionController@show')->name('show-instructions');
+
+//OBJECTIVES
+Route::get('/objetivos/', 'ObjectiveController@show')->name('show-objectives');

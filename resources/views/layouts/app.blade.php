@@ -266,14 +266,14 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-              <li><a href=""><i class="fa fa-search"></i> Tipos de Diagnosticos</a></li>
+              {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Diagnosticos</a></li>
               <li><a href=""><i class="fa fa-search"></i> Tipos de Indicaciones</a></li>
-              <li><a href=""><i class="fa fa-search"></i> Estados de Auditoria</a></li>
-              <li><a href=""><i class="fa fa-search"></i> Instrucciones</a></li>
-              <li><a href=""><i class="fa fa-search"></i> Objetivos</a></li>
-              <li><a href=""><i class="fa fa-search"></i> Recomendaciones</a></li>
+              <li><a href=""><i class="fa fa-search"></i> Estados de Auditoria</a></li> --}}
+              <li><a href="{{route('show-instructions')}}"><i class="fa fa-search"></i> Instrucciones</a></li>
+               <li><a href="{{route('show-objectives')}}"><i class="fa fa-search"></i> Objetivos</a></li>
+              {{--<li><a href=""><i class="fa fa-search"></i> Recomendaciones</a></li> --}}
 
-              <li><a href=""><i class="fa fa-search"></i> Tipos de Prestaciones</a></li>
+              {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Prestaciones</a></li> --}}
 
               </ul>
             </li>
@@ -286,9 +286,9 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href=""><i class="fa fa-search"></i> Tipos de Modulos</a></li>
+                {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Modulos</a></li>
                 <li><a href=""><i class="fa fa-search"></i> Categorias de Modulos</a></li>
-                <li><a href=""><i class="fa fa-search"></i> Modulos</a></li>
+                <li><a href=""><i class="fa fa-search"></i> Modulos</a></li> --}}
               </ul>
             </li>
 
