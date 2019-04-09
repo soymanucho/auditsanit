@@ -57,9 +57,9 @@
     <!-- Logo -->
     <a href="" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b class="fa fa-cloud "></b></span>
+      <span class="logo-mini"><b class="fa fa-stethoscope "></b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Auditoría Sanitaria <b class="fa fa-cloud "></b></span>
+      <span class="logo-lg">Auditoría Sanitaria <b class="fa fa-stethoscope"></b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -238,76 +238,63 @@
             <li class="header">MENÚ PRINCIPAL</li>
             {{--  --}}
             <li>
-              <a href="{{ route('dashboard') }}">
+              <a href="">
                 <i class="fa fa-chart-line"></i> <span> Dashboard</span>
               </a>
             </li>
 
             <li class=" treeview">
               <a href="#">
-                <i class="fa fa-users"></i> <span> Clientes</span>
+                <i class="fa fa-users"></i> <span> Personas</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{ route('show-clients') }}"><i class="fa fa-search"></i> Consultar</a></li>
-                <li><a href="{{ route('new-client') }}"><i class="fa fa-plus-circle "></i> Nuevo</a></li>
+                <li><a href="{{route('show-medics')}}"><i class="fa fa-search"></i> Medicos</a></li>
+                <li><a href="{{route('show-auditors')}}"><i class="fa fa-plus-circle "></i> Auditores</a></li>
+                <li><a href="{{route('show-patients')}}"><i class="fa fa-plus-circle "></i> Pacientes</a></li>
+                {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
               </ul>
             </li>
 
             <li class=" treeview">
               <a href="#">
-                <i class="fas fa-boxes"></i> <span> Productos</span>
+                <i class="fas fa-boxes"></i> <span> Datos Maestros</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-              <li><a href="{{ route('show-products') }}"><i class="fa fa-search"></i> Consultar</a></li>
-              <li><a href="{{ route('add-stock') }}"><i class="fa fa-th"></i> Agregar Stock</a></li>
-              <li><a href="{{ route('raise-price') }}"><i class="fa fa-arrow-up"></i> Remarcar precio en %</a></li>
+              <li><a href=""><i class="fa fa-search"></i> Tipos de Diagnosticos</a></li>
+              <li><a href=""><i class="fa fa-search"></i> Tipos de Indicaciones</a></li>
+              <li><a href=""><i class="fa fa-search"></i> Estados de Auditoria</a></li>
+              <li><a href=""><i class="fa fa-search"></i> Instrucciones</a></li>
+              <li><a href=""><i class="fa fa-search"></i> Objetivos</a></li>
+              <li><a href=""><i class="fa fa-search"></i> Recomendaciones</a></li>
+
+              <li><a href=""><i class="fa fa-search"></i> Tipos de Prestaciones</a></li>
+
               </ul>
             </li>
 
             <li class=" treeview">
               <a href="#">
-                <i class="fas fa-sitemap"></i> <span> Categorías</span>
+                <i class="fas fa-sitemap"></i> <span> Modulo</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-              <li><a href="{{ route('show-categories') }}"><i class="fa fa-search"></i> Consultar</a></li>
-              <li><a href="{{ route('new-category') }}"><i class="fa fa-plus-circle"></i> Nueva</a></li>
+                <li><a href=""><i class="fa fa-search"></i> Tipos de Modulos</a></li>
+                <li><a href=""><i class="fa fa-search"></i> Categorias de Modulos</a></li>
+                <li><a href=""><i class="fa fa-search"></i> Modulos</a></li>
               </ul>
             </li>
 
-            <li class=" treeview">
-              <a href="#">
-                <i class="fa fa-tags"></i> <span> Marcas</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-              <li><a href="{{ route('show-brand') }}"><i class="fa fa-search"></i> Consultar</a></li>
-              <li><a href="{{ route('new-brand') }}"><i class="fa fa-plus-circle"></i> Nueva</a></li>
-              </ul>
-            </li>
 
-            <li class=" treeview">
-              <a href="#">
-                <i class="fa fa-shopping-cart"></i> <span> Ventas</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-              <li><a href="{{ route('show-sales') }}"><i class="fa fa-search"></i> Consultar</a></li>
-              <li><a href="{{ route('new-sale') }}"><i class="fa fa-plus-circle"></i> Nueva</a></li>
-              </ul>
-            </li>
+
+
 
 
 

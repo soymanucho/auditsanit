@@ -5,9 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Module;
 
-class ModuleType extends Model
+class ModuleCategory extends Model
 {
   protected $fillable = ['name'];
+
 
   public function moduleTypeModuleTypeCategories()
   {

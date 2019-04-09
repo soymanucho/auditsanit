@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModuleTypeCategoriesTable extends Migration
+class CreateModuleCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateModuleTypeCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('mod_typ_cat', function (Blueprint $table) {
+        Schema::create('module_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateModuleTypeCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mod_typ_cat');
+        Schema::dropIfExists('module_categories');
     }
 }

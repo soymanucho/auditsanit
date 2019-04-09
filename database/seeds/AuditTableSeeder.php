@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Audit;
 use App\Objetive;
 use App\Instruction;
+use App\Recommendation;
 class AuditTableSeeder extends Seeder
 {
     /**
@@ -24,5 +25,10 @@ class AuditTableSeeder extends Seeder
          $audit->instructions()->attach(Instruction::orderByRaw('RAND()')->first());
          $audit->save();
         });
+
+        $audits->each(function ($audit) {
+          $audit->instructions()->attach(Recommendation::orderByRaw('RAND()')->first());
+          $audit->save();
+         });
     }
 }
