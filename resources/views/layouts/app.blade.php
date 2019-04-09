@@ -271,7 +271,7 @@
               <li><a href=""><i class="fa fa-search"></i> Estados de Auditoria</a></li> --}}
               <li><a href="{{route('show-instructions')}}"><i class="fa fa-search"></i> Instrucciones</a></li>
                <li><a href="{{route('show-objectives')}}"><i class="fa fa-search"></i> Objetivos</a></li>
-              {{--<li><a href=""><i class="fa fa-search"></i> Recomendaciones</a></li> --}}
+              <li><a href="{{route('show-recommendations')}}"><i class="fa fa-search"></i> Recomendaciones</a></li>
 
               {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Prestaciones</a></li> --}}
 

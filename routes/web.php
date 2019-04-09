@@ -34,3 +34,6 @@ Route::get('/instrucciones/', 'InstructionController@show')->name('show-instruct
 
 //OBJECTIVES
 Route::get('/objetivos/', 'ObjectiveController@show')->name('show-objectives');
+
+//RECOMMENDATIONS
+Route::get('/recomendaciones/', 'RecommendationController@show')->name('show-recommendations');
