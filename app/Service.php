@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\ServiceSchedule;
+use App\TransportService;
+use App\MedicalService;
+use App\Vendor;
+use App\MedicalServiceType;
 
 class Service extends Model
 {

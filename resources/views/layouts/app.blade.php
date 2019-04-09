@@ -152,7 +152,7 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-user-o"></i>
-                <span class="hidden-xs">Seba</span>
+                <span class="hidden-xs">{{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}}</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
@@ -160,15 +160,15 @@
                   <img src="\img\avatar.svg" class="img-circle" alt="User Image">
 
                   <p>
-                    Seba - Web Developer
-                    <small>Member since 1992</small>
+                    {{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}} -  {{Auth::user()->email}}
+                    <small>Miembro desde {{ Auth::user()->created_at}}</small>
                   </p>
                 </li>
                 <!-- Menu Body -->
                 <li class="user-body">
                   <div class="row">
                     <div class="col-xs-4 text-center">
-                      <a href="#">Ventas</a>
+                      <a href="#">Usuarios</a>
                     </div>
                     <div class="col-xs-8 text-center">
                       <a href="#">Estadísticas de Uso</a>
@@ -254,6 +254,19 @@
                 <li><a href="{{route('show-medics')}}"><i class="fa fa-search"></i> Medicos</a></li>
                 <li><a href="{{route('show-auditors')}}"><i class="fa fa-plus-circle "></i> Auditores</a></li>
                 <li><a href="{{route('show-patients')}}"><i class="fa fa-plus-circle "></i> Pacientes</a></li>
+                {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
+              </ul>
+            </li>
+            <li class=" treeview">
+              <a href="#">
+                <i class="fa fa-users"></i> <span> Auditorías</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{route('show-audits')}}"><i class="fa fa-search"></i> TODAS</a></li>
+
                 {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
               </ul>
             </li>
@@ -440,5 +453,9 @@ $('.js-example-basic-single').select2({
   	});
   });
 </script>
+<script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
+<script>
+                        CKEDITOR.replace( 'editor1' );
+                </script>
 </body>
 </html>

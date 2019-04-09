@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-use App\ModuleTypeModuleTypeCategory;
+use App\Module;
 use App\Expedient;
 use App\MedicalService;
 
@@ -9,15 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExpedientModule extends Model
 {
-  protected $fillable = ['mod_typ_mod_typ_cat_id','price','expedient_id','recommended_mod_typ_mod_typ_cat_id'];
+  protected $fillable = ['module_id','price','expedient_id','recommended_module_id'];
 
-  public function moduleTypeModuleTypeCategoryRecommended()
+  public function moduleRecommended()
   {
-    return $this->belongsTo(ModuleTypeModuleTypeCategory::class);
+    return $this->belongsTo(Module::class);
   }
-  public function moduleTypeModuleTypeCategory()
+  public function module()
   {
-    return $this->belongsTo(ModuleTypeModuleTypeCategory::class);
+    return $this->belongsTo(Module::class);
   }
   public function expedient()
   {

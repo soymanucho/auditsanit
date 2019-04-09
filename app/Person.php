@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Gender;
-use App\Adress;
+use App\Address;
 use App\Auditor;
 
 class Person extends Model
@@ -18,9 +18,9 @@ class Person extends Model
       return $this->belongsTo(Gender::class);
     }
 
-    public function adress()
+    public function address()
     {
-      return $this->belongsTo(Adress::class);
+      return $this->belongsTo(Address::class);
     }
     public function auditors()
     {

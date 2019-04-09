@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Service;
+use App\MedicalService;
 
 class TransportService extends Model
 {

@@ -10,7 +10,7 @@ class ModuleCategory extends Model
   protected $fillable = ['name'];
 
 
-  public function moduleTypeModuleTypeCategories()
+  public function modules()
   {
     return $this->hasMany(Module::class);
   }
