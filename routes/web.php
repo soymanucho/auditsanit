@@ -33,3 +33,12 @@ Route::get('/auditoria/{audit}', 'AuditController@detail')->name('audit-detail')
 
 //PATIENTS
 Route::get('/pacientes/', 'PatientController@show')->name('show-patients');
+
+//INSTRUCTIONS
+Route::get('/instrucciones/', 'InstructionController@show')->name('show-instructions');
+
+//OBJECTIVES
+Route::get('/objetivos/', 'ObjectiveController@show')->name('show-objectives');
+
+//RECOMMENDATIONS
+Route::get('/recomendaciones/', 'RecommendationController@show')->name('show-recommendations');
