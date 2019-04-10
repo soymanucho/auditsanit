@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Person;
 use App\User;
-use App\Vendor;
+use App\MedicalService;
 
 class Auditor extends Model
 {
@@ -19,8 +19,8 @@ class Auditor extends Model
   {
     return $this->belongsTo(Person::class);
   }
-  public function vendors()//prestadores a los que audita
+  public function medicalServices()//prestaciones a los que audita
   {
-    return $this->hasMany(Vendor::class);
+    return $this->hasMany(MedicalService::class);
   }
 }

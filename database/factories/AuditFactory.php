@@ -8,9 +8,8 @@ $factory->define(Audit::class, function (Faker $faker) {
 
 
     return [
-      'conclution' => $faker->sentence( 6, true),
-      'report' => $faker->sentence( 6, true),
+      'conclution' => $faker->sentence( 50, false),
+      'report' => $faker->sentence(150, false),
       'expedient_id' =>  factory(Expedient::class)->create(),
-
     ];
 });

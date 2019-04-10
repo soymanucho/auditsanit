@@ -80,75 +80,9 @@
                 @endif
             </li>
           @else
-            {{-- <li class="dropdown messages-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-envelope-o"></i>
-                <span class="label label-success">1</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">Tenes 1 mensaje</li>
-                <li>
-                  <!-- inner menu: contains the actual data -->
-                  <ul class="menu">
-                    <li><!-- start message -->
-                      <a href="#">
-                        <div class="pull-left">
-                          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                        </div>
-                        <h4>
-                          Support Team
-                          <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                        </h4>
-                        <p>Why not buy a new awesome theme?</p>
-                      </a>
-                    </li>
-                    <!-- end message -->
 
-                  </ul>
-                </li>
-                <li class="footer"><a href="#">Ver todos los mensajes</a></li>
-              </ul>
-            </li> --}}
-
-
-            <!-- Notifications: style can be found in dropdown.less -->
             @include('layouts.notifications')
 
-
-
-            <!-- Tasks: style can be found in dropdown.less -->
-            {{-- <li class="dropdown tasks-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-flag-o"></i>
-                <span class="label label-danger">1</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">Tenés una tarea</li>
-                <li>
-                  <!-- inner menu: contains the actual data -->
-                  <ul class="menu">
-                    <li><!-- Task item -->
-                      <a href="#">
-                        <h3>
-                          Design some buttons
-                          <small class="pull-right">20%</small>
-                        </h3>
-                        <div class="progress xs">
-                          <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                               aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                            <span class="sr-only">20% Complete</span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <!-- end task item -->
-                  </ul>
-                </li>
-                <li class="footer">
-                  <a href="#">Ver todas las tareas</a>
-                </li>
-              </ul>
-            </li> --}}
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-user-o"></i>
@@ -211,32 +145,10 @@
       Iniciar Sesión
     @else
       <section class="sidebar">
-        <!-- Sidebar user panel -->
 
-          {{-- <div class="user-panel">
-            <div class="pull-left image">
-              <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-              <p>Seba</p>
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-          </div> --}}
-          <!-- search form -->
-          {{-- <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Buscar...">
-              <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                    </button>
-                  </span>
-            </div>
-          </form> --}}
-          <!-- /.search form -->
-          <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MENÚ PRINCIPAL</li>
-            {{--  --}}
+
             <li>
               <a href="">
                 <i class="fa fa-chart-line"></i> <span> Dashboard</span>
@@ -311,17 +223,6 @@
               <li><a href="{{route('show-module')}}"><i class="fa fa-search"></i> Modulos</a></li> 
               </ul>
             </li>
-
-
-
-
-
-
-
-
-
-
-
 
       </section>
     @endguest

@@ -2,9 +2,10 @@
 
 @section('header')
 
+    <th>N°</th>
     <th>Título</th>
-    <th>Paciente</th>
-    <th>Auditores</th>
+    <th>Estado</th>
+    <th>Obra social</th>
     <th></th>
 
 
@@ -15,12 +16,17 @@
 @section('body')
   @foreach($audits as $audit)
       <tr>
+        <td>  {{ $audit->id}} </td>
         <td>  {{ $audit->expedient->title}} </td>
-        <td>  {{ $audit->expedient->patient->person->name}} </td>
         <td>
-          @foreach ($audit->auditors() as $auditor)
-            {{$auditor->person->name}} || 
-          @endforeach
+          @isset($audit->currentStatus()->name)
+             {{ $audit->currentStatus()->name}}
+          @endisset
+        </td>
+        <td>
+        @isset($audit->expedient->client->companyName)
+          {{$audit->expedient->client->companyName}}
+        @endisset
         </td>
           <td class="text-center"> <a  href="{{ route('audit-detail', compact('audit')) }}"><b class="fa fa-eye "></b></a> </td>
         {{-- <td>  {{ $category->subcategory->name }} </td>

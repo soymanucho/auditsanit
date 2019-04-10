@@ -10,6 +10,8 @@ use App\Comment;
 use App\Status;
 class Audit extends Model
 {
+    protected $dates = ['created_at','updated_at'];
+
     public function expedient()
     {
       return $this->hasOne(Expedient::class,'id');
@@ -51,7 +53,7 @@ class Audit extends Model
     }
     public function currentStatus()
     {
-      # TODO: get latest state
-
+      $lastStatus = $this->statuses()->orderBy('created_at','desc')->first();
+      return $lastStatus;
     }
 }
