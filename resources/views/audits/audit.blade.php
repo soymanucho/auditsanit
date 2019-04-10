@@ -28,10 +28,10 @@
             @endif
 
             <div class="progress">
-              <div class="progress-bar" style="width: {{$audit->currentStatus()->percentage()}}%"></div>
+              <div class="progress-bar" style="width: 70%"></div>
             </div>
                 <span class="progress-description">
-                  {{$audit->currentStatus()->percentage()}}% Increase in 30 Days
+                  70% Increase in 30 Days
                 </span>
           </div>
           <!-- /.info-box-content -->
