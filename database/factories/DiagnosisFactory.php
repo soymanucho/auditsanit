@@ -20,8 +20,8 @@ use Faker\Generator as Faker;
 $factory->define(Diagnosis::class, function (Faker $faker) {
     return [
 
-        'diagnosisType_id' =>  DiagnosisType::orderByRaw('RAND()')->first(),
-        'expedient_id'  =>  Expedient::orderByRaw('RAND()')->first(),
+        'diagnosisType_id' =>  DiagnosisType::orderByRaw('RANDOM()')->first(),
+        'expedient_id'  =>  Expedient::orderByRaw('RANDOM()')->first(),
         'patient_id' =>  0, //copiar lo de arriba cuando tengamos la lista de pasientes
     ];
 });
