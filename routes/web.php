@@ -48,3 +48,6 @@ Route::get('/tiposdemodulo/', 'ModueTypeController@show')->name('show-moduletype
 
 //MODULE CATEGORY
 Route::get('/categoriasdemodulo/', 'ModueleCategoryController@show')->name('show-modulecategories');
+
+//MODULE
+Route::get('/modulos/', 'ModueleController@show')->name('show-module');
