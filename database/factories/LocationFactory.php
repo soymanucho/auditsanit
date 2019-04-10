@@ -7,6 +7,6 @@ use App\Location;
 $factory->define(Location::class, function (Faker $faker) {
     return [
       'name'=>$faker->city(),
-      'province_id' =>  Province::orderByRaw('RAND()')->first(),
+      'province_id' =>  Province::orderByRaw('RANDOM()')->first(),
     ];
 });
