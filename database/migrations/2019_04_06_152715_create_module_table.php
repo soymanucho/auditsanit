@@ -23,6 +23,7 @@ class CreateModuleTable extends Migration
         Schema::table('modules', function (Blueprint $table) {
             $table->foreign('module_category_id')->references('id')->on('module_categories');
             $table->foreign('module_type_id')->references('id')->on('module_types');
+            $table->unique(array('module_category_id','module_type_id'));
           });
     }
 
