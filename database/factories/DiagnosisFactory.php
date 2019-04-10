@@ -2,7 +2,7 @@
 
 use App\Expedient;
 use App\DiagnosisType;
-use App\Diagnosis;
+use App\Patient;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -20,8 +20,8 @@ use Faker\Generator as Faker;
 $factory->define(Diagnosis::class, function (Faker $faker) {
     return [
 
-        'diagnosisType_id' =>  DiagnosisType::orderByRaw('RANDOM()')->first(),
-        'expedient_id'  =>  Expedient::orderByRaw('RANDOM()')->first(),
-        'patient_id' =>  0, //copiar lo de arriba cuando tengamos la lista de pasientes
+        'diagnosisType_id' =>  DiagnosisType::inRandomOrder()->first(),
+        'expedient_id'  =>  Expedient::inRandomOrder()->first(),
+        'patient_id' => Patient::inRandomOrder()->first(), //copiar lo de arriba cuando tengamos la lista de pasientes
     ];
 });
