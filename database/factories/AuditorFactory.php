@@ -6,7 +6,7 @@ use App\Person;
 
 $factory->define(App\Auditor::class, function (Faker $faker) {
     return [
-      'user_id'=> User::orderByRaw('RANDOM()')->first(),
-      'person_id'=> Person::orderByRaw('RANDOM()')->first(),
+      'user_id'=> User::inRandomOrder()->first(),
+      'person_id'=> Person::inRandomOrder()->first(),
     ];
 });
