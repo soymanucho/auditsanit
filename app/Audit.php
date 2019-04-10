@@ -20,16 +20,16 @@ class Audit extends Model
 
     public function recommendations()
     {
-      return $this->belongsToMany(Recommendation::class,'audit_recommendations');
+      return $this->belongsToMany(Recommendation::class,'audit_recommendations')->withTimestamps();
     }
     public function instructions()
     {
-      return $this->belongsToMany(Instruction::class,'audits_instructions');
+      return $this->belongsToMany(Instruction::class,'audits_instructions')->withTimestamps();
     }
 
     public function objetives()
     {
-      return $this->belongsToMany(Objetive::class,'audits_objetives');
+      return $this->belongsToMany(Objetive::class,'audits_objetives')->withTimestamps();
     }
 
     public function comments()
@@ -39,14 +39,14 @@ class Audit extends Model
 
     public function statuses()
     {
-      return $this->belongsToMany(Status::class,'audits_statuses');
+      return $this->belongsToMany(Status::class,'audits_statuses')->withTimestamps();
     }
     public function auditors()
     {
       $auditors = collect([]);
       foreach ($this->expedient->expedientModules as $expedientModule) {
         foreach ($expedientModule->medicalServices as $medicalService) {
-          $auditors->push($medicalService->service->vendor->auditor);
+          $auditors->push($medicalService->auditor);
         }
       }
       return $auditors;
@@ -56,4 +56,5 @@ class Audit extends Model
       $lastStatus = $this->statuses()->orderBy('created_at','desc')->first();
       return $lastStatus;
     }
+
 }

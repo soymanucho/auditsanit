@@ -5,6 +5,8 @@ use App\Audit;
 use App\Objetive;
 use App\Instruction;
 use App\Recommendation;
+use App\Status;
+
 class AuditTableSeeder extends Seeder
 {
     /**
@@ -21,14 +23,18 @@ class AuditTableSeeder extends Seeder
         $audit->save();
        });
 
-       $audits->each(function ($audit) {
-         $audit->instructions()->attach(Instruction::orderByRaw('RAND()')->first());
-         $audit->save();
-        });
+      $audits->each(function ($audit) {
+        $audit->instructions()->attach(Instruction::orderByRaw('RAND()')->first());
+        $audit->save();
+       });
 
-        $audits->each(function ($audit) {
-          $audit->instructions()->attach(Recommendation::orderByRaw('RAND()')->first());
-          $audit->save();
-         });
+      $audits->each(function ($audit) {
+        $audit->instructions()->attach(Recommendation::orderByRaw('RAND()')->first());
+        $audit->save();
+       });
+      $audits->each(function ($audit) {
+        $audit->statuses()->attach(Status::orderByRaw('RAND()')->first());
+        $audit->save();
+       });
     }
 }
