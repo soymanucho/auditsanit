@@ -8,7 +8,7 @@ $factory->define(App\ServiceSchedule::class, function (Faker $faker) {
 
       'initial_datetime'=> $faker->dateTime('now',null),
       'final_datetime'=> $faker->dateTime('initial_datetime',null),
-      'service_id'=> Service::orderByRaw('RAND()')->first(),
+      'service_id'=> Service::inRandomOrder()->first(),
 
     ];
 });
