@@ -20,12 +20,10 @@ class CreateVendorsTable extends Migration
             $table->string('jury_person');
             $table->boolean('dependency_additional');
             $table->bigInteger('address_id')->unsigned();
-            $table->bigInteger('auditor_id')->unsigned();
             $table->timestamps();
         });
         Schema::table('vendors', function (Blueprint $table) {
             $table->foreign('address_id')->references('id')->on('addresses');
-            $table->foreign('auditor_id')->references('id')->on('auditors');
         });
     }
 
