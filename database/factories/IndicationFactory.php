@@ -7,8 +7,8 @@ use App\IndicationType;
 
 $factory->define(Indication::class, function (Faker $faker) {
     return [
-        'medic_id'=> Medic::orderByRaw('RAND()')->first(),
-        'indicationType_id'=> IndicationType::orderByRaw('RAND()')->first(),
+        'medic_id'=> Medic::inRandomOrder()->first(),
+        'indicationType_id'=> IndicationType::inRandomOrder()->first(),
         'aditionalDependance'=>$faker->boolean($chanceOfGettingTrue = 50),
         'numberOfSesions'=>$faker->randomDigitNotNull(),
     ];
