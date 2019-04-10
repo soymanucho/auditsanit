@@ -21,7 +21,14 @@
         <td>  {{ $moduleType->name}} </td>
 
         @foreach ($moduleCategories as $moduleCategory)
-          <th>${{$matrix[$moduleType->id][$moduleCategory->id]}}</th>
+
+          @if (isset($matrix[$moduleType->id][$moduleCategory->id]))
+            <th>${{$matrix[$moduleType->id][$moduleCategory->id]}}</th>
+            @else
+                <th ></th>
+          @endif
+
+
         @endforeach
 
         </tr>

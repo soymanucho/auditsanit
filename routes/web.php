@@ -51,3 +51,6 @@ Route::get('/categoriasdemodulo/', 'ModueleCategoryController@show')->name('show
 
 //MODULE
 Route::get('/modulos/', 'ModueleController@show')->name('show-module');
+
+//MODULE
+Route::get('/estados/', 'StatusController@show')->name('show-status');
