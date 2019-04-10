@@ -21,8 +21,8 @@ $factory->define(Expedient::class, function (Faker $faker) {
 
     return [
         'title' => $faker->sentence( 6, true),
-        'client_id' =>  Client::orderByRaw('RAND()')->first(),
-        'patient_id' =>  Patient::orderByRaw('RAND()')->first(),
+        'client_id' =>  Client::inRandomOrder()->first(),
+        'patient_id' =>  Patient::inRandomOrder()->first(),
       
     ];
 });
