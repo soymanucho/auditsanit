@@ -6,6 +6,6 @@ use App\Person;
 
 $factory->define(Patient::class, function (Faker $faker) {
     return [
-      'person_id'=> Person::orderByRaw('RAND()')->first(),
+      'person_id'=> Person::inRandomOrder()->first(),
     ];
 });
