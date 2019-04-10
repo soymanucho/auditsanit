@@ -10,7 +10,7 @@ $factory->define(App\Person::class, function (Faker $faker) {
       'surname'=>$faker->lastName(),
       'dni'=>$faker->randomNumber(8, false),
       'birth_date'=>$faker->dateTime('now', null),
-      'gender_id'=> Gender::orderByRaw('RAND()')->first(),
-      'address_id'=> Address::orderByRaw('RAND()')->first(),
+      'gender_id'=> Gender::inRandomOrder()->first(),
+      'address_id'=> Address::inRandomOrder()->first(),
     ];
 });
