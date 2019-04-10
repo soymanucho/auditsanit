@@ -17,17 +17,17 @@ class AuditTableSeeder extends Seeder
       $audits = factory(Audit::class, 50)->create();
 
       $audits->each(function ($audit) {
-        $audit->objetives()->attach(Objetive::orderByRaw('RAND()')->first());
+        $audit->objetives()->attach(Objetive::inRandomOrder()->first());
         $audit->save();
        });
 
        $audits->each(function ($audit) {
-         $audit->instructions()->attach(Instruction::orderByRaw('RAND()')->first());
+         $audit->instructions()->attach(Instruction::inRandomOrder()->first());
          $audit->save();
         });
 
         $audits->each(function ($audit) {
-          $audit->instructions()->attach(Recommendation::orderByRaw('RAND()')->first());
+          $audit->instructions()->attach(Recommendation::inRandomOrder()->first());
           $audit->save();
          });
     }
