@@ -185,6 +185,8 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{route('show-audits')}}"><i class="fa fa-search"></i> TODAS</a></li>
+                <li><a href="{{route('show-status')}}"><i class="fa fa-search"></i> Estados</a></li>
+
 
                 {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
               </ul>
@@ -220,7 +222,7 @@
               <ul class="treeview-menu">
                 <li><a href="{{route('show-moduletypes')}}"><i class="fa fa-search"></i> Tipos de modulo</a></li>
                  <li><a href="{{route('show-modulecategories')}}"><i class="fa fa-search"></i> Categorias de Modulos</a></li>
-              <li><a href="{{route('show-module')}}"><i class="fa fa-search"></i> Modulos</a></li> 
+              <li><a href="{{route('show-module')}}"><i class="fa fa-search"></i> Modulos</a></li>
               </ul>
             </li>
 
