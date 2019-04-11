@@ -7,7 +7,7 @@
 @section('breadcrumb-items')
   <li><a href="{!! route('home') !!}"><i class="fa "></i> Inicio</a></li>
   <li><a href="{!! route('show-objectives') !!}"><i class="fa "></i> Objetivos</a></li>
-  <li class="active">Nueva</li>
+  <li class="active">Nuevo</li>
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
       <div class="box-header with-border">
         <h3 class="box-title">Agregando un nuevo objetivo</h3>
       </div>
-      <form  method="POST" name='newObjetive'>
+      <form  method="POST" name='newObjective'>
         <div class="box-body">
       	  {{ method_field('post') }}
           @include('objectives._fields')

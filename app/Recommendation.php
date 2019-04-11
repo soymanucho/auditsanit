@@ -10,8 +10,8 @@ class Recommendation extends Model
 {
 
   use SoftDeletes;
-  
-  protected $fillable = ['descrip'];
+
+  protected $fillable = ['name'];
 
   public function audits()
   {
