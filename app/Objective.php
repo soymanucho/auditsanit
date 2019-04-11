@@ -5,13 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Audit;
-class Objetive extends Model
+class Objective extends Model
 {
 
   use SoftDeletes;
-  
+
   public function audit()
   {
-    return $this->belongsToMany(Audit::class,'audits_objetives');
+    return $this->belongsToMany(Audit::class,'audits_objectives');
   }
 }

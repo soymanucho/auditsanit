@@ -45,6 +45,11 @@ Route::get('/instrucciones/{instruction}/eliminar/', 'InstructionController@dele
 
 //OBJECTIVES
 Route::get('/objetivos/', 'ObjectiveController@show')->name('show-objectives');
+Route::get('/objetivos/nuevo', 'ObjectiveController@new')->name('new-objectives');
+Route::post('/objetivos/nuevo', 'ObjectiveController@save')->name('new-objectives');
+Route::get('/objetivos/{objetivo}/editar/', 'ObjectiveController@edit')->name('edit-objectives');
+Route::post('/objetivos/{objetivo}/editar/', 'ObjectiveController@update')->name('update-objectives');
+Route::get('/objetivos/{objetivo}/eliminar/', 'ObjectiveController@delete')->name('delete-objectives');
 
 //RECOMMENDATIONS
 Route::get('/recomendaciones/', 'RecommendationController@show')->name('show-recommendations');

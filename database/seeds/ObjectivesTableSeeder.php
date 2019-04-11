@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Objetive;
-class ObjetivesTableSeeder extends Seeder
+use App\Objective;
+class ObjectivesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class ObjetivesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Objetive::class, 10)->create();
+        factory(Objective::class, 10)->create();
     }
 }

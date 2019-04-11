@@ -13,16 +13,16 @@ class CreateAuditObjetiveTable extends Migration
      */
     public function up()
     {
-        Schema::create('audits_objetives', function (Blueprint $table) {
+        Schema::create('audits_objectives', function (Blueprint $table) {
             $table->bigInteger('audit_id')->unsigned();
-            $table->bigInteger('objetive_id')->unsigned();
+            $table->bigInteger('objective_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });
 
-        Schema::table('audits_objetives', function (Blueprint $table) {
+        Schema::table('audits_objectives', function (Blueprint $table) {
               $table->foreign('audit_id')->references('id')->on('audits');
-              $table->foreign('objetive_id')->references('id')->on('objetives');
+              $table->foreign('objective_id')->references('id')->on('objectives');
 
         });
     }
@@ -34,6 +34,6 @@ class CreateAuditObjetiveTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('audits_objetives');
+        Schema::dropIfExists('audits_objectives');
     }
 }

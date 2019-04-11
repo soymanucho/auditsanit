@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Expedient;
 use App\Instruction;
-use App\Objetive;
+use App\Objective;
 use App\Comment;
 use App\Status;
 class Audit extends Model
@@ -30,9 +30,9 @@ class Audit extends Model
       return $this->belongsToMany(Instruction::class,'audits_instructions')->withTimestamps();
     }
 
-    public function objetives()
+    public function objectives()
     {
-      return $this->belongsToMany(Objetive::class,'audits_objetives')->withTimestamps();
+      return $this->belongsToMany(Objective::class,'audits_objectives')->withTimestamps();
     }
 
     public function comments()
