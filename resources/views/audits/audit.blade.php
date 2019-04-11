@@ -138,63 +138,63 @@
         <!-- /.box-body -->
       </div>
 
-      <div class="box box-primary collapsed-box">
-        <div class="box-header with-border">
-          <h3 class="box-title">Datos del expediente</h3>
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-            </button>
-          </div>
+      <!-- /.box-body -->
+    </div>
+
+    <div class="box box-primary collapsed-box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Datos del expediente</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+          </button>
         </div>
-         <!-- /.box-header -->
-        <div class="box-body">
-          <form role="form">
-
-            <div class="form-group">
-             <label>Diagnóstico</label>
-             <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná un objetivo"
-                     style="width: 100%;">
-               @foreach ($audit->expedient->diagnoses as $diagnosis)
-                 <option selected="selected">{{$diagnosis->diagnosisType->name}}</option>
-               @endforeach
-             </select>
-           </div>
-
-           <div class="form-group col-sm-12 col-md-6 col-lg-1">
-            <label>Categoría</label>
-            <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una provincia"
-                    style="width: 100%;">
-                @isset($audit->expedient->expedientModule->module->moduleCategory->name)
-                  <option selected="selected">{{$audit->expedient->expedientModule->module->moduleCategory->name}}</option>
-                @endisset
-            </select>
-          </div>
-          <div class="form-group col-sm-12 col-md-6 col-lg-3">
-           <label>Módulo</label>
-           <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una provincia"
-                   style="width: 100%;">
-              @isset($audit->expedient->expedientModule->module->moduleType->name)
-                <option selected="selected">{{$audit->expedient->expedientModule->module->moduleType->name}}</option>
-              @endisset
-           </select>
-          </div>
-             {{-- TO DO establecer relacion entre diagnosis e indications --}}
-            {{-- <div class="form-group">
-             <label>Indicaciones del médico</label>
-             <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná un objetivo"
-                     style="width: 100%;">
-               @foreach ($audit->expedient->diagnoses as $diagnosis)
-                 @foreach ($diagnosis->indications as $indication)
-                   <option selected="selected">{{$indication->indicationType->name}}</option>
-                 @endforeach
-               @endforeach
-             </select>
-             </div> --}}
-
-          </form>
-        </div>
-
       </div>
+       <!-- /.box-header -->
+      <div class="box-body">
+        <form role="form">
+
+          <div class="form-group">
+           <label>Diagnósticos:</label>
+           {{-- <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná un objetivo"
+                   style="width: 100%;"> --}}
+                   <ul>
+                     @foreach ($audit->expedient->diagnoses as $diagnosis)
+                       <li selected="selected">{{$diagnosis->diagnosisType->name}}</li>
+                     @endforeach
+                   </ul>
+
+           {{-- </select> --}}
+         </div>
+         <div class="form-group">
+          <label>Modulos:</label>
+          <ul>
+          @foreach ($audit->expedient->expedientModules as $moduleexp)
+
+
+                <li>{{$moduleexp->module->moduleType->name}} - {{$moduleexp->module->moduleCategory->name}}</li>
+
+
+
+          @endforeach
+          </ul>
+          </div>
+           {{-- TO DO establecer relacion entre diagnosis e indications --}}
+          {{-- <div class="form-group">
+           <label>Indicaciones del médico</label>
+           <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná un objetivo"
+                   style="width: 100%;">
+             @foreach ($audit->expedient->diagnoses as $diagnosis)
+               @foreach ($diagnosis->indications as $indication)
+                 <option selected="selected">{{$indication->indicationType->name}}</option>
+               @endforeach
+             @endforeach
+           </select>
+           </div> --}}
+
+        </form>
+      </div>
+
+    </div>
 
 
     <div class="row">
