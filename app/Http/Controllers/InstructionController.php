@@ -41,4 +41,25 @@ class InstructionController extends Controller
   $instruction->save();
   return redirect()->route('show-instructions');
   }
+  public function edit(Instruction $instruction)
+  {
+    return view('instructions.editInstruction',compact('instruction'));
+  }
+  public function update(Instruction $instruction, Request $request)
+  {
+    $this->validate(
+      $request,
+      [
+          'name' => 'required|max:60',
+      ],
+      [
+      ],
+      [
+          'name' => 'nombre',
+      ]
+  );
+  $instruction->fill($request->all());
+  $instruction->save();
+  return redirect()->route('show-instructions');
+  }
 }
