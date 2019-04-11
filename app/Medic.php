@@ -3,11 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Person;
 class Medic extends Model
 {
-    public function person()
-    {
-       return $this->hasOne(Person::class,'id');
-    }
+
+  use SoftDeletes;
+
+  public function person()
+  {
+     return $this->hasOne(Person::class,'id');
+  }
 }

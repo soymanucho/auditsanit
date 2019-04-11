@@ -239,6 +239,9 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       @yield('content-header')
+      <ol class="breadcrumb">
+        @yield('breadcrumb-items')
+      </ol>
     </section>
 
     <!-- Main content -->

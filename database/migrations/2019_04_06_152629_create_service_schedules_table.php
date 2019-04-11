@@ -19,6 +19,7 @@ class CreateServiceSchedulesTable extends Migration
             $table->dateTime('final_datetime');
             $table->bigInteger('service_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::table('service_schedules', function (Blueprint $table) {
             $table->foreign('service_id')->references('id')->on('services');

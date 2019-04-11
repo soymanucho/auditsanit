@@ -18,6 +18,7 @@ class CreateMedicalServiceTypesTable extends Migration
             $table->string('name');
             $table->boolean('is_transport_service');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

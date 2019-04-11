@@ -23,6 +23,7 @@ class CreatePeopleTable extends Migration
             $table->bigInteger('address_id')->unsigned();
             $table->bigInteger('gender_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('people', function (Blueprint $table) {

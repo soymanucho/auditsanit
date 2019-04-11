@@ -17,6 +17,7 @@ class CreateAuditObjetiveTable extends Migration
             $table->bigInteger('audit_id')->unsigned();
             $table->bigInteger('objetive_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('audits_objetives', function (Blueprint $table) {

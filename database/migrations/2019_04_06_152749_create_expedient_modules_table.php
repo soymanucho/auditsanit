@@ -20,6 +20,7 @@ class CreateExpedientModulesTable extends Migration
             $table->bigInteger('expedient_id')->unsigned();
             $table->bigInteger('recommended_module_id')->nullable()->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::table('expedient_modules', function (Blueprint $table) {
             $table->foreign('module_id')->references('id')->on('modules');

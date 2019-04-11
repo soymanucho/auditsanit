@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Expedient;
 use App\Instruction;
 use App\Objetive;
@@ -10,6 +11,8 @@ use App\Comment;
 use App\Status;
 class Audit extends Model
 {
+
+    use SoftDeletes;
     protected $dates = ['created_at','updated_at'];
 
     public function expedient()

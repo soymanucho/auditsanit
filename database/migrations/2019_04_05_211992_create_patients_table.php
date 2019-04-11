@@ -17,6 +17,7 @@ class CreatePatientsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('person_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('patients', function (Blueprint $table) {

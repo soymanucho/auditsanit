@@ -18,6 +18,7 @@ class CreateAuditsRecommendationsTable extends Migration
             $table->bigInteger('audit_id')->unsigned();
             $table->bigInteger('recommendation_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::table('audit_recommendations', function (Blueprint $table) {
             $table->foreign('recommendation_id')->references('id')->on('recommendations');

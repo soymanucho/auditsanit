@@ -17,6 +17,7 @@ class CreateAuditInstructionTable extends Migration
             $table->bigInteger('audit_id')->unsigned();
             $table->bigInteger('instruction_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('audits_instructions', function (Blueprint $table) {
