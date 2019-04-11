@@ -149,7 +149,7 @@
             <input class="form-control input" type="text" value="{{$audit->expedient->patient->person->surname}}" placeholder=".input-lg">
           </div>
         </form>--}}
-      </div>
+
       <div class="row">
         <div class="col-md-12">
           <!-- The time line -->
@@ -197,6 +197,7 @@
         <!-- /.col -->
       </div>
       <!-- /.box-body -->
+      </div>
     </div>
 
   </div>
