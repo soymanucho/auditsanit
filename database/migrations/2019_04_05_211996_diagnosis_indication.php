@@ -18,6 +18,7 @@ class DiagnosisIndication extends Migration
           $table->bigInteger('diagnosis_id')->unsigned();
           $table->bigInteger('indication_id')->unsigned();
           $table->timestamps();
+          $table->softDeletes();
       });
 
       Schema::table('diagnosis_indications', function (Blueprint $table) {

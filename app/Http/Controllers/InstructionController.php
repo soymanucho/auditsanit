@@ -12,4 +12,33 @@ class InstructionController extends Controller
     $instructions = Instruction::all();
     return view('instructions.instructions',compact('instructions'));
   }
+  public function delete(Instruction $instruction)
+  {
+    $instruction->delete();
+    return redirect()->back();
+  }
+  public function new()
+  {
+    $instruction = New Instruction();
+    return view('instructions.newInstruction',compact('instruction'));
+  }
+  public function save(Request $request)
+  {
+    $instruction = New Instruction();
+    $this->validate(
+      $request,
+      [
+          'name' => 'required|max:60',
+      ],
+      [
+      ],
+      [
+          'name' => 'nombre',
+      ]
+  );
+  $instruction = new Instruction;
+  $instruction->fill($request->all());
+  $instruction->save();
+  return redirect()->route('show-instructions');
+  }
 }

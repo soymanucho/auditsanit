@@ -3,12 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Location;
 use App\Person;
 use App\Vendor;
 
 class Address extends Model
 {
+  use SoftDeletes;
+  
   protected $fillable = ['street','number','floor','location_id','latitude','longitude'];
 
   public function location()

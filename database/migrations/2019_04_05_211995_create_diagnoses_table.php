@@ -19,6 +19,7 @@ class CreateDiagnosesTable extends Migration
             $table->bigInteger('expedient_id')->unsigned();
             $table->bigInteger('patient_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('diagnoses', function (Blueprint $table) {

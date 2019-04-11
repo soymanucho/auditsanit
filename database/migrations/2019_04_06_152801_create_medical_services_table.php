@@ -20,6 +20,7 @@ class CreateMedicalServicesTable extends Migration
             $table->bigInteger('transport_service_id')->nullable()->unsigned();
             $table->bigInteger('auditor_id')->nullable()->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::table('medical_services', function (Blueprint $table) {
             $table->foreign('expedient_module_id')->references('id')->on('expedient_modules');

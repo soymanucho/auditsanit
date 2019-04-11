@@ -17,6 +17,7 @@ class CreateRecommendationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('descrip');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

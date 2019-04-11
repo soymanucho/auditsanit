@@ -19,13 +19,14 @@ class CreateLocationsTable extends Migration
             $table->string('name');
             $table->timestamps();
             $table->bigInteger('province_id')->unsigned();
+            $table->softDeletes();
 
         });
 
         Schema::table('locations', function (Blueprint $table) {
 
             $table->foreign('province_id')->references('id')->on('provinces');
-          
+
         });
     }
 

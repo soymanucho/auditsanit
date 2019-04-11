@@ -17,6 +17,7 @@ class CreateAuditStatusTable extends Migration
             $table->bigInteger('audit_id')->unsigned();
             $table->bigInteger('status_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('audits_statuses', function (Blueprint $table) {

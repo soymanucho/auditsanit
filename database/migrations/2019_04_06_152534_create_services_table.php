@@ -18,6 +18,7 @@ class CreateServicesTable extends Migration
             $table->bigInteger('vendor_id')->unsigned();
             $table->bigInteger('medical_service_type_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::table('services', function (Blueprint $table) {
             $table->foreign('vendor_id')->references('id')->on('vendors');

@@ -22,6 +22,7 @@ class CreateAddressesTable extends Migration
             $table->double('longitude')->nullable()->index();
             $table->bigInteger('location_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('addresses', function (Blueprint $table) {

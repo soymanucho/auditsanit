@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 //MEDICS
@@ -36,6 +37,11 @@ Route::get('/pacientes/', 'PatientController@show')->name('show-patients');
 
 //INSTRUCTIONS
 Route::get('/instrucciones/', 'InstructionController@show')->name('show-instructions');
+Route::get('/instrucciones/nueva', 'InstructionController@new')->name('new-instructions');
+Route::post('/instrucciones/nueva', 'InstructionController@save')->name('new-instructions');
+Route::get('/instrucciones/{instruction}/editar/', 'InstructionController@edit')->name('edit-instructions');
+Route::post('/instrucciones/{instruction}/editar/', 'InstructionController@update')->name('update-instructions');
+Route::get('/instrucciones/{instruction}/eliminar/', 'InstructionController@delete')->name('delete-instructions');
 
 //OBJECTIVES
 Route::get('/objetivos/', 'ObjectiveController@show')->name('show-objectives');

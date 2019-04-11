@@ -17,6 +17,7 @@ class CreateClientsTable extends Migration
             $table->bigIncrements('id');
             $table->string('companyName');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -21,6 +21,7 @@ class CreateIndicationsTable extends Migration
             $table->boolean('aditionalDependance');
 
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('indications', function (Blueprint $table) {

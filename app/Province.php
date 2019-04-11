@@ -3,13 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Location;
 
 class Province extends Model
 {
 
-  protected $fillable = ['name'];
+  use SoftDeletes;
 
+  protected $fillable = ['name'];
 
   public function locations()
   {

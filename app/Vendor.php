@@ -3,11 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Address;
 use App\Vendor;
 
 class Vendor extends Model
 {
+
+  use SoftDeletes;
+  
   protected $fillable = ['address_id','name','snr_category','jury_person','dependency_additional'];
 
   public function address()
