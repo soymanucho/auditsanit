@@ -186,7 +186,7 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{route('show-audits')}}"><i class="fa fa-search"></i> TODAS</a></li>
+                <li><a href="{{route('show-audits')}}"><i class="fa fa-search"></i> Todas</a></li>
                 <li><a href="{{route('show-status')}}"><i class="fa fa-search"></i> Estados</a></li>
 
 
@@ -252,7 +252,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2018 <a href="">Nubecita</a>.</strong> Todos los derechos reservados.
+    <strong>Copyright &copy; 2019 <a href="">Auditoría sanitaria</a>.</strong> Todos los derechos reservados.
   </footer>
 
   <!-- Control Sidebar -->

@@ -16,7 +16,9 @@ class DiagnosesTableSeeder extends Seeder
           $diagnoses = factory(Diagnosis::class, 50)->create();
 
           $diagnoses->each(function ($diagnosis) {
-              $diagnosis->indications()->attach(factory(Indication::class,2)->create());
+              $diagnosis->indications()->attach(factory(Indication::class)->create());
+              $diagnosis->indications()->attach(factory(Indication::class)->create());
+              $diagnosis->indications()->attach(factory(Indication::class)->create());
               $diagnosis->save();
              });
     }
