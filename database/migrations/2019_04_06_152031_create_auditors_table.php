@@ -18,6 +18,7 @@ class CreateAuditorsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('person_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::table('auditors', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');

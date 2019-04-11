@@ -21,6 +21,7 @@ class CreateVendorsTable extends Migration
             $table->boolean('dependency_additional');
             $table->bigInteger('address_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::table('vendors', function (Blueprint $table) {
             $table->foreign('address_id')->references('id')->on('addresses');

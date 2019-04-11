@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Auditoría Sanitaria
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@
     <th>N°</th>
     <th>Título</th>
     <th>Estado</th>
+    <th>Nº de comentarios</th>
     <th>Obra social</th>
     <th></th>
 
@@ -22,6 +23,11 @@
           @isset($audit->currentStatus()->name)
              {{ $audit->currentStatus()->name}}
           @endisset
+        </td>
+        <td>
+        @isset($audit->comments)
+          {{$audit->comments->count()}}
+        @endisset
         </td>
         <td>
         @isset($audit->expedient->client->companyName)

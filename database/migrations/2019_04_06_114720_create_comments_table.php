@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->bigInteger('audit_id')->unsigned();
             $table->string('text');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('comments', function (Blueprint $table) {

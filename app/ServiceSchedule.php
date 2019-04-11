@@ -3,10 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Service;
 
 class ServiceSchedule extends Model
 {
+
+  use SoftDeletes;
+
   protected $fillable = ['initial_datetime','final_datetime','service_id'];
 
   public function service()

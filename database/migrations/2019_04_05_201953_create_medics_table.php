@@ -19,6 +19,7 @@ class CreateMedicsTable extends Migration
             $table->string('license');
             $table->boolean('isNationalLicense');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('medics', function (Blueprint $table) {

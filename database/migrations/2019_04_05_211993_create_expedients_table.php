@@ -19,6 +19,7 @@ class CreateExpedientsTable extends Migration
             $table->bigInteger('patient_id')->unsigned();
             $table->string('title');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('expedients', function (Blueprint $table) {

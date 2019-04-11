@@ -19,6 +19,7 @@ class CreateModuleTable extends Migration
             $table->bigInteger('module_category_id')->unsigned();
             $table->decimal('price',12,2);
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::table('modules', function (Blueprint $table) {
             $table->foreign('module_category_id')->references('id')->on('module_categories');

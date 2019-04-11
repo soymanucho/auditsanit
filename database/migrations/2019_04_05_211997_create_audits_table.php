@@ -19,6 +19,7 @@ class CreateAuditsTable extends Migration
             $table->longText('conclution');
             $table->longText('report');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('audits', function (Blueprint $table) {

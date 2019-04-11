@@ -17,6 +17,7 @@ class DiagnosesTableSeeder extends Seeder
     {
           //$diagnoses = factory(Diagnosis::class, 50)->create();
 
+<<<<<<< HEAD
 
           foreach (Expedient::all() as $expedient) {
             for ($i=0; $i < 3 ; $i++) { 
@@ -31,6 +32,12 @@ class DiagnosesTableSeeder extends Seeder
 
           Diagnosis::all()->each(function ($diagnosis) {
               $diagnosis->indications()->attach(factory(Indication::class,2)->create());
+=======
+          $diagnoses->each(function ($diagnosis) {
+              $diagnosis->indications()->attach(factory(Indication::class)->create());
+              $diagnosis->indications()->attach(factory(Indication::class)->create());
+              $diagnosis->indications()->attach(factory(Indication::class)->create());
+>>>>>>> 63ba1060e753a0b832b5b82ec4cefd10a62bf2d3
               $diagnosis->save();
              });
     }

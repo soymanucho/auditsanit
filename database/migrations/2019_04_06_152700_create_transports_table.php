@@ -18,6 +18,7 @@ class CreateTransportsTable extends Migration
             $table->bigInteger('service_id')->unsigned();
             $table->decimal('km_per_month',12,2);
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::table('transport_services', function (Blueprint $table) {
             $table->foreign('service_id')->references('id')->on('services');
