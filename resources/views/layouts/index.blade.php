@@ -1,13 +1,13 @@
 @extends('layouts.welcome')
 
 @section('title')
-  Auditoria Sanitaria
+  Auditoría Sanitaria
 @endsection
 
 
 
 @section('content')
     <div class="title m-b-md">
-        Auditoria Sanitaria
+        Auditoría Sanitaria
     </div>
 @endsection

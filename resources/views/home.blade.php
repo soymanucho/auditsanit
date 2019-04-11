@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Auditoria Sanitaria
+                    Auditoría Sanitaria
                 </div>
             </div>
         </div>
