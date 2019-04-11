@@ -23,14 +23,19 @@ class AuditTableSeeder extends Seeder
         $audit->save();
        });
 
-       $audits->each(function ($audit) {
-         $audit->instructions()->attach(Instruction::inRandomOrder()->first());
-         $audit->save();
-        });
+      $audits->each(function ($audit) {
+        $audit->instructions()->attach(Instruction::inRandomOrder()->first());
+        $audit->save();
+       });
 
-        $audits->each(function ($audit) {
-          $audit->instructions()->attach(Recommendation::inRandomOrder()->first());
-          $audit->save();
-         });
+      $audits->each(function ($audit) {
+        $audit->recommendations()->attach(Recommendation::inRandomOrder()->first());
+        $audit->save();
+       });
+
+      $audits->each(function ($audit) {
+        $audit->statuses()->attach(Status::inRandomOrder()->first());
+        $audit->save();
+       });
     }
 }
