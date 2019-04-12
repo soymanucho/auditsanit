@@ -20,8 +20,8 @@
            <label>Objetivos</label>
            <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná un objetivo"
                    style="width: 100%;">
-             @foreach ($audit->objetives as $objetive)
-               <option selected="selected">{{$objetive->name}}</option>
+             @foreach ($audit->objectives as $objective)
+               <option selected="selected">{{$objective->name}}</option>
              @endforeach
 
            </select>
