@@ -2,7 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use App\Diagnosis;
+use App\DiagnosisType;
 use App\Indication;
+use App\Expedient;
 
 class DiagnosesTableSeeder extends Seeder
 {
@@ -13,9 +15,19 @@ class DiagnosesTableSeeder extends Seeder
      */
     public function run()
     {
-          $diagnoses = factory(Diagnosis::class, 50)->create();
+          Expedient::all()->each(function ($expedient) {
 
-          $diagnoses->each(function ($diagnosis) {
+            for ($i=0; $i < 3; $i++) {
+              $diagnosis = new Diagnosis();
+              $diagnosis->expedient_id =  $expedient->id;
+              $diagnosis->diagnosisType_id =  DiagnosisType::inRandomOrder()->first()->id;
+              $diagnosis->patient_id =  0;
+              $diagnosis->save();
+            }
+
+             });
+
+          Diagnosis::all()->each(function ($diagnosis) {
               $diagnosis->indications()->attach(factory(Indication::class)->create());
               $diagnosis->indications()->attach(factory(Indication::class)->create());
               $diagnosis->indications()->attach(factory(Indication::class)->create());
