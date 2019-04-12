@@ -16,11 +16,15 @@ class DiagnosesTableSeeder extends Seeder
     public function run()
     {
           Expedient::all()->each(function ($expedient) {
+
+            for ($i=0; $i < 3; $i++) {
               $diagnosis = new Diagnosis();
               $diagnosis->expedient_id =  $expedient->id;
               $diagnosis->diagnosisType_id =  DiagnosisType::inRandomOrder()->first()->id;
               $diagnosis->patient_id =  0;
               $diagnosis->save();
+            }
+
              });
 
           Diagnosis::all()->each(function ($diagnosis) {
