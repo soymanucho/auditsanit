@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
            DiagnosisTypeTableSeeder::class,
            StatusesTableSeeder::class,
            InstructionsTableSeeder::class,
-           ObjetivesTableSeeder::class,
+           ObjectivesTableSeeder::class,
            ProvincesTableSeeder::class,
            LocationsTableSeeder::class,
            AddressesTableSeeder::class,

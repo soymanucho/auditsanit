@@ -38,16 +38,26 @@ Route::get('/pacientes/', 'PatientController@show')->name('show-patients');
 //INSTRUCTIONS
 Route::get('/instrucciones/', 'InstructionController@show')->name('show-instructions');
 Route::get('/instrucciones/nueva', 'InstructionController@new')->name('new-instructions');
-Route::post('/instrucciones/nueva', 'InstructionController@save')->name('new-instructions');
+Route::post('/instrucciones/nueva', 'InstructionController@save')->name('save-instructions');
 Route::get('/instrucciones/{instruction}/editar/', 'InstructionController@edit')->name('edit-instructions');
 Route::post('/instrucciones/{instruction}/editar/', 'InstructionController@update')->name('update-instructions');
 Route::get('/instrucciones/{instruction}/eliminar/', 'InstructionController@delete')->name('delete-instructions');
 
 //OBJECTIVES
 Route::get('/objetivos/', 'ObjectiveController@show')->name('show-objectives');
+Route::get('/objetivos/nuevo', 'ObjectiveController@new')->name('new-objectives');
+Route::post('/objetivos/nuevo', 'ObjectiveController@save')->name('save-objectives');
+Route::get('/objetivos/{objective}/editar/', 'ObjectiveController@edit')->name('edit-objectives');
+Route::post('/objetivos/{objective}/editar/', 'ObjectiveController@update')->name('update-objectives');
+Route::get('/objetivos/{objective}/eliminar/', 'ObjectiveController@delete')->name('delete-objectives');
 
 //RECOMMENDATIONS
 Route::get('/recomendaciones/', 'RecommendationController@show')->name('show-recommendations');
+Route::get('/recomendaciones/nueva', 'RecommendationController@new')->name('new-recommendations');
+Route::post('/recomendaciones/nueva', 'RecommendationController@save')->name('save-recommendations');
+Route::get('/recomendaciones/{recommendation}/editar/', 'RecommendationController@edit')->name('edit-recommendations');
+Route::post('/recomendaciones/{recommendation}/editar/', 'RecommendationController@update')->name('update-recommendations');
+Route::get('/recomendaciones/{recommendation}/eliminar/', 'RecommendationController@delete')->name('delete-recommendations');
 
 //MODULE TYPE
 Route::get('/tiposdemodulo/', 'ModueTypeController@show')->name('show-moduletypes');
