@@ -25,6 +25,6 @@ class Diagnosis extends Model
 
   public function indications()
   {
-    return $this->belongsToMany(Indication::class,'diagnosis_indications');
+    return $this->belongsToMany(Indication::class,'diagnosis_indications')->withTimestamps();
   }
 }

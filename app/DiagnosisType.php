@@ -10,9 +10,9 @@ class DiagnosisType extends Model
 {
 
   use SoftDeletes;
-  
+
   public function diagnoses()
   {
-    return $this->hasMany(Diagnosis::class, 'diagnosisType_id', 'id');
+    return $this->hasMany(Diagnosis::class, 'diagnosisType_id', 'id')->withTimestamps();
   }
 }

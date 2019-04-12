@@ -15,7 +15,7 @@ class CreateRecommendationsTable extends Migration
     {
         Schema::create('recommendations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('descrip');
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });

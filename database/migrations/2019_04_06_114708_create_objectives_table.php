@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateObjetivesTable extends Migration
+class CreateObjectivesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateObjetivesTable extends Migration
      */
     public function up()
     {
-        Schema::create('objetives', function (Blueprint $table) {
+        Schema::create('objectives', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
@@ -28,6 +28,6 @@ class CreateObjetivesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('objetives');
+        Schema::dropIfExists('objectives');
     }
 }

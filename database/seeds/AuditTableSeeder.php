@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Audit;
-use App\Objetive;
+use App\Objective;
 use App\Instruction;
 use App\Recommendation;
 use App\Status;
@@ -19,9 +19,9 @@ class AuditTableSeeder extends Seeder
       $audits = factory(Audit::class, 50)->create();
 
       $audits->each(function ($audit) {
-        $audit->objetives()->attach(Objetive::inRandomOrder()->first());
-        $audit->objetives()->attach(Objetive::inRandomOrder()->first());
-        $audit->objetives()->attach(Objetive::inRandomOrder()->first());
+        $audit->objectives()->attach(Objective::inRandomOrder()->first());
+        $audit->objectives()->attach(Objective::inRandomOrder()->first());
+        $audit->objectives()->attach(Objective::inRandomOrder()->first());
         $audit->save();
        });
 
