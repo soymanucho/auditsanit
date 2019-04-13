@@ -22,18 +22,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //MEDICS
 Route::get('/medicos/', 'MedicController@show')->name('show-medics');
+Route::get('/medicos/exportar', 'MedicController@export')->name('export-medics');
 
 //AUDITORS
 Route::get('/auditores/', 'AuditorController@show')->name('show-auditors');
-
+Route::get('/auditores/exportar', 'AuditorController@export')->name('export-auditors');
 
 //AUDITS
 Route::get('/auditorias/', 'AuditController@show')->name('show-audits');
 Route::get('/auditoria/{audit}', 'AuditController@detail')->name('audit-detail');
+Route::get('/auditorias/exportar', 'AuditController@export')->name('export-audits');
 
 
 //PATIENTS
 Route::get('/pacientes/', 'PatientController@show')->name('show-patients');
+Route::get('/pacientes/exportar', 'PatientController@export')->name('export-patients');
 
 //INSTRUCTIONS
 Route::get('/instrucciones/', 'InstructionController@show')->name('show-instructions');
