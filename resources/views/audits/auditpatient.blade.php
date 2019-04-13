@@ -1,7 +1,7 @@
-<div class="box-body">
+
     <div class="box box-success collapsed-box">
       <div class="box-header with-border">
-        <h3 class="box-title">Datos del paciente <strong> {{$audit->expedient->patient->person->name}} {{$audit->expedient->patient->person->surname}}</strong></h3>
+        <h3 class="box-title"><i class="fa fa-user"></i> Datos del paciente <strong> {{$audit->expedient->patient->person->name}} {{$audit->expedient->patient->person->surname}}</strong></h3>
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
           </button>

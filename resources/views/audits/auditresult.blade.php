@@ -1,9 +1,8 @@
-<div class="row">
-  <div class="col-md-12">
+
     <div class="box box-info collapsed-box">
       <div class="box-header">
-        <h3 class="box-title">Resultados de la auditoría
-          <small>editado por </small>
+        <h3 class="box-title"><i class="fa fa-info-circle"></i> Resultados de la auditoría
+          {{-- <small>editado por </small> --}}
         </h3>
         <!-- tools box -->
         <div class="box-tools pull-right">
@@ -58,5 +57,3 @@
         </form>
       </div>
     </div>
-  </div>
-</div>
