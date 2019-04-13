@@ -9,6 +9,9 @@
 
   <h1>Auditorías</h1>
 
+  <a class="float-right btn btn-success btn-lg" href="{!! route('export-audits') !!}">Exportar</a>
+  <br>
+
   @include('audits.datatable')
 
 @endsection
