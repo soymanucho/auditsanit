@@ -13,6 +13,9 @@
         <!-- /. tools -->
       </div>
 
+
+
+
       <!-- /.box-header -->
       <div class="box-body pad">
         <form>
@@ -20,8 +23,8 @@
            <label>Objetivos</label>
            <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná un objetivo"
                    style="width: 100%;">
-             @foreach ($audit->objetives as $objetive)
-               <option selected="selected">{{$objetive->name}}</option>
+             @foreach ($audit->objectives as $objective)
+               <option selected="selected">{{$objective->name}}</option>
              @endforeach
 
            </select>
@@ -31,11 +34,12 @@
            <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una recomendación"
                    style="width: 100%;">
              @foreach ($audit->recommendations as $recommendation)
-               <option selected="selected">{{$recommendation->descrip}}</option>
+               <option selected="selected">{{$recommendation->name}}</option>
              @endforeach
 
            </select>
          </div>
+
          <div class="form-group col-sm-12 col-md-6 col-lg-4">
            <label>Instrucciones</label>
            <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una instrucción"
