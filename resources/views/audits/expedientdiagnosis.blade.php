@@ -10,7 +10,7 @@
     <div class="tab-content">
       @foreach ($audit->expedient->diagnoses as $diagnosis)
         <div class="tab-pane" id="tab_{{$diagnosis->id}}">
-          <table style="width:100%">
+          <table class="table table-bordered table-hover display nowrap" style="width:100%">
            <tr>
              <th>Indicacion</th>
              <th># sesiones</th>

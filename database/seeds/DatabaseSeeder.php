@@ -24,13 +24,11 @@ class DatabaseSeeder extends Seeder
            GendersTableSeeder::class,
            PeopleTableSeeder::class,
            RecommendationsTableSeeder::class,
-
            AuditorsTableSeeder::class,
            MedicalServiceTypesTableSeeder::class,
            VendorsTableSeeder::class,
-           ServicesTableSeeder::class,
-           ServiceSchedulesTableSeeder::class,
-           TransportServicesTableSeeder::class,
+           // ServicesTableSeeder::class,
+           // TransportServicesTableSeeder::class,
            ModuleTypesTableSeeder::class,
            ModuleCategoriesTableSeeder::class,
            ModuleTableSeeder::class,
@@ -42,6 +40,7 @@ class DatabaseSeeder extends Seeder
            MedicalServicesTableSeeder::class,
            DiagnosesTableSeeder::class,
            CommentsTableSeeder::class,
+           ServiceSchedulesTableSeeder::class,
 
            ]
        );
