@@ -5,7 +5,7 @@
       @foreach ($audit->expedient->diagnoses as $diagnosis)
       <li class=""><a href="#tab_{{$diagnosis->id}}" data-toggle="tab" aria-expanded="false">{{$diagnosis->diagnosisType->name}}</a></li>
       @endforeach
-      <li class="pull-left header"><i class="fa fa-th"></i> Diagnosticos</li>
+      <li class="pull-left header"><i class="fa fa-heartbeat "></i> Diagnosticos</li>
     </ul>
     <div class="tab-content">
       @foreach ($audit->expedient->diagnoses as $diagnosis)
