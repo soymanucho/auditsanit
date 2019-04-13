@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\ServiceSchedule;
+use App\Service;
 
 class ServiceSchedulesTableSeeder extends Seeder
 {
@@ -12,6 +13,12 @@ class ServiceSchedulesTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(ServiceSchedule::class, 20)->create();
+
+      foreach (Service::all() as $service) {
+        factory(ServiceSchedule::class, 3)->create([
+          'service_id' => $service->id,
+          ]);
+      }
+
     }
 }
