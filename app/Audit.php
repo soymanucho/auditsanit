@@ -42,7 +42,7 @@ class Audit extends Model
 
     public function statuses()
     {
-      return $this->belongsToMany(Status::class,'audits_statuses')->withTimestamps();
+      return $this->belongsToMany(Status::class,'audits_statuses')->orderBy('audits_statuses.created_at')->withTimestamps();
     }
     public function auditors()
     {

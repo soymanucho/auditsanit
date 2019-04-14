@@ -24,37 +24,31 @@
       <!-- The time line -->
       <ul class="timeline">
         <!-- timeline time label -->
-
+        @php
+          $date = ''
+        @endphp
         @foreach ($audit->statuses as $timelineItem)
+        
+          @if (date('Y-m-d', strtotime($date))!=date('Y-m-d', strtotime($timelineItem->pivot->created_at)))
+            <li class="time-label">
+                  <span class="bg-black">
+                    {{date('d-m-Y', strtotime($timelineItem->pivot->created_at))}}
+                  </span>
+            </li>
 
+          @endif
 
-        <li class="time-label">
-              <span class="bg-orange">
-                {{date('d-m-Y', strtotime($timelineItem->pivot->created_at))}}
-              </span>
-        </li>
-        <!-- /.timeline-label -->
-        <!-- timeline item -->
-        <li>
-          <i class="fa fa-edit  bg-blue"></i>
+          <li>
+            <i class="fa fa-edit" style="background: {{$timelineItem->color}}"></i>
 
-          <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> {{date('H:m', strtotime($timelineItem->pivot->created_at))}}</span>
-
-            <h3 class="timeline-header"><a href="#">{{$timelineItem->name}}</a> </h3>
-
-            {{-- <div class="timeline-body">
-              Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-              weebly ning heekya handango imeem plugg dopplr jibjab, movity
-              jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-              quora plaxo ideeli hulu weebly balihoo...
+            <div class="timeline-item" >
+              <span class="time pull-left" ><i class="fa fa-clock-o"></i> {{date('H:m', strtotime($timelineItem->pivot->created_at))}}</span>
+              <h3 class="timeline-header"><span class="badge" style="background: {{$timelineItem->color}}"  href="#">{{$timelineItem->name}}</span> </h3>
             </div>
-            <div class="timeline-footer">
-              <a class="btn btn-primary btn-xs">Read more</a>
-              <a class="btn btn-danger btn-xs">Delete</a>
-            </div> --}}
-          </div>
-        </li>
+          </li>
+          @php
+            $date = date('d-m-Y', strtotime($timelineItem->pivot->created_at))
+          @endphp
         <!-- END timeline item -->
         @endforeach
         <!-- END timeline item -->
