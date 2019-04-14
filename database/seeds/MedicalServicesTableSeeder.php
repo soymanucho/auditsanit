@@ -5,6 +5,7 @@ use App\MedicalService;
 use App\Service;
 use App\ExpedientModule;
 use App\TransportService;
+use App\Auditor;
 
 class MedicalServicesTableSeeder extends Seeder
 {
@@ -18,12 +19,13 @@ class MedicalServicesTableSeeder extends Seeder
       //factory(MedicalService::class, 25)->create();
 
       foreach (ExpedientModule::all() as $moduleExpedient) {
-        for ($i=0; $i < 3 ; $i++) {
+        for ($i=0; $i < rand(0,5) ; $i++) {
 
           $medicalService = new MedicalService();
           $medicalService->expedient_module_id = $moduleExpedient->id;
           $medicalService->service_id = factory(Service::class)->create()->id;
           $medicalService->transport_service_id = factory(TransportService::class)->create()->id;
+          $medicalService->auditor_id =  Auditor::inRandomOrder()->first()->id;
           $medicalService->save();
         }
       }

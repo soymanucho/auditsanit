@@ -10,7 +10,14 @@
    <disv class="tab-content">
      @foreach ($audit->expedient->expedientModules as $expedientModule )
         <div class="tab-pane" id="modtab_{{$expedientModule->id}}">
-          <h3>{{$expedientModule->module->moduleType->name}} - {{$expedientModule->module->moduleCategory->name}}</h3>
+          <h3>{{$expedientModule->module->moduleType->name}} - {{$expedientModule->module->moduleCategory->name}}
+            @if ($expedientModule->medicalServices->count()==0)
+                <small><strong> (Este Modulo no posee Prestaciones)</strong></small>
+            @endif
+          </h3>
+
+
+
 
             @foreach ($expedientModule->medicalServices as $medicalService)
               @include('audits.modulemedicalservice')

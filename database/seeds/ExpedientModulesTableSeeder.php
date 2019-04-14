@@ -18,7 +18,7 @@ class ExpedientModulesTableSeeder extends Seeder
       //factory(ExpedientModule::class, 10)->create();
 
       foreach (Expedient::all() as $expedient) {
-        for ($i=0; $i < 3 ; $i++) {
+        for ($i=0; $i < rand(0,5) ; $i++) {
 
           $moduloExpediente = new Expedientmodule();
           $moduloExpediente->module_id = Module::inRandomOrder()->first()->id;

@@ -5,11 +5,23 @@
       @foreach ($audit->expedient->diagnoses as $diagnosis)
       <li class=""><a href="#tab_{{$diagnosis->id}}" data-toggle="tab" aria-expanded="false">{{$diagnosis->diagnosisType->name}}</a></li>
       @endforeach
-      <li class="pull-left header"><i class="fa fa-heartbeat "></i> Diagnosticos</li>
+        <li class="pull-left header"><i class="fa fa-heartbeat "></i>
+           Diagnosticos
+           @if($audit->expedient->diagnoses->count()==0)
+            <small><strong>(Este expediente no posee Diagnosticos)</strong></small>
+           @endif
+         </li>
     </ul>
     <div class="tab-content">
+
+
+
       @foreach ($audit->expedient->diagnoses as $diagnosis)
         <div class="tab-pane" id="tab_{{$diagnosis->id}}">
+          @if ($diagnosis->indications->count()==0)
+            <small><strong>(Este Diagnostico no posee Indicaciones)</strong></small>
+          @else
+
           <table class="table table-bordered table-hover display nowrap" style="width:100%">
            <tr>
              <th>Indicacion</th>
@@ -24,10 +36,13 @@
                <td>{{$indication->aditionalDependance}}</td>
                <td>{{$indication->medic->person->surname}}, {{$indication->medic->person->name}}</td>
              </tr>
+
             @endforeach
           </table>
+          @endif
         </div>
       @endforeach
+
     </div>
   </div>
 </div>

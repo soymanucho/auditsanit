@@ -17,7 +17,7 @@ class DiagnosesTableSeeder extends Seeder
     {
           Expedient::all()->each(function ($expedient) {
 
-            for ($i=0; $i < 3; $i++) {
+            for ($i=0; $i < rand(0,5); $i++) {
               $diagnosis = new Diagnosis();
               $diagnosis->expedient_id =  $expedient->id;
               $diagnosis->diagnosisType_id =  DiagnosisType::inRandomOrder()->first()->id;
@@ -28,10 +28,10 @@ class DiagnosesTableSeeder extends Seeder
              });
 
           Diagnosis::all()->each(function ($diagnosis) {
+          for ($i=0; $i < rand(0,5); $i++) { 
               $diagnosis->indications()->attach(factory(Indication::class)->create());
-              $diagnosis->indications()->attach(factory(Indication::class)->create());
-              $diagnosis->indications()->attach(factory(Indication::class)->create());
-              $diagnosis->save();
+          }
+          $diagnosis->save();
              });
     }
 }

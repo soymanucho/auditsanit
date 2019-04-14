@@ -44,7 +44,7 @@
   </div>
   <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="info-box bg-yellow">
-      <span class="info-box-icon"><i class="fa fa-eye"></i></span>
+      <span class="info-box-icon"><i class="fa fa-key"></i></span>
 
       <div class="info-box-content">
         <span class="info-box-text">Responsable</span>

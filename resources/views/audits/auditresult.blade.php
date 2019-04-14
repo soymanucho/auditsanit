@@ -30,7 +30,7 @@
            <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una recomendación"
                    style="width: 100%;">
              @foreach ($audit->recommendations as $recommendation)
-               <option selected="selected">{{$recommendation->descrip}}</option>
+               <option selected="selected">{{$recommendation->name}}</option>
              @endforeach
 
            </select>

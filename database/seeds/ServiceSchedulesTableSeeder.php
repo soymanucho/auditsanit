@@ -15,7 +15,7 @@ class ServiceSchedulesTableSeeder extends Seeder
     {
 
       foreach (Service::all() as $service) {
-        factory(ServiceSchedule::class, 3)->create([
+        factory(ServiceSchedule::class, rand(0,5))->create([
           'service_id' => $service->id,
           ]);
       }
