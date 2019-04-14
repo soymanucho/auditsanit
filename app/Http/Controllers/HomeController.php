@@ -72,6 +72,6 @@ class HomeController extends Controller
 
       $amountOfAudits = Audit::all()->count();
       $totalAmountOfUsers = User::all()->count();
-      return view('home',compact('amountOfAudits','totalAmountOfUsers','auditsByStatus','auditsByGender'));
+      return view('home',compact('amountOfAudits','totalAmountOfUsers'));//,'auditsByStatus','auditsByGender'));
     }
 }

@@ -198,7 +198,7 @@
   });
   </script> --}}
 
-  <script>
+  {{-- <script>
   var ctx = document.getElementById("statusChart").getContext('2d');
   var myChart = new Chart(ctx, {
       type: 'doughnut',
@@ -224,8 +224,8 @@
 
       }
   });
-  </script>
-  <script>
+  </script> --}}
+  {{-- <script>
   var ctx = document.getElementById("genderChart").getContext('2d');
   var myChart = new Chart(ctx, {
       type: 'doughnut',
@@ -250,7 +250,7 @@
         rotation: Math.PI
       }
   });
-  </script>
+  </script> --}}
   {{--
 
   <script>
