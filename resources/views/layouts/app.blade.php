@@ -152,8 +152,8 @@
             <li class="header">MENÚ PRINCIPAL</li>
 
             <li>
-              <a href="">
-                <i class="fa fa-chart-line"></i> <span> Dashboard</span>
+              <a href="{{route('home')}}">
+                <i class="fa fa-chart-line"></i> <span> INICIO</span>
               </a>
             </li>
 
@@ -168,6 +168,7 @@
                 <li><a href="{{route('show-medics')}}"><i class="fa fa-search"></i> Medicos</a></li>
                 <li><a href="{{route('show-auditors')}}"><i class="fa fa-plus-circle "></i> Auditores</a></li>
                 <li><a href="{{route('show-patients')}}"><i class="fa fa-plus-circle "></i> Pacientes</a></li>
+                {{-- <li><a href="{{route('show-users')}}"><i class="fa fa-plus-circle "></i> Usuarios</a></li> --}}
                 {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
               </ul>
             </li>
