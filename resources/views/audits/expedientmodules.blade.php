@@ -5,7 +5,12 @@
      @foreach ($audit->expedient->expedientModules as $key =>$expedientModule )
      <li class=""><a href="#modtab_{{$expedientModule->id}}" data-toggle="tab" aria-expanded="false">{{$key+1}}</a></li>
      @endforeach
-     <li class="pull-left header"><i class="fa fa-sitemap"></i> Modulos</li>
+     <li class="pull-left header"><i class="fa fa-sitemap"></i>
+        Modulos
+        @if($audit->expedient->expedientModules->count()==0)
+         <small><strong>(Este expediente no posee Modulos)</strong></small>
+        @endif
+      </li>
    </ul>
    <disv class="tab-content">
      @foreach ($audit->expedient->expedientModules as $expedientModule )
