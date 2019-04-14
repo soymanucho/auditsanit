@@ -34,7 +34,7 @@ class HomeController extends Controller
                      ->groupBy('statuses.name')
                      ->groupBy('statuses.name')
                      ->orderby('count_status','DESC')
-                     ->havingRaw('count_status > 0')
+                     ->havingRaw('"count_status" > 0')
                      ->get();
        $auditsByGender = DB::table('audits')
                ->join('expedients', 'audits.expedient_id', '=', 'expedients.id')
@@ -44,7 +44,7 @@ class HomeController extends Controller
                ->select(DB::raw('genders.name, count(audits.id) as count_genders'))
                ->groupBy('genders.name')
                ->orderby('count_genders','DESC')
-               ->havingRaw('count_genders > 0')
+               ->havingRaw('"count_genders" > 0')
                ->get();
        // $genders = DB::table('genders')
        //         ->join('clients', 'genders.id', '=', 'clients.gender_id')
