@@ -21,7 +21,7 @@
         <td>  {{ $audit->expedient->title}} </td>
         <td>
           @isset($audit->currentStatus()->name)
-             {{ $audit->currentStatus()->name}}
+             <span class="badge" style="background:{{ $audit->currentStatus()->color}}">{{ $audit->currentStatus()->name}}</span>
           @endisset
         </td>
         <td>
