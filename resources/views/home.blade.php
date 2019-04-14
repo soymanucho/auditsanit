@@ -94,7 +94,27 @@
         <!-- DONUT CHART -->
         <div class="box box-danger">
           <div class="box-header with-border">
-            <h3 class="box-title">Cantidad de auditorías por diagnóstico</h3>
+            <h3 class="box-title">Auditorías por género</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+          </div>
+          <div class="box-body">
+            <canvas id="genderChart" width="50" height="50"></canvas>
+          </div>
+          <!-- /.box-body -->
+        </div>
+      </div>
+
+      <!-- /.box -->
+      <div class="col-md-4 col-xs-12">
+        <!-- DONUT CHART -->
+        <div class="box box-danger">
+          <div class="box-header with-border">
+            <h3 class="box-title">Auditorías por ...?</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -110,31 +130,11 @@
       </div>
     <!-- /.box -->
 
-    <div class="col-md-4 col-xs-12">
-      <!-- DONUT CHART -->
-      <div class="box box-danger">
-        <div class="box-header with-border">
-          <h3 class="box-title">Auditorías por género</h3>
-
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        <div class="box-body">
-          <canvas id="genderChart" width="50" height="50"></canvas>
-        </div>
-        <!-- /.box-body -->
-      </div>
-    </div>
-    <!-- /.box -->
-
     <div class="col-md-12 col-xs-12">
       <!-- DONUT CHART -->
       <div class="box box-danger">
         <div class="box-header with-border">
-          <h3 class="box-title">Cantidad de auditorías por auditor</h3>
+          <h3 class="box-title">Auditorías por ...?</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>

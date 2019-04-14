@@ -32,6 +32,7 @@ class HomeController extends Controller
                      ->join('statuses',  'audits_statuses.status_id', '=', 'statuses.id')
                      ->select(DB::raw('statuses.name, count(audits_statuses.audit_id) as count'))
                      ->groupBy('statuses.name')
+                     ->groupBy('statuses.name')
                      ->orderby('count','DESC')
                      ->havingRaw('count > 0')
                      ->get();
