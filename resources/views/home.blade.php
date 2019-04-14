@@ -206,7 +206,7 @@
           labels: {!!json_encode($auditsByStatus->pluck("name"))!!},
           datasets: [{
               label: '# de auditorías',
-              data: {!!json_encode($auditsByStatus->pluck("count"))!!},
+              data: {!!json_encode($auditsByStatus->pluck("count_status"))!!},
               backgroundColor: [
                   'rgba(54, 162, 235, 1)',
                   'rgba(255, 206, 86, 1)',
@@ -233,7 +233,7 @@
           labels: {!!json_encode($auditsByGender->pluck("name"))!!},
           datasets: [{
               label: '# de clientes',
-              data: {!!json_encode($auditsByGender->pluck("count"))!!},
+              data: {!!json_encode($auditsByGender->pluck("count_genders"))!!},
               backgroundColor: [
                   'rgba(255, 99, 132, 1)',
                   'rgba(54, 162, 235, 1)',
