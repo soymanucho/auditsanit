@@ -14,9 +14,21 @@ class AuditController extends Controller
     $audits = Audit::all();
     return view('audits.audits',compact('audits'));
   }
-  public function detail(Audit $audit)
+  public function detailPatient(Audit $audit)
   {
-    return view('audits.audit',compact('audit'));
+    return view('audits.auditDetailPatient',compact('audit'));
+  }
+  public function detailExpedient(Audit $audit)
+  {
+    return view('audits.auditDetailExpedient',compact('audit'));
+  }
+  public function detailResult(Audit $audit)
+  {
+    return view('audits.auditDetailResult',compact('audit'));
+  }
+  public function detailHistory(Audit $audit)
+  {
+    return view('audits.auditDetailHistory',compact('audit'));
   }
   public function export()
   {

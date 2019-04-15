@@ -34,7 +34,7 @@
           {{$audit->expedient->client->companyName}}
         @endisset
         </td>
-          <td class="text-center"> <a  href="{{ route('audit-detail', compact('audit')) }}"><b class="fa fa-eye "></b></a> </td>
+          <td class="text-center"> <a  href="{{ route('audit-detail-patient', compact('audit')) }}"><b class="fa fa-eye "></b></a> </td>
         {{-- <td>  {{ $category->subcategory->name }} </td>
         <td>  {{ $category->products()->count()}} </td>
         <td>  {{ $category->products()->sum('stock')}} </td> --}}

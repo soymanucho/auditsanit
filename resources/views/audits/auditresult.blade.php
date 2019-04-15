@@ -1,12 +1,12 @@
 
-    <div class="box box-info collapsed-box">
+    <div class="box box-info">
       <div class="box-header">
         <h3 class="box-title"><i class="fa fa-info-circle"></i> Resultados de la auditoría
           {{-- <small>editado por </small> --}}
         </h3>
         <!-- tools box -->
         <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
           </button>
         </div>
         <!-- /. tools -->

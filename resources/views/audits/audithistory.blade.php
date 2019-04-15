@@ -1,8 +1,8 @@
-<div class="box box-warning collapsed-box">
+<div class="box box-warning">
   <div class="box-header with-border">
     <h3 class="box-title"><i class="fa fa-history"></i> Historial</h3>
     <div class="box-tools pull-right">
-      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
       </button>
     </div>
   </div>
@@ -28,7 +28,7 @@
           $date = ''
         @endphp
         @foreach ($audit->statuses as $timelineItem)
-        
+
           @if (date('Y-m-d', strtotime($date))!=date('Y-m-d', strtotime($timelineItem->pivot->created_at)))
             <li class="time-label">
                   <span class="bg-black">
