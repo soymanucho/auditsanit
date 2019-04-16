@@ -168,6 +168,7 @@
                 <li><a href="{{route('show-medics')}}"><i class="fa fa-search"></i> Medicos</a></li>
                 <li><a href="{{route('show-auditors')}}"><i class="fa fa-plus-circle "></i> Auditores</a></li>
                 <li><a href="{{route('show-patients')}}"><i class="fa fa-plus-circle "></i> Pacientes</a></li>
+                <li><a href="{{route('invite')}}"><i class="fa fa-plus "></i> Invitar</a></li>
                 {{-- <li><a href="{{route('show-users')}}"><i class="fa fa-plus-circle "></i> Usuarios</a></li> --}}
                 {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
               </ul>

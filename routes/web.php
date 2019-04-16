@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('invitar','InviteController@invite')->name('invite');
+Route::post('invitar', 'InviteController@process')->name('process');
+Route::get('aceptar/{token}','InviteController@accept')->name('accept');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
