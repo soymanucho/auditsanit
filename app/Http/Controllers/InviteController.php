@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Invite;
+use App\User;
 use App\Mail\InviteCreated;
 use Illuminate\Support\Facades\Mail;
 
@@ -13,9 +14,11 @@ class InviteController extends Controller
   {
     return view('invites.invite');
   }
+
   public function process(Request $request)
   {
     // validate the incoming request data
+
 
     do {
         //generate a random string using Laravel's str_random helper
@@ -36,22 +39,25 @@ class InviteController extends Controller
     return redirect()
         ->back();
   }
+
   public function accept($token)
   {
     // Look up the invite
     if (!$invite = Invite::where('token', $token)->first()) {
         //if the invite doesn't exist do something more graceful than this
         abort(404);
+    }else{
+      $invite->delete();
+      return redirect()->route('register');
     }
 
     // create the user with the details from the invite
-    User::create(['email' => $invite->email]);
+    // User::create(['email' => $invite->email,'name'=>'Invitado']);
 
     // delete the invite so it can't be used again
-    $invite->delete();
+
 
     // here you would probably log the user in and show them the dashboard, but we'll just prove it worked
 
-    return 'Buen trabajo! Invitación aceptada!';
   }
 }
