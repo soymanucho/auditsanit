@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Gender;
 use App\Address;
 use App\Auditor;
+use App\User;
+use App\Patient;
 
 class Person extends Model
 {
@@ -27,6 +29,14 @@ class Person extends Model
   public function auditors()
   {
     return $this->hasMany(Auditor::class);
+  }
+  public function patients()
+  {
+    return $this->hasMany(Patient::class);
+  }
+  public function users()
+  {
+    return $this->hasMany(User::class);
   }
 
 }

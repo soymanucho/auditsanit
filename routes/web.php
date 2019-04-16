@@ -17,11 +17,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('invitar','InviteController@invite')->name('invite');
-Route::post('invitar', 'InviteController@process')->name('process');
-Route::get('aceptar/{token}','InviteController@accept')->name('accept');
+//PERFIL USUARIO
+Route::get('/perfil','UserController@edit')->name('profile');
+Route::post('/perfil','UserController@save')->name('profile-save');
 
+//INVITACIONES
+Route::get('/invitar','InviteController@invite')->name('invite');
+Route::post('/invitar', 'InviteController@process')->name('process');
+Route::get('/aceptar/{token}','InviteController@accept')->name('accept');
 
+//DASHBOARD INICIO
 Route::get('/home', 'HomeController@index')->name('home');
 
 //MEDICS

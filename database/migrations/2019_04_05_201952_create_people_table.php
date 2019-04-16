@@ -18,8 +18,14 @@ class CreatePeopleTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->integer('dni');
-            $table->datetime('birth_date');
+            $table->datetime('birthdate')->nullable();
 
+            $table->string('profesion')->nullable();
+            $table->string('matricula')->nullable();
+            $table->boolean('nacional')->nullable();
+            $table->string('cargo')->nullable();
+            $table->string('telTrabajoInterno')->nullable();
+            $table->string('celular')->nullable();
             $table->bigInteger('address_id')->unsigned();
             $table->bigInteger('gender_id')->unsigned();
             $table->timestamps();

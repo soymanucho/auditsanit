@@ -12,17 +12,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
          $this->call([
+           GendersTableSeeder::class,
+           ProvincesTableSeeder::class,
+           LocationsTableSeeder::class,
+           AddressesTableSeeder::class,
+           PeopleTableSeeder::class,
            UsersTableSeeder::class,
            ClientTableSeeder::class,
            DiagnosisTypeTableSeeder::class,
            StatusesTableSeeder::class,
            InstructionsTableSeeder::class,
            ObjectivesTableSeeder::class,
-           ProvincesTableSeeder::class,
-           LocationsTableSeeder::class,
-           AddressesTableSeeder::class,
-           GendersTableSeeder::class,
-           PeopleTableSeeder::class,
            RecommendationsTableSeeder::class,
            AuditorsTableSeeder::class,
            MedicalServiceTypesTableSeeder::class,
