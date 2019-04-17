@@ -115,7 +115,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="{{route('profile')}}" class="btn btn-default btn-flat">Perfil</a>
+                    <a href="{{route('profile-show')}}" class="btn btn-default btn-flat">Perfil</a>
                   </div>
                   <div class="pull-right">
 

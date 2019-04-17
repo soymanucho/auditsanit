@@ -18,7 +18,7 @@ class CreatePeopleTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->integer('dni');
-            $table->datetime('birthdate')->nullable();
+            $table->date('birthdate')->nullable();
 
             $table->string('profesion')->nullable();
             $table->string('matricula')->nullable();

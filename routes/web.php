@@ -18,8 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 //PERFIL USUARIO
-Route::get('/perfil','UserController@edit')->name('profile');
-Route::post('/perfil','UserController@save')->name('profile-save');
+Route::get('/perfil','UserController@show')->name('profile-show');
+// Route::post('/perfil','UserController@save')->name('profile-save');
+Route::get('/perfil/{user}/editar','UserController@edit')->name('profile-edit');
+Route::post('/perfil/{user}/editar','UserController@update')->name('profile-update');
 
 //INVITACIONES
 Route::get('/invitar','InviteController@invite')->name('invite');
