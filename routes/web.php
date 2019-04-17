@@ -43,7 +43,9 @@ Route::get('/auditores/exportar', 'AuditorController@export')->name('export-audi
 Route::get('/auditorias/', 'AuditController@show')->name('show-audits');
 Route::get('/auditoria/{audit}/detalle/paciente/', 'AuditController@detailPatient')->name('audit-detail-patient');
 Route::get('/auditoria/{audit}/detalle/expediente/', 'AuditController@detailExpedient')->name('audit-detail-expedient');
-Route::get('/auditoria/{audit}/detalle/resultado/', 'AuditController@detailResult')->name('audit-detail-result');
+Route::get('/auditoria/{audit}/detalle/objetivos-instrucciones/', 'AuditController@detailObjectives')->name('audit-detail-objectives');
+Route::get('/auditoria/{audit}/detalle/informe-auditor/', 'AuditController@detailAuditor')->name('audit-detail-auditor');
+Route::get('/auditoria/{audit}/detalle/conclusion/', 'AuditController@detailConclution')->name('audit-detail-conclution');
 Route::get('/auditoria/{audit}/detalle/historial/', 'AuditController@detailHistory')->name('audit-detail-history');
 Route::get('/auditorias/exportar', 'AuditController@export')->name('export-audits');
 

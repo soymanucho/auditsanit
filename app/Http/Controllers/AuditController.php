@@ -22,9 +22,17 @@ class AuditController extends Controller
   {
     return view('audits.auditDetailExpedient',compact('audit'));
   }
-  public function detailResult(Audit $audit)
+  public function detailObjectives(Audit $audit)
   {
-    return view('audits.auditDetailResult',compact('audit'));
+    return view('audits.auditDetailObjectives',compact('audit'));
+  }
+  public function detailAuditor(Audit $audit)
+  {
+    return view('audits.auditDetailAuditor',compact('audit'));
+  }
+  public function detailConclution(Audit $audit)
+  {
+    return view('audits.auditDetailConclution',compact('audit'));
   }
   public function detailHistory(Audit $audit)
   {

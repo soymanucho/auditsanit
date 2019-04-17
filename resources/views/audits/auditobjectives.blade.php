@@ -1,7 +1,7 @@
 
     <div class="box box-info">
       <div class="box-header">
-        <h3 class="box-title"><i class="fa fa-info-circle"></i> Resultados de la auditoría
+         <h3 class="box-title"><i class="fa fa-info-circle"></i> Informe del auditor {{-- {{$audit->auditor->person->name}} --}}
           {{-- <small>editado por </small> --}}
         </h3>
         <!-- tools box -->
@@ -15,16 +15,10 @@
       <!-- /.box-header -->
       <div class="box-body pad">
         <form>
-          <div class="form-group  col-sm-12 col-md-6 col-lg-4">
-           <label>Objetivos</label>
-           <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná un objetivo"
-                   style="width: 100%;">
-             @foreach ($audit->objectives as $objective)
-               <option selected="selected">{{$objective->name}}</option>
-             @endforeach
-
-           </select>
-         </div>
+          {{-- <div class="form-group">
+            <label>Conclusión</label>
+            <textarea class="form-control" rows="10" placeholder="Comenzar a escribir acá...">{{$audit->conclution}}</textarea>
+          </div>
          <div class="form-group col-sm-12 col-md-6 col-lg-4">
            <label>Recomendaciones</label>
            <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una recomendación"
@@ -34,7 +28,17 @@
              @endforeach
 
            </select>
-         </div>
+         </div> --}}
+         <div class="form-group  col-sm-12 col-md-6 col-lg-4">
+           <label>Objetivos</label>
+           <select class="form-control select2" multiple="multiple" placeholder="Seleccioná un objetivo"
+           style="width: 100%;">
+             @foreach ($audit->objectives as $objective)
+             <option selected="selected">{{$objective->name}}</option>
+             @endforeach
+
+           </select>
+          </div>
          <div class="form-group col-sm-12 col-md-6 col-lg-4">
            <label>Instrucciones</label>
            <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una instrucción"
@@ -46,14 +50,11 @@
            </select>
          </div>
 
-          <div class="form-group">
-            <label>Conclusión</label>
-            <textarea class="form-control" rows="10" placeholder="Comenzar a escribir acá...">{{$audit->conclution}}</textarea>
-          </div>
-              <label>Informe</label>
+
+              {{-- <label>Informe</label>
               <textarea id="editor1" name="editor1" rows="10" cols="80">
                 {{$audit->report}}
-              </textarea>
+              </textarea> --}}
         </form>
       </div>
     </div>
