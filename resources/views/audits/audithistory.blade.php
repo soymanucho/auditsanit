@@ -27,30 +27,34 @@
         @php
           $date = ''
         @endphp
-        @foreach ($audit->statuses as $timelineItem)
+        @isset($audit->statuses)
 
-          @if (date('Y-m-d', strtotime($date))!=date('Y-m-d', strtotime($timelineItem->pivot->created_at)))
-            <li class="time-label">
-                  <span class="bg-black">
-                    {{date('d-m-Y', strtotime($timelineItem->pivot->created_at))}}
-                  </span>
+
+          @foreach ($audit->statuses as $timelineItem)
+
+            @if (date('Y-m-d', strtotime($date))!=date('Y-m-d', strtotime($timelineItem->pivot->created_at)))
+              <li class="time-label">
+                    <span class="bg-black">
+                      {{date('d-m-Y', strtotime($timelineItem->pivot->created_at))}}
+                    </span>
+              </li>
+
+            @endif
+
+            <li>
+              <i class="fa fa-edit" style="background: {{$timelineItem->color}}"></i>
+
+              <div class="timeline-item" >
+                <span class="time pull-left" ><i class="fa fa-clock-o"></i> {{date('H:m', strtotime($timelineItem->pivot->created_at))}}</span>
+                <h3 class="timeline-header"><span class="badge" style="background: {{$timelineItem->color}}"  href="#">{{$timelineItem->name}}</span> </h3>
+              </div>
             </li>
-
-          @endif
-
-          <li>
-            <i class="fa fa-edit" style="background: {{$timelineItem->color}}"></i>
-
-            <div class="timeline-item" >
-              <span class="time pull-left" ><i class="fa fa-clock-o"></i> {{date('H:m', strtotime($timelineItem->pivot->created_at))}}</span>
-              <h3 class="timeline-header"><span class="badge" style="background: {{$timelineItem->color}}"  href="#">{{$timelineItem->name}}</span> </h3>
-            </div>
-          </li>
-          @php
-            $date = date('d-m-Y', strtotime($timelineItem->pivot->created_at))
-          @endphp
-        <!-- END timeline item -->
-        @endforeach
+            @php
+              $date = date('d-m-Y', strtotime($timelineItem->pivot->created_at))
+            @endphp
+          <!-- END timeline item -->
+          @endforeach
+        @endisset
         <!-- END timeline item -->
         <li>
           <i class="fa fa-clock-o bg-gray"></i>

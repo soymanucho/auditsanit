@@ -17,16 +17,21 @@
         <form>
           <div class="form-group">
             <label>Conclusión</label>
-            <textarea class="form-control" rows="10" placeholder="Comenzar a escribir acá...">{{$audit->conclution}}</textarea>
+            <textarea class="form-control" rows="10" placeholder="Comenzar a escribir acá...">
+              @isset($var)
+                {{$audit->conclution}}
+              @endisset
+            </textarea>
           </div>
          <div class="form-group col-sm-12 col-md-6 col-lg-4">
            <label>Recomendaciones</label>
            <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una recomendación"
                    style="width: 100%;">
-             @foreach ($audit->recommendations as $recommendation)
-               <option selected="selected">{{$recommendation->name}}</option>
-             @endforeach
-
+              @isset($audit->recommendations)
+                @foreach ($audit->recommendations as $recommendation)
+                  <option selected="selected">{{$recommendation->name}}</option>
+                @endforeach
+              @endisset
            </select>
          </div>
          {{-- <div class="form-group  col-sm-12 col-md-6 col-lg-4">

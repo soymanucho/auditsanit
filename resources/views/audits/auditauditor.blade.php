@@ -52,7 +52,9 @@
           </div> --}}
               <label>Informe</label>
               <textarea id="editor1" name="editor1" rows="10" cols="80">
-                {{$audit->report}}
+                @isset($audit->report)
+                  {{$audit->report}}
+                @endisset
               </textarea>
         </form>
       </div>

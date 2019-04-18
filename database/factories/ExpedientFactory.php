@@ -20,9 +20,8 @@ use Faker\Generator as Faker;
 $factory->define(Expedient::class, function (Faker $faker) {
 
     return [
-        'title' => $faker->sentence( 6, true),
         'client_id' =>  Client::inRandomOrder()->first(),
         'patient_id' =>  Patient::inRandomOrder()->first(),
-      
+
     ];
 });

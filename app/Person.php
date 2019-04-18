@@ -15,7 +15,7 @@ class Person extends Model
 
   use SoftDeletes;
 
-  protected $fillable = ['name','surname','dni','birth_date','gender_id'];
+  protected $fillable = ['name','surname','dni','birthdate','gender_id'];
 
   public function gender()
   {

@@ -6,6 +6,15 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\AuditExport;
 use App\Audit;
+use App\Patient;
+use App\Location;
+use App\Province;
+use App\Gender;
+use App\Client;
+use App\Status;
+use App\Person;
+use App\Address;
+use App\Expedient;
 
 class AuditController extends Controller
 {
@@ -14,9 +23,96 @@ class AuditController extends Controller
     $audits = Audit::all();
     return view('audits.audits',compact('audits'));
   }
+  public function new()
+  {
+    $audit = New Audit;
+    $audit->save();
+
+    return redirect()->route('audit-detail-patient',compact('audit'));
+    // return view('audits.auditDetailPatient',compact('audit'));
+  }
   public function detailPatient(Audit $audit)
   {
-    return view('audits.auditDetailPatient',compact('audit'));
+    $locations = Location::all();
+    $provinces = Province::all();
+    $genders = Gender::all();
+    $clients = Client::all();
+    return view('audits.auditDetailPatient',compact('audit','locations','provinces','genders','clients'));
+  }
+  public function detailPatientSave(Audit $audit, Request $request)
+  {
+    $this->validate(
+        $request,
+        [
+            'name' => 'required|string|max:100',
+            'client_id' => 'required|exists:clients,id',
+            'surname' => 'required|string|max:100',
+            'dni'     => 'required|string|max:10',
+            'birthdate' => 'required|date|before:today',
+            'street' => 'required|string|max:100',
+            'number' => 'required|string|max:100',
+            'floor' => 'required|string|max:100',
+            'location_id' => 'required|exists:locations,id',
+            'province_id' => 'required|exists:provinces,id',
+            'gender_id' => 'required|exists:genders,id',
+        ],
+        [
+        ],
+        [
+          'name' => 'nombre',
+          'client_id' => 'obra social',
+          'surname' => 'apellido',
+          'dni'     => 'DNI',
+          'birthdate' => 'fecha de nacimiento',
+          'street' => 'calle',
+          'number' => 'número',
+          'floor' => 'piso',
+          'location_id' => 'localidad',
+          'province_id' => 'provincia',
+          'gender_id' => 'género',
+        ]
+    );
+
+    $address = New Address;
+    $address->street = $request->street;
+    $address->number = $request->number;
+    $address->floor = $request->floor;
+    $address->location_id = $request->location_id;
+    // $address->location()->attach($request->location_id);
+    // $province =
+    $address->save();
+    // $person = Person::firstOrCreate('dni',$request->dni);
+    $person = New Person;
+    // $person->fill($request->all());
+    // $person->addres()->attach($address->id);
+    $person->address_id = $address->id;
+    // $person->gender()->attach($request->gender_id);
+    $person->gender_id = $request->gender_id;
+    $person->name = $request->name;
+    $person->surname = $request->surname;
+    $person->dni = $request->dni;
+    $person->birthdate = $request->birthdate;
+    $person->save();
+
+    $patient = New Patient;
+    $patient->person_id = $person->id;
+    // $patient->person()->attach($person->id);
+    $patient->save();
+
+    $expedient = New Expedient;
+    $expedient->client_id = $request->client_id;
+    // $expedient->client()->attach($request->client_id);
+    $expedient->patient_id = $patient->id;
+    // $expedient->patient()->attach($patient->id);
+    $expedient->save();
+
+    // $audit->expedient()->attach($expedient->id);
+    $audit->expedient_id = $expedient->id;
+    $status = Status::find(1)->get();
+    $audit->statuses()->attach($status);
+    $audit->save();
+
+    return redirect()->route('audit-detail-expedient',compact('audit'));
   }
   public function detailExpedient(Audit $audit)
   {
