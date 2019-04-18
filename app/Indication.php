@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\IndicationType;
 use App\Medic;
+use App\Expedient;
 
 class Indication extends Model
 {
@@ -20,5 +21,10 @@ class Indication extends Model
   public function medic()
   {
      return $this->belongsTo(Medic::class,'medic_id');
+  }
+
+  public function expedient()
+  {
+     return $this->belongsTo(Expedient::class,'expedient_id');
   }
 }

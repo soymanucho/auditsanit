@@ -17,7 +17,6 @@ class CreateDiagnosesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('diagnosisType_id')->unsigned();
             $table->bigInteger('expedient_id')->unsigned();
-            $table->bigInteger('patient_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

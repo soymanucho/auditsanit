@@ -12,6 +12,7 @@
 
 
   @include('audits.expedientdiagnosis')
+  @include('audits.expedientindications')
 
   @include('audits.expedientmodules')
 

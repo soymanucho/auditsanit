@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
            ExpedientModulesTableSeeder::class,
            MedicalServicesTableSeeder::class,
            DiagnosesTableSeeder::class,
+           IndicationstableSeeder::class,
            CommentsTableSeeder::class,
            ServiceSchedulesTableSeeder::class,
 
