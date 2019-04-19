@@ -17,6 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+//AUDITS
+Route::get('/tipos-diagnostico/', 'DiagnosisTypeController@show')->name('show-diagnosisType');
+Route::get('/tipos-diagnostico/nuevo', 'DiagnosisTypeController@new')->name('new-diagnosisType');
+Route::post('/tipos-diagnostico/nuevo', 'DiagnosisTypeController@save')->name('save-diagnosisType');
+Route::get('/tipos-diagnostico/{diagnosisType}/editar/', 'DiagnosisTypeController@edit')->name('edit-diagnosisType');
+Route::post('/tipos-diagnostico/{diagnosisType}/editar/', 'DiagnosisTypeController@update')->name('update-diagnosisType');
+Route::get('/tipos-diagnostico/{diagnosisType}/eliminar/', 'DiagnosisTypeController@delete')->name('delete-diagnosisType');
+
 //PERFIL USUARIO
 Route::get('/perfil','UserController@show')->name('profile-show');
 // Route::post('/perfil','UserController@save')->name('profile-save');

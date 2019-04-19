@@ -10,6 +10,7 @@ class DiagnosisType extends Model
 {
 
   use SoftDeletes;
+    protected $fillable = ['name'];
 
   public function diagnoses()
   {

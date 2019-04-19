@@ -194,6 +194,7 @@
                <li><a href="{{route('show-objectives')}}"><i class="fa fa-search"></i> Objetivos</a></li>
               <li><a href="{{route('show-recommendations')}}"><i class="fa fa-search"></i> Recomendaciones</a></li>
               <li><a href="{{route('show-status')}}"><i class="fa fa-search"></i> Estados</a></li>
+              <li><a href="{{route('show-diagnosisType')}}"><i class="fa fa-search"></i> Tipo Diagnostico</a></li>
 
               {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Prestaciones</a></li> --}}
 
