@@ -9,9 +9,9 @@ class Patient extends Model
 {
 
   use SoftDeletes;
-  
+
   public function person()
   {
-     return $this->hasOne(Person::class,'id');
+     return $this->belongsTo(Person::class,'person_id');
   }
 }
