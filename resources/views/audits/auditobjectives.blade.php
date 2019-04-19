@@ -33,19 +33,22 @@
            <label>Objetivos</label>
            <select class="form-control select2" multiple="multiple" placeholder="Seleccioná un objetivo"
            style="width: 100%;">
-             @foreach ($audit->objectives as $objective)
-             <option selected="selected">{{$objective->name}}</option>
-             @endforeach
-
+             @isset($audit->objectives)
+               @foreach ($audit->objectives as $objective)
+               <option selected="selected">{{$objective->name}}</option>
+               @endforeach
+             @endisset
            </select>
           </div>
          <div class="form-group col-sm-12 col-md-6 col-lg-4">
            <label>Instrucciones</label>
            <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una instrucción"
                    style="width: 100%;">
-             @foreach ($audit->instructions as $instruction)
-               <option selected="selected">{{$instruction->name}}</option>
-             @endforeach
+              @isset($audit->instructions)
+                 @foreach ($audit->instructions as $instruction)
+                   <option selected="selected">{{$instruction->name}}</option>
+                 @endforeach
+              @endisset
 
            </select>
          </div>

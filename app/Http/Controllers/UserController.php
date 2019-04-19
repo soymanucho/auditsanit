@@ -157,8 +157,8 @@ class UserController extends Controller
           'location_id' => 'exists:locations,id',
           'province_id' => 'exists:provinces,id',
           'gender_id' => 'exists:genders,id',
-          'password' => 'required|string|min:8',
-          'rpassword' => 'required|string|min:8',
+          'password' => 'min:8|required_with:rpassword|same:rpassword',
+          'rpassword' => 'min:8',
       ],
       [
       ],
@@ -190,7 +190,7 @@ class UserController extends Controller
   $address->number = $request->number;
   $address->floor = $request->floor;
   $address->location_id = $request->location_id;
-  $province =
+  // $province =
   $address->save();
 
   // $person = Person::firstOrCreate('dni',$request->dni);
@@ -209,7 +209,6 @@ class UserController extends Controller
   }
 
   $person->birthdate = $request->birthdate;
-  $person->gender_id = $request->gender_id;
   $person->profesion = $request->profesion;
   $person->matricula = $request->matricula;
   $person->cargo = $request->cargo;

@@ -15,9 +15,9 @@ class CreateAuditsTable extends Migration
     {
         Schema::create('audits', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('expedient_id')->unsigned()->unique();
-            $table->longText('conclution');
-            $table->longText('report');
+            $table->bigInteger('expedient_id')->unsigned()->unique()->nullable();
+            $table->longText('conclution')->nullable();
+            $table->longText('report')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -49,7 +49,9 @@
       <div class="info-box-content" style="color:white">
         <span class="info-box-text">Responsable</span>
 
-        <span class="info-box-number">Homero Giles</span>
+        <span class="info-box-number">@isset(Auth::user()->name)
+          {{Auth::user()->name}}
+        @endisset</span>
 
 
         {{-- <div class="progress">

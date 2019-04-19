@@ -9,11 +9,14 @@ use App\Diagnosis;
 use App\Indication;
 use App\Audit;
 use App\ExpedientModule;
+use App\Patient;
 
 class Expedient extends Model
 {
 
   use SoftDeletes;
+
+  protected $fillable = ['client_id','patient_id'];
 
   public function client()
   {
@@ -31,7 +34,7 @@ class Expedient extends Model
   }
   public function audit()
   {
-    return $this->hasOne(Audit::class,'id','expedient_id');
+    return $this->hasOne(Audit::class);
   }
 
   public function patient()
