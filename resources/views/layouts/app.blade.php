@@ -157,6 +157,22 @@
               </a>
             </li>
 
+
+
+
+
+
+            <li>
+              <a href="{{route('show-audits')}}">
+                <i class="fa fa-search"></i> <span> Auditorías</span>
+              </a>
+            </li>
+
+
+
+
+
+
             <li class=" treeview">
               <a href="#">
                 <i class="fa fa-users"></i> <span> Personas</span>
@@ -173,29 +189,6 @@
                 {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
               </ul>
             </li>
-
-
-
-
-
-
-
-            <li class=" treeview">
-              <a href="#">
-                <i class="fa fa-users"></i> <span> Auditorías</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{route('show-audits')}}"><i class="fa fa-search"></i> Todas</a></li>
-                <li><a href="{{route('show-status')}}"><i class="fa fa-search"></i> Estados</a></li>
-
-
-                {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
-              </ul>
-            </li>
-
             <li class=" treeview">
               <a href="#">
                 <i class="fas fa-boxes"></i> <span> Datos Maestros</span>
@@ -210,6 +203,7 @@
               <li><a href="{{route('show-instructions')}}"><i class="fa fa-search"></i> Instrucciones</a></li>
                <li><a href="{{route('show-objectives')}}"><i class="fa fa-search"></i> Objetivos</a></li>
               <li><a href="{{route('show-recommendations')}}"><i class="fa fa-search"></i> Recomendaciones</a></li>
+              <li><a href="{{route('show-status')}}"><i class="fa fa-search"></i> Estados</a></li>
 
               {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Prestaciones</a></li> --}}
 
