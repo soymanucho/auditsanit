@@ -11,15 +11,20 @@
    <!-- /.box-header -->
 
 
-  @include('audits.expedientdiagnosis')
-  @include('audits.expedientindications')
+  @include('audits.expedient.expedientdiagnosis')
+  @include('audits.expedient.expedientindications')
 
-  @include('audits.expedientmodules')
+  @include('audits.expedient.expedientmodules')
 
 
 </div>
 
+<script>
 
+  $(document).ready(function () {
+
+  });
+</script>
 <script type="text/javascript">
  window.onload = hideEditables;
 
@@ -27,7 +32,8 @@ function hideEditables(){
   var editables = document.getElementsByClassName("editMode");
     for(i = 0;i < editables.length; i++)
   {
-      editables[i].style.display='none';
+    $(".editMode")
+        .prop("disabled", true);
   }
   var togglebutton = document.getElementById("toggleedition");
   togglebutton.onclick = showEditables;
@@ -37,7 +43,8 @@ function showEditables(){
   var editables = document.getElementsByClassName("editMode");
     for(i = 0;i < editables.length; i++)
   {
-      editables[i].style.display='inline';
+    $(".editMode")
+        .prop("disabled", false);
   }
   var togglebutton = document.getElementById("toggleedition");
   togglebutton.onclick = hideEditables;

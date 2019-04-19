@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
          Maatwebsite\Excel\ExcelServiceProvider::class,
+         Laraveles\Spanish\SpanishServiceProvider::class,
         /*
          * Application Service Providers...
          */

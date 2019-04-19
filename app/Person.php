@@ -9,6 +9,7 @@ use App\Address;
 use App\Auditor;
 use App\User;
 use App\Patient;
+use Carbon\Carbon;
 
 class Person extends Model
 {
@@ -37,6 +38,11 @@ class Person extends Model
   public function users()
   {
     return $this->hasMany(User::class);
+  }
+
+  public function age()
+  {
+    return Carbon::parse($this->birthdate)->age;
   }
 
 }

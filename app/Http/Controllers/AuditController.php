@@ -15,6 +15,7 @@ use App\Status;
 use App\Person;
 use App\Address;
 use App\Expedient;
+use App\DiagnosisType;
 
 class AuditController extends Controller
 {
@@ -25,23 +26,46 @@ class AuditController extends Controller
   }
   public function new()
   {
+    $clients = Client::all();
+    $patients = Patient::all();
+    // $patients = Patient::join('people','patients.person_id','=','people.id')->orderby('people.surname')->with('person')->get();
+    // return redirect()->route('audit-detail-patient',compact('clients','patients'));
+    return view('audits.newAudit',compact('clients','patients'));
+  }
+  public function save(Request $request)
+  {
+    $this->validate(
+        $request,
+        [
+            'client_id' => 'required|exists:clients,id',
+            'patient_id' => 'required|exists:patients,id',
+        ],
+        [
+        ],
+        [
+          'client_id' => 'obra social',
+          'patient_id' => 'paciente',
+
+        ]
+    );
+    $expedient = New Expedient;
+    $expedient->patient_id = $request->patient_id;
+    $expedient->client_id = $request->client_id;
+    $expedient->save();
     $audit = New Audit;
     $audit->save();
     $status = Status::find(1)->take(1)->get();
     $audit->statuses()->attach($status);
+    $audit->expedient_id = $expedient->id;
     $audit->save();
-
     return redirect()->route('audit-detail-patient',compact('audit'));
-    // return view('audits.auditDetailPatient',compact('audit'));
   }
+
+
   public function detailPatient(Audit $audit)
   {
-    $locations = Location::all();
-    $provinces = Province::all();
-    $genders = Gender::all();
-    $clients = Client::all();
-    // dd($audit);
-    return view('audits.auditDetailPatient',compact('audit','locations','provinces','genders','clients'));
+    $function = 'show';
+    return view('audits.patient.auditDetailPatient',compact('audit','function'));
   }
   public function detailPatientSave(Audit $audit, Request $request)
   {
@@ -129,23 +153,24 @@ class AuditController extends Controller
   }
   public function detailExpedient(Audit $audit)
   {
-    return view('audits.auditDetailExpedient',compact('audit'));
+    $diagnosesType = DiagnosisType::all();
+    return view('audits.expedient.auditDetailExpedient',compact('audit','diagnosesType'));
   }
   public function detailObjectives(Audit $audit)
   {
-    return view('audits.auditDetailObjectives',compact('audit'));
+    return view('audits.objective.auditDetailObjectives',compact('audit'));
   }
   public function detailAuditor(Audit $audit)
   {
-    return view('audits.auditDetailAuditor',compact('audit'));
+    return view('audits.report.auditDetailAuditor',compact('audit'));
   }
   public function detailConclution(Audit $audit)
   {
-    return view('audits.auditDetailConclution',compact('audit'));
+    return view('audits.conclution.auditDetailConclution',compact('audit'));
   }
   public function detailHistory(Audit $audit)
   {
-    return view('audits.auditDetailHistory',compact('audit'));
+    return view('audits.history.auditDetailHistory',compact('audit'));
   }
   public function export()
   {

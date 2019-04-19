@@ -13,13 +13,13 @@
 
 @section('content')
   <div class="btn-group">
-  <a class="float-right btn bg-navy" href="{!! route('audit-detail-patient',compact('audit')) !!}">Detalles del paciente</a>
+  <a class="float-right btn bg-navy disabled" href="{!! route('audit-detail-patient',compact('audit')) !!}">Detalles del paciente</a>
 
   <a class="float-right btn bg-navy " href="{!! route('audit-detail-expedient',compact('audit')) !!}"><i class="glyphicon glyphicon-menu-right"></i>    Diagnósticos e indicaciones</a>
 
   <a class="float-right btn bg-navy " href="{!! route('audit-detail-objectives',compact('audit')) !!}"><i class="glyphicon glyphicon-menu-right"></i>   Objetivos e instrucciones</a>
 
-  <a class="float-right btn bg-navy disabled" href="{!! route('audit-detail-auditor',compact('audit')) !!}"><i class="glyphicon glyphicon-menu-right"></i>    Informe</a>
+  <a class="float-right btn bg-navy " href="{!! route('audit-detail-auditor',compact('audit')) !!}"><i class="glyphicon glyphicon-menu-right"></i>    Informe</a>
 
   <a class="float-right btn bg-navy " href="{!! route('audit-detail-conclution',compact('audit')) !!}"><i class="glyphicon glyphicon-menu-right"></i>   Conclusión y recomendaciones</a>
 
@@ -31,11 +31,11 @@
 
   @include('audits.auditheader')
 
-  {{-- @include('audits.auditpatient') --}}
+  @include('audits.patient.auditpatient')
 
   {{-- @include('audits.auditexpedientdata') --}}
 
-  @include('audits.auditauditor')
+  {{-- @include('audits.auditresult') --}}
 
   {{-- @include('audits.audithistory') --}}
 

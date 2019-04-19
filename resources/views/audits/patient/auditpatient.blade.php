@@ -9,6 +9,7 @@
           </strong>
         @endisset
     </h3>
+    <a class="btn btn-warning btn-xs" href="">Editar</a>
     <div class="box-tools pull-right">
       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
       </button>
@@ -16,14 +17,12 @@
   </div>
    <!-- /.box-header -->
 
-  <form method="POST" class="form-horizontal" name='newPatient'>
-    {{ method_field('post') }}
+  <form name='showPatient'>
     <div class="box-body">
-        @include('audits.auditPatientDetail_fields')
-    </div>
+        @include('audits.patient.auditPatientDetail_fields')
+      </div>
     <div class="box-footer">
-      <a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
-      <input class="btn btn-primary" type="submit" value="Guardar" name="submit"/>
+
     </div>
   </form>
   <!-- /.box-body -->

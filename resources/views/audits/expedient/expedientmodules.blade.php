@@ -9,7 +9,7 @@
      @endisset
      <li class="pull-left header"><i class="fa fa-sitemap"></i>
         Modulos
-        <button type="button" class=" editMode btn btn-success btn-xs"><i class="fa fa-plus"></i></button>
+        <button type="button" class=" btn btn-success btn-xs"><i class="fa fa-plus"></i></button>
         @isset($audit->expedient->expedientModules)
           @if($audit->expedient->expedientModules->count()==0)
             <br>
@@ -34,7 +34,7 @@
 
 
              @foreach ($expedientModule->medicalServices as $medicalService)
-               @include('audits.modulemedicalservice')
+               @include('audits.expedient.modulemedicalservice')
              @endforeach
 
 
