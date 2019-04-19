@@ -87,5 +87,7 @@ Route::get('/categoriasdemodulo/', 'ModueleCategoryController@show')->name('show
 //MODULE
 Route::get('/modulos/', 'ModueleController@show')->name('show-module');
 
-//MODULE
+//STATUS
 Route::get('/estados/', 'StatusController@show')->name('show-status');
+Route::get('/estados/nueva', 'StatusController@new')->name('new-status');
+Route::post('/estados/nueva', 'StatusController@save')->name('save-status');

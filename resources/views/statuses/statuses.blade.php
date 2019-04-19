@@ -7,8 +7,9 @@
 
 @section('content')
 
-  <h1>Estados de Auditoria</h1>
-  {{-- <a class="float-right btn btn-success btn-lg" href="/admin/productos/agregar">Nuevo</a> --}}
+  <h1>Estados de Auditoria
+    <a class=" btn btn-success btn-lg" href="{!! route('new-status') !!}">Nueva</a>
+  </h1>
   <br>
   @include('statuses.datatable')
 
