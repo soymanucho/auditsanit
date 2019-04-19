@@ -53,6 +53,14 @@ Route::get('/instrucciones/{instruction}/editar/', 'InstructionController@edit')
 Route::post('/instrucciones/{instruction}/editar/', 'InstructionController@update')->name('update-instructions');
 Route::get('/instrucciones/{instruction}/eliminar/', 'InstructionController@delete')->name('delete-instructions');
 
+//VENDORS
+Route::get('/prestadores/', 'VendorController@show')->name('show-vendors');
+Route::get('/prestadores/nuevo', 'VendorController@new')->name('new-vendors');
+Route::post('/prestadores/nuevo', 'VendorController@save')->name('save-vendors');
+Route::get('/prestadores/{vendor}/editar/', 'VendorController@edit')->name('edit-vendors');
+Route::post('/prestadores/{vendor}/editar/', 'VendorController@update')->name('update-vendors');
+Route::get('/prestadores/{vendor}/eliminar/', 'VendorController@delete')->name('delete-vendors');
+
 //OBJECTIVES
 Route::get('/objetivos/', 'ObjectiveController@show')->name('show-objectives');
 Route::get('/objetivos/nuevo', 'ObjectiveController@new')->name('new-objectives');

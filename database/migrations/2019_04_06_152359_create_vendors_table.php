@@ -17,7 +17,7 @@ class CreateVendorsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('snr_category');
-            $table->string('jury_person');
+            $table->boolean('jury_person');
             $table->boolean('dependency_additional');
             $table->bigInteger('address_id')->unsigned();
             $table->timestamps();
