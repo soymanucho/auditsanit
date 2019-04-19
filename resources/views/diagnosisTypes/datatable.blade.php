@@ -4,6 +4,7 @@
 
     <th>N°</th>
     <th>Nombre</th>
+    <th>Código</th>
     <th class="text-center" >Editar</th>
     <th class="text-center" >Eliminar</th>
 
@@ -16,6 +17,7 @@
       <tr>
         <td>  {{ $diagnosisType->id}} </td>
         <td>  {{ $diagnosisType->name}} </td>
+        <td>  {{ $diagnosisType->code}} </td>
         <td class="text-center"> <a  style="color: orange;" href="{!! route('update-diagnosisType',compact('diagnosisType')) !!}"><b class="fa fa-edit "></b></a> </td>
         <td class="text-center"> <a  style="color: red;" href="{!! route('delete-diagnosisType',compact('diagnosisType')) !!}"><b class="fa fa-trash "></b></a> </td>
 

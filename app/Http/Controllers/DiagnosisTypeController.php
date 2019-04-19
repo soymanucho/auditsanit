@@ -30,11 +30,13 @@ class DiagnosisTypeController extends Controller
       $request,
       [
           'name' => 'required|max:60',
+          'code' => 'required|max:60',
       ],
       [
       ],
       [
           'name' => 'nombre',
+          'code' => 'codigo',
       ]
   );
   $diagnosisType = new DiagnosisType;
@@ -52,11 +54,13 @@ class DiagnosisTypeController extends Controller
       $request,
       [
           'name' => 'required|max:60',
+          'code' => 'required|max:60',
       ],
       [
       ],
       [
           'name' => 'nombre',
+          'code' => 'codigo',
       ]
   );
   $diagnosisType->fill($request->all());
