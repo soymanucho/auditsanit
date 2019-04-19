@@ -17,7 +17,6 @@ class CreateExpedientsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('client_id')->unsigned();
             $table->bigInteger('patient_id')->unsigned();
-            $table->string('title');
             $table->timestamps();
             $table->softDeletes();
         });
