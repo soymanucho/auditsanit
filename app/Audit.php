@@ -15,9 +15,11 @@ class Audit extends Model
     use SoftDeletes;
     protected $dates = ['created_at','updated_at'];
 
+    protected $fillable = ['expedient_id','conclution','report'];
+
     public function expedient()
     {
-      return $this->hasOne(Expedient::class,'id');
+      return $this->belongsTo(Expedient::class,'id');
     }
 
 

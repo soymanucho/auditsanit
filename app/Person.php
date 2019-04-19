@@ -15,7 +15,7 @@ class Person extends Model
 
   use SoftDeletes;
 
-  protected $fillable = ['name','surname','dni','birthdate','gender_id'];
+  protected $fillable = ['name','surname','dni','birthdate','gender_id','address_id'];
 
   public function gender()
   {
@@ -30,9 +30,9 @@ class Person extends Model
   {
     return $this->hasMany(Auditor::class);
   }
-  public function patients()
+  public function patient()
   {
-    return $this->hasMany(Patient::class);
+    return $this->hasOne(Patient::class);
   }
   public function users()
   {
