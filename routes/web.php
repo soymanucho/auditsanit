@@ -80,6 +80,12 @@ Route::get('/modulos/', 'ModueleController@show')->name('show-module');
 
 //STATUS
 Route::get('/estados/', 'StatusController@show')->name('show-status');
+Route::get('/estados/nuevo', 'StatusController@new')->name('new-status');
+Route::post('/estados/nuevo', 'StatusController@save')->name('save-status');
+Route::get('/estados/{status}/editar/', 'StatusController@update')->name('edit-status');
+Route::post('/estados/{status}/editar/', 'StatusController@edit')->name('update-status');
+Route::get('/estados/{status}/eliminar/', 'StatusController@delete')->name('delete-status');
+
 
 
 //AUDITS
