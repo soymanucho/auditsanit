@@ -1,4 +1,3 @@
-
 <div class="box-body">
   <div class="nav-tabs-custom">
     <ul class="nav nav-tabs pull-right">
@@ -20,6 +19,8 @@
       </ul>
       <div class="tab-content">
 
+    </div>
+     <!-- /.box-header -->
 
         @isset($audit->expedient->diagnoses)
           @foreach ($audit->expedient->diagnoses as $diagnosis)
@@ -54,6 +55,19 @@
             @endforeach
         @endisset
 
+        @foreach ($audit->expedient->diagnoses as $diagnosis)
+          <tr>
+            <td>{{$diagnosis->diagnosisType->name}}</td>
+            <td class="editMode"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></td>
+          </tr>
+        @endforeach
+
+       </table>
+
+
+
+
+
+     </div>
     </div>
-  </div>
-</div>
+    </div>

@@ -9,7 +9,8 @@ class Status extends Model
 {
 
   use SoftDeletes;
-  
+  protected $fillable = ['name','color','isFinal'];
+
   public function percentage()
   {
     return (($this->id)*100/(Status::all()->max('id')));

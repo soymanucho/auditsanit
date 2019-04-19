@@ -58,8 +58,7 @@ class Audit extends Model
     }
     public function currentStatus()
     {
-      $lastStatus = $this->statuses()->orderBy('created_at','desc')->first();
-      return $lastStatus;
+        return $this->belongsToMany(Status::class,'audits_statuses')->orderBy('audits_statuses.created_at','desc')->first();
     }
 
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Client;
 use App\Diagnosis;
+use App\Indication;
 use App\Audit;
 use App\ExpedientModule;
 use App\Patient;
@@ -26,6 +27,11 @@ class Expedient extends Model
   {
     return $this->hasMany(Diagnosis::class, 'expedient_id', 'id');
   }
+
+  public function indications()
+  {
+    return $this->hasMany(Indication::class,'expedient_id', 'id');
+  }
   public function audit()
   {
     return $this->hasOne(Audit::class);
@@ -33,7 +39,7 @@ class Expedient extends Model
 
   public function patient()
   {
-     return $this->belongsTo(Patient::class);
+     return $this->belongsTo(Patient::class,'patient_id');
   }
 
   public function expedientModules()

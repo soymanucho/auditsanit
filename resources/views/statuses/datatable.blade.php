@@ -4,7 +4,7 @@
   <th>Nombre</th>
   <th>Color</th>
   <th class="text-center" >Es final</th>
-  <th class="text-center" >Detalle</th>
+  {{-- <th class="text-center" >Detalle</th> --}}
   <th class="text-center" >Editar</th>
   <th class="text-center" >Eliminar</th>
 @endsection
@@ -14,10 +14,14 @@
     <tr>
       <td>  {{ $status->name}} </td>
       <td style="background: {{ $status->color}};">  {{ $status->color}} </td>
-      <td>  {{ $status->isFinal}} </td>
-      <td class="text-center"> <a  href=""><b class="fa fa-eye "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
-      <td class="text-center"> <a  style="color: orange;" href=""><b class="fa fa-edit "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
-      <td class="text-center"> <a  style="color: red;"href=""><b class="fa fa-trash "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
+      @if ($status->isFinal)
+        <td>SI</td>
+      @else
+        <td>NO</td>
+      @endif
+
+      <td class="text-center"> <a  href="{!! route('edit-status',compact('status')) !!}"style="color: orange;" ><b class="fa fa-edit "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
+      <td class="text-center"> <a  href="{!! route('delete-status',compact('status')) !!}"style="color: red;"href=""><b class="fa fa-trash "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
 
     </tr>
   @endforeach

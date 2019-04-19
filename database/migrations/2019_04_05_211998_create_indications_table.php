@@ -17,6 +17,7 @@ class CreateIndicationsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('medic_id')->unsigned();
             $table->bigInteger('indicationType_id')->unsigned();
+            $table->bigInteger('expedient_id')->unsigned();
             $table->integer('numberOfSesions');
             $table->boolean('aditionalDependance');
 
@@ -27,6 +28,7 @@ class CreateIndicationsTable extends Migration
         Schema::table('indications', function (Blueprint $table) {
           $table->foreign('medic_id')->references('id')->on('medics');
           $table->foreign('indicationType_id')->references('id')->on('indication_types');
+          $table->foreign('expedient_id')->references('id')->on('expedients');
 
 
         });

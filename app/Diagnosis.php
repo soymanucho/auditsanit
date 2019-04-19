@@ -23,8 +23,5 @@ class Diagnosis extends Model
     return $this->belongsTo(DiagnosisType::class,'diagnosisType_id');
   }
 
-  public function indications()
-  {
-    return $this->belongsToMany(Indication::class,'diagnosis_indications')->withTimestamps();
-  }
+
 }
