@@ -80,16 +80,12 @@ Route::get('/modulos/', 'ModueleController@show')->name('show-module');
 
 //STATUS
 Route::get('/estados/', 'StatusController@show')->name('show-status');
-Route::get('/estados/nueva', 'StatusController@new')->name('new-status');
-Route::post('/estados/nueva', 'StatusController@save')->name('save-status');
-Route::get('/estados/{status}/editar/', 'StatusController@edit')->name('edit-status');
-Route::post('/estados/{status}/editar/', 'StatusController@update')->name('update-status');
-Route::get('/estados/{status}/eliminar/', 'StatusController@delete')->name('delete-status');
 
 
 //AUDITS
 Route::get('/auditorias/', 'AuditController@show')->name('show-audits');
 Route::get('/auditoria/nueva/', 'AuditController@new')->name('new-audit');
+Route::post('/auditoria/nueva/', 'AuditController@save')->name('create-audit');
 
 
 Route::get('/auditoria/{audit}/detalle/expediente/', 'AuditController@detailExpedient')->name('audit-detail-expedient');

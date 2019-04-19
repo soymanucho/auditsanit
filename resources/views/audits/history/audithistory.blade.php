@@ -6,18 +6,8 @@
       </button>
     </div>
   </div>
-   <!-- /.box-header -->
+
   <div class="box-body">
-    {{-- <form role="form">
-      <div class="form-group">
-        <label>Nombre</label>
-        <input class="form-control input" type="text" value="{{$audit->expedient->patient->person->name}}" placeholder=".input-lg">
-      </div>
-      <div class="form-group">
-        <label>Apellido</label>
-        <input class="form-control input" type="text" value="{{$audit->expedient->patient->person->surname}}" placeholder=".input-lg">
-      </div>
-    </form>--}}
 
   <div class="row">
     <div class="col-md-12">
@@ -28,7 +18,6 @@
           $date = ''
         @endphp
         @isset($audit->statuses)
-
 
           @foreach ($audit->statuses as $timelineItem)
 
@@ -52,17 +41,17 @@
             @php
               $date = date('d-m-Y', strtotime($timelineItem->pivot->created_at))
             @endphp
-          <!-- END timeline item -->
+
           @endforeach
         @endisset
-        <!-- END timeline item -->
+
         <li>
           <i class="fa fa-clock-o bg-gray"></i>
         </li>
       </ul>
     </div>
-    <!-- /.col -->
+
   </div>
-  <!-- /.box-body -->
+
   </div>
 </div>

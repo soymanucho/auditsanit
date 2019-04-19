@@ -157,21 +157,11 @@
               </a>
             </li>
 
-
-
-
-
-
             <li>
               <a href="{{route('show-audits')}}">
                 <i class="fa fa-search"></i> <span> Auditorías</span>
               </a>
             </li>
-
-
-
-
-
 
             <li class=" treeview">
               <a href="#">
