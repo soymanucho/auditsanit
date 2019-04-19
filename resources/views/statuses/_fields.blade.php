@@ -12,7 +12,13 @@
 <div class="form-group">
   <label for="isFinal">Es final?:</label>
   SI
-  <input type="radio" name="isFinal" id="isFinal" value="1"/>
+  <input type="radio" name="isFinal" id="isFinal" value="1"
+  @if (old('isFinal',$status->isFinal))
+    checked
+  @endif/>
   NO
-  <input type="radio" name="isFinal" id="isFinal" value="0"/>
+  <input type="radio" name="isFinal" id="isFinal" value="0"
+  @if (!old('isFinal',$status->isFinal))
+    checked
+  @endif/>
 </div>

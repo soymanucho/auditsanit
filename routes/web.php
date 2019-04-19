@@ -91,3 +91,6 @@ Route::get('/modulos/', 'ModueleController@show')->name('show-module');
 Route::get('/estados/', 'StatusController@show')->name('show-status');
 Route::get('/estados/nueva', 'StatusController@new')->name('new-status');
 Route::post('/estados/nueva', 'StatusController@save')->name('save-status');
+Route::get('/estados/{status}/editar/', 'StatusController@edit')->name('edit-status');
+Route::post('/estados/{status}/editar/', 'StatusController@update')->name('update-status');
+Route::get('/estados/{status}/eliminar/', 'StatusController@delete')->name('delete-status');

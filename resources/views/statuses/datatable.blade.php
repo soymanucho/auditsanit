@@ -20,8 +20,8 @@
         <td>NO</td>
       @endif
 
-      <td class="text-center"> <a  style="color: orange;" href=""><b class="fa fa-edit "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
-      <td class="text-center"> <a  style="color: red;"href=""><b class="fa fa-trash "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
+      <td class="text-center"> <a  href="{!! route('edit-status',compact('status')) !!}"style="color: orange;" ><b class="fa fa-edit "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
+      <td class="text-center"> <a  href="{!! route('delete-status',compact('status')) !!}"style="color: red;"href=""><b class="fa fa-trash "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
 
     </tr>
   @endforeach
