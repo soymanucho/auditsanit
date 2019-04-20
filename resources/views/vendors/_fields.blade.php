@@ -32,8 +32,8 @@
 <div class="form-group col-sm-12 col-md-6 col-lg-3">
   <label>Personería jurídica</label>
   <select class="form-control select2" name="jury_person" style="width: 100%;">
-    @isset($person->nacional)
-      @if ($person->nacional == true)
+    @isset($vendor->jury_person)
+      @if ($vendor->jury_person == true)
         <option selected value="true">Jurídica</option>
         <option value="false" >Persona Física</option>
       @else
