@@ -4,7 +4,7 @@
 
     <th>N°</th>
     <th>Nombre</th>
-    <th>Adicional por dependencia</th>
+    <th>Tipo</th>
     <th>Personería jurídica</th>
     <th>Categoría SNR</th>
     <th class="text-center" >Detalle</th>
@@ -20,13 +20,7 @@
       <tr>
         <td>  {{ $vendor->id}} </td>
         <td>  {{ $vendor->name}} </td>
-        <td>
-          @if ($vendor->dependency_additional == 0)
-            Si
-          @else
-            No
-          @endif
-        </td>
+        <td>  {{ $vendor->vendorType->name}} </td>
         <td>
           @if ($vendor->jury_person == 0)
             <span class="badge" style="background:red">Persona física</span>

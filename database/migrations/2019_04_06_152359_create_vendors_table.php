@@ -16,15 +16,16 @@ class CreateVendorsTable extends Migration
         Schema::create('vendors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->bigInteger('vendor_type_id')->unsigned();
             $table->string('snr_category');
             $table->boolean('jury_person');
-            $table->boolean('dependency_additional');
             $table->bigInteger('address_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });
         Schema::table('vendors', function (Blueprint $table) {
             $table->foreign('address_id')->references('id')->on('addresses');
+            $table->foreign('vendor_type_id')->references('id')->on('vendor_types');
         });
     }
 
