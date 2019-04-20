@@ -10,7 +10,7 @@ class AuditorController extends Controller
 {
   public function show()
   {
-    dd(Auditor::first()->numberOfTotalAudits());
+    //dd(Auditor::first()->numberOfTotalAudits());
 
     $auditors = Auditor::all();
     return view('auditors.auditors',compact('auditors'));

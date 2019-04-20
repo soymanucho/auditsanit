@@ -29,16 +29,8 @@ class Auditor extends Model
     return $this->hasMany(MedicalService::class);
   }
 
-  public function numberOfTotalAudits()
+  public function numberOfTotalAudits($value='')
   {
-
-    // return DB::table('audits_statuses as lastState')
-    // ->select( DB::raw('lastState.audit_id,MAX(id) as maxid'))
-    // ->groupBy('lastState.audit_id')
-    // //->join('audits_statuses','audits_statuses.id','=','lastState.maxid')
-    // ->get();
-
-
     return DB::table('auditors')
     ->where('auditors.id',$this->id)
     ->join('medical_services','medical_services.auditor_id','=','auditors.id')
@@ -47,5 +39,59 @@ class Auditor extends Model
     ->select('audits.id')
     ->distinct('audits.id')
     ->count('audits.id');
+  }
+
+  public function numberOfFinalAudits()
+  {
+
+    $maxstatus = DB::table('audits_statuses')
+    ->select( DB::raw('audit_id,MAX(id) as maxid'))
+    ->groupBy('audit_id');
+
+    $audit_finalstatus = DB::table('audits_statuses')
+        ->joinSub($maxstatus, 'finalstatus', function ($join) {
+            $join->on('finalstatus.maxid', '=', 'audits_statuses.id');
+        })
+        ->join('statuses','statuses.id','=','audits_statuses.status_id')
+        ->select('finalstatus.audit_id', 'isFinal');
+
+        return DB::table('audits')
+        ->joinSub($audit_finalstatus, 'finalstatus', function ($join) {
+            $join->on('audits.id', '=', 'finalstatus.audit_id');
+        })
+        ->join('expedient_modules','expedient_modules.expedient_id','=','audits.expedient_id')
+        ->join('medical_services','medical_services.expedient_module_id','=','expedient_modules.id')
+        ->where('medical_services.auditor_id',$this->id)
+        ->where('isFinal',true)
+        ->distinct('audits.id')
+        ->count('audits.id');
+
+  }
+
+  public function numberOfPendingAudits()
+  {
+
+    $maxstatus = DB::table('audits_statuses')
+    ->select( DB::raw('audit_id,MAX(id) as maxid'))
+    ->groupBy('audit_id');
+
+    $audit_finalstatus = DB::table('audits_statuses')
+        ->joinSub($maxstatus, 'finalstatus', function ($join) {
+            $join->on('finalstatus.maxid', '=', 'audits_statuses.id');
+        })
+        ->join('statuses','statuses.id','=','audits_statuses.status_id')
+        ->select('finalstatus.audit_id', 'isFinal');
+
+        return DB::table('audits')
+        ->joinSub($audit_finalstatus, 'finalstatus', function ($join) {
+            $join->on('audits.id', '=', 'finalstatus.audit_id');
+        })
+        ->join('expedient_modules','expedient_modules.expedient_id','=','audits.expedient_id')
+        ->join('medical_services','medical_services.expedient_module_id','=','expedient_modules.id')
+        ->where('medical_services.auditor_id',$this->id)
+        ->where('isFinal',false)
+        ->distinct('audits.id')
+        ->count('audits.id');
+
   }
 }

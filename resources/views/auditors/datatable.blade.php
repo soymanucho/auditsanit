@@ -3,7 +3,9 @@
 @section('header')
 
     <th>Nombre y Apellido</th>
-    <th>Auditorias</th>
+
+    <th>Auditorias Terminadas</th>
+    <th>Auditorias Pendientes</th>
 
 
 
@@ -16,7 +18,8 @@
   @foreach($auditors as $auditor)
       <tr>
         <td>  {{ $auditor->person->name}}, {{ $auditor->person->surname}} </td>
-        <td>  {{ $auditor->numberOfTotaldAudits()}} </td>
+        <td>  {{ $auditor->numberOfFinalAudits()}} </td>
+        <td>  {{ $auditor->numberOfPendingAudits()}} </td>
 
         {{-- <td>  {{ $category->subcategory->name }} </td>
         <td>  {{ $category->products()->count()}} </td>
