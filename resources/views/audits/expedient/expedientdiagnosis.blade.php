@@ -13,8 +13,9 @@
 
       <div class="form-group  col-sm-12 col-md-6 col-lg-4">
 
-        <select class="form-control select2 editMode" multiple="multiple" placeholder="Seleccioná un objetivo"
+        <select id='diagnosisSelector'class="form-control select2 editMode" multiple="multiple" data-placeholder="Seleccioná un diagnostico"
         style="width: 100%;">
+
             @foreach ($diagnosesType as $diagnosisType)
             <option value="{{$diagnosisType->id}}"
             @isset($audit->expedient->diagnoses)
@@ -37,3 +38,12 @@
      </div>
     </div>
     </div>
+
+    <script type="text/javascript">
+    $('select').select2({
+  minimumResultsForSearch: -1,
+  placeholder: function(){
+      $(this).data('placeholder');
+  }
+}):
+    </script>
