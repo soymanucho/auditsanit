@@ -18,7 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 
 
-//AUDITS
+//TIPOS INDICACION
+Route::get('/tipos-indicacion/', 'IndicationTypeController@show')->name('show-indicationType');
+Route::get('/tipos-indicacion/nuevo', 'IndicationTypeController@new')->name('new-indicationType');
+Route::post('/tipos-indicacion/nuevo', 'IndicationTypeController@save')->name('save-indicationType');
+Route::get('/tipos-indicacion/{indicationType}/editar/', 'IndicationTypeController@edit')->name('edit-indicationType');
+Route::post('/tipos-indicacion/{indicationType}/editar/', 'IndicationTypeController@update')->name('update-indicationType');
+Route::get('/tipos-indicacion/{indicationType}/eliminar/', 'IndicationTypeController@delete')->name('delete-indicationType');
+
+//TIPOS DIAGNOSTICO
 Route::get('/tipos-diagnostico/', 'DiagnosisTypeController@show')->name('show-diagnosisType');
 Route::get('/tipos-diagnostico/nuevo', 'DiagnosisTypeController@new')->name('new-diagnosisType');
 Route::post('/tipos-diagnostico/nuevo', 'DiagnosisTypeController@save')->name('save-diagnosisType');

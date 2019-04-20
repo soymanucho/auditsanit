@@ -9,6 +9,8 @@ class IndicationType extends Model
 {
 
   use SoftDeletes;
-
   
+    protected $fillable = ['name'];
+
+
 }
