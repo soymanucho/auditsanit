@@ -1,6 +1,6 @@
 <div class="box box-gray collapsed-box">
   <div class="box-header with-border">
-    <h3 class="box-title"><i class="fa fa-medkit"></i> {{$medicalService->service->medicalServiceType->name}}
+    <h3 class="box-title"><i class="fa fa-medkit"></i> {{$medicalService->service->serviceType->name}}
       {{-- <button type="button" class="editMode btn btn-warning btn-xs"><i class="fa fa-edit"></i></button> --}}
       {{-- <button type="button" class="editMode btn btn-danger btn-xs"><i class="fa fa-trash"></i></button> --}}
     </h3>

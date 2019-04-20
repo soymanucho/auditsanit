@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
            ObjectivesTableSeeder::class,
            RecommendationsTableSeeder::class,
            AuditorsTableSeeder::class,
-           MedicalServiceTypesTableSeeder::class,
+           ServiceTypesTableSeeder::class,
            VendorsTableSeeder::class,
            // ServicesTableSeeder::class,
            // TransportServicesTableSeeder::class,

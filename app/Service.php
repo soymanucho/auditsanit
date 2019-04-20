@@ -8,14 +8,14 @@ use App\ServiceSchedule;
 use App\TransportService;
 use App\MedicalService;
 use App\Vendor;
-use App\MedicalServiceType;
+use App\ServiceType;
 
 class Service extends Model
 {
 
   use SoftDeletes;
 
-  protected $fillable = ['vendor_id','medical_service_type_id'];
+  protected $fillable = ['vendor_id','service_type_id'];
 
   public function serviceSchedules()
   {
@@ -33,8 +33,8 @@ class Service extends Model
   {
     return $this->belongsTo(Vendor::class);
   }
-  public function medicalServiceType()
+  public function serviceType()
   {
-    return $this->belongsTo(MedicalServiceType::class);
+    return $this->belongsTo(ServiceType::class);
   }
 }

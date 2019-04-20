@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMedicalServiceTypesTable extends Migration
+class CreateServiceTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMedicalServiceTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('medical_service_types', function (Blueprint $table) {
+        Schema::create('service_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->boolean('is_transport_service');
@@ -29,6 +29,6 @@ class CreateMedicalServiceTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medical_service_types');
+        Schema::dropIfExists('service_types');
     }
 }
