@@ -122,12 +122,20 @@ Route::post('/auditoria/nueva/', 'AuditController@save')->name('create-audit');
 Route::get('/auditoria/{audit}/detalle/expediente/', 'AuditController@detailExpedient')->name('audit-detail-expedient');
 
 Route::get('/auditoria/{audit}/detalle/objetivos-instrucciones/', 'AuditController@detailObjectives')->name('audit-detail-objectives');
+Route::get('/auditoria/{audit}/detalle/objetivos-instrucciones/editar', 'AuditController@detailObjectives')->name('edit-audit-detail-objectives');
+Route::post('/auditoria/{audit}/detalle/objetivos-instrucciones/editar', 'AuditController@detailObjectives')->name('save-audit-detail-objectives');
 
 Route::get('/auditoria/{audit}/detalle/informe-auditor/', 'AuditController@detailAuditor')->name('audit-detail-auditor');
+Route::get('/auditoria/{audit}/detalle/informe-auditor/editar', 'AuditController@detailAuditorEdit')->name('edit-audit-detail-auditor');
+Route::post('/auditoria/{audit}/detalle/informe-auditor/editar', 'AuditController@detailAuditorSave')->name('save-audit-detail-auditor');
 
 Route::get('/auditoria/{audit}/detalle/conclusion/', 'AuditController@detailConclution')->name('audit-detail-conclution');
+Route::get('/auditoria/{audit}/detalle/conclusion/editar', 'AuditController@detailConclutionEdit')->name('edit-audit-detail-conclution');
+Route::post('/auditoria/{audit}/detalle/conclusion/editar', 'AuditController@detailConclutionSave')->name('save-audit-detail-conclution');
 
 Route::get('/auditoria/{audit}/detalle/historial/', 'AuditController@detailHistory')->name('audit-detail-history');
+
+Route::get('/auditoria/{audit}/detalle/resumen/', 'AuditController@detailResume')->name('audit-detail-resume');
 
 Route::get('/auditorias/exportar', 'AuditController@export')->name('export-audits');
 

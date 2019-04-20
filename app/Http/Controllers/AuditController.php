@@ -172,6 +172,12 @@ class AuditController extends Controller
   {
     return view('audits.history.auditDetailHistory',compact('audit'));
   }
+  public function detailResume(Audit $audit)
+  {
+    $function = "show";
+    $diagnosesType = DiagnosisType::all();
+    return view('audits.resume.auditDetailResume',compact('audit','function','diagnosesType'));
+  }
   public function export()
   {
       return Excel::download(new AuditExport, 'auditorias.xlsx');

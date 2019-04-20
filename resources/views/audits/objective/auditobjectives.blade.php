@@ -41,7 +41,7 @@
            </select>
           </div>
          <div class="form-group col-sm-12 col-md-6 col-lg-4">
-           <label>Instrucciones</label>
+           <label>Método de trabajo empleado</label>
            <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una instrucción"
                    style="width: 100%;">
               @isset($audit->instructions)

@@ -11,7 +11,7 @@
   </div>
    <!-- /.box-header -->
    <div class="box-body with-border">
-     <strong><i class="fa fa-user-md"></i> Prestador: </strong> {{$medicalService->service->vendor->jury_person}} {{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}}
+     <strong><i class="fa fa-user-md"></i> Prestador: </strong>  {{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}}
      <br>
      <strong><i class="fa fa-user-secret"></i> Auditor: </strong> {{$medicalService->auditor->person->name}} {{$medicalService->auditor->person->surname}}
      <br>
@@ -40,7 +40,7 @@
 
      </table>
      @isset($medicalService->transportService)
-       <strong><i class="fa  fa-ambulance"></i> Transporte: </strong>{{$medicalService->transportService->service->vendor->jury_person}}{{$medicalService->transportService->service->vendor->address->street}} {{$medicalService->transportService->service->vendor->address->number}}
+       <strong><i class="fa  fa-ambulance"></i> Transporte: </strong>{{$medicalService->transportService->service->vendor->address->street}} {{$medicalService->transportService->service->vendor->address->number}}
        <br>
       <strong><i class="fa fa-clock-o"></i> Horarios del servicio: </strong>
        <table class="table table-bordered table-hover display nowrap" style="width:100%">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  Instrucciones
+  Método de trabajo empleado
 @endsection
 
 @section('breadcrumb-items')
@@ -11,8 +11,8 @@
 
 @section('content')
 
-  <h1>Instrucciones</h1>
-  <a class="float-right btn btn-success btn-lg" href="{!! route('new-instructions') !!}">Nueva</a>
+  <h1>Método de trabajo empleado</h1>
+  <a class="float-right btn btn-success btn-lg" href="{!! route('new-instructions') !!}">Nuevo</a>
   <br>
   @include('instructions.datatable')
 
