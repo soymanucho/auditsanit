@@ -19,6 +19,6 @@
 
 @section('content')
 
-    <iframe width="100%" height="800px" src="https://app.powerbi.com/view?r=eyJrIjoiM2E3YjE5YzYtZGU5OC00YjFkLTk4MGMtOWYzMTUyNGIwMzQ1IiwidCI6IjdmYzk4YjgzLTU1NzUtNDA0Mi1iNDc2LWY5ODFhY2RiODY3MyIsImMiOjR9" frameborder="0" allowFullScreen="true"></iframe>
-
+  
+    <iframe width="100%" height="800px" src="https://app.powerbi.com/reportEmbed?reportId=541f5f7a-ff2e-4670-a76b-dd73c09ce39a&autoAuth=true&ctid=7fc98b83-5575-4042-b476-f981acdb8673" frameborder="0" allowFullScreen="true"></iframe>
 @endsection
