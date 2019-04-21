@@ -2,62 +2,108 @@
     <div class="box box-info">
       <div class="box-header">
          <h3 class="box-title"><i class="fa fa-info-circle"></i> Informe del auditor {{-- {{$audit->auditor->person->name}} --}}
-          {{-- <small>editado por </small> --}}
+             <button id='toggleedition'type="button" class="btn btn-warning btn-xs">Habilitar Edicion</button>
         </h3>
         <!-- tools box -->
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
           </button>
         </div>
-        <!-- /. tools -->
+
       </div>
 
-      <!-- /.box-header -->
-      <div class="box-body pad">
-        <form>
-          {{-- <div class="form-group">
-            <label>Conclusión</label>
-            <textarea class="form-control" rows="10" placeholder="Comenzar a escribir acá...">{{$audit->conclution}}</textarea>
-          </div>
-         <div class="form-group col-sm-12 col-md-6 col-lg-4">
-           <label>Recomendaciones</label>
-           <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una recomendación"
-                   style="width: 100%;">
-             @foreach ($audit->recommendations as $recommendation)
-               <option selected="selected">{{$recommendation->name}}</option>
-             @endforeach
 
-           </select>
-         </div> --}}
+      <div class="box-body pad">
+        @include('errors.errors')
+        <form method="post">
+            {{ csrf_field() }}
+
+
+
+
          <div class="form-group  col-sm-12 col-md-6 col-lg-4">
            <label>Objetivos</label>
-           <select class="form-control select2" multiple="multiple" placeholder="Seleccioná un objetivo"
+           <select class="editMode form-control select2" name="objectives[]" multiple="multiple" placeholder="Seleccioná un objetivo"
            style="width: 100%;">
              @isset($audit->objectives)
-               @foreach ($audit->objectives as $objective)
-               <option selected="selected">{{$objective->name}}</option>
+               @foreach ($objectives as $objective)
+               <option
+                   @isset($audit->objectives)
+                     @foreach ($audit->objectives as $audobj)
+                       @if ($audobj->id == $objective->id)
+                         selected="selected"
+                       @endif
+                     @endforeach
+                   @endisset
+                value="{{$objective->id}}"
+               >{{$objective->name}}</option>
                @endforeach
              @endisset
            </select>
           </div>
+
+
+
+
+
+
+
          <div class="form-group col-sm-12 col-md-6 col-lg-4">
            <label>Método de trabajo empleado</label>
-           <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una instrucción"
+           <select class="editMode form-control select2" name="instructions[]" multiple="multiple" data-placeholder="Seleccioná una instrucción"
                    style="width: 100%;">
               @isset($audit->instructions)
-                 @foreach ($audit->instructions as $instruction)
-                   <option selected="selected">{{$instruction->name}}</option>
+                 @foreach ($instructions as $instruction)
+                   <option
+                     @isset($audit->instructions)
+                       @foreach ($audit->instructions as $audinst)
+                         @if ($audinst->id == $instruction->id)
+                           selected="selected"
+                         @endif
+                       @endforeach
+                     @endisset
+                   value="{{$instruction->id}}"
+                   >{{$instruction->name}}
+                 </option>
                  @endforeach
               @endisset
 
            </select>
          </div>
+         <div class="form-group col-sm-12 col-md-6 col-lg-2">
+            <label style="color:white">Guardar</label>
+           <input type="submit" class="form-control editMode btn btn-success " name="updateObjetivesInstructions" value="Guardar objetivos e instrucciones">
 
+         </div>
 
-              {{-- <label>Informe</label>
-              <textarea id="editor1" name="editor1" rows="10" cols="80">
-                {{$audit->report}}
-              </textarea> --}}
         </form>
       </div>
     </div>
+
+    <script type="text/javascript">
+     window.onload = hideEditables;
+
+    function hideEditables(){
+      var editables = document.getElementsByClassName("editMode");
+        for(i = 0;i < editables.length; i++)
+      {
+        $(".editMode")
+            .prop("disabled", true);
+      }
+      var togglebutton = document.getElementById("toggleedition");
+      togglebutton.onclick = showEditables;
+    }
+
+    function showEditables(){
+      var editables = document.getElementsByClassName("editMode");
+        for(i = 0;i < editables.length; i++)
+      {
+        $(".editMode")
+            .prop("disabled", false);
+      }
+      var togglebutton = document.getElementById("toggleedition");
+      togglebutton.onclick = hideEditables;
+    }
+
+
+    </script>

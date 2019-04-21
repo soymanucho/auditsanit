@@ -16,6 +16,8 @@ use App\Person;
 use App\Address;
 use App\Expedient;
 use App\DiagnosisType;
+use App\Instruction;
+use App\Objective;
 
 class AuditController extends Controller
 {
@@ -24,10 +26,41 @@ class AuditController extends Controller
     $audits = Audit::all();
     return view('audits.audits',compact('audits'));
   }
+
+  public function updateObjectives(Request $request,Audit $audit)
+  {
+
+    $this->validate(
+       $request,
+       [
+            'instructions' => 'array',
+            'instructions.*' => 'exists:instructions,id',
+            'objectives' => 'array',
+            'objectives.*' => 'exists:objectives,id',
+
+       ],
+       [
+       ],
+       [
+           'instructions' => 'método de trabajo empleado',
+           'objectives' => 'objetivos',
+
+       ]
+   );
+
+   $audit->objectives()->sync($request->objectives);
+   $audit->instructions()->sync($request->instructions);
+   $audit->save();
+
+   $objectives = Objective::all();
+   $instructions = Instruction::all();
+   return view('audits.objective.auditDetailObjectives',compact('audit','objectives','instructions'));
+  }
+
   protected function updateDiagnosis(Request $request,Audit $audit)
   {
     //dd($request);
-    $tata = $this->validate(
+   $this->validate(
       $request,
       [
            'diagnosisTypes' => 'array',
@@ -191,7 +224,9 @@ class AuditController extends Controller
   }
   public function detailObjectives(Audit $audit)
   {
-    return view('audits.objective.auditDetailObjectives',compact('audit'));
+    $objectives = Objective::all();
+    $instructions = Instruction::all();
+    return view('audits.objective.auditDetailObjectives',compact('audit','objectives','instructions'));
   }
   public function detailAuditor(Audit $audit)
   {

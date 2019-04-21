@@ -28,8 +28,8 @@
               </select>
 
          </div>
-         <div class="form-group  col-sm-12 col-md-6 col-lg-6">
-           <input type="submit" class=" editMode btn btn-success " name="updateDiagnosis" value="Guardar diagnosticos">
+         <div class="form-group  col-sm-12 col-md-6 col-lg-2">
+           <input type="submit" class="form-control editMode btn btn-success " name="updateDiagnosis" value="Guardar diagnosticos">
            </div>
            </div>
        </form>
