@@ -16,8 +16,8 @@
       <tr>
         <td>  {{ $moduletype->name}} </td>
         <td class="text-center"> <a  href=""><b class="fa fa-eye "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
-        <td class="text-center"> <a  style="color: orange;" href=""><b class="fa fa-edit "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
-        <td class="text-center"> <a  style="color: red;"href=""><b class="fa fa-trash "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
+        <td class="text-center"> <a  style="color: orange;" href="{!! route('edit-moduletype',compact('moduletype')) !!}"><b class="fa fa-edit "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
+        <td class="text-center"> <a  style="color: red;"href="{!! route('delete-moduletype',compact('moduletype')) !!}"><b class="fa fa-trash "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
 
 
         {{-- <td>  {{ $category->subcategory->name }} </td>

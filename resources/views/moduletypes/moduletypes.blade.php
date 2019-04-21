@@ -8,7 +8,7 @@
 @section('content')
 
   <h1>Tipos de Modulos</h1>
-  {{-- <a class="float-right btn btn-success btn-lg" href="/admin/productos/agregar">Nuevo</a> --}}
+    <a class=" btn btn-success btn-lg" href="{!! route('new-moduletype') !!}">Nueva</a>
   <br>
   @include('moduletypes.datatable')
 

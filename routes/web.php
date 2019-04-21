@@ -96,6 +96,11 @@ Route::get('/recomendaciones/{recommendation}/eliminar/', 'RecommendationControl
 
 //MODULE TYPE
 Route::get('/tiposdemodulo/', 'ModueTypeController@show')->name('show-moduletypes');
+Route::get('/tiposdemodulo/nuevo', 'ModueTypeController@new')->name('new-moduletype');
+Route::post('/tiposdemodulo/nuevo', 'ModueTypeController@save')->name('save-moduletype');
+Route::get('/tiposdemodulo/{moduleType}/editar/', 'ModueTypeController@edit')->name('edit-moduletype');
+Route::post('/tiposdemodulo/{moduleType}/editar/', 'ModueTypeController@update')->name('update-moduletype');
+Route::get('/tiposdemodulo/{moduleType}/eliminar/', 'ModueTypeController@delete')->name('delete-moduletype');
 
 //MODULE CATEGORY
 Route::get('/categoriasdemodulo/', 'ModueleCategoryController@show')->name('show-modulecategories');
