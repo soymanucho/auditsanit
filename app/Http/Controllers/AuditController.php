@@ -18,6 +18,7 @@ use App\Expedient;
 use App\DiagnosisType;
 use App\Instruction;
 use App\Objective;
+use App\Recommendation;
 
 class AuditController extends Controller
 {
@@ -27,10 +28,36 @@ class AuditController extends Controller
     return view('audits.audits',compact('audits'));
   }
 
+  public function updateConclution(Request $request,Audit $audit)
+  {
+    $this->validate(
+       $request,
+       [
+            'conclution' => 'required|max:1000',
+            'recommendations' => 'array',
+            'recommendations.*' => 'exists:recommendations,id',
+
+
+       ],
+       [
+       ],
+       [
+           'conclution' => 'conclusión',
+           'recommendations' => 'recomendacioines',
+
+       ]
+   );
+   $audit->recommendations()->sync($request->recommendations);
+   $audit->conclution=$request->conclution;
+   $audit->save();
+
+   $recommendations = Recommendation::all();
+   return view('audits.conclution.auditDetailConclution',compact('audit','recommendations'));
+  }
 
   public function updateReport(Request $request,Audit $audit)
   {
-    
+
     $this->validate(
        $request,
        [
@@ -256,7 +283,8 @@ class AuditController extends Controller
   }
   public function detailConclution(Audit $audit)
   {
-    return view('audits.conclution.auditDetailConclution',compact('audit'));
+    $recommendations = Recommendation::all();
+    return view('audits.conclution.auditDetailConclution',compact('audit','recommendations'));
   }
   public function detailHistory(Audit $audit)
   {

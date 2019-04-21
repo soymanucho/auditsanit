@@ -14,52 +14,39 @@
 
       <!-- /.box-header -->
       <div class="box-body pad">
-        <form>
+        <form method="post">
+              {{ csrf_field() }}
           <div class="form-group">
             <label>Conclusión</label>
-            <textarea class="form-control" rows="10" placeholder="Comenzar a escribir acá...">
-              @isset($var)
-                {{$audit->conclution}}
+
+            <textarea id="editor1" class="editMode" name="conclution" rows="10" cols="80">
+              @isset($audit->report)
+                  {{$audit->conclution}}
               @endisset
             </textarea>
           </div>
          <div class="form-group col-sm-12 col-md-6 col-lg-4">
            <label>Recomendaciones</label>
-           <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una recomendación"
+           <select class="form-control select2" name="recommendations[]"multiple="multiple" data-placeholder="Seleccioná una recomendación"
                    style="width: 100%;">
               @isset($audit->recommendations)
-                @foreach ($audit->recommendations as $recommendation)
-                  <option selected="selected">{{$recommendation->name}}</option>
+                @foreach ($recommendations as $recommendation)
+                  <option
+
+                  @isset($audit->recommendations)
+                    @foreach ($audit->recommendations as $auditrecommendation)
+                      @if ($auditrecommendation->id == $recommendation->id)
+                        selected="selected"
+                      @endif
+                    @endforeach
+                  @endisset
+                  value="{{$recommendation->id}}"
+                  >{{$recommendation->name}}</option>
                 @endforeach
               @endisset
            </select>
          </div>
-         {{-- <div class="form-group  col-sm-12 col-md-6 col-lg-4">
-         <label>Objetivos</label>
-         <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná un objetivo"
-         style="width: 100%;">
-         @foreach ($audit->objectives as $objective)
-         <option selected="selected">{{$objective->name}}</option>
-         @endforeach
-
-           </select>
-          </div> --}}
-         {{-- <div class="form-group col-sm-12 col-md-6 col-lg-4">
-           <label>Instrucciones</label>
-           <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná una instrucción"
-                   style="width: 100%;">
-             @foreach ($audit->instructions as $instruction)
-               <option selected="selected">{{$instruction->name}}</option>
-             @endforeach
-
-           </select>
-         </div> --}}
-
-
-              {{-- <label>Informe</label>
-              <textarea id="editor1" name="editor1" rows="10" cols="80">
-                {{$audit->report}}
-              </textarea> --}}
+           <input type="submit" class="form-control editMode btn btn-success " name="updateDiagnosis" value="Guardar conclusión y recomendaciones">
         </form>
       </div>
     </div>
