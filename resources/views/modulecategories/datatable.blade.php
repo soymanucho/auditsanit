@@ -3,7 +3,6 @@
 @section('header')
 
     <th>Nombre</th>
-    <th class="text-center" >Detalle</th>
     <th class="text-center" >Editar</th>
     <th class="text-center" >Eliminar</th>
 
@@ -15,9 +14,8 @@
   @foreach($modulecategories as $modulecategory)
       <tr>
         <td>  {{ $modulecategory->name}} </td>
-        <td class="text-center"> <a  href=""><b class="fa fa-eye "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
-        <td class="text-center"> <a  style="color: orange;" href=""><b class="fa fa-edit "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
-        <td class="text-center"> <a  style="color: red;"href=""><b class="fa fa-trash "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
+        <td class="text-center"> <a  style="color: orange;" href="{!! route('edit-modulecategory',compact('modulecategory')) !!}"><b class="fa fa-edit "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
+        <td class="text-center"> <a  style="color: red;"href="{!! route('delete-modulecategory',compact('modulecategory')) !!}"><b class="fa fa-trash "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
 
 
         {{-- <td>  {{ $category->subcategory->name }} </td>

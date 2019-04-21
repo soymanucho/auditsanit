@@ -3,7 +3,6 @@
 @section('header')
 
     <th>Nombre</th>
-    <th class="text-center" >Detalle</th>
     <th class="text-center" >Editar</th>
     <th class="text-center" >Eliminar</th>
 
@@ -15,7 +14,6 @@
   @foreach($moduletypes as $moduletype)
       <tr>
         <td>  {{ $moduletype->name}} </td>
-        <td class="text-center"> <a  href=""><b class="fa fa-eye "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
         <td class="text-center"> <a  style="color: orange;" href="{!! route('edit-moduletype',compact('moduletype')) !!}"><b class="fa fa-edit "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
         <td class="text-center"> <a  style="color: red;"href="{!! route('delete-moduletype',compact('moduletype')) !!}"><b class="fa fa-trash "></b></a> </td> {{-- {{ route('audit-detail', compact('audit')) }} --}}
 

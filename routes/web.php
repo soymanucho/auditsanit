@@ -104,6 +104,11 @@ Route::get('/tiposdemodulo/{moduleType}/eliminar/', 'ModueTypeController@delete'
 
 //MODULE CATEGORY
 Route::get('/categoriasdemodulo/', 'ModueleCategoryController@show')->name('show-modulecategories');
+Route::get('/categoriasdemodulo/nuevo', 'ModueleCategoryController@new')->name('new-modulecategory');
+Route::post('/categoriasdemodulo/nuevo', 'ModueleCategoryController@save')->name('save-modulecategory');
+Route::get('/categoriasdemodulo/{modulecategory}/editar/', 'ModueleCategoryController@edit')->name('edit-modulecategory');
+Route::post('/categoriasdemodulo/{modulecategory}/editar/', 'ModueleCategoryController@update')->name('update-modulecategory');
+Route::get('/categoriasdemodulo/{modulecategory}/eliminar/', 'ModueleCategoryController@delete')->name('delete-modulecategory');
 
 //MODULE
 Route::get('/modulos/', 'ModueleController@show')->name('show-module');
