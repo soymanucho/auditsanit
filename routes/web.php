@@ -141,8 +141,7 @@ Route::get('/auditoria/{audit}/detalle/objetivos-instrucciones/', 'AuditControll
 Route::post('/auditoria/{audit}/detalle/objetivos-instrucciones/', 'AuditController@updateObjectives')->name('update-objectives');
 
 Route::get('/auditoria/{audit}/detalle/informe-auditor/', 'AuditController@detailAuditor')->name('audit-detail-auditor');
-Route::get('/auditoria/{audit}/detalle/informe-auditor/editar', 'AuditController@detailAuditorEdit')->name('edit-audit-detail-auditor');
-Route::post('/auditoria/{audit}/detalle/informe-auditor/editar', 'AuditController@detailAuditorSave')->name('save-audit-detail-auditor');
+Route::post('/auditoria/{audit}/detalle/informe-auditor/', 'AuditController@updateReport')->name('update-report');
 
 Route::get('/auditoria/{audit}/detalle/conclusion/', 'AuditController@detailConclution')->name('audit-detail-conclution');
 Route::get('/auditoria/{audit}/detalle/conclusion/editar', 'AuditController@detailConclutionEdit')->name('edit-audit-detail-conclution');

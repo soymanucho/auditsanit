@@ -27,6 +27,28 @@ class AuditController extends Controller
     return view('audits.audits',compact('audits'));
   }
 
+
+  public function updateReport(Request $request,Audit $audit)
+  {
+    
+    $this->validate(
+       $request,
+       [
+            'report' => 'required|max:1000',
+
+
+       ],
+       [
+       ],
+       [
+           'report' => 'informe',
+
+       ]
+   );
+   $audit->report=$request->report;
+   $audit->save();
+   return view('audits.report.auditDetailAuditor',compact('audit'));
+  }
   public function updateObjectives(Request $request,Audit $audit)
   {
 
