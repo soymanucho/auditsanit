@@ -4,7 +4,7 @@
 
 <th>Tipo</th>
 @foreach ($moduleCategories as $moduleCategory)
-  <th>{{ucwords($moduleCategory->name)}}</th>
+  <th class="text-right">{{ucwords($moduleCategory->name)}}</th>
 @endforeach
 
 
@@ -23,9 +23,11 @@
         @foreach ($moduleCategories as $moduleCategory)
 
           @if (isset($matrix[$moduleType->id][$moduleCategory->id]))
-            <th>${{$matrix[$moduleType->id][$moduleCategory->id]}}</th>
+            <th class="text-right" ><a data-toggle="tooltip" title="Click para editar" href="{!! route('edit-module',compact('moduleType','moduleCategory')) !!}">${{$matrix[$moduleType->id][$moduleCategory->id]}}</a></th>
             @else
-                <th ></th>
+                <th class="text-right">
+                  <a style="color:grey" data-toggle="tooltip" title="Click para crear nuevo" href="{!! route('new-module',compact('moduleType','moduleCategory')) !!}"> No existe</a>
+                </th>
           @endif
 
 

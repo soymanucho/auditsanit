@@ -112,6 +112,10 @@ Route::get('/categoriasdemodulo/{modulecategory}/eliminar/', 'ModueleCategoryCon
 
 //MODULE
 Route::get('/modulos/', 'ModueleController@show')->name('show-module');
+Route::get('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/editar', 'ModueleController@edit')->name('edit-module');
+Route::post('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/editar', 'ModueleController@update')->name('update-module');
+Route::get('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/nuevo', 'ModueleController@new')->name('new-module');
+Route::post('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/nuevo', 'ModueleController@save')->name('save-module');
 
 //STATUS
 Route::get('/estados/', 'StatusController@show')->name('show-status');

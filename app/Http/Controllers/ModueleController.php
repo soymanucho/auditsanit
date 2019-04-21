@@ -27,4 +27,61 @@ class ModueleController extends Controller
 
     return view('modules.modules',compact('modules','moduleTypes','moduleCategories','matrix'));
   }
+
+  public function new(ModuleType $moduleType, ModuleCategory $moduleCategory)
+  {
+    $module = new Module();
+    $module->module_type_id = $moduleType->id;
+    $module->module_category_id = $moduleCategory->id;
+    $module->price = 0;
+      return view('modules.newModule',compact('module'));
+  }
+
+  public function save(ModuleType $moduleType, ModuleCategory $moduleCategory,Request $request)
+  {
+    $module = new Module();
+    $module->module_type_id = $moduleType->id;
+    $module->module_category_id = $moduleCategory->id;
+    $this->validate(
+      $request,
+      [
+          'price' => 'required|numeric|min:0',
+
+      ],
+      [
+      ],
+      [
+          'price' => 'precio',
+      ]
+  );
+  $module->fill($request->all());
+  $module->save();
+  return redirect()->route('show-module');
+  }
+
+  public function edit(ModuleType $moduleType, ModuleCategory $moduleCategory)
+  {
+    $module = Module::where('module_type_id',$moduleType->id)->where('module_category_id',$moduleCategory->id)->first();
+    return view('modules.editModule',compact('module'));
+  }
+
+  public function update(ModuleType $moduleType, ModuleCategory $moduleCategory,Request $request)
+  {
+    $module = Module::where('module_type_id',$moduleType->id)->where('module_category_id',$moduleCategory->id)->first();
+    $this->validate(
+      $request,
+      [
+          'price' => 'required|numeric|min:0',
+
+      ],
+      [
+      ],
+      [
+          'price' => 'precio',
+      ]
+  );
+  $module->fill($request->all());
+  $module->save();
+  return redirect()->route('show-module');
+  }
 }
