@@ -46,4 +46,9 @@ class Expedient extends Model
   {
     return $this->hasMany(ExpedientModule::class);
   }
+
+  public function diagnosisTypes()
+  {
+    return $this->belongsToMany(DiagnosisType::class,'diagnoses','expedient_id','diagnosisType_id');
+  }
 }

@@ -134,6 +134,8 @@ Route::post('/auditoria/nueva/', 'AuditController@save')->name('create-audit');
 
 
 Route::get('/auditoria/{audit}/detalle/expediente/', 'AuditController@detailExpedient')->name('audit-detail-expedient');
+Route::post('/auditoria/{audit}/detalle/expediente/', 'AuditController@updateExpedient')->name('update-expedient');
+
 
 Route::get('/auditoria/{audit}/detalle/objetivos-instrucciones/', 'AuditController@detailObjectives')->name('audit-detail-objectives');
 Route::get('/auditoria/{audit}/detalle/objetivos-instrucciones/editar', 'AuditController@detailObjectives')->name('edit-audit-detail-objectives');

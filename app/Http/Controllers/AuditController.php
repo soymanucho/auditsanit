@@ -24,6 +24,39 @@ class AuditController extends Controller
     $audits = Audit::all();
     return view('audits.audits',compact('audits'));
   }
+  protected function updateDiagnosis(Request $request,Audit $audit)
+  {
+    //dd($request);
+    $tata = $this->validate(
+      $request,
+      [
+           'diagnosisTypes' => 'array',
+           'diagnosisTypes.*' => 'exists:diagnosis_types,id',
+
+      ],
+      [
+      ],
+      [
+          'diagnosisTypes' => 'tipos de diagnosticos',
+
+      ]
+  );
+
+
+  $audit->expedient->diagnosisTypes()->sync($request->diagnosisTypes);
+  $audit->save();
+
+  }
+
+  public function updateExpedient(Request $request, Audit $audit)
+  {
+    if ($request->has('updateDiagnosis')) {
+      $this->updateDiagnosis($request,$audit);
+      return redirect()->route('audit-detail-expedient',compact('audit'));
+    }
+  }
+
+
   public function new()
   {
     $clients = Client::all();
