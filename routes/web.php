@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//INDICATION
+Route::get('auditoria/{audit}/indicacion/nuevo', 'IndicationController@new')->name('new-indication');
 
 //TIPOS INDICACION
 Route::get('/tipos-indicacion/', 'IndicationTypeController@show')->name('show-indicationType');

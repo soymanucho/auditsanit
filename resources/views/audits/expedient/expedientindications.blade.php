@@ -1,8 +1,8 @@
 
 <div class="box box-primary">
     <div class="box-header with-border">
-      <h3 class="box-title">Indicaciones
-        {{-- <button type="button" class="editMode btn btn-success btn-xs"><i class="fa fa-plus"></i></button> --}}
+      <h3 class="box-title">Indicaciones 
+      <button type="button" class="fancybox editMode btn btn-success btn-xs" href="{!! route('new-indication',compact('audit')) !!}" ><i class="fa fa-plus"></i></button>
       </h3>
       <div class="box-tools pull-right">
 
