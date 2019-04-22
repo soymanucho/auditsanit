@@ -11,25 +11,6 @@
 </div>
 
 <div class="form-group col-sm-12 col-md-6 col-lg-3">
-  <label>Adic. por dep.</label>
-  <select class="form-control select2" name="dependency_additional" style="width: 100%;">
-    @isset($vendor->dependency_additional)
-      @if ($vendor->dependency_additional == true)
-        <option selected value="true">Si</option>
-        <option value="false" >No</option>
-      @else
-        <option value="true">Si</option>
-        <option selected value="false" >No</option>
-      @endif
-    @else
-      <option value="true">Si</option>
-      <option value="false" >No</option>
-    @endisset
-
-  </select>
-</div>
-
-<div class="form-group col-sm-12 col-md-6 col-lg-3">
   <label>Personería jurídica</label>
   <select class="form-control select2" name="jury_person" style="width: 100%;">
     @isset($vendor->jury_person)
