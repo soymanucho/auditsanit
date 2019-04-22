@@ -354,7 +354,11 @@ $('.select2').select2({
   		closeClick	: false,
   		openEffect	: 'none',
   		closeEffect	: 'none',
-      type: 'ajax'
+      type: 'ajax',
+      afterClose: function(){
+        window.location.reload(true);
+        console.log('holi?');
+      }
   	});
   });
 </script>

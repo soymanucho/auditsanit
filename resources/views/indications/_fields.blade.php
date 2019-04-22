@@ -53,7 +53,8 @@
 $('.select2').select2({
   placeholder: 'Select an option',
   theme: "classic",
-  dropdownParent:$("#father")
+  dropdownParent:$("#father"),
+
 
   });
 </script>
