@@ -6,7 +6,7 @@
 
 <div class="form-group form-group col-sm-12 col-md-6 col-lg-6">
   <label for="name">Indicación:</label>
-  <select class="form-control select2" name="client_id" id="client_id" data-placeholder="Seleccioná una indicacion"
+  <select class="form-control select2" name="indicationType_id" id="indicationType_id" data-placeholder="Seleccioná una indicacion"
           style="width: 100%;">
           <option value=""></option>
           @foreach ($indicationTypes as $indicationType)
@@ -18,7 +18,7 @@
 
 <div class="form-group form-group col-sm-12 col-md-6 col-lg-6" >
   <label for="name">Medico:</label>
-  <select class="form-control select2"  name="client_id" id="client_id" data-placeholder="Seleccioná un médico"
+  <select class="form-control select2"  name="medic_id" id="medic_id" data-placeholder="Seleccioná un médico"
           style="width: 100%;">
           <option value=""></option>
           @foreach ($medics as $medic)
@@ -29,7 +29,7 @@
 
 <div class="form-group form-group col-sm-12 col-md-6 col-lg-6">
   <label for="name"># Sesiones:</label>
-  <input type="number" min="0" step="1"class="form-control"name="name" id="name" value="{{ old('name',$indication->numberOfSesions)}}"/>
+  <input type="number" min="0" step="1" class="form-control"name="numberOfSesions" id="numberOfSesions" value="{{ old('name',$indication->numberOfSesions)}}"/>
 </div>
 
 <div class="form-group form-group col-sm-12 col-md-6 col-lg-6">

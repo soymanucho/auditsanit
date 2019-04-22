@@ -17,4 +17,38 @@ class IndicationController extends Controller
       $indication = new Indication();
       return view('indications.newIndication',compact('audit','indicationTypes','medics','indication'));
     }
+
+    public function save(Request $request, Audit $audit)
+    {
+      $this->validate(
+         $request,
+         [
+              'indicationType_id' => 'required|exists:indication_types,id',
+              'medic_id' => 'required|exists:medics,id',
+              'numberOfSesions' => 'required|max:1000',
+              'aditionalDependance' => 'required|boolean',
+
+
+         ],
+         [
+         ],
+         [
+           'indicationType_id' => 'tipo de indicacion',
+           'medic_id' => 'medico',
+           'numberOfSesions' => 'número de sesiones',
+           'aditionalDependance' => 'adicional dependencia',
+
+         ]
+     );
+     $indication = new Indication();
+     $indication->expedient_id = $audit->expedient->id;
+     $indication->medic_id = $request->medic_id;
+     $indication->aditionalDependance = $request->aditionalDependance;
+     $indication->numberOfSesions = $request->numberOfSesions;
+     $indication->indicationType_id = $request->indicationType_id;
+     $indication->save();
+
+      return response($request, 200)
+      ->header('Content-Type', 'text/plain');
+    }
 }

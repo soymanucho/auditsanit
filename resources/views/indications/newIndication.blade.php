@@ -20,7 +20,7 @@
 
            </ul>
          </div>
-             <form  id="myform" method="POST" name='createIndication'>
+             <form  id="newIndicationform" method="POST" name='createIndication'>
                {{ method_field('post') }}
                <div class="box-body">
                  <div class="row" id="father">
@@ -41,14 +41,14 @@
 
    </section>
 
-   {{-- <script type="text/javascript">
+   <script type="text/javascript">
 
     $(document).ready(function(){
    $('#submit').on('click', function(e) {
 
-      var action ='/productos/nuevo';
+      var action ='{!! route('new-indication',compact('audit')) !!}';
   e.preventDefault();
-  var formdata = $('#myform').serialize();
+  var formdata = $('#newIndicationform').serialize();
   console.log('this is the form data'+formdata);
   $.ajax({
 
@@ -56,14 +56,14 @@
        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
      },
      type: 'POST',
-     url: '/productos/nuevo',
+     url: '{!! route('new-indication',compact('audit')) !!}',
      data: formdata,
      dataType: 'JSON',
      success: function(msg) {
        console.log('succ');
        console.log(msg);
        $('#exito').removeClass("hidden");
-       $('#myform').addClass("hidden");
+       $('#newIndicationform').addClass("hidden");
          $('#erroralert').addClass("hidden");
        },
      error: function (msg) {
@@ -87,4 +87,4 @@
   });
 });
 });
-   </script> --}}
+   </script>

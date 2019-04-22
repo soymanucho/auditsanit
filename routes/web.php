@@ -19,6 +19,7 @@ Auth::routes();
 
 //INDICATION
 Route::get('auditoria/{audit}/indicacion/nuevo', 'IndicationController@new')->name('new-indication');
+Route::post('auditoria/{audit}/indicacion/nuevo', 'IndicationController@save')->name('save-indication');
 
 //TIPOS INDICACION
 Route::get('/tipos-indicacion/', 'IndicationTypeController@show')->name('show-indicationType');
