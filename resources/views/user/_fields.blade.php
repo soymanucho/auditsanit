@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="cargo" class="col-sm-2 control-label">Cargo en la empresa</label>
+    <label for="cargo" class="col-sm-2 control-label">Cargo en la institución</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="cargo" placeholder="Gerente" value="{{ old('cargo',$person->cargo)}}">
     </div>
