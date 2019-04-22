@@ -28,22 +28,22 @@
   </select>
 </div>
 
-<div class="form-group col-sm-12 col-md-6 col-lg-4">
+<div class="form-group col-sm-12 col-md-6 col-lg-3">
   <label>Calle</label>
   <input class="form-control input" name="street" type="text" value="{{$vendor->address->street}}">
 </div>
 
-<div class="form-group col-sm-12 col-md-6 col-lg-4">
+<div class="form-group col-sm-12 col-md-6 col-lg-3">
   <label>Número</label>
   <input class="form-control input" name="number" type="text" value="{{$vendor->address->number}}">
 </div>
 
-<div class="form-group col-sm-12 col-md-6 col-lg-4">
+<div class="form-group col-sm-12 col-md-6 col-lg-3">
   <label>Piso</label>
   <input class="form-control input" type="text" name="floor" value="{{$vendor->address->floor}}">
 </div>
 
-<div class="form-group col-sm-12 col-md-6 col-lg-4">
+<div class="form-group col-sm-12 col-md-6 col-lg-3">
  <label>Localidad</label>
  <select class="form-control select2" name="location_id" data-placeholder="Seleccioná una localidad" style="width: 100%;">
          @foreach ($locations as $location)
@@ -58,7 +58,7 @@
  </select>
 </div>
 
-<div class="form-group col-sm-12 col-md-6 col-lg-4">
+<div class="form-group col-sm-12 col-md-6 col-lg-3">
  <label>Provincia</label>
  <select class="form-control select2" name="province_id" data-placeholder="Seleccioná una provincia" style="width: 100%;">
          @foreach ($provinces as $province)
