@@ -63,16 +63,15 @@ class AuditController extends Controller
        [
             'report' => 'required|max:1000',
 
-
        ],
        [
        ],
        [
            'report' => 'informe',
-
        ]
    );
    $audit->report=$request->report;
+   // dd($audit->report);
    $audit->save();
    return view('audits.report.auditDetailAuditor',compact('audit'));
   }
@@ -114,17 +113,13 @@ class AuditController extends Controller
       [
            'diagnosisTypes' => 'array',
            'diagnosisTypes.*' => 'exists:diagnosis_types,id',
-
       ],
       [
       ],
       [
           'diagnosisTypes' => 'tipos de diagnosticos',
-
       ]
   );
-
-
   $audit->expedient->diagnosisTypes()->sync($request->diagnosisTypes);
   $audit->save();
 
@@ -184,7 +179,6 @@ class AuditController extends Controller
   }
   public function detailPatientSave(Audit $audit, Request $request)
   {
-    // $audit = Audit::find($audit->id);
     $audit = Audit::where('id',$audit->id)->first();
     $this->validate(
         $request,
@@ -222,19 +216,11 @@ class AuditController extends Controller
     $address->street = $request->street;
     $address->number = $request->number;
     $address->floor = $request->floor;
-    // $address->location()->save($request->location_id);
     $address->location_id = $request->location_id;
-    // $address->location()->attach($request->location_id);
-    // $province =
     $address->save();
-    // $person = Person::firstOrCreate('dni',$request->dni);
+
     $person = New Person;
-    // $person->fill($request->all());
-    // $person->addres()->attach($address->id);
     $person->address_id = $address->id;
-    // $person->address()->associate($address->id);
-    // $person->gender()->attach($request->gender_id);
-    // $person->gender()->associate($request->gender_id);
     $person->gender_id = $request->gender_id;
     $person->name = $request->name;
     $person->surname = $request->surname;
@@ -243,25 +229,15 @@ class AuditController extends Controller
     $person->save();
 
     $patient = New Patient;
-    // $patient->person()->associate($person->id)->save();
     $patient->person_id = $person->id;
-    // $patient->person()->attach($person->id);
     $patient->save();
 
     $expedient = New Expedient;
-    // $expedient->client()->associate($request->client_id);
     $expedient->client_id = $request->client_id;
-    // $expedient->client()->attach($request->client_id);
     $expedient->patient_id = $patient->id;
-    // $expedient->patient()->associate($patient->id);
-    // $expedient->patient()->attach($patient->id);
     $expedient->save();
 
-    // $audit->expedient()->attach($expedient->id);
-    // $audit->expedient()->associate($expedient->id);
     $audit->expedient_id = $expedient->id;
-    // $status = Status::find(1)->get();
-    // $audit->statuses()->attach($status);
     $audit->save();
 
     return redirect()->route('audit-detail-expedient',compact('audit'));

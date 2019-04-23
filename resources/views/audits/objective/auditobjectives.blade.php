@@ -70,7 +70,7 @@
 
            </select>
          </div>
-         <div class="form-group col-sm-12 col-md-6 col-lg-2">
+         <div class="form-group col-sm-12 col-md-6 col-lg-3">
             <label style="color:white">Guardar</label>
            <input type="submit" class="form-control editMode btn btn-success " name="updateObjetivesInstructions" value="Guardar objetivos e instrucciones">
 

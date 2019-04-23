@@ -17,12 +17,12 @@
         <form method="post">
               {{ csrf_field() }}
               <label>Informe</label>
-              <textarea id="editor1" class="editMode" name="report" rows="10" cols="80">
+              <textarea id="report" class="editMode" name="report" rows="10" cols="80">
                 @isset($audit->report)
                   {{$audit->report}}
                 @endisset
               </textarea>
-              <input type="submit" class="form-control editMode btn btn-success " name="updateDiagnosis" value="Guardar informe">
+              <input type="submit" class="form-control editMode btn btn-success " name="updateReport" value="Guardar informe">
         </form>
       </div>
     </div>

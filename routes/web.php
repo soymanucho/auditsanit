@@ -62,8 +62,12 @@ Route::get('/auditores/exportar', 'AuditorController@export')->name('export-audi
 
 
 //PATIENTS
-Route::get('/pacientes/', 'PatientController@show')->name('show-patients');
-Route::get('/pacientes/exportar', 'PatientController@export')->name('export-patients');
+Route::get('/afiliados/', 'PatientController@show')->name('show-patients');
+Route::get('/afiliados/exportar', 'PatientController@export')->name('export-patients');
+Route::get('/afiliados/nuevo', 'PatientController@new')->name('new-patients');
+Route::post('/afiliados/nuevo', 'PatientController@save')->name('save-patients');
+Route::get('/afiliados/{patient}/editar/', 'PatientController@edit')->name('edit-patients');
+Route::post('/afiliados/{patient}/editar/', 'PatientController@update')->name('update-patients');
 
 //INSTRUCTIONS
 Route::get('/instrucciones/', 'InstructionController@show')->name('show-instructions');

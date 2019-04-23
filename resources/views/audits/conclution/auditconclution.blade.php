@@ -1,7 +1,7 @@
 
     <div class="box box-info">
       <div class="box-header">
-         <h3 class="box-title"><i class="fa fa-info-circle"></i> Informe del auditor {{-- {{$audit->auditor->person->name}} --}}
+         <h3 class="box-title"><i class="fa fa-info-circle"></i> Conclusiones y recomendaciones de la coordinadora{{-- {{$audit->auditor->person->name}} --}}
           {{-- <small>editado por </small> --}}
         </h3>
         <!-- tools box -->
@@ -20,7 +20,7 @@
             <label>Conclusión</label>
 
             <textarea id="editor1" class="editMode" name="conclution" rows="10" cols="80">
-              @isset($audit->report)
+              @isset($audit->conclution)
                   {{$audit->conclution}}
               @endisset
             </textarea>
