@@ -28,7 +28,7 @@
             <td>{{$indication->numberOfSesions}}</td>
             <td>{{$indication->aditionalDependance}}</td>
             <td>{{$indication->medic->person->surname}}, {{$indication->medic->person->name}}</td>
-            <td class="editMode"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></td>
+            <td class="editMode"><a type="button" href="{!! route('delete-indication',compact('indication')) !!}" onclick="return confirm('Seguro que quiere eliminar esta indicación?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a></td>
           </tr>
         @endforeach
 

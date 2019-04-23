@@ -18,6 +18,12 @@ class IndicationController extends Controller
       return view('indications.newIndication',compact('audit','indicationTypes','medics','indication'));
     }
 
+    public function delete(Indication $indication)
+    {
+      $indication->delete();
+      return redirect()->back();
+    }
+
     public function save(Request $request, Audit $audit)
     {
       $this->validate(
