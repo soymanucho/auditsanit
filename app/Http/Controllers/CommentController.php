@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\NewComment;
 use App\Audit;
 use App\User;
 use App\Comment;
@@ -37,6 +38,17 @@ class CommentController extends Controller
     $comment->audit_id = $audit->id;
 
     $comment->save();
+    $usersToNotify = collect();
+    if ($comment) {
+      foreach ($audit->comments as $commenta) {
+        if (!($usersToNotify->search($commenta->user->id)) && ($user->id != $commenta->user->id)) {
+          $usersToNotify->put('id', $commenta->user->id);
+          $commenta->user->notify(new NewComment($audit,$comment,$user));
+        }
+      }
+
+
+    }
 
     // $audit->comments()->sync(array('user_id'=>$user->id,'text'=>$request->text));
     // $audit->comments()->save();
