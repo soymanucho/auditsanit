@@ -30,6 +30,6 @@ class InviteCreated extends Mailable
     public function build()
     {
         return $this->from('from@example.com')
-                    ->view('resources.views.vendor.notifications.email.blade.php', ['invite' => $this->invite]);
+                    ->view('emails.invite.blade.php', ['invite' => $this->invite]);
     }
 }
