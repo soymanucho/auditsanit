@@ -15,7 +15,7 @@ class CommentController extends Controller
     $this->validate(
         $request,
         [
-            'text' => 'required|string|max:255',
+            'text' => 'required|string|max:1000',
 
         ],
         [

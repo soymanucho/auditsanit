@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('audit_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
-            $table->string('text');
+            $table->longText('text');
             $table->timestamps();
             $table->softDeletes();
         });
