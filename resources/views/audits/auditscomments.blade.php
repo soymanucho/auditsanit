@@ -27,7 +27,7 @@
     <img class="img-responsive img-circle img-sm" src="/img/avatar.svg" alt="Alt Text">
     <!-- .img-push is used to add margin to elements next to floating images -->
     <div class="img-push">
-      <input type="text" name="text" class="form-control input-sm" placeholder="Presioná enter para enviar el comentario">
+      <input type="text" name="text" class="form-control input-sm"  value="{{ old('text')}}" placeholder="Presioná enter para enviar el comentario">
     </div>
   </form>
 </div>

@@ -21,7 +21,7 @@ class CommentController extends Controller
         [
         ],
         [
-          'name' => 'nombre',
+          'text' => 'comentario',
 
         ]
     );
