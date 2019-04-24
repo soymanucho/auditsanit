@@ -369,7 +369,16 @@ CKEDITOR.replace( 'report',{
   uiColor: '#d1cfc7',
   });
 CKEDITOR.config.height = '500px'
-CKEDITOR.config.toolbarLocation = 'bottom';
+// CKEDITOR.config.toolbarLocation = 'bottom';
+// CKEDITOR.config.readOnly = true;
+</script>
+<script>
+CKEDITOR.replace( 'report1',{
+  removeButtons: '',
+  uiColor: '#d1cfc7',
+  });
+CKEDITOR.config.height = '500px'
+// CKEDITOR.config.toolbarLocation = 'bottom';
 // CKEDITOR.config.readOnly = true;
 </script>
 </body>

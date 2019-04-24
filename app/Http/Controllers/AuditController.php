@@ -28,6 +28,23 @@ class AuditController extends Controller
     return view('audits.audits',compact('audits'));
   }
 
+  public function updateStatus(Audit $audit, Status $status)
+  {
+    $audit = Audit::where('id',$audit->id)->first();
+    // $currentStatus = Status::where('id',$status)->first();
+    $currentStatus = $audit->currentStatus();
+
+    $nextStatus = $currentStatus->id + 1;
+
+    $nextStatus = Status::where('id',$nextStatus)->first();
+
+    // dd($nextStatus);
+    $audit->statuses()->attach($nextStatus);
+    $audit->save();
+
+    return redirect()->back();
+  }
+
   public function updateConclution(Request $request,Audit $audit)
   {
     $this->validate(
@@ -177,71 +194,7 @@ class AuditController extends Controller
     $function = 'show';
     return view('audits.patient.auditDetailPatient',compact('audit','function'));
   }
-  public function detailPatientSave(Audit $audit, Request $request)
-  {
-    $audit = Audit::where('id',$audit->id)->first();
-    $this->validate(
-        $request,
-        [
-            'name' => 'required|string|max:100',
-            'client_id' => 'required|exists:clients,id',
-            'surname' => 'required|string|max:100',
-            'dni'     => 'required|string|max:10',
-            'birthdate' => 'required|date|before:today',
-            'street' => 'required|string|max:100',
-            'number' => 'required|string|max:100',
-            'floor' => 'required|string|max:100',
-            'location_id' => 'required|exists:locations,id',
-            'province_id' => 'required|exists:provinces,id',
-            'gender_id' => 'required|exists:genders,id',
-        ],
-        [
-        ],
-        [
-          'name' => 'nombre',
-          'client_id' => 'obra social',
-          'surname' => 'apellido',
-          'dni'     => 'DNI',
-          'birthdate' => 'fecha de nacimiento',
-          'street' => 'calle',
-          'number' => 'número',
-          'floor' => 'piso',
-          'location_id' => 'localidad',
-          'province_id' => 'provincia',
-          'gender_id' => 'género',
-        ]
-    );
 
-    $address = New Address;
-    $address->street = $request->street;
-    $address->number = $request->number;
-    $address->floor = $request->floor;
-    $address->location_id = $request->location_id;
-    $address->save();
-
-    $person = New Person;
-    $person->address_id = $address->id;
-    $person->gender_id = $request->gender_id;
-    $person->name = $request->name;
-    $person->surname = $request->surname;
-    $person->dni = $request->dni;
-    $person->birthdate = $request->birthdate;
-    $person->save();
-
-    $patient = New Patient;
-    $patient->person_id = $person->id;
-    $patient->save();
-
-    $expedient = New Expedient;
-    $expedient->client_id = $request->client_id;
-    $expedient->patient_id = $patient->id;
-    $expedient->save();
-
-    $audit->expedient_id = $expedient->id;
-    $audit->save();
-
-    return redirect()->route('audit-detail-expedient',compact('audit'));
-  }
   public function detailExpedient(Audit $audit)
   {
     $diagnosesType = DiagnosisType::all();

@@ -61,13 +61,6 @@ Route::get('/auditores/exportar', 'AuditorController@export')->name('export-audi
 
 
 
-//PATIENTS
-Route::get('/afiliados/', 'PatientController@show')->name('show-patients');
-Route::get('/afiliados/exportar', 'PatientController@export')->name('export-patients');
-Route::get('/afiliados/nuevo', 'PatientController@new')->name('new-patients');
-Route::post('/afiliados/nuevo', 'PatientController@save')->name('save-patients');
-Route::get('/afiliados/{patient}/editar/', 'PatientController@edit')->name('edit-patients');
-Route::post('/afiliados/{patient}/editar/', 'PatientController@update')->name('update-patients');
 
 //INSTRUCTIONS
 Route::get('/instrucciones/', 'InstructionController@show')->name('show-instructions');
@@ -132,6 +125,12 @@ Route::get('/estados/{status}/editar/', 'StatusController@update')->name('edit-s
 Route::post('/estados/{status}/editar/', 'StatusController@edit')->name('update-status');
 Route::get('/estados/{status}/eliminar/', 'StatusController@delete')->name('delete-status');
 
+
+//UPDATE-STATUS-AUDIT
+Route::post('/auditoria/{audit}/estado/{status}/actualizar/', 'AuditController@updateStatus')->name('update-status-audit');
+
+
+
 //COMMENTS
 Route::post('/auditoria/{audit}/agregar-comentario/', 'CommentController@add')->name('add-comment');
 
@@ -160,5 +159,15 @@ Route::get('/auditoria/{audit}/detalle/resumen/', 'AuditController@detailResume'
 
 Route::get('/auditorias/exportar', 'AuditController@export')->name('export-audits');
 
-Route::post('/auditoria/{audit}/detalle/paciente/', 'AuditController@detailPatientSave')->name('audit-detail-patient-save');
+
 Route::get('/auditoria/{audit}/detalle/paciente/', 'AuditController@detailPatient')->name('audit-detail-patient');
+
+
+
+//PATIENTS
+Route::get('/afiliados/', 'PatientController@show')->name('show-patients');
+Route::get('/afiliados/exportar', 'PatientController@export')->name('export-patients');
+Route::get('/afiliados/nuevo', 'PatientController@new')->name('new-patients');
+Route::post('/afiliados/nuevo', 'PatientController@save')->name('save-patients');
+Route::get('/afiliados/{patient}/editar/', 'PatientController@edit')->name('edit-patients');
+Route::post('/afiliados/{patient}/editar/', 'PatientController@update')->name('update-patients');

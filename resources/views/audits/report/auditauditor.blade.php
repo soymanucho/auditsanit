@@ -25,4 +25,12 @@
               <input type="submit" class="form-control editMode btn btn-success " name="updateReport" value="Guardar informe">
         </form>
       </div>
+
+
+      <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
+            {{ csrf_field() }}
+            <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 3)
+              disabled
+            @endif name="updateStatus" value="Guardar y enviar">
+      </form>
     </div>

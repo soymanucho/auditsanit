@@ -19,7 +19,7 @@
           <div class="form-group">
             <label>Conclusión</label>
 
-            <textarea id="editor1" class="editMode" name="conclution" rows="10" cols="80">
+            <textarea id="report1" class="editMode" name="conclution" rows="10" cols="80">
               @isset($audit->conclution)
                   {{$audit->conclution}}
               @endisset
@@ -49,4 +49,16 @@
            <input type="submit" class="form-control editMode btn btn-success " name="updateDiagnosis" value="Guardar conclusión y recomendaciones">
         </form>
       </div>
+
+
+      <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
+            {{ csrf_field() }}
+            <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 4)
+              disabled
+            @endif name="updateStatus" value="Guardar y enviar al administrador">
+            <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 5)
+              disabled
+            @endif name="updateStatus" value="Guardar y finalizar">
+
+      </form>
     </div>

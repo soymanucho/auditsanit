@@ -97,7 +97,7 @@ class PatientController extends Controller
   }
   public function update(Patient $patient, Request $request)
   {
-    $patient = Patient::findOrFail($patient->id)->first();
+    $patient = Patient::findOrFail($patient)->first();
     $this->validate(
         $request,
         [

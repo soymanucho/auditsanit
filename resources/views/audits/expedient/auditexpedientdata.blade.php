@@ -1,7 +1,7 @@
 <div class="box box-primary ">
   <div class="box-header with-border">
     <h3 class="box-title"><i class="fa fa-file"></i> Datos del expediente
-       
+
     </h3>
     <div class="box-tools pull-right">
       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -15,6 +15,14 @@
   @include('audits.expedient.expedientindications')
 
   @include('audits.expedient.expedientmodules')
+
+  <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
+        {{ csrf_field() }}
+        <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 1)
+          disabled
+        @endif name="updateStatus" value="Guardar y enviar">
+  </form>
+
 
 
 </div>

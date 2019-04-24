@@ -1,6 +1,6 @@
 <div class="row">
 
-  <div class="col-md-4 col-sm-12 col-xs-12">
+  <div class="col-lg-4 col-md-12 col-sm-12">
     <div class="info-box" style="background:{{$audit->currentStatus()->color}}">
       <span  style="color:white" class="info-box-icon"><i class="fa fa-compass  "></i></span>
 
@@ -21,7 +21,7 @@
     </div>
     <!-- /.info-box -->
   </div>
-  <div class="col-md-4 col-sm-12 col-xs-12">
+  <div class="col-lg-4 col-md-12 col-sm-12">
     <div class="info-box" style="background:#d2d6de">
       <span class="info-box-icon"><i class="fa fa-plus-square"></i></span>
 
@@ -37,7 +37,7 @@
     </div>
 
   </div>
-  <div class="col-md-4 col-sm-12 col-xs-12">
+  <div class="col-lg-4 col-md-12 col-sm-12">
     <div class="info-box" style="background:#605ca8">
       <span style="color:white" class="info-box-icon"><i class="fa fa-key"></i></span>
 
