@@ -16,6 +16,7 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('audit_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->string('text');
             $table->timestamps();
             $table->softDeletes();
@@ -23,6 +24,7 @@ class CreateCommentsTable extends Migration
 
         Schema::table('comments', function (Blueprint $table) {
               $table->foreign('audit_id')->references('id')->on('audits');
+              $table->foreign('user_id')->references('id')->on('users');
 
         });
     }

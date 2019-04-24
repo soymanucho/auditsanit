@@ -52,7 +52,7 @@
  <input class="form-control input" type="text" name="province" value="@isset($audit->expedient->patient->person->address->location->province){{old('floor',$audit->expedient->patient->person->address->location->province->name)}}@endisset">
 
 </div>
-@if ($function=="show")
+{{-- @if ($function=="show")
   <script>
 
     $(document).ready(function () {
@@ -60,4 +60,4 @@
         .prop("disabled", true);
     });
   </script>
-@endif
+@endif --}}

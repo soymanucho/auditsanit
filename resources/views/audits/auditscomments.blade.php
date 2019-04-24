@@ -7,8 +7,9 @@
 
         <div class="comment-text">
               <span class="username">
-                User->name
+                {{$comment->user->name}}
                 <span class="text-muted pull-right">{{$comment->created_at}}</span>
+                <span class="text-muted">{{$comment->updated_at->diffForHumans()}}</span>
               </span><!-- /.username -->
           {{$comment->text}}
         </div>
@@ -20,11 +21,13 @@
   <!-- /.box-comment -->
 </div>
 <div class="box-footer">
-  <form action="#" method="post">
+  <form action="{!! route('add-comment',compact('audit')) !!}" method="post">
+    {{ csrf_field() }}
+    {{ method_field('post') }}
     <img class="img-responsive img-circle img-sm" src="/img/avatar.svg" alt="Alt Text">
     <!-- .img-push is used to add margin to elements next to floating images -->
     <div class="img-push">
-      <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+      <input type="text" name="text" class="form-control input-sm" placeholder="Presioná enter para enviar el comentario">
     </div>
   </form>
 </div>

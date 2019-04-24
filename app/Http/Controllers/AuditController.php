@@ -270,7 +270,10 @@ class AuditController extends Controller
   {
     $function = "show";
     $diagnosesType = DiagnosisType::all();
-    return view('audits.resume.auditDetailResume',compact('audit','function','diagnosesType'));
+    $objectives = Objective::all();
+    $instructions = Instruction::all();
+    $recommendations = Recommendation::all();
+    return view('audits.resume.auditDetailResume',compact('audit','function','diagnosesType','objectives','instructions','recommendations'));
   }
   public function export()
   {

@@ -132,7 +132,8 @@ Route::get('/estados/{status}/editar/', 'StatusController@update')->name('edit-s
 Route::post('/estados/{status}/editar/', 'StatusController@edit')->name('update-status');
 Route::get('/estados/{status}/eliminar/', 'StatusController@delete')->name('delete-status');
 
-
+//COMMENTS
+Route::post('/auditoria/{audit}/agregar-comentario/', 'CommentController@add')->name('add-comment');
 
 //AUDITS
 Route::get('/auditorias/', 'AuditController@show')->name('show-audits');
