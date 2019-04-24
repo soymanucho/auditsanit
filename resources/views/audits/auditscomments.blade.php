@@ -8,7 +8,7 @@
         <div class="comment-text">
               <span class="username">
                 {{$comment->user->name}}
-                <span class="text-muted pull-right">{{$comment->created_at}}</span>
+                <span class="text-muted pull-right">{{ \Carbon\Carbon::parse($comment->created_at)->format('d/m/Y h:m:s')}}</span>
                 <span class="text-muted">{{$comment->updated_at->diffForHumans()}}</span>
               </span><!-- /.username -->
           {{$comment->text}}
