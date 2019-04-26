@@ -120,6 +120,9 @@ Route::get('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/editar', 'Modu
 Route::post('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/editar', 'ModueleController@update')->name('update-module');
 Route::get('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/nuevo', 'ModueleController@new')->name('new-module');
 Route::post('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/nuevo', 'ModueleController@save')->name('save-module');
+Route::get('/audit/{audit}/addmodule', 'ModueleController@save')->name('add-module-expedient');
+
+
 
 //STATUS
 Route::get('/estados/', 'StatusController@show')->name('show-status');
@@ -128,6 +131,7 @@ Route::post('/estados/nuevo', 'StatusController@save')->name('save-status');
 Route::get('/estados/{status}/editar/', 'StatusController@update')->name('edit-status');
 Route::post('/estados/{status}/editar/', 'StatusController@edit')->name('update-status');
 Route::get('/estados/{status}/eliminar/', 'StatusController@delete')->name('delete-status');
+
 
 
 
