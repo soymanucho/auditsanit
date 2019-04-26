@@ -28,6 +28,23 @@ class AuditController extends Controller
     return view('audits.audits',compact('audits'));
   }
 
+  public function updateStatus(Audit $audit, Status $status)
+  {
+    $audit = Audit::where('id',$audit->id)->first();
+    // $currentStatus = Status::where('id',$status)->first();
+    $currentStatus = $audit->currentStatus();
+
+    $nextStatus = $currentStatus->id + 1;
+
+    $nextStatus = Status::where('id',$nextStatus)->first();
+
+    // dd($nextStatus);
+    $audit->statuses()->attach($nextStatus);
+    $audit->save();
+
+    return redirect()->back();
+  }
+
   public function updateConclution(Request $request,Audit $audit)
   {
     $this->validate(
@@ -63,16 +80,15 @@ class AuditController extends Controller
        [
             'report' => 'required|max:1000',
 
-
        ],
        [
        ],
        [
            'report' => 'informe',
-
        ]
    );
    $audit->report=$request->report;
+   // dd($audit->report);
    $audit->save();
    return view('audits.report.auditDetailAuditor',compact('audit'));
   }
@@ -114,17 +130,13 @@ class AuditController extends Controller
       [
            'diagnosisTypes' => 'array',
            'diagnosisTypes.*' => 'exists:diagnosis_types,id',
-
       ],
       [
       ],
       [
           'diagnosisTypes' => 'tipos de diagnosticos',
-
       ]
   );
-
-
   $audit->expedient->diagnosisTypes()->sync($request->diagnosisTypes);
   $audit->save();
 
@@ -182,90 +194,7 @@ class AuditController extends Controller
     $function = 'show';
     return view('audits.patient.auditDetailPatient',compact('audit','function'));
   }
-  public function detailPatientSave(Audit $audit, Request $request)
-  {
-    // $audit = Audit::find($audit->id);
-    $audit = Audit::where('id',$audit->id)->first();
-    $this->validate(
-        $request,
-        [
-            'name' => 'required|string|max:100',
-            'client_id' => 'required|exists:clients,id',
-            'surname' => 'required|string|max:100',
-            'dni'     => 'required|string|max:10',
-            'birthdate' => 'required|date|before:today',
-            'street' => 'required|string|max:100',
-            'number' => 'required|string|max:100',
-            'floor' => 'required|string|max:100',
-            'location_id' => 'required|exists:locations,id',
-            'province_id' => 'required|exists:provinces,id',
-            'gender_id' => 'required|exists:genders,id',
-        ],
-        [
-        ],
-        [
-          'name' => 'nombre',
-          'client_id' => 'obra social',
-          'surname' => 'apellido',
-          'dni'     => 'DNI',
-          'birthdate' => 'fecha de nacimiento',
-          'street' => 'calle',
-          'number' => 'número',
-          'floor' => 'piso',
-          'location_id' => 'localidad',
-          'province_id' => 'provincia',
-          'gender_id' => 'género',
-        ]
-    );
 
-    $address = New Address;
-    $address->street = $request->street;
-    $address->number = $request->number;
-    $address->floor = $request->floor;
-    // $address->location()->save($request->location_id);
-    $address->location_id = $request->location_id;
-    // $address->location()->attach($request->location_id);
-    // $province =
-    $address->save();
-    // $person = Person::firstOrCreate('dni',$request->dni);
-    $person = New Person;
-    // $person->fill($request->all());
-    // $person->addres()->attach($address->id);
-    $person->address_id = $address->id;
-    // $person->address()->associate($address->id);
-    // $person->gender()->attach($request->gender_id);
-    // $person->gender()->associate($request->gender_id);
-    $person->gender_id = $request->gender_id;
-    $person->name = $request->name;
-    $person->surname = $request->surname;
-    $person->dni = $request->dni;
-    $person->birthdate = $request->birthdate;
-    $person->save();
-
-    $patient = New Patient;
-    // $patient->person()->associate($person->id)->save();
-    $patient->person_id = $person->id;
-    // $patient->person()->attach($person->id);
-    $patient->save();
-
-    $expedient = New Expedient;
-    // $expedient->client()->associate($request->client_id);
-    $expedient->client_id = $request->client_id;
-    // $expedient->client()->attach($request->client_id);
-    $expedient->patient_id = $patient->id;
-    // $expedient->patient()->associate($patient->id);
-    // $expedient->patient()->attach($patient->id);
-    $expedient->save();
-
-    // $audit->expedient()->attach($expedient->id);
-    // $audit->expedient()->associate($expedient->id);
-    $audit->expedient_id = $expedient->id;
-    // $status = Status::find(1)->get();
-    // $audit->statuses()->attach($status);
-    $audit->save();
-
-    return redirect()->route('audit-detail-expedient',compact('audit'));
-  }
   public function detailExpedient(Audit $audit)
   {
     $diagnosesType = DiagnosisType::all();
@@ -294,7 +223,10 @@ class AuditController extends Controller
   {
     $function = "show";
     $diagnosesType = DiagnosisType::all();
-    return view('audits.resume.auditDetailResume',compact('audit','function','diagnosesType'));
+    $objectives = Objective::all();
+    $instructions = Instruction::all();
+    $recommendations = Recommendation::all();
+    return view('audits.resume.auditDetailResume',compact('audit','function','diagnosesType','objectives','instructions','recommendations'));
   }
   public function export()
   {

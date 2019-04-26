@@ -15,7 +15,7 @@ class CreateDiagnosisTypesTable extends Migration
     {
         Schema::create('diagnosis_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->longText('name');
             $table->string('code')->unique();
             $table->timestamps();
             $table->softDeletes();

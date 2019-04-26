@@ -70,7 +70,7 @@
 
            </select>
          </div>
-         <div class="form-group col-sm-12 col-md-6 col-lg-2">
+         <div class="form-group col-sm-12 col-md-6 col-lg-3">
             <label style="color:white">Guardar</label>
            <input type="submit" class="form-control editMode btn btn-success " name="updateObjetivesInstructions" value="Guardar objetivos e instrucciones">
 
@@ -78,6 +78,13 @@
 
         </form>
       </div>
+
+      <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
+            {{ csrf_field() }}
+            <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 2)
+              disabled
+            @endif name="updateStatus" value="Guardar y enviar">
+      </form>
     </div>
 
     <script type="text/javascript">

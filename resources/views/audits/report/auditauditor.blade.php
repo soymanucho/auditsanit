@@ -17,12 +17,20 @@
         <form method="post">
               {{ csrf_field() }}
               <label>Informe</label>
-              <textarea id="editor1" class="editMode" name="report" rows="10" cols="80">
+              <textarea id="report" class="editMode" name="report" rows="10" cols="80">
                 @isset($audit->report)
                   {{$audit->report}}
                 @endisset
               </textarea>
-              <input type="submit" class="form-control editMode btn btn-success " name="updateDiagnosis" value="Guardar informe">
+              <input type="submit" class="form-control editMode btn btn-success " name="updateReport" value="Guardar informe">
         </form>
       </div>
+
+
+      <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
+            {{ csrf_field() }}
+            <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 3)
+              disabled
+            @endif name="updateStatus" value="Guardar y enviar">
+      </form>
     </div>

@@ -173,7 +173,7 @@
               <ul class="treeview-menu">
                 <li><a href="{{route('show-medics')}}"><i class="fa fa-search"></i> Medicos</a></li>
                 <li><a href="{{route('show-auditors')}}"><i class="fa fa-plus-circle "></i> Auditores</a></li>
-                <li><a href="{{route('show-patients')}}"><i class="fa fa-plus-circle "></i> Pacientes</a></li>
+                <li><a href="{{route('show-patients')}}"><i class="fa fa-plus-circle "></i> Afiliados</a></li>
                 <li><a href="{{route('show-vendors')}}"><i class="fa fa-search "></i> Prestadores</a></li>
                 <li><a href="{{route('invite')}}"><i class="fa fa-plus "></i> Invitar</a></li>
                 {{-- <li><a href="{{route('show-users')}}"><i class="fa fa-plus-circle "></i> Usuarios</a></li> --}}
@@ -244,7 +244,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2019 <a href="">Auditoría sanitaria</a>.</strong> Todos los derechos reservados.
+    <strong>Copyright &copy; 2019 <a href=""{{route('home')}}"">Auditoría sanitaria</a>.</strong> Todos los derechos reservados.
   </footer>
 
   <!-- Control Sidebar -->
@@ -336,7 +336,7 @@ $(document).ready( function () {
 
 } );
 $('.select2').select2({
-  placeholder: 'Select an option',
+  placeholder: 'Seleccioná una opción',
   theme: "classic"
   });
 
@@ -364,7 +364,22 @@ $('.select2').select2({
 </script>
 <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
 <script>
-                        CKEDITOR.replace( 'editor1' );
-                </script>
+CKEDITOR.replace( 'report',{
+  removeButtons: '',
+  uiColor: '#d1cfc7',
+  });
+CKEDITOR.config.height = '500px'
+// CKEDITOR.config.toolbarLocation = 'bottom';
+// CKEDITOR.config.readOnly = true;
+</script>
+<script>
+CKEDITOR.replace( 'report1',{
+  removeButtons: '',
+  uiColor: '#d1cfc7',
+  });
+CKEDITOR.config.height = '500px'
+// CKEDITOR.config.toolbarLocation = 'bottom';
+// CKEDITOR.config.readOnly = true;
+</script>
 </body>
 </html>

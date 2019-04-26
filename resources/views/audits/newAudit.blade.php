@@ -42,7 +42,7 @@
             </select>
           </div>
           <div class="form-group col-sm-12 col-md-6 col-lg-4">
-            <a class="btn btn-success btn-xs" href="">Crear nuevo paciente</a>
+            <a class="btn btn-success btn-xs" href="{!! route('new-patients') !!}">Crear nuevo paciente</a>
           </div>
 
 
