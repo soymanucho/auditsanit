@@ -61,8 +61,6 @@ Route::get('/auditores/', 'AuditorController@show')->name('show-auditors');
 Route::get('/auditores/exportar', 'AuditorController@export')->name('export-auditors');
 
 
-
-
 //INSTRUCTIONS
 Route::get('/instrucciones/', 'InstructionController@show')->name('show-instructions');
 Route::get('/instrucciones/nueva', 'InstructionController@new')->name('new-instructions');
@@ -70,6 +68,14 @@ Route::post('/instrucciones/nueva', 'InstructionController@save')->name('save-in
 Route::get('/instrucciones/{instruction}/editar/', 'InstructionController@edit')->name('edit-instructions');
 Route::post('/instrucciones/{instruction}/editar/', 'InstructionController@update')->name('update-instructions');
 Route::get('/instrucciones/{instruction}/eliminar/', 'InstructionController@delete')->name('delete-instructions');
+
+//CLIENTS
+Route::get('/clientes/', 'ClientController@show')->name('show-clients');
+Route::get('/clientes/nuevo', 'ClientController@new')->name('new-clients');
+Route::post('/clientes/nuevo', 'ClientController@save')->name('save-clients');
+Route::get('/clientes/{client}/editar/', 'ClientController@edit')->name('edit-clients');
+Route::post('/clientes/{client}/editar/', 'ClientController@update')->name('update-clients');
+Route::get('/clientes/{client}/eliminar/', 'ClientController@delete')->name('delete-clients');
 
 //VENDORS
 Route::get('/prestadores/', 'VendorController@show')->name('show-vendors');
