@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class InviteController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+  
   public function invite()
   {
     return view('invites.invite');
@@ -47,7 +52,7 @@ class InviteController extends Controller
         //if the invite doesn't exist do something more graceful than this
         abort(404);
     }else{
-      $invite->delete();
+      // $invite->delete();
       return redirect()->route('register');
     }
 

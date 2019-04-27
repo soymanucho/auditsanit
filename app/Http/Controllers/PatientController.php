@@ -13,6 +13,11 @@ use App\Address;
 use App\Person;
 class PatientController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+  
   public function show()
   {
     $patients = Patient::all();

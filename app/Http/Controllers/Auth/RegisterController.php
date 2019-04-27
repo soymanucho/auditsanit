@@ -48,6 +48,12 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+      $invite = Invite::where('email',$data['email'])->first();
+      if (!isset($invite)) {
+        abort(403);
+      }else {
+        $invite->delete();
+      }
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],

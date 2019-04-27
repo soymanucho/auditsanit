@@ -11,6 +11,10 @@ use App\Comment;
 
 class CommentController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
   public function add(Audit $audit, Request $request)
   {
     $this->validate(
