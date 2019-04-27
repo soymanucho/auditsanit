@@ -23,6 +23,12 @@ class MedicalServiceController extends Controller
       return view('medicalServices.newMedicalService',compact('auditors','medicalServiceTypes','transportServiceTypes','medicVendors','transportVendors','moduleExpedient'));
     }
 
+    public function delete(MedicalService $medicalService)
+    {
+      $medicalService->delete();
+      return redirect()->back();
+    }
+
     public function save(Request $request, ExpedientModule $moduleExpedient)
     {
 
