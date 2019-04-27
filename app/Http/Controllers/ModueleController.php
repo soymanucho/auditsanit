@@ -28,6 +28,8 @@ class ModueleController extends Controller
     return view('modules.modules',compact('modules','moduleTypes','moduleCategories','matrix'));
   }
 
+  
+
   public function new(ModuleType $moduleType, ModuleCategory $moduleCategory)
   {
     $module = new Module();

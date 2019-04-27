@@ -13,7 +13,6 @@
 
   @include('audits.expedient.expedientdiagnosis')
   @include('audits.expedient.expedientindications')
-
   @include('audits.expedient.expedientmodules')
 
   <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
@@ -22,8 +21,6 @@
           disabled
         @endif name="updateStatus" value="Guardar y enviar">
   </form>
-
-
 
 </div>
 

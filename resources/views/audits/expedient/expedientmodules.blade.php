@@ -4,7 +4,16 @@
    <ul class="nav nav-tabs pull-right">
      @isset($audit->expedient->expedientModules)
        @foreach ($audit->expedient->expedientModules as $key =>$expedientModule )
-       <li class=""><a href="#modtab_{{$expedientModule->id}}" data-toggle="tab" aria-expanded="false">{{$key+1}} <button type="button" class="editMode btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></a></li>
+       <li class="">
+         <a href="#modtab_{{$expedientModule->id}}" data-toggle="tab" aria-expanded="false">{{$key+1}}
+
+                 <a  href="{!! route('delete-module-expedient',compact('expedientModule')) !!}" onclick="return confirm('Seguro que quiere eliminar este módulo?')" class="  editMode btn btn-danger btn-xs">
+                   <i class="fa fa-trash btn btn-danger btn-xs"></i>
+                 </a>
+
+
+         </a>
+       </li>
        @endforeach
      @endisset
      <li class="pull-left header"><i class="fa fa-sitemap"></i>
@@ -18,7 +27,7 @@
         @endisset
       </li>
    </ul>
-   <disv class="tab-content">
+   <div class="tab-content">
     @isset($audit->expedient->expedientModules)
       @foreach ($audit->expedient->expedientModules as $expedientModule )
          <div class="tab-pane" id="modtab_{{$expedientModule->id}}">
@@ -42,4 +51,5 @@
       @endforeach
     @endisset
    </div>
+ </div>
 </div>

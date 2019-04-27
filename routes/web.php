@@ -117,8 +117,12 @@ Route::get('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/editar', 'Modu
 Route::post('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/editar', 'ModueleController@update')->name('update-module');
 Route::get('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/nuevo', 'ModueleController@new')->name('new-module');
 Route::post('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/nuevo', 'ModueleController@save')->name('save-module');
-Route::get('/audit/{audit}/addmodule', 'ModueleController@save')->name('add-module-expedient');
 
+
+//MODULE-EXPEDIENT
+Route::get('/audit/{audit}/agregarModuloAExpediente', 'ModueleExpedientController@addModuleToAudit')->name('add-module-expedient');
+Route::post('/audit/{audit}/agregarModuloAExpediente', 'ModueleExpedientController@saveModuleToAudit')->name('save-module-expedient');
+Route::get('/moduloExpediente/{expedientModule}/delete', 'ModueleExpedientController@delete')->name('delete-module-expedient');
 
 
 //STATUS
