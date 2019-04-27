@@ -175,7 +175,19 @@
                 <li><a href="{{route('show-auditors')}}"><i class="fa fa-plus-circle "></i> Auditores</a></li>
                 <li><a href="{{route('show-patients')}}"><i class="fa fa-plus-circle "></i> Afiliados</a></li>
                 <li><a href="{{route('show-vendors')}}"><i class="fa fa-search "></i> Prestadores</a></li>
-                <li><a href="{{route('invite')}}"><i class="fa fa-plus "></i> Invitar</a></li>
+                <li class="treeview">
+                  <a href="#">
+                    <i class="fa fa-search"></i> <span>Usuarios</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="{{route('users-show')}}"><i class="fa fa-search "></i> Usuarios</a></li>
+                    <li><a href="{{route('invite')}}"><i class="fa fa-plus "></i> Invitar</a></li>
+                  </ul>
+                </li>
+
                 {{-- <li><a href="{{route('show-users')}}"><i class="fa fa-plus-circle "></i> Usuarios</a></li> --}}
                 {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
               </ul>
@@ -197,6 +209,7 @@
               <li><a href="{{route('show-status')}}"><i class="fa fa-search"></i> Estados</a></li>
               <li><a href="{{route('show-diagnosisType')}}"><i class="fa fa-search"></i> Tipo Diagnostico</a></li>
               <li><a href="{{route('show-indicationType')}}"><i class="fa fa-search"></i> Tipo Indicacion</a></li>
+              <li><a href="{!! route('show-clients') !!}"><i class="fa fa-search"></i> Clientes</a></li>
 
               {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Prestaciones</a></li> --}}
 

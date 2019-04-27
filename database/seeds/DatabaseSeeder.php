@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
            IndicationstableSeeder::class,
            CommentsTableSeeder::class,
            ServiceSchedulesTableSeeder::class,
+           RolesTableSeeder::class,
 
            ]
        );

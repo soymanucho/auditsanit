@@ -56,9 +56,7 @@
             <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 4)
               disabled
             @endif name="updateStatus" value="Guardar y enviar al administrador">
-            <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 5)
-              disabled
-            @endif name="updateStatus" value="Guardar y finalizar">
+            <input type="submit" class="form-control btn btn-danger " @if ($audit->currentStatus()->id <= 4) style="display:none" @endif  @if ($audit->currentStatus()->id > 5) disabled  @endif name="updateStatus" value="Guardar y finalizar">
 
       </form>
     </div>

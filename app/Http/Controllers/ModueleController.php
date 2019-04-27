@@ -8,6 +8,11 @@ use App\ModuleType;
 use App\ModuleCategory;
 class ModueleController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+  
   public function show()
   {
     $modules = Module::all();

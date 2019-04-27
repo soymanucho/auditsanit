@@ -8,6 +8,10 @@ use App\Exports\AuditorExport;
 use App\Auditor;
 class AuditorController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
   public function show()
   {
     //dd(Auditor::first()->numberOfTotalAudits());

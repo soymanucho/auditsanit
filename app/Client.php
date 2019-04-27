@@ -10,7 +10,8 @@ class Client extends Model
 {
 
   use SoftDeletes;
-  
+  protected $fillable = ['companyName'];
+
   public function expedients()
   {
     return $this->hasMany(Expedient::class, 'client_id', 'id');

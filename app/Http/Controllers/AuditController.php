@@ -22,12 +22,20 @@ use App\Recommendation;
 
 class AuditController extends Controller
 {
+  public function __construct()
+  {
+    // $this->middleware('auth', [
+    //     'except' => ['show']
+    //     'only' => ['show']
+    // ]); // OTHERS EXAMPLES
+    $this->middleware('auth');
+  }
+
   public function show()
   {
     $audits = Audit::all();
     return view('audits.audits',compact('audits'));
   }
-
   public function updateStatus(Audit $audit, Status $status)
   {
     $audit = Audit::where('id',$audit->id)->first();

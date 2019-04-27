@@ -7,6 +7,11 @@ use App\Objective;
 
 class ObjectiveController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+  
   public function show()
   {
     $objectives = Objective::all();

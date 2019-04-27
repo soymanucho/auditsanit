@@ -7,6 +7,11 @@ use App\Instruction;
 
 class InstructionController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+  
   public function show()
   {
     $instructions = Instruction::all();

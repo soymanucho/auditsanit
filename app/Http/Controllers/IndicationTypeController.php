@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use App\IndicationType;
 class IndicationTypeController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+  
   public function show()
   {
     $indicationTypes = IndicationType::all();
@@ -36,7 +41,7 @@ class IndicationTypeController extends Controller
       ],
       [
           'name' => 'nombre',
-          
+
       ]
   );
   $indicationType = new IndicationType;
