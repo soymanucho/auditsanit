@@ -31,28 +31,31 @@
   });
 </script>
 <script type="text/javascript">
- window.onload = hideEditables;
+ window.onload = toggleEditables("toggleDiagnosisEdition","editButtonsDiagnosis","inputDiagnosisEdit",true);
+ window.onload = toggleEditables("toggleIndicationsEdition","editButtonsIndications",null,true);
+ window.onload = toggleEditables("toggleModulesEdition","editButtonsModules",null,true);
 
-function hideEditables(){
-  var editables = document.getElementsByClassName("editMode");
-    for(i = 0;i < editables.length; i++)
-  {
-    $(".editMode")
-        .prop("disabled", true);
-  }
-  var togglebutton = document.getElementById("toggleedition");
-  togglebutton.onclick = showEditables;
-}
+function toggleEditables(claseBoton,claseElementoEditable,inputEditable,toggle){
+  var editables = document.getElementsByClassName(claseElementoEditable);
 
-function showEditables(){
-  var editables = document.getElementsByClassName("editMode");
-    for(i = 0;i < editables.length; i++)
-  {
-    $(".editMode")
-        .prop("disabled", false);
+
+
+  if(inputEditable!='null'){
+      $("."+inputEditable).prop("disabled", toggle);
   }
-  var togglebutton = document.getElementById("toggleedition");
-  togglebutton.onclick = hideEditables;
+
+    if (toggle) {
+        $("."+claseElementoEditable).hide();
+    }
+    else {
+        $("."+claseElementoEditable).show();
+    }
+
+
+    console.log($("."+claseElementoEditable));
+    console.log($("."+inputEditable));
+  var togglebutton = document.getElementById(claseBoton);
+  togglebutton.onclick = function(){toggleEditables(claseBoton,claseElementoEditable,inputEditable,!toggle)};
 }
 
 

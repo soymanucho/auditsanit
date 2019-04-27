@@ -119,11 +119,18 @@ Route::get('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/nuevo', 'Modue
 Route::post('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/nuevo', 'ModueleController@save')->name('save-module');
 
 
+
+
 //MODULE-EXPEDIENT
 Route::get('/audit/{audit}/agregarModuloAExpediente', 'ModueleExpedientController@addModuleToAudit')->name('add-module-expedient');
 Route::post('/audit/{audit}/agregarModuloAExpediente', 'ModueleExpedientController@saveModuleToAudit')->name('save-module-expedient');
 Route::get('/moduloExpediente/{expedientModule}/delete', 'ModueleExpedientController@delete')->name('delete-module-expedient');
 
+
+//MEDICAL SERVICE
+Route::get('/moduloExpediente/{moduleExpedient}/medicalService/nuevo', 'MedicalServiceController@new')->name('new-medical-service');
+Route::post('/moduloExpediente/{moduleExpedient}/medicalService/nuevo', 'MedicalServiceController@save')->name('save-medical-service');
+Route::get('/moduloExpediente/{expedientModule}/medicalService/delete', 'MedicalServiceController@delete')->name('delete-medical-service');
 
 //STATUS
 Route::get('/estados/', 'StatusController@show')->name('show-status');

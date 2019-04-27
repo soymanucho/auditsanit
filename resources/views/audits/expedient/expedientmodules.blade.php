@@ -7,7 +7,7 @@
        <li class="">
          <a href="#modtab_{{$expedientModule->id}}" data-toggle="tab" aria-expanded="false">{{$key+1}}
 
-                 <a  href="{!! route('delete-module-expedient',compact('expedientModule')) !!}" onclick="return confirm('Seguro que quiere eliminar este módulo?')" class="  editMode btn btn-danger btn-xs">
+                 <a  href="{!! route('delete-module-expedient',compact('expedientModule')) !!}" onclick="return confirm('Seguro que quiere eliminar este módulo?')" class="  editButtonsModules btn btn-danger btn-xs">
                    <i class="fa fa-trash btn btn-danger btn-xs"></i>
                  </a>
 
@@ -18,7 +18,8 @@
      @endisset
      <li class="pull-left header"><i class="fa fa-sitemap"></i>
         Modulos
-        <button type="button" class="fancybox editMode btn btn-success btn-xs" href="{!! route('add-module-expedient',compact('audit')) !!}" ><i class="fa fa-plus"></i></button>
+        <button id='toggleModulesEdition' type="button" class="btn btn-warning btn-xs">Habilitar Edicion</button>
+        <button type="button" class="fancybox editButtonsModules btn btn-success btn-xs" href="{!! route('add-module-expedient',compact('audit')) !!}" ><i class="fa fa-plus"></i></button>
         @isset($audit->expedient->expedientModules)
           @if($audit->expedient->expedientModules->count()==0)
             <br>
@@ -32,7 +33,7 @@
       @foreach ($audit->expedient->expedientModules as $expedientModule )
          <div class="tab-pane" id="modtab_{{$expedientModule->id}}">
            <h3>{{$expedientModule->module->moduleType->name}} - {{$expedientModule->module->moduleCategory->name}}
-             <button type="button" class=" editMode btn btn-success btn-xs"><i class="fa fa-plus"></i></button>
+             <button type="button" class="fancybox editButtonsModules btn btn-success btn-xs" href="{!! route('new-medical-service',compact('expedientModule')) !!}"><i class="fa fa-plus"></i></button>
            </h3>
 
            @if ($expedientModule->medicalServices->count()==0)

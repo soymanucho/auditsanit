@@ -2,7 +2,8 @@
 <div class="box box-primary">
  <div class="box-header with-border">
       <h3 class="box-title">Indicaciones
-      <button type="button" class="fancybox editMode btn btn-success btn-xs" href="{!! route('new-indication',compact('audit')) !!}" ><i class="fa fa-plus"></i></button>
+      <button id='toggleIndicationsEdition' type="button" class="btn btn-warning btn-xs">Habilitar Edicion</button>
+      <button type="button" class="fancybox editButtonsIndications btn btn-success btn-xs" href="{!! route('new-indication',compact('audit')) !!}" ><i class="fa fa-plus"></i></button>
       </h3>
       <div class="box-tools pull-right">
       </div>
@@ -21,7 +22,7 @@
             <td>{{$indication->numberOfSesions}}</td>
             <td>{{$indication->aditionalDependance}}</td>
             <td>{{$indication->medic->person->surname}}, {{$indication->medic->person->name}}</td>
-            <td class="editMode"><a type="button" href="{!! route('delete-indication',compact('indication')) !!}" onclick="return confirm('Seguro que quiere eliminar esta indicación?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a></td>
+            <td ><a type="button" href="{!! route('delete-indication',compact('indication')) !!}" onclick="return confirm('Seguro que quiere eliminar esta indicación?')" class="btn btn-danger btn-xs editButtonsIndications"><i class="fa fa-trash "></i></a></td>
           </tr>
         @endforeach
        </table>

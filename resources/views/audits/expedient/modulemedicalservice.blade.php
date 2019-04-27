@@ -10,7 +10,7 @@
     </div>
   </div>
    <!-- /.box-header -->
-  <div class="box-body with-border">
+   <div class="box-body with-border">
      <strong><i class="fa fa-user-md"></i> Prestador: </strong>  {{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}}
      <br>
      <strong><i class="fa fa-user-secret"></i> Auditor: </strong> {{$medicalService->auditor->person->name}} {{$medicalService->auditor->person->surname}}
