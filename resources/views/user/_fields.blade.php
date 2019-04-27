@@ -81,19 +81,19 @@
   <div class="form-group">
     <label for="street" class="col-sm-2 control-label">Calle</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="street" placeholder="Calle 50 e/7 y 8" value="{{ old('street',$person->address->street)}}">
+      <input type="text" class="form-control" name="street" placeholder="Calle 50 e/7 y 8" value="@isset($person->address->street){{ old('street',$person->address->street)}}@else{{old('street')}}@endisset">
     </div>
   </div>
   <div class="form-group">
     <label for="number" class="col-sm-2 control-label">Número</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="number" placeholder="5135" value="{{ old('number',$person->address->number)}}">
+      <input type="text" class="form-control" name="number" placeholder="5135" value="@isset($person->address->number){{old('number',$person->address->number)}}@else{{old('number')}}@endisset">
     </div>
   </div>
   <div class="form-group">
     <label for="floor" class="col-sm-2 control-label">Piso</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="floor" placeholder="8A" value="{{ old('floor',$person->address->floor)}}">
+      <input type="text" class="form-control" name="floor" placeholder="8A" value="@isset($person->address->floor){{ old('floor',$person->address->floor)}}@else{{old('floor')}}@endisset">
     </div>
   </div>
   <div class="form-group">
@@ -102,9 +102,15 @@
       <select name="location_id" class="form-control" id="location_id" data-placeholder="Seleccioná una localidad" style="width: 100%;">
         @foreach ($locations as $location)
           <option
-          @if ($person->address->location->id == $location->id)
-             selected
-          @endif
+          @isset($person->address->location)
+            @if ($person->address->location->id == $location->id)
+               selected
+            @endif
+          @else
+            @if (old('location_id') == $location->id)
+               selected
+            @endif
+          @endisset
           value="{{$location->id}}" >{{$location->name}}</option>
         @endforeach
       </select>
@@ -117,9 +123,15 @@
 
         @foreach ($provinces as $province)
           <option
-          @if ($person->address->location->province->id == $province->id)
-            selected
-          @endif
+          @isset($person->address->location->province)
+            @if ($person->address->location->province->id == $province->id)
+              selected
+            @endif
+          @else
+            @if (old('province_id') == $province->id)
+               selected
+            @endif
+          @endisset
           value="{{$province->id}}" >{{$province->name}}</option>
         @endforeach
 
@@ -134,9 +146,15 @@
 
         @foreach ($genders as $gender)
           <option
-          @if ($person->gender->id == $gender->id)
-             selected
-          @endif
+          @isset($person->gender)
+            @if ($person->gender->id == $gender->id)
+               selected
+            @endif
+          @else
+            @if (old('gender_id') == $gender->id)
+               selected
+            @endif
+          @endisset
           value="{{$gender->id}}">{{$gender->name}}</option>
         @endforeach
 {{--    1	Femenino

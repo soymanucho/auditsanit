@@ -16,6 +16,7 @@ class CreateInvitesTable extends Migration
         Schema::create('invites', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('email');
+            $table->bigInteger('role_id')->unsigned();
             $table->string('token',16)->unique();
             $table->timestamps();
         });

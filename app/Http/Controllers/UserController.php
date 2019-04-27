@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 use App\User;
 use App\Person;
 use App\Gender;
@@ -20,8 +21,25 @@ class UserController extends Controller
   {
     $this->middleware('auth');
   }
-
   public function show()
+  {
+    $users = User::all();
+    return view('user.users',compact('users'));
+  }
+  public function editRole(User $user)
+  {
+    $roles = Role::all();
+    return view('user.editRole',compact('user','roles'));
+  }
+  public function updateRole(User $user,Request $request)
+  {
+    $user = User::find($user)->first();
+    $role = Role::findOrFail($request->role_id);
+    $user->syncRoles($role);
+    $user->save();
+    return redirect()->route('users-show');
+  }
+  public function detail()
   {
     $user = Auth::user();
     if (isset($user->person->id)) {
@@ -131,6 +149,7 @@ class UserController extends Controller
     }else {
       $person = New Person;
       $address = New Address;
+      $person->address()->associate($address);
     }
     // $user->person()->attach($person->id);
     $genders = Gender::all();
@@ -199,8 +218,10 @@ class UserController extends Controller
   $address->save();
 
   // $person = Person::firstOrCreate('dni',$request->dni);
-  // $person = New Person;
   $person = $user->person;
+  if (!isset($person)) {
+    $person = New Person;
+  }
   // $person->fill($request->all());
   $person->address_id = $address->id;
   $person->gender_id = $request->gender_id;

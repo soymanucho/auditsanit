@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Invite;
 use App\User;
 use App\Mail\InviteCreated;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
@@ -12,12 +13,17 @@ class InviteController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('auth');
+    // $this->middleware('auth');
+    $this->middleware('auth', [
+        'except' => ['accept']
+        // 'only' => ['show']
+    ]); // OTHERS EXAMPLES
   }
-  
+
   public function invite()
   {
-    return view('invites.invite');
+    $roles = Role::all();
+    return view('invites.invite',compact('roles'));
   }
 
   public function process(Request $request)
@@ -34,7 +40,8 @@ class InviteController extends Controller
     //create a new invite record
     $invite = Invite::create([
         'email' => $request->get('email'),
-        'token' => $token
+        'token' => $token,
+        'role_id' => $request->get('role_id'),
     ]);
 
     // send the email

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Spatie\Permission\Models\Role;
+use App\Invite;
+use App\User;
 
 class RegisterController extends Controller
 {
@@ -20,7 +22,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+    protected $role;
     use RegistersUsers;
 
     /**
@@ -52,6 +54,7 @@ class RegisterController extends Controller
       if (!isset($invite)) {
         abort(403);
       }else {
+        $this->role = Role::find($invite->role_id)->first();
         $invite->delete();
       }
         return Validator::make($data, [
@@ -69,10 +72,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+      $user = User::create([
+          'name' => $data['name'],
+          'email' => $data['email'],
+          'password' => Hash::make($data['password']),
+      ]);
+      $user->syncRoles($this->role);
+      return $user;
     }
 }

@@ -167,6 +167,7 @@ return [
          */
          Maatwebsite\Excel\ExcelServiceProvider::class,
          Laraveles\Spanish\SpanishServiceProvider::class,
+         Spatie\Permission\PermissionServiceProvider::class,
         /*
          * Application Service Providers...
          */

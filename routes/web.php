@@ -39,7 +39,12 @@ Route::post('/tipos-diagnostico/{diagnosisType}/editar/', 'DiagnosisTypeControll
 Route::get('/tipos-diagnostico/{diagnosisType}/eliminar/', 'DiagnosisTypeController@delete')->name('delete-diagnosisType');
 
 //PERFIL USUARIO
-Route::get('/perfil','UserController@show')->name('profile-show');
+Route::get('/usuarios','UserController@show')->name('users-show');
+Route::get('/usuarios/{user}/editar-rol','UserController@editRole')->name('users-edit-role');
+Route::post('/usuarios/{user}/editar-rol','UserController@updateRole')->name('users-update-role');
+
+//PERFIL
+Route::get('/perfil','UserController@detail')->name('profile-show');
 // Route::post('/perfil','UserController@save')->name('profile-save');
 Route::get('/perfil/{user}/editar','UserController@edit')->name('profile-edit');
 Route::post('/perfil/{user}/editar','UserController@update')->name('profile-update');
