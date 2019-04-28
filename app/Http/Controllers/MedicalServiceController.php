@@ -60,6 +60,7 @@ class MedicalServiceController extends Controller
      $medicalService->expedient_module_id = $moduleExpedient->id;
      $medicalService->service_id = $service->id;
      $medicalService->auditor_id = $request->auditor_id;
+     $medicalService->status_id = 1;
 
      if($request->transport_service_id!=null && $request->transport_service_id!=null)
      {

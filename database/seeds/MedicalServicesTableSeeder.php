@@ -6,6 +6,7 @@ use App\Service;
 use App\ExpedientModule;
 use App\TransportService;
 use App\Auditor;
+use App\MedicalServiceStatus;
 
 class MedicalServicesTableSeeder extends Seeder
 {
@@ -26,6 +27,7 @@ class MedicalServicesTableSeeder extends Seeder
           $medicalService->service_id = factory(Service::class)->create()->id;
           $medicalService->transport_service_id = factory(TransportService::class)->create()->id;
           $medicalService->auditor_id =  Auditor::inRandomOrder()->first()->id;
+          $medicalService->status_id =  MedicalServiceStatus::inRandomOrder()->first()->id;
           $medicalService->save();
         }
       }

@@ -12,5 +12,6 @@ $factory->define(App\MedicalService::class, function (Faker $faker) {
       'service_id'=> Service::inRandomOrder()->first(),
       'transport_service_id'=> TransportService::inRandomOrder()->first(),
       'auditor_id'=> Auditor::inRandomOrder()->first(),
+      'status_id'=> MedicalServiceStatus::inRandomOrder()->first(),
     ];
 });

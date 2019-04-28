@@ -8,6 +8,7 @@ use App\Service;
 use App\ExpedientModule;
 use App\TransportService;
 use App\Auditor;
+use App\MedicalServiceStatus;
 
 class MedicalService extends Model
 {
@@ -31,5 +32,10 @@ class MedicalService extends Model
   public function auditor()
   {
     return $this->belongsTo(Auditor::class);
+  }
+
+  public function status()
+  {
+    return $this->belongsTo(MedicalServiceStatus::class);
   }
 }

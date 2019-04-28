@@ -19,6 +19,7 @@ class CreateMedicalServicesTable extends Migration
             $table->bigInteger('service_id')->unsigned();
             $table->bigInteger('transport_service_id')->nullable()->unsigned();
             $table->bigInteger('auditor_id')->nullable()->unsigned();
+            $table->bigInteger('status_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +28,7 @@ class CreateMedicalServicesTable extends Migration
             $table->foreign('service_id')->references('id')->on('services');
             $table->foreign('transport_service_id')->references('id')->on('transport_services');
             $table->foreign('auditor_id')->references('id')->on('auditors');
+            $table->foreign('status_id')->references('id')->on('medical_service_statuses');
           });
     }
 

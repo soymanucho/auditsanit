@@ -16,6 +16,8 @@
      <br>
      <strong><i class="fa fa-user-secret"></i> Auditor: </strong> {{$medicalService->auditor->person->name}} {{$medicalService->auditor->person->surname}}
      <br>
+     <strong><i class="fa fa-user-secret"></i> Status: </strong> <span class="badge" style="background:{{$medicalService->status->color}}" >{{$medicalService->status->name}}</span>
+     <br>
      <strong><i class="fa fa-clock-o"></i> Horarios del servicio: </strong>
        <button type="button" class=" editButtonsModules btn btn-success btn-xs"><i class="fa fa-plus"></i></button>
      <br>
