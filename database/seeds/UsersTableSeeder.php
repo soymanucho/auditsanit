@@ -21,5 +21,12 @@ class UsersTableSeeder extends Seeder
       $user->name = 'Administrador';
       $user->person_id = Person::inRandomOrder()->first()->id;
       $user->save();
+
+      $user = new App\User();
+      $user->password = Hash::make('auditor');
+      $user->email = 'auditor@auditor.com';
+      $user->name = 'Auditor';
+      $user->person_id = Person::inRandomOrder()->first()->id;
+      $user->save();
     }
 }
