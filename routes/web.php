@@ -66,6 +66,8 @@ Route::get('/auditores/', 'AuditorController@show')->name('show-auditors');
 Route::get('/auditores/exportar', 'AuditorController@export')->name('export-auditors');
 
 
+
+
 //INSTRUCTIONS
 Route::get('/instrucciones/', 'InstructionController@show')->name('show-instructions');
 Route::get('/instrucciones/nueva', 'InstructionController@new')->name('new-instructions');
@@ -139,9 +141,16 @@ Route::get('/moduloExpediente/{expedientModule}/delete', 'ModueleExpedientContro
 
 
 //MEDICAL SERVICE
-Route::get('/moduloExpediente/{moduleExpedient}/medicalService/nuevo', 'MedicalServiceController@new')->name('new-medical-service');
-Route::post('/moduloExpediente/{moduleExpedient}/medicalService/nuevo', 'MedicalServiceController@save')->name('save-medical-service');
-Route::get('/moduloExpediente/{medicalService}/medicalService/delete', 'MedicalServiceController@delete')->name('delete-medical-service');
+Route::get('/moduloExpediente/{moduleExpedient}/prestacion/nuevo', 'MedicalServiceController@new')->name('new-medical-service');
+Route::post('/moduloExpediente/{moduleExpedient}/prestacion/nuevo', 'MedicalServiceController@save')->name('save-medical-service');
+Route::get('/moduloExpediente/{medicalService}/prestacion/delete', 'MedicalServiceController@delete')->name('delete-medical-service');
+
+Route::get('/prestaciones/mis-pendientes', 'MedicalServiceController@myPendings')->name('show-audior-asigned-services');
+Route::get('/prestacion/{medicalService}/aceptar', 'MedicalServiceController@accept')->name('accept-asigned-service');
+Route::get('/prestacion/{medicalService}/rechazar', 'MedicalServiceController@decline')->name('decline-asigned-service');
+
+
+
 
 Route::get('/medicalService/{medicalService}/reasignarAuditor', 'MedicalServiceController@editAuditor')->name('reasign-auditor-medical-service');
 Route::post('/medicalService/{medicalService}/reasignarAuditor', 'MedicalServiceController@updateAuditor')->name('update-auditor-medical-service');

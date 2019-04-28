@@ -11,7 +11,7 @@ use App\Vendor;
 class Address extends Model
 {
   use SoftDeletes;
-  
+
   protected $fillable = ['street','number','floor','location_id','latitude','longitude'];
 
   public function location()
@@ -26,6 +26,10 @@ class Address extends Model
   public function vendors()
   {
     return $this->hasMany(Vendor::class);
+  }
+  public function fullAddress()
+  {
+    return $this->street . ' ' . $this->number . ' Dpt: ' . $this->floor;
   }
 
 }

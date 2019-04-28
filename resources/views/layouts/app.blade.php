@@ -230,6 +230,20 @@
               </ul>
             </li>
 
+            <li class=" treeview">
+              <a href="#">
+                <i class="fas fa-sitemap"></i> <span>Auditor</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+
+                 <li><a href="{{route('show-audior-asigned-services')}}"><i class="fa fa-search"></i> Pendientes de Aceptar</a></li>
+
+              </ul>
+            </li>
+
       </section>
     @endguest
 
