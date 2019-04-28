@@ -143,6 +143,8 @@ Route::get('/moduloExpediente/{moduleExpedient}/medicalService/nuevo', 'MedicalS
 Route::post('/moduloExpediente/{moduleExpedient}/medicalService/nuevo', 'MedicalServiceController@save')->name('save-medical-service');
 Route::get('/moduloExpediente/{medicalService}/medicalService/delete', 'MedicalServiceController@delete')->name('delete-medical-service');
 
+Route::get('/medicalService/{medicalService}/reasignarAuditor', 'MedicalServiceController@editAuditor')->name('reasign-auditor-medical-service');
+Route::post('/medicalService/{medicalService}/reasignarAuditor', 'MedicalServiceController@updateAuditor')->name('update-auditor-medical-service');
 //STATUS
 Route::get('/estados/', 'StatusController@show')->name('show-status');
 Route::get('/estados/nuevo', 'StatusController@new')->name('new-status');

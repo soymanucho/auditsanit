@@ -81,4 +81,33 @@ class MedicalServiceController extends Controller
      return response($request, 200)
      ->header('Content-Type', 'text/plain');
     }
+
+    public function editAuditor(MedicalService $medicalService)
+    {
+      $auditors = Auditor::all();
+        return view('medicalServices.reasignAuditor',compact('auditors','medicalService'));
+    }
+
+    public function updateAuditor(Request $request, MedicalService $medicalService)
+    {
+
+    
+      $this->validate(
+         $request,
+         [
+          'auditor_id' => 'required|exists:auditors,id',
+         ],
+         [
+         ],
+         [
+           'auditor_id' => 'auditor',
+         ]
+     );
+     $medicalService->auditor_id = $request->auditor_id;
+     $medicalService->status_id = 1;
+     $medicalService->save();
+
+     return response($request, 200)
+     ->header('Content-Type', 'text/plain');
+    }
 }
