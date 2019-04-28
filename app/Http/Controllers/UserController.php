@@ -34,7 +34,10 @@ class UserController extends Controller
   public function updateRole(User $user,Request $request)
   {
     $user = User::find($user)->first();
-    $role = Role::findOrFail($request->role_id);
+    $role = Role::find($request->role_id)->first();
+    if (!$role) {
+      // code...
+    }
     $user->syncRoles($role);
     $user->save();
     return redirect()->route('users-show');
