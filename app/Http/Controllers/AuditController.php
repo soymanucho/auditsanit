@@ -229,12 +229,11 @@ class AuditController extends Controller
   }
   public function detailResume(Audit $audit)
   {
-    $function = "show";
-    $diagnosesType = DiagnosisType::all();
-    $objectives = Objective::all();
-    $instructions = Instruction::all();
-    $recommendations = Recommendation::all();
-    return view('audits.resume.auditDetailResume',compact('audit','function','diagnosesType','objectives','instructions','recommendations'));
+    return view('audits.resume.auditDetailResume',compact('audit'));
+  }
+  public function detailResumePrint(Audit $audit)
+  {
+    return view('audits.resume.auditDetailResumePrint',compact('audit'));
   }
   public function export()
   {
