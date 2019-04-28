@@ -17,7 +17,8 @@
     @include('errors.errors')
     <div class="box box-success">
       <div class="box-header with-border">
-        <h3 class="box-title">Elegi un rol para el usuario {{$user->id}}</h3>
+        <h3 class="box-title">Elegi un rol para el usuario {{$user->id}}  </h3>
+        <a class="float-right btn btn-success btn-xs" href="{!! route('profile-edit',compact('user')) !!}">Ver más detalles del usuario</a>
       </div>
       <form method="POST" name='editRol'>
         {{ method_field('post') }}
@@ -40,6 +41,7 @@
               @endforeach
             </select>
           </div>
+
         </div>
         <div class="box-footer">
           <a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>

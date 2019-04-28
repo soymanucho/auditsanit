@@ -183,6 +183,7 @@ Route::post('/auditoria/{audit}/detalle/conclusion/', 'AuditController@updateCon
 Route::get('/auditoria/{audit}/detalle/historial/', 'AuditController@detailHistory')->name('audit-detail-history');
 
 Route::get('/auditoria/{audit}/detalle/resumen/', 'AuditController@detailResume')->name('audit-detail-resume');
+Route::get('/auditoria/{audit}/detalle/resumen/imprimir', 'AuditController@detailResumePrint')->name('audit-resume-print');
 
 Route::get('/auditorias/exportar', 'AuditController@export')->name('export-audits');
 
