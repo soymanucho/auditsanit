@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Person;
+use App\Auditor;
 
 class UsersTableSeeder extends Seeder
 {
@@ -22,11 +23,6 @@ class UsersTableSeeder extends Seeder
       $user->person_id = Person::inRandomOrder()->first()->id;
       $user->save();
 
-      $user = new App\User();
-      $user->password = Hash::make('auditor');
-      $user->email = 'auditor@auditor.com';
-      $user->name = 'Auditor';
-      $user->person_id = Auditor::inRandomOrder()->first()->person->id;
-      $user->save();
+
     }
 }
