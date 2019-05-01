@@ -33,7 +33,7 @@ class UserController extends Controller
   }
   public function updateRole(User $user,Request $request)
   {
-    $user = User::find($user)->first();
+    $user = User::where('id',$user->id)->first();
     $role = Role::where('id',$request->role_id)->first();
     if (!$role) {
       // code...
