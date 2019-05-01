@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Notifications\ServiceAssigned;
 use App\ExpedientModule;
 use App\Auditor;
 use App\Vendor;
@@ -10,6 +11,7 @@ use App\ServiceType;
 use App\Service;
 use App\MedicalService;
 use App\TransportService;
+
 
 class MedicalServiceController extends Controller
 {
@@ -100,6 +102,9 @@ class MedicalServiceController extends Controller
    }
 
    $medicalService->save();
+
+
+   $medicalService->auditor->user()->notify(new ServiceAssigned($user));
    return response($request, 200)
    ->header('Content-Type', 'text/plain');
   }
@@ -128,7 +133,7 @@ class MedicalServiceController extends Controller
    $medicalService->auditor_id = $request->auditor_id;
    $medicalService->status_id = 1;
    $medicalService->save();
-
+   $medicalService->auditor->user->notify(new ServiceAssigned($medicalService->auditor->user));
    return response($request, 200)
    ->header('Content-Type', 'text/plain');
   }
