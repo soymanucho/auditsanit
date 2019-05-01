@@ -21,5 +21,6 @@ class AuditorsTableSeeder extends Seeder
       $user->name = 'Auditor';
       $user->person_id = Auditor::inRandomOrder()->first()->person_id;
       $user->save();
+      $user->assignRole('Auditor');
     }
 }
