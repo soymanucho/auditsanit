@@ -70,16 +70,9 @@ Route::group(['middleware' => ['role:Administrador|Backoffice']], function () {
   Route::get('/usuarios/{user}/editar-rol','UserController@editRole')->name('users-edit-role');
   Route::post('/usuarios/{user}/editar-rol','UserController@updateRole')->name('users-update-role');
 
-  //PERFIL
-  Route::get('/perfil','UserController@detail')->name('profile-show');
-  // Route::post('/perfil','UserController@save')->name('profile-save');
-  Route::get('/perfil/{user}/editar','UserController@edit')->name('profile-edit');
-  Route::post('/perfil/{user}/editar','UserController@update')->name('profile-update');
-
   //INVITACIONES
   Route::get('/invitar','InviteController@invite')->name('invite');
   Route::post('/invitar', 'InviteController@process')->name('process');
-  Route::get('/aceptar/{token}','InviteController@accept')->name('accept');
 
   //CLIENTS
   Route::get('/clientes/', 'ClientController@show')->name('show-clients');
@@ -132,6 +125,15 @@ Route::group(['middleware' => ['role:Administrador|Backoffice']], function () {
 
 //DASHBOARD INICIO
 Route::get('/home', 'HomeController@index')->name('home');
+
+//PERFIL
+Route::get('/perfil','UserController@detail')->name('profile-show');
+// Route::post('/perfil','UserController@save')->name('profile-save');
+Route::get('/perfil/{user}/editar','UserController@edit')->name('profile-edit');
+Route::post('/perfil/{user}/editar','UserController@update')->name('profile-update');
+
+//INVITE
+Route::get('/aceptar/{token}','InviteController@accept')->name('accept');
 
 //MODULE-EXPEDIENT
 Route::get('/audit/{audit}/agregarModuloAExpediente', 'ModueleExpedientController@addModuleToAudit')->name('add-module-expedient');

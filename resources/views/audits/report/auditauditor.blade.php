@@ -35,7 +35,7 @@
               {{ csrf_field() }}
               <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 3 && !(Auth::user()->hasRole('Administrador')))
                 disabled
-              @endif name="updateStatus" value="Guardar y enviar">
+              @endif name="updateStatus" value="Enviar">
         </form>
       @endcan
     </div>

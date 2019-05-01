@@ -50,20 +50,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
       $validate = Validator::make($data, [
           'name' => ['required', 'string', 'max:255'],
-          'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+          'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'exists:invites,email'],
           'password' => ['required', 'string', 'min:8', 'confirmed'],
       ]);
-      $invite = Invite::where('email',$data['email'])->first();
-      if (!isset($invite)) {
-        abort(403);
-      }else {
-        $this->role = Role::where('id',$invite->role_id)->first();
-        // dd($invite->role_id,$this->role);
-        $invite->delete();
-      }
-        return $validate; 
+        return $validate;
     }
 
     /**
@@ -79,6 +72,14 @@ class RegisterController extends Controller
           'email' => $data['email'],
           'password' => Hash::make($data['password']),
       ]);
+      $invite = Invite::where('email',$data['email'])->first();
+      if (!isset($invite)) {
+        // abort(403);
+      }else {
+        $this->role = Role::where('id',$invite->role_id)->first();
+        // dd($invite->role_id,$this->role);
+        $invite->delete();
+      }
       $user->syncRoles($this->role);
       // dd($this->role);
       return $user;

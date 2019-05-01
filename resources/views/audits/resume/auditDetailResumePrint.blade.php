@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Invoice</title>
+  <title>Auditoria sanitaria</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -33,8 +33,8 @@
     <div class="row">
       <div class="col-xs-12">
         <h2 class="page-header">
-          <i class="fa fa-globe"></i> AdminLTE, Inc.
-          <small class="pull-right">Date: 2/10/2014</small>
+          <i class="fa fa-globe"></i> Auditoría sanitaria nº {{$audit->id}}
+          <small class="pull-right">Fecha: {{$audit->created_at}}</small>
         </h2>
       </div>
       <!-- /.col -->
@@ -42,33 +42,34 @@
     <!-- info row -->
     <div class="row invoice-info">
       <div class="col-sm-4 invoice-col">
-        From
+        Datos del afiliado
         <address>
-          <strong>Admin, Inc.</strong><br>
-          795 Folsom Ave, Suite 600<br>
-          San Francisco, CA 94107<br>
-          Phone: (804) 123-5432<br>
-          Email: info@almasaeedstudio.com
+          <strong>{{$audit->expedient->patient->person->surname}}, {{$audit->expedient->patient->person->name}}</strong><br>
+          DNI {{$audit->expedient->patient->person->dni}}<br>
+          Dirección: {{$audit->expedient->patient->person->address->street}} {{$audit->expedient->patient->person->address->number}}, {{$audit->expedient->patient->person->address->location->name}} ({{$audit->expedient->patient->person->address->location->province->name}})<br>
+          Edad: {{$audit->expedient->patient->person->age()}}<br>
+          Género: {{$audit->expedient->patient->person->gender->name}}
         </address>
       </div>
       <!-- /.col -->
       <div class="col-sm-4 invoice-col">
-        To
+        <strong>Diagnósticos:</strong>
         <address>
-          <strong>John Doe</strong><br>
-          795 Folsom Ave, Suite 600<br>
-          San Francisco, CA 94107<br>
-          Phone: (555) 539-1037<br>
-          Email: john.doe@example.com
+          {{-- <strong>John Doe</strong><br> --}}
+          @foreach ($audit->expedient->diagnoses as $diagnosis)
+              {{$diagnosis->diagnosisType->name}}<br>
+          @endforeach
         </address>
       </div>
       <!-- /.col -->
       <div class="col-sm-4 invoice-col">
-        <b>Invoice #007612</b><br>
-        <br>
-        <b>Order ID:</b> 4F3S8J<br>
-        <b>Payment Due:</b> 2/22/2014<br>
-        <b>Account:</b> 968-34567
+        <strong>Indicaciones:</strong>
+        <address>
+          {{-- <strong>John Doe</strong><br> --}}
+          @foreach ($audit->expedient->indications as $indication)
+              {{$indication->indicationType->name}} ({{$indication->numberOfSesions}} sesiones)<br>
+          @endforeach
+        </address>
       </div>
       <!-- /.col -->
     </div>
@@ -76,49 +77,33 @@
 
     <!-- Table row -->
     <div class="row">
-      <div class="col-xs-12 table-responsive">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th>Qty</th>
-            <th>Product</th>
-            <th>Serial #</th>
-            <th>Description</th>
-            <th>Subtotal</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>1</td>
-            <td>Call of Duty</td>
-            <td>455-981-221</td>
-            <td>El snort testosterone trophy driving gloves handsome</td>
-            <td>$64.50</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Need for Speed IV</td>
-            <td>247-925-726</td>
-            <td>Wes Anderson umami biodiesel</td>
-            <td>$50.00</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Monsters DVD</td>
-            <td>735-845-642</td>
-            <td>Terry Richardson helvetica tousled street art master</td>
-            <td>$10.70</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Grown Ups Blue Ray</td>
-            <td>422-568-642</td>
-            <td>Tousled lomo letterpress</td>
-            <td>$25.99</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
+      @foreach ($audit->expedient->expedientModules as $expedientModule )
+        <div class="col-xs-12 table-responsive">
+          <h4>{{$expedientModule->module->moduleType->name}} - {{$expedientModule->module->moduleCategory->name}}</h4>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Prestación</th>
+              <th>Prestador</th>
+              <th>Auditor</th>
+            </tr>
+            </thead>
+            <tbody>
+              @foreach ($expedientModule->medicalServices as $medicalService)
+                <tr>
+                  <td>{{$medicalService->service->serviceType->name}}</td>
+                  <td>{{$medicalService->service->vendor->name}} ({{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}})</td>
+                  <td>{{$medicalService->auditor->person->name}} {{$medicalService->auditor->person->surname}}</td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+          <h4>Informe del auditor</h4>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            {{$audit->report}}
+          </p>
+        </div>
+      @endforeach
       <!-- /.col -->
     </div>
     <!-- /.row -->
@@ -126,46 +111,63 @@
     <div class="row">
       <!-- accepted payments column -->
       <div class="col-xs-6">
-        <p class="lead">Payment Methods:</p>
+        <p class="lead">Conclusión de la coordinadora:</p>
         {{-- <img src="../../dist/img/credit/visa.png" alt="Visa">
         <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
         <img src="../../dist/img/credit/american-express.png" alt="American Express">
         <img src="../../dist/img/credit/paypal2.png" alt="Paypal"> --}}
 
         <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-          Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr
-          jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+          {{$audit->conclution}}
         </p>
       </div>
       <!-- /.col -->
       <div class="col-xs-6">
-        <p class="lead">Amount Due 2/22/2014</p>
+        <p class="lead">Modulos recomendados</p>
 
         <div class="table-responsive">
           <table class="table">
             <tr>
-              <th style="width:50%">Subtotal:</th>
-              <td>$250.30</td>
+              <th style="width:50%">Módulo:</th>
+              <th style="width:50%">Precio:</th>
             </tr>
-            <tr>
-              <th>Tax (9.3%)</th>
-              <td>$10.34</td>
-            </tr>
-            <tr>
-              <th>Shipping:</th>
-              <td>$5.80</td>
-            </tr>
-            <tr>
-              <th>Total:</th>
-              <td>$265.24</td>
-            </tr>
+            @foreach ($audit->expedient->expedientModules as $expedientModule )
+              <tr>
+                {{-- <td>{{$expedientModule->recommendedModule->moduleType->name}}</td>
+                <td>${{$expedientModule->recommendedModule->moduleType->price}}</td> --}}
+              </tr>
+            @endforeach
+
           </table>
         </div>
       </div>
       <!-- /.col -->
     </div>
     <!-- /.row -->
+
+    <!-- this row will not appear when printing -->
+    <div class="row no-print">
+      <div class="col-xs-12">
+        <a href="{!! route('audit-resume-print',compact('audit')) !!}" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+        {{-- <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
+        </button>
+        <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+          <i class="fa fa-download"></i> Generate PDF
+        </button> --}}
+        @can ('audit-edit-resume')
+          <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
+                {{ csrf_field() }}
+                @role('Administrador')
+                  <input type="submit" class="form-control btn btn-danger " @if ($audit->currentStatus()->id <= 4) style="display:none" @endif  @if ($audit->currentStatus()->id > 5) disabled  @endif name="updateStatus" value="Guardar y finalizar">
+                @endrole
+
+          </form>
+        @endcan
+      </div>
+    </div>
   </section>
+  <!-- /.content -->
+
   <!-- /.content -->
 </div>
 <!-- ./wrapper -->

@@ -34,6 +34,7 @@ class AuditController extends Controller
   public function show()
   {
     $audits = Audit::all();
+    
     return view('audits.audits',compact('audits'));
   }
   public function updateStatus(Audit $audit, Status $status)

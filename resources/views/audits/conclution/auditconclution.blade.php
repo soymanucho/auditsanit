@@ -51,13 +51,12 @@
          @endcan
         </form>
       </div>
-
       @can ('audit-edit-conclution')
         <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
               {{ csrf_field() }}
               <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 4 )
                 disabled
-              @endif name="updateStatus" value="Guardar y enviar al administrador">
+              @endif name="updateStatus" value="Enviar al administrador">
 
         </form>
       @endcan
