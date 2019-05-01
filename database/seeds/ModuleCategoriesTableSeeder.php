@@ -12,6 +12,9 @@ class ModuleCategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(ModuleCategory::class, 3)->create();
+      // factory(ModuleCategory::class, 3)->create();
+      DB::table('module_categories')->insert(['name' => "Cat A"]);
+      DB::table('module_categories')->insert(['name' => "Cat B"]);
+      DB::table('module_categories')->insert(['name' => "Cat C"]);
     }
 }
