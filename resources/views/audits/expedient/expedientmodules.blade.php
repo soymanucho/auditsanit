@@ -6,10 +6,11 @@
        @foreach ($audit->expedient->expedientModules as $key =>$expedientModule )
        <li class="">
          <a href="#modtab_{{$expedientModule->id}}" data-toggle="tab" aria-expanded="false">{{$key+1}}
-
-                 <a data-toggle="tooltip" title="Eliminar módulo" href="{!! route('delete-module-expedient',compact('expedientModule')) !!}" onclick="return confirm('Seguro que quiere eliminar este módulo?')" class="  editButtonsModules btn btn-danger btn-xs">
-                   <i class="fa fa-trash btn btn-danger btn-xs"></i>
-                 </a>
+                @can ('audit-edit-expedient')
+                  <a data-toggle="tooltip" title="Eliminar módulo" href="{!! route('delete-module-expedient',compact('expedientModule')) !!}" onclick="return confirm('Seguro que quiere eliminar este módulo?')" class="  editButtonsModules btn btn-danger btn-xs">
+                    <i class="fa fa-trash btn btn-danger btn-xs"></i>
+                  </a>
+                @endcan
 
 
          </a>
@@ -18,8 +19,10 @@
      @endisset
      <li class="pull-left header"><i class="fa fa-sitemap"></i>
         Modulos
-        <button id='toggleModulesEdition' type="button" class="btn btn-warning btn-xs">Habilitar Edicion</button>
-        <button data-toggle="tooltip" title="Agregar módulo" type="button" class="fancybox editButtonsModules btn btn-success btn-xs" href="{!! route('add-module-expedient',compact('audit')) !!}" ><i class="fa fa-plus"></i></button>
+        @can ('audit-edit-expedient')
+          <button id='toggleModulesEdition' type="button" class="btn btn-warning btn-xs">Habilitar Edicion</button>
+          <button data-toggle="tooltip" title="Agregar módulo" type="button" class="fancybox editButtonsModules btn btn-success btn-xs" href="{!! route('add-module-expedient',compact('audit')) !!}" ><i class="fa fa-plus"></i></button>
+        @endcan
         @isset($audit->expedient->expedientModules)
           @if($audit->expedient->expedientModules->count()==0)
             <br>
@@ -33,7 +36,9 @@
       @foreach ($audit->expedient->expedientModules as $expedientModule )
          <div class="tab-pane" id="modtab_{{$expedientModule->id}}">
            <h3>{{$expedientModule->module->moduleType->name}} - {{$expedientModule->module->moduleCategory->name}}
-             <button data-toggle="tooltip" title="Agregar prestación"type="button" class="fancybox editButtonsModules btn btn-success btn-xs" href="{!! route('new-medical-service',compact('expedientModule')) !!}"><i class="fa fa-plus"></i></button>
+             @can ('audit-edit-expedient')
+               <button data-toggle="tooltip" title="Agregar prestación"type="button" class="fancybox editButtonsModules btn btn-success btn-xs" href="{!! route('new-medical-service',compact('expedientModule')) !!}"><i class="fa fa-plus"></i></button>
+             @endcan
            </h3>
 
            @if ($expedientModule->medicalServices->count()==0)

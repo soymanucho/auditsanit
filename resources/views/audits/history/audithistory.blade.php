@@ -34,7 +34,7 @@
               <i class="fa fa-edit" style="background: {{$timelineItem->color}}"></i>
 
               <div class="timeline-item" >
-                <span class="time pull-left" ><i class="fa fa-clock-o"></i> {{date('H:m', strtotime($timelineItem->pivot->created_at))}}</span>
+                <span class="time pull-left" ><i class="fa fa-clock-o"></i> {{ $timelineItem->pivot->created_at->diffForHumans()}}</span>
                 <h3 class="timeline-header"><span class="badge" style="background: {{$timelineItem->color}}"  href="#">{{$timelineItem->name}}</span> </h3>
               </div>
             </li>

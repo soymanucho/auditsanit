@@ -2,7 +2,9 @@
   <div class="box box-primary">
     <div class="box-header with-border">
       <h3 class="box-title">Diagnosticos
-        <button id='toggleDiagnosisEdition'type="button" class="btn btn-warning btn-xs">Habilitar Edicion</button>
+        @can ('audit-edit-expedient')
+          <button id='toggleDiagnosisEdition'type="button" class="btn btn-warning btn-xs">Habilitar Edicion</button>
+        @endcan
       </h3>
       @include('errors.errors')
      <!-- /.box-header -->
@@ -27,9 +29,11 @@
                   @endforeach
               </select>
             </div>
-             <div class="form-group  col-sm-12 col-md-6 col-lg-2">
-               <input type="submit" class="form-control editButtonsDiagnosis btn btn-success " name="updateDiagnosis" value="Guardar diagnosticos">
-            </div>
+            @can ('audit-edit-expedient')
+               <div class="form-group  col-sm-12 col-md-6 col-lg-2">
+                 <input type="submit" class="form-control editButtonsDiagnosis btn btn-success " name="updateDiagnosis" value="Guardar diagnosticos">
+              </div>
+            @endcan
           </div>
        </form>
       </div>

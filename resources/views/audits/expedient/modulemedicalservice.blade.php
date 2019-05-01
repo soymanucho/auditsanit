@@ -1,17 +1,17 @@
 <div class="box box-gray collapsed-box">
   <div class="box-header with-border">
     <h3 class="box-title"><i class="fa fa-medkit"></i> {{$medicalService->service->serviceType->name}}
-
-      <a  href="{!! route('reasign-auditor-medical-service',compact('medicalService')) !!}"  class="fancybox editButtonsModules btn btn-primary btn-xs">
-        Reasignar Auditor
-      </a>
-      <a  href="{!! route('delete-medical-service',compact('medicalService')) !!}"  class="  editButtonsModules btn btn-primary btn-xs">
-        Agregar horarios
-      </a>
-      <a  data-toggle="tooltip" title="Eliminar prestación" href="{!! route('delete-medical-service',compact('medicalService')) !!}" onclick="return confirm('Seguro que quiere eliminar esta prestación?')" class="  editButtonsModules btn btn-danger btn-xs">
-        <i class="fa fa-trash btn btn-danger btn-xs"></i>
-      </a>
-
+      @can ('audit-edit-expedient')
+        <a  href="{!! route('reasign-auditor-medical-service',compact('medicalService')) !!}"  class="fancybox editButtonsModules btn btn-primary btn-xs">
+          Reasignar Auditor
+        </a>
+        <a  href="{!! route('delete-medical-service',compact('medicalService')) !!}"  class="  editButtonsModules btn btn-primary btn-xs">
+          Agregar horarios
+        </a>
+        <a  data-toggle="tooltip" title="Eliminar prestación" href="{!! route('delete-medical-service',compact('medicalService')) !!}" onclick="return confirm('Seguro que quiere eliminar esta prestación?')" class="  editButtonsModules btn btn-danger btn-xs">
+          <i class="fa fa-trash btn btn-danger btn-xs"></i>
+        </a>
+      @endcan
 
     </h3>
     <div class="box-tools pull-right">

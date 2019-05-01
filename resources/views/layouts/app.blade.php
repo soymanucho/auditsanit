@@ -162,87 +162,90 @@
                 <i class="fa fa-search"></i> <span> Auditorías</span>
               </a>
             </li>
+            @hasanyrole('Administrador|Backoffice')
+              <li class=" treeview">
+                <a href="#">
+                  <i class="fa fa-users"></i> <span> Personas</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{{route('show-medics')}}"><i class="fa fa-search"></i> Medicos</a></li>
+                  <li><a href="{{route('show-auditors')}}"><i class="fa fa-plus-circle "></i> Auditores</a></li>
+                  <li><a href="{{route('show-patients')}}"><i class="fa fa-plus-circle "></i> Afiliados</a></li>
+                  <li><a href="{{route('show-vendors')}}"><i class="fa fa-search "></i> Prestadores</a></li>
+                  <li class="treeview">
+                    <a href="#">
+                      <i class="fa fa-search"></i> <span>Usuarios</span>
+                      <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </span>
+                    </a>
+                    <ul class="treeview-menu">
+                      <li><a href="{{route('users-show')}}"><i class="fa fa-search "></i> Usuarios</a></li>
+                      <li><a href="{{route('invite')}}"><i class="fa fa-plus "></i> Invitar</a></li>
+                    </ul>
+                  </li>
 
-            <li class=" treeview">
-              <a href="#">
-                <i class="fa fa-users"></i> <span> Personas</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{route('show-medics')}}"><i class="fa fa-search"></i> Medicos</a></li>
-                <li><a href="{{route('show-auditors')}}"><i class="fa fa-plus-circle "></i> Auditores</a></li>
-                <li><a href="{{route('show-patients')}}"><i class="fa fa-plus-circle "></i> Afiliados</a></li>
-                <li><a href="{{route('show-vendors')}}"><i class="fa fa-search "></i> Prestadores</a></li>
-                <li class="treeview">
-                  <a href="#">
-                    <i class="fa fa-search"></i> <span>Usuarios</span>
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                  </a>
-                  <ul class="treeview-menu">
-                    <li><a href="{{route('users-show')}}"><i class="fa fa-search "></i> Usuarios</a></li>
-                    <li><a href="{{route('invite')}}"><i class="fa fa-plus "></i> Invitar</a></li>
-                  </ul>
-                </li>
+                  {{-- <li><a href="{{route('show-users')}}"><i class="fa fa-plus-circle "></i> Usuarios</a></li> --}}
+                  {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
+                </ul>
+              </li>
 
-                {{-- <li><a href="{{route('show-users')}}"><i class="fa fa-plus-circle "></i> Usuarios</a></li> --}}
-                {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
-              </ul>
-            </li>
-            <li class=" treeview">
-              <a href="#">
-                <i class="fas fa-boxes"></i> <span> Datos Maestros</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-              {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Diagnosticos</a></li>
-              <li><a href=""><i class="fa fa-search"></i> Tipos de Indicaciones</a></li>
-              <li><a href=""><i class="fa fa-search"></i> Estados de Auditoria</a></li> --}}
-              <li><a href="{{route('show-instructions')}}"><i class="fa fa-search"></i> Instrucciones</a></li>
-               <li><a href="{{route('show-objectives')}}"><i class="fa fa-search"></i> Objetivos</a></li>
-              <li><a href="{{route('show-recommendations')}}"><i class="fa fa-search"></i> Recomendaciones</a></li>
-              <li><a href="{{route('show-status')}}"><i class="fa fa-search"></i> Estados</a></li>
-              <li><a href="{{route('show-diagnosisType')}}"><i class="fa fa-search"></i> Tipo Diagnostico</a></li>
-              <li><a href="{{route('show-indicationType')}}"><i class="fa fa-search"></i> Tipo Indicacion</a></li>
-              <li><a href="{!! route('show-clients') !!}"><i class="fa fa-search"></i> Clientes</a></li>
+              <li class=" treeview">
+                <a href="#">
+                  <i class="fas fa-boxes"></i> <span> Datos Maestros</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Diagnosticos</a></li>
+                <li><a href=""><i class="fa fa-search"></i> Tipos de Indicaciones</a></li>
+                <li><a href=""><i class="fa fa-search"></i> Estados de Auditoria</a></li> --}}
+                <li><a href="{{route('show-instructions')}}"><i class="fa fa-search"></i> Instrucciones</a></li>
+                 <li><a href="{{route('show-objectives')}}"><i class="fa fa-search"></i> Objetivos</a></li>
+                <li><a href="{{route('show-recommendations')}}"><i class="fa fa-search"></i> Recomendaciones</a></li>
+                <li><a href="{{route('show-status')}}"><i class="fa fa-search"></i> Estados</a></li>
+                <li><a href="{{route('show-diagnosisType')}}"><i class="fa fa-search"></i> Tipo Diagnostico</a></li>
+                <li><a href="{{route('show-indicationType')}}"><i class="fa fa-search"></i> Tipo Indicacion</a></li>
+                <li><a href="{!! route('show-clients') !!}"><i class="fa fa-search"></i> Clientes</a></li>
 
-              {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Prestaciones</a></li> --}}
+                {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Prestaciones</a></li> --}}
 
-              </ul>
-            </li>
+                </ul>
+              </li>
 
-            <li class=" treeview">
-              <a href="#">
-                <i class="fas fa-sitemap"></i> <span> Modulo</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{route('show-moduletypes')}}"><i class="fa fa-search"></i> Tipos de modulo</a></li>
-                 <li><a href="{{route('show-modulecategories')}}"><i class="fa fa-search"></i> Categorias de Modulos</a></li>
-              <li><a href="{{route('show-module')}}"><i class="fa fa-search"></i> Modulos</a></li>
-              </ul>
-            </li>
+              <li class=" treeview">
+                <a href="#">
+                  <i class="fas fa-sitemap"></i> <span> Modulo</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{{route('show-moduletypes')}}"><i class="fa fa-search"></i> Tipos de modulo</a></li>
+                   <li><a href="{{route('show-modulecategories')}}"><i class="fa fa-search"></i> Categorias de Modulos</a></li>
+                <li><a href="{{route('show-module')}}"><i class="fa fa-search"></i> Modulos</a></li>
+                </ul>
+              </li>
+            @endhasanyrole
+            @role('Auditor')
+              <li class=" treeview">
+                <a href="#">
+                  <i class="fas fa-sitemap"></i> <span>Auditor</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
 
-            <li class=" treeview">
-              <a href="#">
-                <i class="fas fa-sitemap"></i> <span>Auditor</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
+                   <li><a href="{{route('show-audior-asigned-services')}}"><i class="fa fa-search"></i> Pendientes de Aceptar</a></li>
 
-                 <li><a href="{{route('show-audior-asigned-services')}}"><i class="fa fa-search"></i> Pendientes de Aceptar</a></li>
-
-              </ul>
-            </li>
+                </ul>
+              </li>
+            @endrole
 
       </section>
     @endguest

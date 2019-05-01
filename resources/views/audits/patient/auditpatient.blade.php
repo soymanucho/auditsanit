@@ -9,7 +9,9 @@
           </strong>
         @endisset
     </h3>
-    <a class="btn btn-warning btn-xs" href="{!! route('edit-patients',['patient'=>$audit->expedient->patient]) !!}">Editar</a>
+    @can ('audit-edit-patient')
+      <a class="btn btn-warning btn-xs" href="{!! route('edit-patients',['patient'=>$audit->expedient->patient]) !!}">Editar</a>
+    @endcan
     <div class="box-tools pull-right">
       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
       </button>

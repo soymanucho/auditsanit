@@ -1,7 +1,7 @@
 
     <div class="box box-info">
       <div class="box-header">
-         <h3 class="box-title"><i class="fa fa-info-circle"></i> Conclusiones y recomendaciones de la coordinadora{{-- {{$audit->auditor->person->name}} --}}
+         <h3 class="box-title"><i class="fa fa-info-circle"></i> Conclusiones y recomendaciones del coordinador{{-- {{$audit->auditor->person->name}} --}}
           {{-- <small>editado por </small> --}}
         </h3>
         <!-- tools box -->
@@ -46,17 +46,19 @@
               @endisset
            </select>
          </div>
-           <input type="submit" class="form-control editMode btn btn-success " name="updateDiagnosis" value="Guardar conclusión y recomendaciones">
+         @can ('audit-edit-conclution')
+           <input type="submit" class="form-control editMode btn btn-success " name="updateDiagnosis" @if ($audit->currentStatus()->id > 4 && !(Auth::user()->hasRole('Administrador'))) disabled @endif value="Guardar conclusión y recomendaciones">
+         @endcan
         </form>
       </div>
 
+      @can ('audit-edit-conclution')
+        <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
+              {{ csrf_field() }}
+              <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 4 )
+                disabled
+              @endif name="updateStatus" value="Guardar y enviar al administrador">
 
-      <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
-            {{ csrf_field() }}
-            <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 4)
-              disabled
-            @endif name="updateStatus" value="Guardar y enviar al administrador">
-            <input type="submit" class="form-control btn btn-danger " @if ($audit->currentStatus()->id <= 4) style="display:none" @endif  @if ($audit->currentStatus()->id > 5) disabled  @endif name="updateStatus" value="Guardar y finalizar">
-
-      </form>
+        </form>
+      @endcan
     </div>

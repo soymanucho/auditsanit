@@ -1,8 +1,10 @@
 
     <div class="box box-info">
       <div class="box-header">
-         <h3 class="box-title"><i class="fa fa-info-circle"></i> Informe del auditor {{-- {{$audit->auditor->person->name}} --}}
-             <button id='toggleedition'type="button" class="btn btn-warning btn-xs">Habilitar Edicion</button>
+        <h3 class="box-title"><i class="fa fa-info-circle"></i> Informe del auditor {{-- {{$audit->auditor->person->name}} --}}
+          @can ('audit-edit-objectives')
+            <button id='toggleedition'type="button" class="btn btn-warning btn-xs">Habilitar Edicion</button>
+          @endcan
         </h3>
         <!-- tools box -->
         <div class="box-tools pull-right">
@@ -71,20 +73,23 @@
            </select>
          </div>
          <div class="form-group col-sm-12 col-md-6 col-lg-3">
-            <label style="color:white">Guardar</label>
-           <input type="submit" class="form-control editMode btn btn-success " name="updateObjetivesInstructions" value="Guardar objetivos e instrucciones">
+            @can ('audit-edit-objectives')
+              <label style="color:white">Guardar</label>
+              <input type="submit" class="form-control editMode btn btn-success " @if ($audit->currentStatus()->id > 2)  disabled  @endif name="updateObjetivesInstructions" value="Guardar objetivos e instrucciones">
+            @endcan
 
          </div>
 
         </form>
       </div>
-
-      <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
-            {{ csrf_field() }}
-            <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 2)
-              disabled
-            @endif name="updateStatus" value="Guardar y enviar">
-      </form>
+      @can ('audit-edit-objectives')
+        <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
+              {{ csrf_field() }}
+              <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 2 && !(Auth::user()->hasRole('Administrador')))
+                disabled
+              @endif name="updateStatus" value="Guardar y enviar">
+        </form>
+      @endcan
     </div>
 
     <script type="text/javascript">
