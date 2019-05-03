@@ -45,4 +45,9 @@ class Person extends Model
     return Carbon::parse($this->birthdate)->age;
   }
 
+  public function fullName($value='')
+  {
+  return $this->surname.', '.$this->name;
+  }
+
 }

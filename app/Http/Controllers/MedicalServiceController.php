@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Notifications\ServiceAssigned;
+use App\Notifications\AcceptMedicalService;
+use App\Notifications\DeclineMedicalService;
 use App\ExpedientModule;
 use App\Auditor;
 use App\Vendor;
@@ -11,6 +13,7 @@ use App\ServiceType;
 use App\Service;
 use App\MedicalService;
 use App\TransportService;
+use App\User;
 
 
 class MedicalServiceController extends Controller
@@ -20,6 +23,10 @@ class MedicalServiceController extends Controller
   {
   $medicalService->status_id = 2;
   $medicalService->save();
+
+  $coordinators = User::role('Coordinador')->get();
+
+  $coordinators->each->notify(new AcceptMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
   return redirect()->back();
   }
 
@@ -27,6 +34,8 @@ class MedicalServiceController extends Controller
   {
     $medicalService->status_id = 3;
     $medicalService->save();
+    $coordinators = User::role('Coordinador')->get();
+      $coordinators->each->notify(new DeclineMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
     return redirect()->back();
   }
 
@@ -104,7 +113,7 @@ class MedicalServiceController extends Controller
    $medicalService->save();
 
 
-   $medicalService->auditor->user()->notify(new ServiceAssigned($user));
+   $medicalService->auditor->user->notify(new ServiceAssigned($medicalService->auditor->user));
    return response($request, 200)
    ->header('Content-Type', 'text/plain');
   }
