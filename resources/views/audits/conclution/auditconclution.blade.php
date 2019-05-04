@@ -59,7 +59,7 @@
 
            <div class="input-group input-large">
 
-             <input class="form-control" type="text" name="moduleOrig" disabled value="{{$expedientModule->module->moduleType->name}} (${{$expedientModule->module->price}})">
+             <input class="form-control" type="text" name="moduleOrig" disabled value="{{$expedientModule->module->moduleType->name}} - {{$expedientModule->module->moduleCategory->name}} (${{$expedientModule->module->price}})">
              <span class="input-group-addon"> <i class="glyphicon glyphicon-menu-right"></i>  </span>
 
              <select class="form-control" name="module_{{$expedientModule->module->id}}" placeholder="Recomendá un módulo"
@@ -68,7 +68,7 @@
                      @foreach ($modules as $module)
                        <option @if ($expedientModule->recommended_module_id == $module->id)
                          selected
-                       @endif value="{{$module->id}}">{{$module->moduleType->name}} - {{$module->moduleCategory->name}}</option>
+                       @endif value="{{$module->id}}">{{$module->moduleType->name}} - {{$module->moduleCategory->name}} (${{$module->price}})</option>
                      @endforeach
              </select>
 

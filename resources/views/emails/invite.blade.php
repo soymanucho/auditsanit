@@ -207,7 +207,7 @@
 														<div class="contentEditableContainer contentImageEditable">
 															<div class="contentEditable" >
 																<div style="padding-top:20px;text-align:center;">
-																	<img src="6@2x.png" width="148" data-default="placeholder" data-max-width="200" style="margin-bottom:-3px;" />
+																	<img src="img/6@2x.png" width="148" data-default="placeholder" data-max-width="200" style="margin-bottom:-3px;" />
 																</div>
 															</div>
 														</div>

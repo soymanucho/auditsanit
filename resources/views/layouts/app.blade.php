@@ -265,7 +265,18 @@
 
     <!-- Main content -->
     <section class="content">
-      @yield('content')
+      <div id="preloaders" class="preloader"
+        style="position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url('img/sliding_square_loader_view.gif') 50% 50% no-repeat rgb(74,72,75);
+                opacity: .8;"
+        ></div>
+        @yield('content')
+
     </section>
     <!-- /.content -->
   </div>
@@ -302,13 +313,20 @@
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
-<!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- ./wrapper -->
+<script type="text/javascript">
+  $(window).on('load', function()
+  {
+   $("#preloaders").fadeOut(100);
+   // $('body').removeClass('#preloaders');
+  });
+</script>
+<!-- jQuery 3 -->
+
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
@@ -349,6 +367,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready( function () {
 
@@ -411,5 +430,6 @@ CKEDITOR.config.height = '500px'
 // CKEDITOR.config.toolbarLocation = 'bottom';
 // CKEDITOR.config.readOnly = true;
 </script>
+
 </body>
 </html>
