@@ -140,10 +140,19 @@ Route::get('/audit/{audit}/agregarModuloAExpediente', 'ModueleExpedientControlle
 Route::post('/audit/{audit}/agregarModuloAExpediente', 'ModueleExpedientController@saveModuleToAudit')->name('save-module-expedient');
 Route::get('/moduloExpediente/{expedientModule}/delete', 'ModueleExpedientController@delete')->name('delete-module-expedient');
 
+
+//Schedule service
+Route::get('/prestacion/{medicalService}/horario-servicio/crear', 'ServiceScheduleController@create')->name('create-schedule-service');
+Route::post('/prestacion/{medicalService}/horario-servicio/save', 'ServiceScheduleController@save')->name('save-schedule-service');
+
+
 //MEDICAL SERVICE
 Route::get('/moduloExpediente/{moduleExpedient}/prestacion/nuevo', 'MedicalServiceController@new')->name('new-medical-service');
 Route::post('/moduloExpediente/{moduleExpedient}/prestacion/nuevo', 'MedicalServiceController@save')->name('save-medical-service');
 Route::get('/moduloExpediente/{medicalService}/prestacion/delete', 'MedicalServiceController@delete')->name('delete-medical-service');
+
+
+
 
 Route::get('/prestaciones/mis-pendientes', 'MedicalServiceController@myPendings')->name('show-audior-asigned-services');
 Route::get('/prestacion/{medicalService}/aceptar', 'MedicalServiceController@accept')->name('accept-asigned-service');
