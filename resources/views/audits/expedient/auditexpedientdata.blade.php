@@ -18,7 +18,7 @@
   @can ('audit-edit-expedient')
     <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
           {{ csrf_field() }}
-          <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 1 && !(Auth::user()->hasRole('Administrador')))
+          <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id != 1 && !(Auth::user()->hasRole('Administrador')))
             disabled
           @endif name="updateStatus" value="Enviar">
     </form>

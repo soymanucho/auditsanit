@@ -3,7 +3,9 @@
       <div class="box-header">
         <h3 class="box-title"><i class="fa fa-info-circle"></i> Informe del auditor {{-- {{$audit->auditor->person->name}} --}}
           @can ('audit-edit-objectives')
-            <button id='toggleedition'type="button" class="btn btn-warning btn-xs">Habilitar Edicion</button>
+            <button id='toggleedition'type="button" @if ($audit->currentStatus()->id != 2 && !(Auth::user()->hasRole('Administrador')))
+              disabled
+            @endif class="btn btn-warning btn-xs">Habilitar Edicion</button>
           @endcan
         </h3>
         <!-- tools box -->
@@ -20,12 +22,9 @@
         <form method="post">
             {{ csrf_field() }}
 
-
-
-
-         <div class="form-group  col-sm-12 col-md-6 col-lg-4">
+         <div class="form-group col-sm-12 col-md-6 col-lg-6">
            <label>Objetivos</label>
-           <select class="editMode form-control select2" name="objectives[]" multiple="multiple" placeholder="Seleccioná un objetivo"
+           <select class="editMode form-control select2" name="objectives[]" multiple="multiple" data-placeholder="Seleccioná un objetivo"
            style="width: 100%;">
              @isset($audit->objectives)
                @foreach ($objectives as $objective)
@@ -44,13 +43,7 @@
            </select>
           </div>
 
-
-
-
-
-
-
-         <div class="form-group col-sm-12 col-md-6 col-lg-4">
+         <div class="form-group col-sm-12 col-md-6 col-lg-6">
            <label>Método de trabajo empleado</label>
            <select class="editMode form-control select2" name="instructions[]" multiple="multiple" data-placeholder="Seleccioná una instrucción"
                    style="width: 100%;">
@@ -72,7 +65,7 @@
 
            </select>
          </div>
-         <div class="form-group col-sm-12 col-md-6 col-lg-3">
+         <div class="form-group col-sm-12 col-md-6 col-lg-6">
             @can ('audit-edit-objectives')
               <label style="color:white">Guardar</label>
               <input type="submit" class="form-control editMode btn btn-success " @if ($audit->currentStatus()->id > 2)  disabled  @endif name="updateObjetivesInstructions" value="Guardar objetivos e instrucciones">
@@ -85,7 +78,7 @@
       @can ('audit-edit-objectives')
         <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
               {{ csrf_field() }}
-              <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id > 2 && !(Auth::user()->hasRole('Administrador')))
+              <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id != 2 && !(Auth::user()->hasRole('Administrador')))
                 disabled
               @endif name="updateStatus" value="Enviar">
         </form>
