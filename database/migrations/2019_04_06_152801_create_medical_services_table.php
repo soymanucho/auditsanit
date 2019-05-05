@@ -20,6 +20,7 @@ class CreateMedicalServicesTable extends Migration
             $table->bigInteger('transport_service_id')->nullable()->unsigned();
             $table->bigInteger('auditor_id')->nullable()->unsigned();
             $table->bigInteger('status_id')->unsigned();
+            $table->longText('report')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

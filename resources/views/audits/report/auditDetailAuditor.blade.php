@@ -46,8 +46,9 @@
   {{-- @include('audits.auditpatient') --}}
 
   {{-- @include('audits.auditexpedientdata') --}}
-
+  @include('errors.errors')
   @include('audits.report.auditauditor')
+
 
   {{-- @include('audits.audithistory') --}}
 

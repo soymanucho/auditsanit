@@ -127,10 +127,12 @@
             @endforeach
           </tbody>
         </table>
-        <h4>Informe del auditor</h4>
-        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-          {{$audit->report}}
-        </p>
+          @foreach ($expedientModule->medicalServices as $medicalService)
+        <h4>Informe del auditor {{$medicalService->auditor->person->name}} para {{$medicalService->service->serviceType->name}}</h4>
+        <div class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+          {!!$medicalService->report!!}
+        </div>
+          @endforeach
       </div>
     @endforeach
     <!-- /.col -->
