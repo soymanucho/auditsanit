@@ -20,7 +20,7 @@
 
            </ul>
          </div>
-             <form  id="addServiceScheduleform" method="POST" name='createServiceSchedule'>
+             <form  id="addServiceScheduleform" method="POST" name='saveServiceSchedule' action='{!! route('save-schedule-service',compact('medicalService')) !!}'>
                {{ method_field('post') }}
                <div class="box-body">
                  <div class="row" id="father">
@@ -32,10 +32,10 @@
                <div class="box-footer">
 
 
-                 <button class="btn btn-primary" id="submitaddServiceSchedule"  name="submitaddServiceSchedule">Agregar Modulo</button>
+                 <button class="btn btn-primary" id="submitaddServiceSchedule"  name="submitaddServiceSchedule">Agregar horario</button>
                </div>
          </form>
-          <h3 id="exito" class="box-title hidden">Modulo agregado correctamente!</h3>
+          <h3 id="exito" class="box-title hidden">Horario de servicio agregado correctamente!</h3>
        </div>
      </div>
 
