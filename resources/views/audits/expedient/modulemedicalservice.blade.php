@@ -5,7 +5,7 @@
         <a  href="{!! route('reasign-auditor-medical-service',compact('medicalService')) !!}"  class="fancybox editButtonsModules btn btn-primary btn-xs">
           Reasignar Auditor
         </a>
-        <a  href="{!! route('delete-medical-service',compact('medicalService')) !!}"  class="  editButtonsModules btn btn-primary btn-xs">
+        <a  href="{!! route('create-schedule-service',compact('medicalService')) !!}"  class="fancybox  editButtonsModules btn btn-primary btn-xs">
           Agregar horarios
         </a>
         <a  data-toggle="tooltip" title="Eliminar prestación" href="{!! route('delete-medical-service',compact('medicalService')) !!}" onclick="return confirm('Seguro que quiere eliminar esta prestación?')" class="  editButtonsModules btn btn-danger btn-xs">
