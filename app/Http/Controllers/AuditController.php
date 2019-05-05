@@ -10,6 +10,7 @@ use App\Patient;
 use App\Location;
 use App\Province;
 use App\Gender;
+use App\Module;
 use App\Client;
 use App\Status;
 use App\Person;
@@ -34,7 +35,7 @@ class AuditController extends Controller
   public function show()
   {
     $audits = Audit::all();
-    
+
     return view('audits.audits',compact('audits'));
   }
   public function updateStatus(Audit $audit, Status $status)
@@ -63,7 +64,6 @@ class AuditController extends Controller
             'recommendations' => 'array',
             'recommendations.*' => 'exists:recommendations,id',
 
-
        ],
        [
        ],
@@ -73,12 +73,18 @@ class AuditController extends Controller
 
        ]
    );
+
+
+   foreach ($audit->expedient->expedientModules as $expedientModule) {
+     $expedientModule->recommended_module_id = $request->input("module_".$expedientModule->module->id);
+     $expedientModule->save();
+   }
+
    $audit->recommendations()->sync($request->recommendations);
    $audit->conclution=$request->conclution;
    $audit->save();
 
-   $recommendations = Recommendation::all();
-   return view('audits.conclution.auditDetailConclution',compact('audit','recommendations'));
+   return redirect()->route('audit-detail-conclution', compact('audit'));
   }
 
   public function updateReport(Request $request,Audit $audit)
@@ -99,7 +105,8 @@ class AuditController extends Controller
    $audit->report=$request->report;
    // dd($audit->report);
    $audit->save();
-   return view('audits.report.auditDetailAuditor',compact('audit'));
+
+   return redirect()->route('audit-detail-auditor', compact('audit'));
   }
   public function updateObjectives(Request $request,Audit $audit)
   {
@@ -126,9 +133,8 @@ class AuditController extends Controller
    $audit->instructions()->sync($request->instructions);
    $audit->save();
 
-   $objectives = Objective::all();
-   $instructions = Instruction::all();
-   return view('audits.objective.auditDetailObjectives',compact('audit','objectives','instructions'));
+
+   return redirect()->route('audit-detail-objectives', compact('audit'));
   }
 
   protected function updateDiagnosis(Request $request,Audit $audit)
@@ -194,7 +200,8 @@ class AuditController extends Controller
     $audit->statuses()->attach($status);
     $audit->expedient_id = $expedient->id;
     $audit->save();
-    return redirect()->route('audit-detail-patient',compact('audit'));
+
+    return redirect()->back();
   }
 
 
@@ -221,8 +228,9 @@ class AuditController extends Controller
   }
   public function detailConclution(Audit $audit)
   {
+    $modules = Module::all();
     $recommendations = Recommendation::all();
-    return view('audits.conclution.auditDetailConclution',compact('audit','recommendations'));
+    return view('audits.conclution.auditDetailConclution',compact('audit','recommendations','modules'));
   }
   public function detailHistory(Audit $audit)
   {

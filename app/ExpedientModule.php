@@ -12,12 +12,12 @@ class ExpedientModule extends Model
 {
 
   use SoftDeletes;
-  
+
   protected $fillable = ['module_id','price','expedient_id','recommended_module_id'];
 
   public function moduleRecommended()
   {
-    return $this->belongsTo(Module::class);
+    return $this->belongsTo(Module::class)->where('id',$this->recommended_module_id);
   }
   public function module()
   {
