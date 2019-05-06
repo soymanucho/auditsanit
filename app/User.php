@@ -22,6 +22,17 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    public function AuditorAssignedAudits()
+    {
+      $medicalservices = $this->person->auditors->first->get()->medicalServices;
+      $audits = collect([]);
+      foreach ($medicalservices as $medicalservice) {
+
+      $audits->push($medicalservice->expedientModule->expedient->audit);
+      }
+    return  $audits = $audits->unique()->values()->all();
+    }
+
     public function person()
     {
       return $this->belongsTo(Person::class);

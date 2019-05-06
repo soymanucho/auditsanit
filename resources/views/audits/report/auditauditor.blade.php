@@ -1,4 +1,7 @@
 @foreach ($audit->medicalServices() as $medicalService )
+  @if (!((Auth::user()->hasRole('Auditor')&&$medicalService->auditor->person->id!=Auth::user()->person_id)))
+
+
     <div class="box box-info">
       <div class="box-header">
          <h3 class="box-title"><i class="fa fa-info-circle"></i>
@@ -40,6 +43,7 @@
 
 
     </div>
+    @endif
 @endforeach
   @can ('audit-edit-report')
       <form action="{!! route('update-status-audit',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">

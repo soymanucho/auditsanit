@@ -107,6 +107,9 @@
   <!-- Table row -->
   <div class="row">
     @foreach ($audit->expedient->expedientModules as $expedientModule )
+
+
+
       <div class="col-xs-12 table-responsive">
         <h4>{{$expedientModule->module->moduleType->name}} - {{$expedientModule->module->moduleCategory->name}}</h4>
         <table class="table table-striped">
@@ -134,6 +137,7 @@
         </div>
           @endforeach
       </div>
+
     @endforeach
     <!-- /.col -->
   </div>

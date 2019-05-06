@@ -21,6 +21,7 @@ use App\Instruction;
 use App\Objective;
 use App\Recommendation;
 use App\MedicalService;
+use Illuminate\Support\Facades\Auth;
 
 class AuditController extends Controller
 {
@@ -36,6 +37,13 @@ class AuditController extends Controller
   public function show()
   {
     $audits = Audit::all();
+
+    if(Auth::user()->hasRole('Auditor')){
+
+      $audits = Auth::user()->AuditorAssignedAudits();
+
+
+    }
 
     return view('audits.audits',compact('audits'));
   }
