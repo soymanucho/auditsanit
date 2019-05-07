@@ -96,26 +96,7 @@
       <input type="text" class="form-control" name="floor" placeholder="8A" value="@isset($person->address->floor){{ old('floor',$person->address->floor)}}@else{{old('floor')}}@endisset">
     </div>
   </div>
-  <div class="form-group">
-    <label for="floor" class="col-sm-2 control-label">Localidad</label>
-    <div class="col-sm-10">
-      <select name="location_id" class="form-control" id="location_id" data-placeholder="Seleccioná una localidad" style="width: 100%;">
-        @foreach ($locations as $location)
-          <option
-          @isset($person->address->location)
-            @if ($person->address->location->id == $location->id)
-               selected
-            @endif
-          @else
-            @if (old('location_id') == $location->id)
-               selected
-            @endif
-          @endisset
-          value="{{$location->id}}" >{{$location->name}}</option>
-        @endforeach
-      </select>
-    </div>
-  </div>
+
   <div class="form-group">
     <label for="floor" class="col-sm-2 control-label">Provincia</label>
     <div class="col-sm-10">
@@ -135,6 +116,29 @@
           value="{{$province->id}}" >{{$province->name}}</option>
         @endforeach
 
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="floor" class="col-sm-2 control-label">Localidad</label>
+    <div class="col-sm-10">
+      <select name="location_id" class="form-control" id="location_id" data-placeholder="Seleccioná una localidad" style="width: 100%;">
+        @foreach ($locations as $location)
+          @if ($person->address->location->province->id == $location->province->id)
+            <option
+            @isset($person->address->location)
+              @if ($person->address->location->id == $location->id)
+                 selected
+              @endif
+            @else
+              @if (old('location_id') == $location->id)
+                 selected
+              @endif
+            @endisset
+            value="{{$location->id}}" >{{$location->name}}</option>
+          @endif
+        @endforeach
       </select>
     </div>
   </div>
@@ -187,6 +191,43 @@
     </div>
   </div> --}}
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+  $('#province_id').change('click',function() {
+
+    var province = $(this).children("option:selected").val();
+    var $selectLocations = $('#location_id');
+    $("#location_id").select2("close");
+    $selectLocations.empty();
+    $.ajax({
+      type:"GET",
+      url: "/localidades/get", success: function(result){
+      // $("#location_id").html(result);
+      $selectLocations.append('<option></option>');
+      $.each(JSON.parse(result),function (key,value) {
+        if (value.province_id == province) {
+          $selectLocations.append('<option value=' + value.id+ '>' + value.name  + '</option>');
+        }
+      });
+
+      $("#location_id").select2("open");
+      //
+      // $("#location_id").select2();
+    }});
+
+
+  });
+});
+</script>
+
 @if ($function=="show")
   <script>
 

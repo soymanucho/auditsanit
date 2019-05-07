@@ -177,6 +177,10 @@ Route::post('/auditoria/{audit}/estado/{status}/actualizar/', 'AuditController@u
 Route::post('/auditoria/{audit}/agregar-comentario/', 'CommentController@add')->name('add-comment');
 
 
+//API LOCATIONS
+Route::get('/localidades/get', 'LocationController@get')->name('api-locations');
+
+
 //AUDITS
 Route::get('/auditorias/', 'AuditController@show')->name('show-audits');
 Route::get('/auditoria/nueva/', 'AuditController@new')->name('new-audit')->middleware('can:audit-create');

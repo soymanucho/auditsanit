@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Vendor;
 use App\Location;
 use App\Province;
+use App\Address;
 
 class VendorController extends Controller
 {
@@ -13,7 +14,7 @@ class VendorController extends Controller
   {
     $this->middleware('auth');
   }
-  
+
   public function show()
   {
     $vendors = Vendor::all();
@@ -27,6 +28,14 @@ class VendorController extends Controller
   public function new()
   {
     $vendor = New Vendor();
+    $address = New Address;
+    $location = New Location;
+    $province = New Province;
+    $location->province()->associate($province);
+    $address->location()->associate($location);
+
+    $vendor->address()->associate($address);
+
     $locations = Location::all();
     $provinces = Province::all();
     return view('vendors.newVendor',compact('vendor','provinces','locations'));

@@ -51,24 +51,10 @@
   <label>Piso</label>
   <input class="form-control input" type="text" name="floor" value="@isset($patient->person->address->floor){{old('floor',$patient->person->address->floor)}}@endisset">
 </div>
-<div class="form-group col-sm-12 col-md-6 col-lg-4">
- <label>Localidad</label>
- <select class="form-control select2" name="location_id" data-placeholder="Seleccioná una localidad"
-         style="width: 100%;">
-         @foreach ($locations as $location)
-           <option
-           @isset($patient->person->address->location)
-             @if ($location->id == $patient->person->address->location->id)
-               selected
-             @endif
-           @endisset
-           value="{{$location->id}}">{{$location->name}}</option>
-         @endforeach
- </select>
-</div>
+
 <div class="form-group col-sm-12 col-md-6 col-lg-3">
  <label>Provincia</label>
- <select class="form-control select2" name="province_id" data-placeholder="Seleccioná una provincia"
+ <select class="form-control select2" name="province_id" id="province_id"  data-placeholder="Seleccioná una provincia"
          style="width: 100%;">
          @foreach ($provinces as $province)
            <option
@@ -82,3 +68,57 @@
 
  </select>
 </div>
+
+<div class="form-group col-sm-12 col-md-6 col-lg-4" >
+ <label>Localidad</label>
+ <select class="form-control select2" name="location_id" id="location_id" data-placeholder="Seleccioná una localidad"
+         style="width: 100%;">
+
+         @foreach ($locations as $location)
+           @if ($location->province->id == $patient->person->address->location->province->id)
+             <option
+             @isset($patient->person->address->location)
+               @if ($location->id == $patient->person->address->location->id)
+                 selected
+               @endif
+             @endisset
+             value="{{$location->id}}">{{$location->name}}</option>
+           @endif
+         @endforeach
+ </select>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+  $('#province_id').change('click',function() {
+
+    var province = $(this).children("option:selected").val();
+    var $selectLocations = $('#location_id');
+    $("#location_id").select2("close");
+    $selectLocations.empty();
+    $.ajax({
+      type:"GET",
+      url: "/localidades/get", success: function(result){
+      // $("#location_id").html(result);
+      $selectLocations.append('<option></option>');
+      $.each(JSON.parse(result),function (key,value) {
+        if (value.province_id == province) {
+          $selectLocations.append('<option value=' + value.id+ '>' + value.name  + '</option>');
+        }
+      });
+
+      $("#location_id").select2("open");
+      //
+      // $("#location_id").select2();
+    }});
+
+
+  });
+});
+</script>

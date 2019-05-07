@@ -277,7 +277,7 @@
                 width: 100%;
                 height: 100%;
                 z-index: 9999;
-                background: url('img/sliding_square_loader_view.gif') 50% 50% no-repeat rgb(74,72,75);
+                background: url('/img/sliding_square_loader_view.gif') 50% 50% no-repeat rgb(74,72,75);
                 opacity: .8;"
         ></div>
         @yield('content')
