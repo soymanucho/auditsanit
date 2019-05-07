@@ -140,10 +140,19 @@ Route::get('/audit/{audit}/agregarModuloAExpediente', 'ModueleExpedientControlle
 Route::post('/audit/{audit}/agregarModuloAExpediente', 'ModueleExpedientController@saveModuleToAudit')->name('save-module-expedient');
 Route::get('/moduloExpediente/{expedientModule}/delete', 'ModueleExpedientController@delete')->name('delete-module-expedient');
 
+
+//Schedule service
+Route::get('/prestacion/{medicalService}/horario-servicio/crear', 'ServiceScheduleController@create')->name('create-schedule-service');
+Route::post('/prestacion/{medicalService}/horario-servicio/crear', 'ServiceScheduleController@save')->name('save-schedule-service');
+
+
 //MEDICAL SERVICE
 Route::get('/moduloExpediente/{moduleExpedient}/prestacion/nuevo', 'MedicalServiceController@new')->name('new-medical-service');
 Route::post('/moduloExpediente/{moduleExpedient}/prestacion/nuevo', 'MedicalServiceController@save')->name('save-medical-service');
 Route::get('/moduloExpediente/{medicalService}/prestacion/delete', 'MedicalServiceController@delete')->name('delete-medical-service');
+
+
+
 
 Route::get('/prestaciones/mis-pendientes', 'MedicalServiceController@myPendings')->name('show-audior-asigned-services');
 Route::get('/prestacion/{medicalService}/aceptar', 'MedicalServiceController@accept')->name('accept-asigned-service');
@@ -188,7 +197,8 @@ Route::get('/auditoria/{audit}/detalle/informe-auditor/', 'AuditController@detai
 Route::post('/auditoria/{audit}/detalle/informe-auditor/', 'AuditController@updateReport')->name('update-report')->middleware('can:audit-edit-report');
 
 Route::get('/auditoria/{audit}/detalle/conclusion/', 'AuditController@detailConclution')->name('audit-detail-conclution')->middleware('can:audit-read-conclution');
-Route::post('/auditoria/{audit}/detalle/conclusion/', 'AuditController@updateConclution')->name('update-conclution')->middleware('can:audit-edit-conclution');
+Route::post('/auditoria/{audit}/detalle/conclusion/', 'AuditController@
+')->name('update-conclution')->middleware('can:audit-edit-conclution');
 
 Route::get('/auditoria/{audit}/detalle/historial/', 'AuditController@detailHistory')->name('audit-detail-history')->middleware('can:audit-read-history');
 

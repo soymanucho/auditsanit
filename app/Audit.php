@@ -15,7 +15,20 @@ class Audit extends Model
     use SoftDeletes;
     protected $dates = ['created_at','updated_at'];
 
-    protected $fillable = ['expedient_id','conclution','report'];
+    protected $fillable = ['expedient_id','conclution'];
+
+
+
+    public function medicalServices()
+    {
+      $medicalServices = collect([]);
+      foreach ($this->expedient->expedientModules as $expedientModule) {
+        foreach ($expedientModule->medicalServices as $medicalService) {
+          $medicalServices->push($medicalService);
+        }
+      }
+      return $medicalServices;
+    }
 
     public function expedient()
     {

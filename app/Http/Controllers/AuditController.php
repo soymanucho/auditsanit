@@ -20,6 +20,8 @@ use App\DiagnosisType;
 use App\Instruction;
 use App\Objective;
 use App\Recommendation;
+use App\MedicalService;
+use Illuminate\Support\Facades\Auth;
 
 class AuditController extends Controller
 {
@@ -35,6 +37,13 @@ class AuditController extends Controller
   public function show()
   {
     $audits = Audit::all();
+
+    if(Auth::user()->hasRole('Auditor')){
+
+      $audits = Auth::user()->AuditorAssignedAudits();
+
+
+    }
 
     return view('audits.audits',compact('audits'));
   }
@@ -89,22 +98,27 @@ class AuditController extends Controller
 
   public function updateReport(Request $request,Audit $audit)
   {
+    // dd($request);
+      $reportfield = 'report_' . $request->medicalService;
 
     $this->validate(
        $request,
        [
-            'report' => 'required|max:1000',
+            $reportfield => 'required|max:1000',
+            'medicalService' => 'required|exists:medical_services,id',
 
        ],
        [
        ],
        [
-           'report' => 'informe',
+           // $reportfield => 'informe',
+           'medicalService' => 'id prestacion',
        ]
    );
-   $audit->report=$request->report;
+   $medicalService = MedicalService::find($request->medicalService);
+   $medicalService->report = $request->input($reportfield);
    // dd($audit->report);
-   $audit->save();
+   $medicalService->save();
 
    return redirect()->route('audit-detail-auditor', compact('audit'));
   }

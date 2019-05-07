@@ -22,13 +22,8 @@ class MedicalServicesTableSeeder extends Seeder
       foreach (ExpedientModule::all() as $moduleExpedient) {
         for ($i=0; $i < rand(0,5) ; $i++) {
 
-          $medicalService = new MedicalService();
-          $medicalService->expedient_module_id = $moduleExpedient->id;
-          $medicalService->service_id = factory(Service::class)->create()->id;
-          $medicalService->transport_service_id = factory(TransportService::class)->create()->id;
-          $medicalService->auditor_id =  Auditor::inRandomOrder()->first()->id;
-          $medicalService->status_id =  MedicalServiceStatus::inRandomOrder()->first()->id;
-          $medicalService->save();
+            factory(MedicalService::class)->create(['expedient_module_id' => $moduleExpedient->id]);
+        
         }
       }
     }
