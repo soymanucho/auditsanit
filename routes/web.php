@@ -144,6 +144,7 @@ Route::get('/moduloExpediente/{expedientModule}/delete', 'ModueleExpedientContro
 //Schedule service
 Route::get('/prestacion/{medicalService}/horario-servicio/crear', 'ServiceScheduleController@create')->name('create-schedule-service');
 Route::post('/prestacion/{medicalService}/horario-servicio/crear', 'ServiceScheduleController@save')->name('save-schedule-service');
+Route::get('/horario-servicio/{serviceSchedule}/delete', 'ServiceScheduleController@delete')->name('delete-schedule-service');
 
 
 //MEDICAL SERVICE

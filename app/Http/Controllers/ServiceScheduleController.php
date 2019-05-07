@@ -8,6 +8,18 @@ use App\ServiceSchedule;
 
 class ServiceScheduleController extends Controller
 {
+
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+
+    public function delete(ServiceSchedule $serviceSchedule)
+    {
+      $serviceSchedule->delete();
+      return redirect()->back();
+    }
+
     public function create(MedicalService $medicalService)
     {
         $services = collect();

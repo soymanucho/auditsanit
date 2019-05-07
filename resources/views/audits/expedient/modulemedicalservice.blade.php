@@ -44,7 +44,9 @@
           <tr>
             <td>{{$serviceSchedule->initial_datetime}}</td>
             <td>{{$serviceSchedule->final_datetime}}</td>
-            {{-- <td class="editMode"><button type="button" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></button></td> --}}
+            <td >  <a  data-toggle="tooltip" title="Eliminar horario" href="{!! route('delete-schedule-service',compact('serviceSchedule')) !!}" onclick="return confirm('Seguro que quiere eliminar este horario?')" class="  editButtonsModules btn btn-danger btn-xs">
+                <i class="fa fa-trash btn btn-danger btn-xs"></i>
+              </a></td>
             {{-- <td class="editMode"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></td> --}}
 
           </tr>
@@ -60,15 +62,16 @@
          <tr>
            <th>Inicio</th>
            <th>Fin</th>
-           {{-- <th class="editMode">Editar</th> --}}
+
            {{-- <th class="editMode">Eliminar</th> --}}
          </tr>
          @foreach ($medicalService->transportService->service->serviceSchedules as $serviceSchedule)
            <tr>
              <td>{{$serviceSchedule->initial_datetime}}</td>
              <td>{{$serviceSchedule->final_datetime}}</td>
-             {{-- <td class="editMode"><button type="button" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></button></td> --}}
-             {{-- <td class="editMode"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></td> --}}
+             <td >  <a  data-toggle="tooltip" title="Eliminar horario" href="{!! route('delete-schedule-service',compact('serviceSchedule')) !!}" onclick="return confirm('Seguro que quiere eliminar este horario?')" class="  editButtonsModules btn btn-danger btn-xs">
+                 <i class="fa fa-trash btn btn-danger btn-xs"></i>
+               </a></td>
            </tr>
          @endforeach
         </table>

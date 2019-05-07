@@ -11,7 +11,7 @@ class ClientController extends Controller
   {
     $this->middleware('auth');
   }
-  
+
   public function show()
   {
     $clients = Client::all();
