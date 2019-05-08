@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
            MedicaalServiceStatusTableSeeder::class,
            VendorTypeTableSeeder::class,
            ProvincesTableSeeder::class,
-           LocationsTableSeeder::class,
+           //LocationsTableSeeder::class,
            AddressesTableSeeder::class,
            PeopleTableSeeder::class,
            UsersTableSeeder::class,
