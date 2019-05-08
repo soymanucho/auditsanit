@@ -13,15 +13,19 @@ class CreateLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('locations', function (Blueprint $table) {
 
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->timestamps();
-            $table->bigInteger('province_id')->unsigned();
-            $table->softDeletes();
 
-        });
+      Schema::create('locations', function(Blueprint $table) {
+			$table->bigIncrements('id');
+      $table->bigInteger('province_id')->unsigned();
+      $table->string('name');
+      $table->string('department')->nullable();
+      $table->decimal('latitude', 10, 8)->nullable();
+      $table->decimal('longitude', 11, 8)->nullable();
+      $table->timestamps();
+      $table->softDeletes();
+		});
+
 
         Schema::table('locations', function (Blueprint $table) {
 
