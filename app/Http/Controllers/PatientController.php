@@ -17,7 +17,7 @@ class PatientController extends Controller
   {
     $this->middleware('auth');
   }
-  
+
   public function show()
   {
     $patients = Patient::all();
@@ -26,6 +26,16 @@ class PatientController extends Controller
   public function new()
   {
     $patient = New Patient;
+
+    $person = New Person;
+    $address = New Address;
+    $location = New Location;
+    $province = New Province;
+    $location->province()->associate($province);
+    $address->location()->associate($location);
+    $person->address()->associate($address);
+    $patient->person()->associate($person);
+
     $genders = Gender::all();
     $provinces = Province::all();
     $locations = Location::all();

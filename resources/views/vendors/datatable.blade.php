@@ -23,9 +23,9 @@
         <td>  {{ $vendor->vendorType->name}} </td>
         <td>
           @if ($vendor->jury_person == 0)
-            <span class="badge" style="background:red">Persona física</span>
+            <span class="badge" style="background:#ff5252">Persona física</span>
           @else
-            <span class="badge" style="background:blue">Jurídica</span>
+            <span class="badge" style="background:#3297e9">Jurídica</span>
           @endif
         </td>
         <td>  {{ $vendor->snr_category}} </td>
