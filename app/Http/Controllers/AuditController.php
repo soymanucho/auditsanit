@@ -36,7 +36,7 @@ class AuditController extends Controller
 
   public function show()
   {
-    $audits = Audit::all();
+    $audits = Audit::orderBy('id', 'DESC')->get();
 
     if(Auth::user()->hasRole('Auditor')){
 
@@ -215,7 +215,8 @@ class AuditController extends Controller
     $audit->expedient_id = $expedient->id;
     $audit->save();
 
-    return redirect()->back();
+      $function = 'show';
+      return view('audits.patient.auditDetailPatient',compact('audit','function'));
   }
 
 
