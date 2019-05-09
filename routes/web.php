@@ -44,6 +44,11 @@ Route::group(['middleware' => ['role:Administrador|Backoffice']], function () {
   //MEDICS
   Route::get('/medicos/', 'MedicController@show')->name('show-medics');
   Route::get('/medicos/exportar', 'MedicController@export')->name('export-medics');
+  Route::get('/medicos/nuevo', 'MedicController@new')->name('new-medics');
+  Route::post('/medicos/nuevo', 'MedicController@save')->name('save-medics');
+  Route::get('/medicos/{medic}/editar/', 'MedicController@edit')->name('edit-medics');
+  Route::post('/medicos/{medic}/editar/', 'MedicController@update')->name('update-medics');
+  Route::get('/medicos/{medic}/eliminar/', 'MedicController@delete')->name('delete-medics');
 
   //AUDITORS
   Route::get('/auditores/', 'AuditorController@show')->name('show-auditors');
@@ -198,8 +203,7 @@ Route::get('/auditoria/{audit}/detalle/informe-auditor/', 'AuditController@detai
 Route::post('/auditoria/{audit}/detalle/informe-auditor/', 'AuditController@updateReport')->name('update-report')->middleware('can:audit-edit-report');
 
 Route::get('/auditoria/{audit}/detalle/conclusion/', 'AuditController@detailConclution')->name('audit-detail-conclution')->middleware('can:audit-read-conclution');
-Route::post('/auditoria/{audit}/detalle/conclusion/', 'AuditController@
-')->name('update-conclution')->middleware('can:audit-edit-conclution');
+Route::post('/auditoria/{audit}/detalle/conclusion/', 'AuditController@updateConclution')->name('update-conclution')->middleware('can:audit-edit-conclution');
 
 Route::get('/auditoria/{audit}/detalle/historial/', 'AuditController@detailHistory')->name('audit-detail-history')->middleware('can:audit-read-history');
 
