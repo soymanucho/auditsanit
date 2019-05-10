@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
            VendorTypeTableSeeder::class,
            ProvincesTableSeeder::class,
            LocationsTableSeeder::class,
+           // LocationsFakeTableSeeder::class,
            AddressesTableSeeder::class,
            PeopleTableSeeder::class,
            UsersTableSeeder::class,

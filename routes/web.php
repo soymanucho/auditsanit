@@ -44,6 +44,11 @@ Route::group(['middleware' => ['role:Administrador|Backoffice']], function () {
   //MEDICS
   Route::get('/medicos/', 'MedicController@show')->name('show-medics');
   Route::get('/medicos/exportar', 'MedicController@export')->name('export-medics');
+  Route::get('/medicos/nuevo', 'MedicController@new')->name('new-medics');
+  Route::post('/medicos/nuevo', 'MedicController@save')->name('save-medics');
+  Route::get('/medicos/{medic}/editar/', 'MedicController@edit')->name('edit-medics');
+  Route::post('/medicos/{medic}/editar/', 'MedicController@update')->name('update-medics');
+  Route::get('/medicos/{medic}/eliminar/', 'MedicController@delete')->name('delete-medics');
 
   //AUDITORS
   Route::get('/auditores/', 'AuditorController@show')->name('show-auditors');
