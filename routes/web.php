@@ -198,8 +198,7 @@ Route::get('/auditoria/{audit}/detalle/informe-auditor/', 'AuditController@detai
 Route::post('/auditoria/{audit}/detalle/informe-auditor/', 'AuditController@updateReport')->name('update-report')->middleware('can:audit-edit-report');
 
 Route::get('/auditoria/{audit}/detalle/conclusion/', 'AuditController@detailConclution')->name('audit-detail-conclution')->middleware('can:audit-read-conclution');
-Route::post('/auditoria/{audit}/detalle/conclusion/', 'AuditController@
-')->name('update-conclution')->middleware('can:audit-edit-conclution');
+Route::post('/auditoria/{audit}/detalle/conclusion/', 'AuditController@updateConclution')->name('update-conclution')->middleware('can:audit-edit-conclution');
 
 Route::get('/auditoria/{audit}/detalle/historial/', 'AuditController@detailHistory')->name('audit-detail-history')->middleware('can:audit-read-history');
 
