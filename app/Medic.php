@@ -9,9 +9,10 @@ class Medic extends Model
 {
 
   use SoftDeletes;
-  
+
   public function person()
   {
      return $this->belongsTo(Person::class,'id');
   }
+  
 }

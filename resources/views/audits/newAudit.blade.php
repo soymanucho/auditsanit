@@ -32,8 +32,8 @@
             </select>
           </div>
           <div class="form-group col-sm-12 col-md-6 col-lg-4">
-            <label for="dni">Paciente </label>
-            <select class="form-control select2" id="patient_id" name="patient_id" data-placeholder="Seleccioná un Paciente"
+            <label for="dni">Afiliado </label>
+            <select class="form-control select2" id="patient_id" name="patient_id" data-placeholder="Seleccioná un afiliado"
                     style="width: 100%;">
                     <option value=""></option>
                     @foreach ($patients as $patient)
@@ -42,7 +42,7 @@
             </select>
           </div>
           <div class="form-group col-sm-12 col-md-6 col-lg-4">
-            <a class="btn btn-success btn-xs" href="{!! route('new-patients') !!}">Crear nuevo paciente</a>
+            <a class="btn btn-success btn-xs" href="{!! route('new-patients') !!}">Crear nuevo afiliado</a>
           </div>
 
 

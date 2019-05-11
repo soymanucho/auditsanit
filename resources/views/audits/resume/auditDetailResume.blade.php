@@ -71,9 +71,9 @@
   <!-- info row -->
   <div class="row invoice-info">
     <div class="col-sm-4 invoice-col">
-      Datos del afiliado
+      <strong>Datos del afiliado</strong>
       <address>
-        <strong>{{$audit->expedient->patient->person->surname}}, {{$audit->expedient->patient->person->name}}</strong><br>
+        {{$audit->expedient->patient->person->surname}}, {{$audit->expedient->patient->person->name}}<br>
         DNI {{$audit->expedient->patient->person->dni}}<br>
         Dirección: {{$audit->expedient->patient->person->address->street}} {{$audit->expedient->patient->person->address->number}}, {{$audit->expedient->patient->person->address->location->name}} ({{$audit->expedient->patient->person->address->location->province->name}})<br>
         Edad: {{$audit->expedient->patient->person->age()}}<br>
@@ -92,11 +92,11 @@
     </div>
     <!-- /.col -->
     <div class="col-sm-4 invoice-col">
-      <strong>Indicaciones:</strong>
+      <strong>Indicaciones - Médico (Cant. sesiones):</strong>
       <address>
         {{-- <strong>John Doe</strong><br> --}}
         @foreach ($audit->expedient->indications as $indication)
-            {{$indication->indicationType->name}} ({{$indication->numberOfSesions}} sesiones)<br>
+            {{$indication->indicationType->name}} - {{$indication->medic->person->fullName()}} ({{$indication->numberOfSesions}} sesiones)<br>
         @endforeach
       </address>
     </div>
@@ -158,24 +158,19 @@
     </div>
     <!-- /.col -->
     <div class="col-xs-6">
-      <p class="lead">Modulos recomendados</p>
+      <p class="lead">Recomendaciones de la coordinadora:</p>
 
       <div class="table-responsive">
         <table class="table">
-          <tr>
-            <th style="width:50%">Módulo:</th>
-            <th style="width:50%">Precio:</th>
-          </tr>
-          @foreach ($audit->expedient->expedientModules as $expedientModule )
+          @foreach ($audit->recommendations as $recommendation)
             <tr>
-              {{-- <td>{{$expedientModule->recommendedModule->moduleType->name}}</td>
-              <td>${{$expedientModule->recommendedModule->moduleType->price}}</td> --}}
+              <th> - {{$recommendation->name }}</th>
             </tr>
           @endforeach
-
         </table>
       </div>
     </div>
+
     <!-- /.col -->
   </div>
   <!-- /.row -->

@@ -38,7 +38,6 @@ class MedicController extends Controller
   }
   public function save(Request $request)
   {
-    $medic = New Medic();
     $this->validate(
       $request,
       [
@@ -69,8 +68,10 @@ class MedicController extends Controller
   $medic->license = $request->license;
   $medic->isNationalLicense= $request->isNationalLicense;
   $medic->person_id = $person->id;
-  $medic->save();
+  $medic->person()->associate($person);
 
+  $medic->save();
+  // dd($medic);
 
   return redirect()->route('show-medics');
   }
@@ -84,15 +85,34 @@ class MedicController extends Controller
       $request,
       [
           'name' => 'required|max:60',
+          'surname' => 'required|max:60',
+          'dni' => 'required|string|max:10',
+          'license' => 'required|string|max:60',
+          'isNationalLicense' => 'required|boolean',
       ],
       [
       ],
       [
           'name' => 'nombre',
+          'surname' => 'apellido',
+          'dni' => 'dni',
+          'license' => 'matrícula',
+          'isNationalLicense' => 'tipo de matrícula',
       ]
   );
-  $medic->fill($request->all());
+  $person = Person::where('id',$medic->person_id)->first();
+  $person->name = $request->name;
+  $person->surname = $request->surname;
+  $person->dni = $request->dni;
+  $person->save();
+
+  $medic->license = $request->license;
+  $medic->isNationalLicense= $request->isNationalLicense;
+  // $medic->person_id = $person->id;
+  // $medic->person()->associate($person);
+
   $medic->save();
+
   return redirect()->route('show-medics');
   }
 }
