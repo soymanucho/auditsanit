@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Person;
+use App\Client;
+use App\Audit;
 
 class User extends Authenticatable
 {
@@ -31,6 +33,17 @@ class User extends Authenticatable
       $audits->push($medicalservice->expedientModule->expedient->audit);
       }
     return  $audits = $audits->unique()->values()->all();
+    }
+
+    public function ClientAssignedAudits()
+    {
+      return $this->clients()->first()->audits();
+
+    }
+
+
+    public function clients(){
+      return $this->belongsToMany(Client::class, 'clients_users', 'user_id', 'client_id');
     }
 
     public function person()

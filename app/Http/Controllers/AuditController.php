@@ -39,10 +39,11 @@ class AuditController extends Controller
     $audits = Audit::orderBy('id', 'DESC')->get();
 
     if(Auth::user()->hasRole('Auditor')){
-
       $audits = Auth::user()->AuditorAssignedAudits();
+    }
 
-
+    if(Auth::user()->hasRole('Cliente') || Auth::user()->hasRole('Cliente gerencial')){
+      $audits = Auth::user()->ClientAssignedAudits();
     }
 
     return view('audits.audits',compact('audits'));

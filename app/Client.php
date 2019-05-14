@@ -16,4 +16,13 @@ class Client extends Model
   {
     return $this->hasMany(Expedient::class, 'client_id', 'id');
   }
+
+  public function audits()
+  {
+    $audits = collect([]);
+    foreach ($this->expedients as $expedient) {
+      $audits->push($expedient->audit);
+    }
+    return $audits->sortByDesc('id');
+  }
 }
