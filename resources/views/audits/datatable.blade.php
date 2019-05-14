@@ -29,7 +29,13 @@
              <span class="badge" style="background:{{ $audit->currentStatus()->color}}">{{ $audit->currentStatus()->id}}. {{ $audit->currentStatus()->name}}</span>
           @endisset
         </td>
-          <td class="text-center"> <a  href="{{ route('audit-detail-patient', compact('audit')) }}"><b class="fa fa-eye "></b></a> </td>
+      
+          @hasanyrole('Administrador|Backoffice|Auditor|Coordinador')
+            <td class="text-center"> <a  href="{{ route('audit-detail-patient', compact('audit')) }}"><b class="fa fa-eye "></b></a> </td>
+          @endhasanyrole
+          @hasanyrole('Cliente|Cliente gerencial')
+          <td class="text-center"> <a  href="{{ route('audit-detail-resume', compact('audit')) }}"><b class="fa fa-eye  "></b></a> </td>
+          @endhasanyrole
         {{-- <td>  {{ $category->subcategory->name }} </td>
         <td>  {{ $category->products()->count()}} </td>
         <td>  {{ $category->products()->sum('stock')}} </td> --}}
