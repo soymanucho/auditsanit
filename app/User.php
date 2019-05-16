@@ -38,7 +38,6 @@ class User extends Authenticatable
     public function ClientAssignedAudits()
     {
       return $this->clients()->first()->audits();
-
     }
 
 

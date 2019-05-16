@@ -28,10 +28,19 @@
         </div>
         <div class="form-group col-sm-12 col-md-6 col-lg-6">
           <label for="role_id" class="col-sm-2 control-label">Rol</label>
-          <select class="form-control select2" placeholder="Seleccioná un rol" name="role_id">
+          <select id='role' class="form-control select2 role" placeholder="Seleccioná un rol" name="role_id">
             <option></option>
             @foreach ($roles as $role)
               <option value="{{$role->id}}">{{$role->name}}</option>
+            @endforeach
+          </select>
+        </div>
+        <div id='client' class="form-group col-sm-12 col-md-6 col-lg-6" >
+          <label for="role_id" class="col-sm-2 control-label">Cliente</label>
+          <select  class="form-control select2" placeholder="Seleccioná un cliente" name="client_id">
+            <option></option>
+            @foreach ($clients as $client)
+              <option value="{{$client->id}}">{{$client->companyName}}</option>
             @endforeach
           </select>
         </div>
@@ -44,5 +53,46 @@
   </div>
 </div>
 
+
+<script type="text/javascript">
+
+
+$('#role').select2().trigger('change');
+
+
+$(document).ready(function(){
+
+  // Initialize Select2
+  //$('#role').select2();
+document.getElementById("client").style.display = "none";
+  // Set option selected onchange
+  $('#role').change(function(){
+
+
+    var roleInput = document.getElementById("role");
+    var clientInput = document.getElementById("client");
+    if(roleInput.value==5 || roleInput.value==6)
+      {
+        console.log('es cliente');
+        clientInput.style.display = "block";
+      //  $('#client').select2();
+      }
+      else {
+          console.log('no es cliente');
+        clientInput.style.display = "none";
+      }
+
+  });
+});
+
+
+
+
+
+
+
+
+
+</script>
 
 @endsection

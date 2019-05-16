@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Invite;
 use App\User;
+use App\Client;
 use App\Mail\InviteCreated;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Mail;
@@ -23,7 +24,8 @@ class InviteController extends Controller
   public function invite()
   {
     $roles = Role::all();
-    return view('invites.invite',compact('roles'));
+    $clients = Client::all();
+    return view('invites.invite',compact('roles','clients'));
   }
 
   public function process(Request $request)
