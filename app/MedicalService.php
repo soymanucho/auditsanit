@@ -38,4 +38,9 @@ class MedicalService extends Model
   {
     return $this->belongsTo(MedicalServiceStatus::class);
   }
+
+  public function vendorsLocation()
+  {
+    return $this->service->vendor->address->location()->get();
+  }
 }

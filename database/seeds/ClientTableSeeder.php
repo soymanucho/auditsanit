@@ -12,8 +12,6 @@ class ClientTableSeeder extends Seeder
     public function run()
     {
       DB::table('clients')->insert(['companyName' => "OSECAC"]);
-      DB::table('clients')->insert(['companyName' => "OSDE"]);
-      DB::table('clients')->insert(['companyName' => "OSDIPP"]);
-      DB::table('clients')->insert(['companyName' => "SANCOR"]);
+
     }
 }

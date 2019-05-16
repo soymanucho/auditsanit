@@ -31,4 +31,5 @@ class ExpedientModule extends Model
   {
     return $this->hasMany(MedicalService::class);
   }
+
 }
