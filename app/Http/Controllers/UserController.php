@@ -173,8 +173,8 @@ class UserController extends Controller
           'birthdate' => 'date|before:today',
           'email' => 'required|email|max:50',
           'profesion' => 'string|max:100',
-          'matricula' => 'string|max:100',
-          'tipoMatricula' => 'required', Rule::in(['nacional', 'provincial']),
+
+          // 'tipoMatricula' => 'required', Rule::in(['nacional', 'provincial']),
           'cargo' => 'string|max:100',
           'telTrabajoInterno' => 'integer',
           'celular' => 'integer',

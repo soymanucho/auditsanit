@@ -25,7 +25,8 @@
       <input type="date" class="form-control" name="birthdate" value="{{ old('birthdate',$person->birthdate)}}">
     </div>
   </div>
-  <div class="form-group">
+  {{-- CAMPO EMAIL NO es necesario espeificar ya que es ID del usuario --}}
+  <div class="form-group" hidden>
     <label for="email" class="col-sm-2 control-label">Email</label>
     <div class="col-sm-10">
       <input type="email" class="form-control" name="email" placeholder="hola@ejemplo.com" value="{{old('email',$user->email)}}">
@@ -43,7 +44,7 @@
       <input type="text" class="form-control" name="cargo" placeholder="Gerente" value="{{ old('cargo',$person->cargo)}}">
     </div>
   </div>
-  <div class="form-group">
+  {{-- <div class="form-group">
     <label for="matricula" class="col-sm-2 control-label">Matrícula</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="matricula" placeholder="5845" value="{{ old('matricula',$person->matricula)}}">
@@ -63,7 +64,7 @@
 
       </select>
     </div>
-  </div>
+  </div> --}}
   <div class="form-group">
     <label for="telTrabajoInterno" class="col-sm-2 control-label">Teléfono laboral</label>
     <div class="col-sm-10">
@@ -100,17 +101,13 @@
   <div class="form-group">
     <label for="floor" class="col-sm-2 control-label">Provincia</label>
     <div class="col-sm-10">
-      <select name="province_id" class="form-control" id="province_id" data-placeholder="Seleccioná una provincia" style="width: 100%;">
-
+      <select name="province_id" class="form-control select2" id="province_id" data-placeholder="Seleccioná una provincia" style="width: 100%;">
+        <option value=""></option>
         @foreach ($provinces as $province)
           <option
           @isset($person->address->location->province)
-            @if ($person->address->location->province->id == $province->id)
+            @if ($person->address->location->province->id == $province->id||old('province_id') == $province->id)
               selected
-            @endif
-          @else
-            @if (old('province_id') == $province->id)
-               selected
             @endif
           @endisset
           value="{{$province->id}}" >{{$province->name}}</option>
@@ -123,22 +120,25 @@
   <div class="form-group">
     <label for="floor" class="col-sm-2 control-label">Localidad</label>
     <div class="col-sm-10">
-      <select name="location_id" class="form-control" id="location_id" data-placeholder="Seleccioná una localidad" style="width: 100%;">
-        @foreach ($locations as $location)
-          @if ($person->address->location->province->id == $location->province->id)
-            <option
-            @isset($person->address->location)
-              @if ($person->address->location->id == $location->id)
-                 selected
-              @endif
-            @else
-              @if (old('location_id') == $location->id)
-                 selected
-              @endif
-            @endisset
-            value="{{$location->id}}" >{{$location->name}}</option>
-          @endif
-        @endforeach
+      <select name="location_id" class="form-control select2" id="location_id" data-placeholder="Seleccioná una localidad" style="width: 100%;">
+        <option value=""></option>
+        @isset($person->address->location->province->id)
+          @foreach ($locations as $location)
+            @if ($person->address->location->province->id == $location->province->id)
+              <option
+              @isset($person->address->location)
+                @if ($person->address->location->id == $location->id)
+                   selected
+                @endif
+              @else
+                @if (old('location_id') == $location->id)
+                   selected
+                @endif
+              @endisset
+              value="{{$location->id}}" >{{$location->name}}</option>
+            @endif
+          @endforeach
+        @endisset
       </select>
     </div>
   </div>
@@ -146,8 +146,8 @@
   <div class="form-group">
     <label for="gender_id" class="col-sm-2 control-label">Género</label>
     <div class="col-sm-10">
-      <select class="form-control" name="gender_id" id="gender_id">
-
+      <select class="form-control select2" name="gender_id" id="gender_id">
+        <option value=""></option>
         @foreach ($genders as $gender)
           <option
           @isset($person->gender)

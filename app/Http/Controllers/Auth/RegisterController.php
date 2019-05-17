@@ -73,13 +73,12 @@ class RegisterController extends Controller
           'password' => Hash::make($data['password']),
       ]);
       $invite = Invite::where('email',$data['email'])->first();
-      if (!isset($invite)) {
-        // abort(403);
-      }else {
-        $this->role = Role::where('id',$invite->role_id)->first();
-        // dd($invite->role_id,$this->role);
-        $invite->delete();
+      $this->role = Role::where('id',$invite->role_id)->first();
+      $invite->delete();
+      if($invite->client_id){
+        $user->clients()->sync($invite->client_id);
       }
+
       $user->syncRoles($this->role);
       // dd($this->role);
       return $user;

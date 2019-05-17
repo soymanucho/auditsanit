@@ -32,7 +32,7 @@ class InviteController extends Controller
   {
     // validate the incoming request data
 
-
+    //dd($request);
     do {
         //generate a random string using Laravel's str_random helper
         $token = str_random();
@@ -44,6 +44,7 @@ class InviteController extends Controller
         'email' => $request->get('email'),
         'token' => $token,
         'role_id' => $request->get('role_id'),
+        'client_id' => $request->get('client_id'),
     ]);
 
     // send the email
