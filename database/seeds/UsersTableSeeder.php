@@ -20,13 +20,13 @@ class UsersTableSeeder extends Seeder
         $user->assignRole(rand(1,6));
        });
 
-      $user = new App\User();
-      $user->password = Hash::make('admin');
-      $user->email = 'admin@admin.com';
-      $user->name = 'Administrador';
-      $user->person_id = Person::inRandomOrder()->first()->id;
-      $user->save();
-      $user->assignRole('Administrador');
+      //$user = new App\User();
+      //$user->password = Hash::make('admin');
+      //$user->email = 'admin@admin.com';
+      //$user->name = 'Administrador';
+      //$user->person_id = Person::inRandomOrder()->first()->id;
+      //$user->save();
+      //$user->assignRole('Administrador');
 
       $user = new App\User();
       $user->password = Hash::make('cliente');
