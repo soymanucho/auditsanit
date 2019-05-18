@@ -108,11 +108,11 @@
                 <!-- Menu Body -->
                 <li class="user-body">
                   <div class="row">
-                    <div class="col-xs-4 text-center">
+                    {{-- <div class="col-xs-4 text-center">
                       <a href="#">Usuarios</a>
-                    </div>
-                    <div class="col-xs-8 text-center">
-                      <a href="#">Estadísticas de Uso</a>
+                    </div> --}}
+                    <div class="col-xs-12 text-center">
+                      <a >{{Auth::user()->getRoleNames()->first()}}</a>
                     </div>
                   </div>
                   <!-- /.row -->
