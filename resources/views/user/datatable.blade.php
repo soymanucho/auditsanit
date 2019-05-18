@@ -15,7 +15,7 @@
 @section('body')
   @foreach($users as $user)
       <tr>
-        <td>  {{ $user->name}} </td>
+        <td>  {{ $user->person->fullName()}} </td>
         <td>  {{ $user->email}} </td>
         <td>
           @foreach ($user->getRoleNames() as $role)

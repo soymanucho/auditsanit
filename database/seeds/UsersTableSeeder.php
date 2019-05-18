@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
       $user = new App\User();
       $user->password = Hash::make('admin');
       $user->email = 'admin@admin.com';
-      $user->name = 'Administrador';
+      //$user->name = 'Administrador';
       $user->person_id = Person::inRandomOrder()->first()->id;
       $user->save();
       $user->assignRole('Administrador');
@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
       $user = new App\User();
       $user->password = Hash::make('cliente');
       $user->email = 'cliente@cliente.com';
-      $user->name = 'Cliente';
+    //  $user->name = 'Cliente';
       $user->person_id = Person::inRandomOrder()->first()->id;
       $user->save();
       $user->assignRole('Cliente');
@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
       $user = new App\User();
       $user->password = Hash::make('gerencial');
       $user->email = 'gerencial@gerencial.com';
-      $user->name = 'Cliente gerencial';
+      //$user->name = 'Cliente gerencial';
       $user->person_id = Person::inRandomOrder()->first()->id;
       $user->save();
       $user->assignRole('Cliente gerencial');

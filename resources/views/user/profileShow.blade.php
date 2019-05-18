@@ -9,7 +9,7 @@
   <h1>Perfil de @isset($person->name)
     {{$person->name}}
   @else
-    {{$user->name}}
+    Sin Nombre
   @endisset</h1>
 
 

@@ -26,7 +26,7 @@
         <div class="box-body">
           <div class="form-group col-sm-12 col-md-6 col-lg-6">
             <label>Nombre</label>
-            <input class="form-control input" name="name" disabled type="text" value="@isset($user->name){{old('name',$user->name)}}@endisset" placeholder="Juan">
+            <input class="form-control input" name="name" disabled type="text" value="@isset($user->person){{old('name',$user->person->fullName())}}@endisset" placeholder="Juan">
           </div>
           <div class="form-group col-sm-12 col-md-6 col-lg-6">
             <label>Email</label>

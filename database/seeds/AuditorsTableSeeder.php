@@ -18,7 +18,7 @@ class AuditorsTableSeeder extends Seeder
       $user = new App\User();
       $user->password = Hash::make('auditor');
       $user->email = 'auditor@auditor.com';
-      $user->name = 'Auditor';
+    //  $user->name = 'Auditor';
       $user->person_id = Auditor::inRandomOrder()->first()->person_id;
       $user->save();
       $user->assignRole('Auditor');

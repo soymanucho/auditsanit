@@ -93,7 +93,7 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-user-o"></i>
-                <span class="hidden-xs">{{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}}</span>
+                <span class="hidden-xs">{{{ isset(Auth::user()->person) ? Auth::user()->person->fullName() : Auth::user()->email }}}</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
@@ -101,7 +101,7 @@
                   <img src="\img\avatar.svg" class="img-circle" alt="User Image">
 
                   <p>
-                    {{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}} -  {{Auth::user()->email}}
+                    {{{ isset(Auth::user()->person) ? Auth::user()->person->fullName() : Auth::user()->email }}} -  {{Auth::user()->email}}
                     <small>Miembro desde {{ Auth::user()->created_at}}</small>
                   </p>
                 </li>

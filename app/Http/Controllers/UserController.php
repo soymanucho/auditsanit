@@ -249,7 +249,7 @@ class UserController extends Controller
 
   $user->person_id = $person->id;
   $user->email = $request->email;
-  $user->name = $request->name;
+  //$user->name = $request->name;
   $user->password = Hash::make($request->password);
   $user->save();
 
