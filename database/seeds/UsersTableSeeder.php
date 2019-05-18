@@ -44,6 +44,21 @@ class UsersTableSeeder extends Seeder
       $user->save();
       $user->assignRole('Cliente gerencial');
 
+      $user = new App\User();
+      $user->password = Hash::make('backoffice');
+      $user->email = 'backoffice@backoffice.com';
+      //$user->name = 'Backoffice';
+      $user->person_id = Person::inRandomOrder()->first()->id;
+      $user->save();
+      $user->assignRole('Backoffice');
+
+      $user = new App\User();
+      $user->password = Hash::make('coordinador');
+      $user->email = 'coordinador@coordinador.com';
+      //$user->name = 'Coordinador';
+      $user->person_id = Person::inRandomOrder()->first()->id;
+      $user->save();
+      $user->assignRole('Coordinador');
 
     }
 }
