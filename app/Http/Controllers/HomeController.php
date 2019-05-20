@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Audit;
 use App\User;
@@ -60,18 +61,91 @@ class HomeController extends Controller
        //               ->havingRaw('count > 0')
        //               ->get();
        // $today = Carbon::now();
-       // $lastMonthSales = DB::table('sales')
-       //                 // ->join('payment_types', 'payment_types.id', '=', 'sales.paymentType_id')
-       //                 ->select(DB::raw("dayofmonth(created_at), coalesce(count(*),0) as count"))
-       //                 ->whereMonth("created_at", $today->month)
-       //                 ->whereYear('created_at', $today->year)
-       //                 ->groupBy("dayofmonth(created_at)")
-       //                 ->orderby('dayofmonth(created_at)','ASC')
+
+
+       $expedientsPerVendor = DB::table('vendors')
+                       ->join('services', 'services.vendor_id', '=', 'vendors.id')
+                       ->join('medical_services', 'medical_services.service_id', '=', 'services.id')
+                       ->join('expedient_modules', 'expedient_modules.id', '=', 'medical_services.expedient_module_id')
+                       ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
+                       ->select(DB::raw("vendors.name as name, coalesce(count(expedients.id),0) as count"))
+                       ->groupBy("vendors.name")
+                       ->orderby('count','ASC')
+                       // ->havingRaw('count > 0')
+                       ->get();
+       $recommendedModules = DB::table('expedient_modules')
+                       // ->join('modules', 'modules.id', '=', 'expedient_modules.module_id')
+                       ->join('modules', 'modules.id', '=', 'expedient_modules.recommended_module_id')
+                       ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
+                       ->join('module_categories', 'module_categories.id', '=', 'modules.module_category_id')
+                       // ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
+                       ->select(DB::raw("expedient_modules.id as expMod, CONCAT(module_types.name,', ',module_categories.name) as moduleRecom, sum(modules.price) as recommended"))
+                       // ->whereMonth("created_at", $today->month)
+                       // ->whereYear('created_at', $today->year)
+                       ->groupBy("expedient_modules.id")
+                       ->groupBy("module_types.name")
+                       ->groupBy("module_categories.name")
+                       ->orderby('expMod','ASC')
+                       // ->havingRaw('count > 0')
+                       ->get();
+       $originalModules = DB::table('expedient_modules')
+                       ->join('modules', 'modules.id', '=', 'expedient_modules.module_id')
+                       // ->join('modules', 'modules.id', '=', 'expedient_modules.recommended_module_id')
+                       ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
+                       ->join('module_categories', 'module_categories.id', '=', 'modules.module_category_id')
+                       // ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
+                       ->select(DB::raw("expedient_modules.id as expMod, CONCAT(module_types.name,', ',module_categories.name) as moduleOrig, sum(modules.price) as original"))
+                       // ->whereMonth("created_at", $today->month)
+                       // ->whereYear('created_at', $today->year)
+                       ->groupBy("expedient_modules.id")
+                       ->groupBy("module_types.name")
+                       ->groupBy("module_categories.name")
+                       ->orderby('expMod','ASC')
+                       // ->havingRaw('count > 0')
+                       ->get();
+
+      // $difMods= $originalModules->merge($recommendedModules)->groupBy('expMod');
+      // $difMods= $originalModules->merge($recommendedModules)->sort();
+      foreach ($originalModules as $orig) {
+        fo
+      }
+
+      // $difMods= $recommendedModules->union($originalModules)->values();
+
+      // $difMods= $originalModules->mapWithKeys(function ($item, $key) {
+      //     $single = $recommendedModules->where('expMod',$item->expMod);
+      //     return collect($item)->merge($single);
+      // });
+      dd($recommendedModules,$originalModules,$difMods);
+
+
+      // dd($recommendedModules,$originalModules,$difModules);
+
+       // $vendorTypesPerVendor = DB::table('vendors')
+       //                 ->join('services', 'services.vendor_id', '=', 'vendors.id')
+       //                 ->join('medical_services', 'medical_services.service_id', '=', 'services.id')
+       //                 ->join('expedient_modules', 'expedient_modules.id', '=', 'medical_services.expedient_module_id')
+       //                 ->join('modules', 'modules.id', '=', 'expedient_modules.module_id')
+       //                 ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
+       //                 ->select(DB::raw("vendors.name as name, coalesce(count(expedients.id),0) as count"))
+       //                 // ->whereMonth("created_at", $today->month)
+       //                 // ->whereYear('created_at', $today->year)
+       //                 ->groupBy("vendors.name")
+       //                 ->orderby('count','ASC')
        //                 // ->havingRaw('count > 0')
        //                 ->get();
 
-      $amountOfAudits = Audit::all()->count();
-      $totalAmountOfUsers = User::all()->count();
-      return view('home',compact('amountOfAudits','totalAmountOfUsers'));//,'auditsByStatus','auditsByGender'));
+       if(Auth::user()->hasRole('Auditor')){
+         $user = Auth::user();
+         $auditsCount = Auth::user()->AuditorAssignedAudits()->count();
+         $pendingAuditsCount = $user->numberOfPendingAudits();
+       }elseif(Auth::user()->hasRole('Cliente') || Auth::user()->hasRole('Cliente gerencial')){
+         $auditsCount = Auth::user()->ClientAssignedAudits()->count();
+       }else {
+         $auditsCount = Audit::all()->count();
+       }
+      // $amountOfAudits = Audit::all()->count();
+      // $totalAmountOfUsers = User::all()->count();
+      return view('home',compact('auditsCount','pendingAuditsCount','expedientsPerVendor','difMods'));//,'auditsByStatus','auditsByGender'));
     }
 }

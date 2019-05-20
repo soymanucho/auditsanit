@@ -20,7 +20,7 @@ class PatientController extends Controller
 
   public function show()
   {
-    $patients = Patient::all();
+    $patients = Patient::orderBy('created_at','DESC')->get();
     return view('patients.patients',compact('patients'));
   }
   public function new()
