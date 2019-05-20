@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Person;
 use App\Auditor;
+use App\Client;
 
 class UsersTableSeeder extends Seeder
 {
@@ -35,6 +36,7 @@ class UsersTableSeeder extends Seeder
       $user->person_id = Person::inRandomOrder()->first()->id;
       $user->save();
       $user->assignRole('Cliente');
+      $user->clients()->sync(Client::inRandomOrder()->first());
 
       $user = new App\User();
       $user->password = Hash::make('gerencial');
@@ -43,6 +45,7 @@ class UsersTableSeeder extends Seeder
       $user->person_id = Person::inRandomOrder()->first()->id;
       $user->save();
       $user->assignRole('Cliente gerencial');
+      $user->clients()->sync(Client::inRandomOrder()->first());
 
       $user = new App\User();
       $user->password = Hash::make('backoffice');

@@ -11,6 +11,7 @@ use App\Person;
 use App\Gender;
 use App\Location;
 use App\Address;
+use App\Client;
 use App\Province;
 
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class UserController extends Controller
   public function editRole(User $user)
   {
     $roles = Role::all();
-    return view('user.editRole',compact('user','roles'));
+    $clients = Client::all();
+    return view('user.editRole',compact('user','roles','clients'));
   }
   public function updateRole(User $user,Request $request)
   {
