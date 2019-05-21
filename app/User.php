@@ -37,7 +37,12 @@ class User extends Authenticatable
 
     public function ClientAssignedAudits()
     {
-      return $this->clients()->first()->audits();
+      $audits = [];
+      if($this->clients()->first())// in case it has no client set up
+      {
+        $audits = $this->clients()->first()->audits();
+      }
+      return $audits;
     }
 
 
