@@ -201,13 +201,13 @@
 								<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%" style="border-collapse:collapse;">
 									<tr>
 										<td style="color:#fff;" class='bgItem'>
-											<table cellpadding="0" style="border-collapse:collapse;" cellspacing="0" border="0" align="center" width="600">
+											<table cellpadding="0" style="border-collapse:collapse;" cellspacing="0" border="0" align="center" width="100%">
 												<tr>
-													<td width="200" style="vertical-align:bottom;">
+													<td width="100%" style="vertical-align:bottom;">
 														<div class="contentEditableContainer contentImageEditable">
 															<div class="contentEditable" >
 																<div style="padding-top:20px;text-align:center;">
-																	<img src="img/6@2x.png" width="148" data-default="placeholder" data-max-width="200" style="margin-bottom:-3px;" />
+																	<img src="{!! asset('img/logo.svg') !!}" width="100%" data-default="placeholder" data-max-width="200" style="margin-bottom:-3px;" />
 																</div>
 															</div>
 														</div>
@@ -215,17 +215,17 @@
 													</td>
 													<td width="400" valign="top" style="padding-top:40px;padding-bottom:20px;">
 														<br/>
-														<div class="contentEditableContainer contentTextEditable">
+														{{-- <div class="contentEditableContainer contentTextEditable">
 															<div class="contentEditable" >
 																<div style="font-size:23px;font-family:Heveltica, Arial, sans-serif;color:#fff;">Nosotros</div>
 															</div>
-														</div>
+														</div> --}}
 
-														<div class="contentEditableContainer contentTextEditable">
+														{{-- <div class="contentEditableContainer contentTextEditable">
 															<div class="contentEditable"  style="padding:20px 10px 0 0;margin:0;font-family:Helvetica, Arial, sans-serif;font-size:15px;line-height:150%;">
 																<p style='color:#FFEECE;'>Somos una consultora líder en auditorías sanitarias.</strong></p>
 															</div>
-														</div>
+														</div> --}}
 
 													</td>
 												</tr>
@@ -368,15 +368,15 @@
 										<td width="60%" height="70" valign="middle" style="padding-bottom:20px;">
 											<div class="contentEditableContainer contentTextEditable">
 												<div class="contentEditable" >
-													<span style="font-size:13px;color:#181818;font-family:Helvetica, Arial, sans-serif;line-height:200%;">Sent to {{$invite->email}} by [CLIENTS.COMPANY_NAME]</span>
+													<span style="font-size:13px;color:#181818;font-family:Helvetica, Arial, sans-serif;line-height:200%;">Enviado a {{$invite->email}} por Auditoría Sanitaria</span>
 													<br/>
-													<span style="font-size:11px;color:#555;font-family:Helvetica, Arial, sans-serif;line-height:200%;">[DIRECCIÓN.CLIENTE] | [TELEFONO.CLIENTE]</span>
+													{{-- <span style="font-size:11px;color:#555;font-family:Helvetica, Arial, sans-serif;line-height:200%;">[DIRECCIÓN.CLIENTE] | [TELEFONO.CLIENTE]</span> --}}
 													<br/>
 								                    <span style="font-size:13px;color:#181818;font-family:Helvetica, Arial, sans-serif;line-height:200%;">
-														<a target='_blank' href="[FORWARD]" style='text-decoration:none;line-height: 20px;color:#555; font-size:13px;'>Forward to a friend</a></span>
+														{{-- <a target='_blank' href="[FORWARD]" style='text-decoration:none;line-height: 20px;color:#555; font-size:13px;'>Forward to a friend</a></span> --}}
 													<br/>
 													<span style="font-size:13px;color:#181818;font-family:Helvetica, Arial, sans-serif;line-height:200%;">
-														<a target='_blank' href="[UNSUBSCRIBE]" style="text-decoration:none;color:#555">Click acá para no recibir más este mail.</a></span>
+														{{-- <a target='_blank' href="[UNSUBSCRIBE]" style="text-decoration:none;color:#555">Click acá para no recibir más este mail.</a></span> --}}
 												</div>
 											</div>
 										</td>

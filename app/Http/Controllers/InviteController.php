@@ -31,7 +31,17 @@ class InviteController extends Controller
   public function process(Request $request)
   {
     // validate the incoming request data
-
+    $this->validate(
+      $request,
+      [
+      'email'=>'required|email|unique:users,email|unique:invites,email',
+      'role_id'=>'required|exists:roles,id',
+      ]
+    ,[]
+    ,[
+      'email'=>'correo electrónico',
+      'role_id'=>'rol'
+    ]);
     //dd($request);
     do {
         //generate a random string using Laravel's str_random helper
