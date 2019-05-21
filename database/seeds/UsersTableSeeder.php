@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
       $user->person_id = Person::inRandomOrder()->first()->id;
       $user->save();
       $user->assignRole('Cliente');
-      $user->clients()->sync(Client::inRandomOrder()->first()->id);
+      $user->clients()->sync(Client::inRandomOrder()->first());
 
       $user = new App\User();
       $user->password = Hash::make('gerencial');
@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
       $user->person_id = Person::inRandomOrder()->first()->id;
       $user->save();
       $user->assignRole('Cliente gerencial');
-      $user->clients()->sync(Client::inRandomOrder()->first()->id);
+      $user->clients()->sync(Client::inRandomOrder()->first());
 
       $user = new App\User();
       $user->password = Hash::make('backoffice');

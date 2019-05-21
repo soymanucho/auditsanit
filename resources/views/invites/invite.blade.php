@@ -36,7 +36,7 @@
           </select>
         </div>
         <div id='client' class="form-group col-sm-12 col-md-6 col-lg-6" >
-          <label for="role_id" class="col-sm-2 control-label">Cliente</label>
+          <label for="client_id" class="col-sm-2 control-label">Cliente</label>
           <select  class="form-control select2" placeholder="Seleccioná un cliente" name="client_id">
             <option></option>
             @foreach ($clients as $client)
