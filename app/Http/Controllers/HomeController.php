@@ -68,24 +68,25 @@ class HomeController extends Controller
                        ->join('medical_services', 'medical_services.service_id', '=', 'services.id')
                        ->join('expedient_modules', 'expedient_modules.id', '=', 'medical_services.expedient_module_id')
                        ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
-                       ->select(DB::raw("vendors.name as name, coalesce(count(expedients.id),0) as count"))
+                       ->select(DB::raw("vendors.name, coalesce(count(expedients.id),0) as c"))
                        ->groupBy("vendors.name")
-                       ->orderby('count','ASC')
+                       ->orderby('vendors.name','ASC')
                        // ->havingRaw('count > 0')
                        ->get();
+                       // dd($expedientsPerVendor);
        $recommendedModules = DB::table('expedient_modules')
                        // ->join('modules', 'modules.id', '=', 'expedient_modules.module_id')
                        ->join('modules', 'modules.id', '=', 'expedient_modules.recommended_module_id')
                        ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
                        ->join('module_categories', 'module_categories.id', '=', 'modules.module_category_id')
                        // ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
-                       ->select(DB::raw("expedient_modules.id as expMod, CONCAT(module_types.name,', ',module_categories.name) as moduleRecom, sum(modules.price) as recommended"))
+                       ->select(DB::raw("expedient_modules.id, CONCAT(module_types.name,', ',module_categories.name), sum(modules.price)"))
                        // ->whereMonth("created_at", $today->month)
                        // ->whereYear('created_at', $today->year)
                        ->groupBy("expedient_modules.id")
                        ->groupBy("module_types.name")
                        ->groupBy("module_categories.name")
-                       ->orderby('expMod','ASC')
+                       ->orderby('expedient_modules.id','ASC')
                        // ->havingRaw('count > 0')
                        ->get();
        $originalModules = DB::table('expedient_modules')
@@ -94,17 +95,17 @@ class HomeController extends Controller
                        ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
                        ->join('module_categories', 'module_categories.id', '=', 'modules.module_category_id')
                        // ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
-                       ->select(DB::raw("expedient_modules.id as expMod, CONCAT(module_types.name,', ',module_categories.name) as moduleOrig, sum(modules.price) as original"))
+                       ->select(DB::raw("expedient_modules.id, CONCAT(module_types.name,', ',module_categories.name), sum(modules.price)"))
                        // ->whereMonth("created_at", $today->month)
                        // ->whereYear('created_at', $today->year)
                        ->groupBy("expedient_modules.id")
                        ->groupBy("module_types.name")
                        ->groupBy("module_categories.name")
-                       ->orderby('expMod','ASC')
+                       ->orderby('expedient_modules.id','ASC')
                        // ->havingRaw('count > 0')
                        ->get();
 
-      // $difMods= $originalModules->merge($recommendedModules)->groupBy('expMod');
+      $difMods= $originalModules->merge($recommendedModules)->groupBy('expMod');
       // $difMods= $originalModules->merge($recommendedModules)->sort();
       // foreach ($originalModules as $orig) {
       //
@@ -116,7 +117,7 @@ class HomeController extends Controller
       //     $single = $recommendedModules->where('expMod',$item->expMod);
       //     return collect($item)->merge($single);
       // });
-      dd($recommendedModules,$originalModules,$difMods);
+      // dd($recommendedModules,$originalModules,$difMods);
 
 
       // dd($recommendedModules,$originalModules,$difModules);

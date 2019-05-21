@@ -106,7 +106,7 @@
           labels: {!!json_encode($expedientsPerVendor->pluck("name"))!!},
           datasets: [{
               label: '# de prestaciones',
-              data: {!!json_encode($expedientsPerVendor->pluck("count"))!!},
+              data: {!!json_encode($expedientsPerVendor->pluck("c"))!!},
               backgroundColor:
                 'rgb(1,184,170)'
             ,
