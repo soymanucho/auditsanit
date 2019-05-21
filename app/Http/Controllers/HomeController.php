@@ -106,9 +106,9 @@ class HomeController extends Controller
 
       // $difMods= $originalModules->merge($recommendedModules)->groupBy('expMod');
       // $difMods= $originalModules->merge($recommendedModules)->sort();
-      foreach ($originalModules as $orig) {
-        fo
-      }
+      // foreach ($originalModules as $orig) {
+      //
+      // }
 
       // $difMods= $recommendedModules->union($originalModules)->values();
 
