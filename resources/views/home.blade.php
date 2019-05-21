@@ -76,7 +76,7 @@
       <!-- /.box-body -->
     </div>
   </div>
-  <div class="col-md-4 col-xs-12 col-lg-12">
+  <div class="col-md-4 col-xs-12 col-lg-4">
     <!-- DONUT CHART -->
     <div class="box box-danger">
       <div class="box-header with-border">
@@ -89,7 +89,7 @@
         </div>
       </div>
       <div class="box-body">
-        <canvas id="difMods" width="50" height="50"></canvas>
+        <canvas id="difMods" width="20" height="20"></canvas>
       </div>
       <!-- /.box-body -->
     </div>

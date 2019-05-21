@@ -135,7 +135,7 @@ class HomeController extends Controller
        //                 ->orderby('count','ASC')
        //                 // ->havingRaw('count > 0')
        //                 ->get();
-
+       $pendingAuditsCount=0;
        if(Auth::user()->hasRole('Auditor')){
          $user = Auth::user();
          $auditsCount = Auth::user()->AuditorAssignedAudits()->count();
