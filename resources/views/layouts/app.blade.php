@@ -10,7 +10,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <link href="{{ asset('css/loader.css') }}"  rel="stylesheet">
+
 
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -64,9 +64,9 @@
     <!-- Logo -->
     <a href="" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b class="fa fa-stethoscope "></b></span>
+      <span class="logo-mini"><img src="{!! asset('favicon.ico') !!}" alt=""> </span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Auditoría Sanitaria <b class="fa fa-stethoscope"></b></span>
+      <span class="logo-lg">Auditoría Sanitaria <img src="{!! asset('favicon.ico') !!}" alt=""></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -271,13 +271,14 @@
     <!-- Main content -->
     <section class="content">
       <div id="preloaders" class="preloader"
-        style="position: fixed;
+        style="
+                position: fixed;
                 left: 0px;
                 top: 0px;
                 width: 100%;
                 height: 100%;
                 z-index: 9999;
-                background: url('/img/sliding_square_loader_view.gif') 50% 50% no-repeat rgb(74,72,75);
+                background: url('/img/logo.svg') 50% 50% no-repeat rgba(68, 68, 68, 0.32);
                 opacity: .8;"
         ></div>
         @yield('content')
@@ -290,7 +291,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2019 <a href=""{{route('home')}}"">Auditoría sanitaria</a>.</strong> Todos los derechos reservados.
+    <strong>Copyright &copy; 2019 <a href=""{{route('home')}}""> <img src="favicon.ico" alt="">Auditoría sanitaria</a>.</strong> Todos los derechos reservados.
   </footer>
 
   <!-- Control Sidebar -->

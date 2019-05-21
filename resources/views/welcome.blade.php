@@ -77,7 +77,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Auditoría Sanitaria
+                  <img src="{!! asset('img/logo.svg') !!}" alt="">
                 </div>
 
                 <div class="links">

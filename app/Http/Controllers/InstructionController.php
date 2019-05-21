@@ -11,7 +11,7 @@ class InstructionController extends Controller
   {
     $this->middleware('auth');
   }
-  
+
   public function show()
   {
     $instructions = Instruction::all();
@@ -33,12 +33,12 @@ class InstructionController extends Controller
     $this->validate(
       $request,
       [
-          'name' => 'required|max:60',
+        'name' => 'required|max:60',
       ],
       [
       ],
       [
-          'name' => 'nombre',
+        'name' => 'nombre',
       ]
   );
   $instruction = new Instruction;
