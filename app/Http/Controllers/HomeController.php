@@ -143,7 +143,7 @@ class HomeController extends Controller
        }elseif(Auth::user()->hasRole('Cliente') || Auth::user()->hasRole('Cliente gerencial')){
          $auditsCount = Auth::user()->ClientAssignedAudits();
        }else {
-         $auditsCount = Audit::all()->count();
+         $auditsCount = Audit::all();
        }
       // $amountOfAudits = Audit::all()->count();
       // $totalAmountOfUsers = User::all()->count();
