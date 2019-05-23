@@ -138,8 +138,9 @@ class HomeController extends Controller
        $pendingAuditsCount=0;
        if(Auth::user()->hasRole('Auditor')){
          $user = Auth::user();
+         $auditor = Auditor::where('person_id',$user->person_id)->first();
          $auditsCount = Auth::user()->AuditorAssignedAudits();
-         $pendingAuditsCount = $user->numberOfPendingAudits();
+         $pendingAuditsCount = $auditor->numberOfPendingAudits();
        }elseif(Auth::user()->hasRole('Cliente') || Auth::user()->hasRole('Cliente gerencial')){
          $auditsCount = Auth::user()->ClientAssignedAudits();
        }else {
