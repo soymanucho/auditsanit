@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Audit;
 use App\User;
+use App\Auditor;
 
 class HomeController extends Controller
 {
