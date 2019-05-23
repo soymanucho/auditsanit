@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+
 
 
 Route::group(['middleware' => ['role:Administrador|Backoffice']], function () {
@@ -223,3 +223,5 @@ Route::get('/afiliados/nuevo', 'PatientController@new')->name('new-patients');
 Route::post('/afiliados/nuevo', 'PatientController@save')->name('save-patients');
 Route::get('/afiliados/{patient}/editar/', 'PatientController@edit')->name('edit-patients')->middleware('can:audit-read-patient');
 Route::post('/afiliados/{patient}/editar/', 'PatientController@update')->name('update-patients')->middleware('can:audit-edit-patient');
+
+Auth::routes();

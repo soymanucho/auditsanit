@@ -129,7 +129,7 @@
                                  document.getElementById('logout-form').submit();"> {{ __('Cerrar Sesión') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
+                      {{ csrf_field() }}
                     </form>
 
                   </div>
@@ -149,7 +149,16 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     @guest
-      Iniciar Sesión
+
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="treeview">
+          <a href={!! route('login') !!}>
+            <i class="fas fa-sitemap"></i> <span> Iniciar Sesión</span>
+          </a>
+
+        </li>
+
+    </ul>
     @else
       <section class="sidebar">
 
@@ -222,19 +231,7 @@
                 </ul>
               </li>
 
-              <li class=" treeview">
-                <a href="#">
-                  <i class="fas fa-sitemap"></i> <span> Modulo</span>
-                  <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-                </a>
-                <ul class="treeview-menu">
-                  <li><a href="{{route('show-moduletypes')}}"><i class="fa fa-search"></i> Tipos de modulo</a></li>
-                   <li><a href="{{route('show-modulecategories')}}"><i class="fa fa-search"></i> Categorias de Modulos</a></li>
-                <li><a href="{{route('show-module')}}"><i class="fa fa-search"></i> Modulos</a></li>
-                </ul>
-              </li>
+              c
             @endhasanyrole
             @role('Auditor')
               <li class=" treeview">

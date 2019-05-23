@@ -28,9 +28,9 @@ class Person extends Model
   {
     return $this->belongsTo(Address::class);
   }
-  public function auditor()
+  public function auditors()
   {
-    return $this->hasOne(Auditor::class);
+    return $this->hasMany(Auditor::class);
   }
   public function patient()
   {
