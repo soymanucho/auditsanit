@@ -78,7 +78,42 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
+          @can ('audit-create')
+          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fas fa-plus"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                    <li><!-- start message -->
+                      <a href="{!! route('new-audit') !!}">
+                        <div class="pull-left">
+                          <i class="fas fa-folder-plus"></i>
+                        </div>
+                        <h4>
+                          Nueva auditoría
+                        </h4>
+                      </a>
+                    </li>
+                    <li><!-- start message -->
+                      <a href="{!! route('new-patients') !!}">
+                        <div class="pull-left">
+                          <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h4>
+                          Nuevo afiliado
+                        </h4>
+                      </a>
+                    </li>
 
+                </ul>
+              </li>
+              <li class="footer"><a href="#">Cerrar <i class="fa fa-chevron-up"></i> </a></li>
+            </ul>
+          </li>
+        @endcan
           <!-- User Account: style can be found in dropdown.less -->
           @guest
             <li class="nav-item">
@@ -88,7 +123,7 @@
             </li>
           @else
 
-            @include('layouts.notifications')
+            {{-- @include('layouts.notifications') --}}
 
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -129,7 +164,7 @@
                                  document.getElementById('logout-form').submit();"> {{ __('Cerrar Sesión') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
+                      {{ csrf_field() }}
                     </form>
 
                   </div>
@@ -149,7 +184,16 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     @guest
-      Iniciar Sesión
+
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="treeview">
+          <a href={!! route('login') !!}>
+            <i class="fas fa-sitemap"></i> <span> Iniciar Sesión</span>
+          </a>
+
+        </li>
+
+    </ul>
     @else
       <section class="sidebar">
 
@@ -222,19 +266,7 @@
                 </ul>
               </li>
 
-              <li class=" treeview">
-                <a href="#">
-                  <i class="fas fa-sitemap"></i> <span> Modulo</span>
-                  <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-                </a>
-                <ul class="treeview-menu">
-                  <li><a href="{{route('show-moduletypes')}}"><i class="fa fa-search"></i> Tipos de modulo</a></li>
-                   <li><a href="{{route('show-modulecategories')}}"><i class="fa fa-search"></i> Categorias de Modulos</a></li>
-                <li><a href="{{route('show-module')}}"><i class="fa fa-search"></i> Modulos</a></li>
-                </ul>
-              </li>
+              c
             @endhasanyrole
             @role('Auditor')
               <li class=" treeview">

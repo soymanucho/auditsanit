@@ -24,7 +24,7 @@
     <!-- small box -->
     <div class="small-box bg-red">
       <div class="inner">
-        <h3>{{count($auditsCount)}}</h3>
+        <h3>{{$auditsCount}}</h3>
 
         <p>Total de auditorías</p>
       </div>
@@ -41,7 +41,7 @@
       <!-- small box -->
       <div class="small-box bg-red">
         <div class="inner">
-          <h3>{{count($pendingAuditsCount)}}</h3>
+          <h3>{{$pendingAuditsCount}}</h3>
 
           <p>Auditorías pendientes</p>
         </div>

@@ -25,4 +25,8 @@ class Client extends Model
     }
     return $audits->sortByDesc('id');
   }
+  public function users()
+  {
+    return $this->belongsToMany(User::class, 'clients_users','client_id', 'user_id');
+  }
 }
