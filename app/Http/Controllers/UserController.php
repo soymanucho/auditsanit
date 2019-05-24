@@ -179,6 +179,7 @@ class UserController extends Controller
           // 'tipoMatricula' => 'required', Rule::in(['nacional', 'provincial']),
           'cargo' => 'string|max:100',
           'telTrabajoInterno' => 'integer',
+          'intern' => 'integer',
           'celular' => 'integer',
           'street' => 'string|max:100',
           'number' => 'string|max:100',
@@ -202,6 +203,7 @@ class UserController extends Controller
         'tipoMatricula' => 'tipo de matrícula',
         'cargo' => 'cargo',
         'telTrabajoInterno' => 'teléfono laboral',
+        'intern' => 'intern',
         'celular' => 'celular',
         'street' => 'calle',
         'number' => 'número',
@@ -244,6 +246,7 @@ class UserController extends Controller
   $person->matricula = $request->matricula;
   $person->cargo = $request->cargo;
   $person->telTrabajoInterno = $request->telTrabajoInterno;
+  $person->intern = $request->intern;
   $person->celular = $request->celular;
 
   $person->save();
