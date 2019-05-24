@@ -26,20 +26,20 @@
         </td>
         <td>
           @isset($audit->currentStatus()->name)
-             <span class="badge" style="background:{{ $audit->currentStatus()->color}}">{{ $audit->currentStatus()->id}}. {{ $audit->currentStatus()->name}}</span>
+            @php
+                $status = $audit->currentStatus();
+            @endphp
+             <span class="badge" style="background:{{ $status->color}}">{{ $status->id}}. {{ $status->name}}</span>
           @endisset
         </td>
-      
-          @hasanyrole('Administrador|Backoffice|Auditor|Coordinador')
+
+          @if ($roles->contains('Administrador') || $roles->contains('Backoffice') || $roles->contains('Auditor') || $roles->contains('Coordinador'))
             <td class="text-center"> <a  href="{{ route('audit-detail-patient', compact('audit')) }}"><b class="fa fa-eye "></b></a> </td>
-          @endhasanyrole
-          @hasanyrole('Cliente|Cliente gerencial')
-          <td class="text-center"> <a  href="{{ route('audit-detail-resume', compact('audit')) }}"><b class="fa fa-eye  "></b></a> </td>
-          @endhasanyrole
-        {{-- <td>  {{ $category->subcategory->name }} </td>
-        <td>  {{ $category->products()->count()}} </td>
-        <td>  {{ $category->products()->sum('stock')}} </td> --}}
-        {{-- <td class="text-center">  <a href={!! route('edit-category',compact('category')) !!} ><b class="fa fa-edit "></b></a> </td> --}}
+          @endif
+
+          @if ($roles->contains('Cliente') || $roles->contains('Cliente gerencial'))
+            <td class="text-center"> <a  href="{{ route('audit-detail-resume', compact('audit')) }}"><b class="fa fa-eye  "></b></a> </td>
+          @endif
 
       </tr>
     @endforeach

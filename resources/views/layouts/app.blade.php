@@ -78,7 +78,42 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
+          @can ('audit-create')
+          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fas fa-plus"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                    <li><!-- start message -->
+                      <a href="{!! route('new-audit') !!}">
+                        <div class="pull-left">
+                          <i class="fas fa-folder-plus"></i>
+                        </div>
+                        <h4>
+                          Nueva auditoría
+                        </h4>
+                      </a>
+                    </li>
+                    <li><!-- start message -->
+                      <a href="{!! route('new-patients') !!}">
+                        <div class="pull-left">
+                          <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h4>
+                          Nuevo afiliado
+                        </h4>
+                      </a>
+                    </li>
 
+                </ul>
+              </li>
+              <li class="footer"><a href="#">Cerrar <i class="fa fa-chevron-up"></i> </a></li>
+            </ul>
+          </li>
+        @endcan
           <!-- User Account: style can be found in dropdown.less -->
           @guest
             <li class="nav-item">
@@ -88,7 +123,7 @@
             </li>
           @else
 
-            @include('layouts.notifications')
+            {{-- @include('layouts.notifications') --}}
 
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">

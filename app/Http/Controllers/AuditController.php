@@ -36,17 +36,16 @@ class AuditController extends Controller
 
   public function show()
   {
-    $audits = Audit::orderBy('id', 'DESC')->get();
-
-    if(Auth::user()->hasRole('Auditor')){
+    $roles = Auth::user()->getRoleNames();
+    if($roles->contains('Auditor')){
       $audits = Auth::user()->AuditorAssignedAudits();
-    }
-
-    if(Auth::user()->hasRole('Cliente') || Auth::user()->hasRole('Cliente gerencial')){
+    }elseif ($roles->contains('Cliente') || $roles->contains('Cliente gerencial')) {
       $audits = Auth::user()->ClientAssignedAudits();
+    }else{
+      $audits = Audit::orderBy('id', 'DESC')->with('expedient.patient.person')->get();
     }
 
-    return view('audits.audits',compact('audits'));
+    return view('audits.audits',compact('audits','roles'));
   }
   public function updateStatus(Audit $audit, Status $status)
   {
