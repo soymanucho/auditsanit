@@ -5,10 +5,15 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
+use App\Person;
+use App\Client;
+use App\Audit;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +24,36 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    public function AuditorAssignedAudits()
+    {
+      $medicalservices = $this->person->auditors->first->get()->medicalServices;
+      $audits = collect([]);
+      foreach ($medicalservices as $medicalservice) {
+
+      $audits->push($medicalservice->expedientModule->expedient->audit);
+      }
+    return  $audits = $audits->unique()->values()->all();
+    }
+
+    public function ClientAssignedAudits()
+    {
+      $audits = [];
+      if($this->clients()->first())// in case it has no client set up
+      {
+        $audits = $this->clients()->first()->audits();
+      }
+      return $audits;
+    }
+
+
+    public function clients(){
+      return $this->belongsToMany(Client::class, 'clients_users', 'user_id', 'client_id');
+    }
+
+    public function person()
+    {
+      return $this->belongsTo(Person::class);
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

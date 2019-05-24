@@ -10,11 +10,13 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <link href="{{ asset('css/loader.css') }}"  rel="stylesheet">
+
 
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -49,6 +51,11 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <style>
+  .ui-datepicker{z-index:1151 !important;}
+  </style>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -57,9 +64,9 @@
     <!-- Logo -->
     <a href="" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b class="fa fa-cloud "></b></span>
+      <span class="logo-mini"><img src="{!! asset('favicon.ico') !!}" alt=""> </span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Auditoría Sanitaria <b class="fa fa-cloud "></b></span>
+      <span class="logo-lg">Auditoría Sanitaria <img src="{!! asset('favicon.ico') !!}" alt=""></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -71,7 +78,42 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
+          @can ('audit-create')
+          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fas fa-plus"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                    <li><!-- start message -->
+                      <a href="{!! route('new-audit') !!}">
+                        <div class="pull-left">
+                          <i class="fas fa-folder-plus"></i>
+                        </div>
+                        <h4>
+                          Nueva auditoría
+                        </h4>
+                      </a>
+                    </li>
+                    <li><!-- start message -->
+                      <a href="{!! route('new-patients') !!}">
+                        <div class="pull-left">
+                          <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h4>
+                          Nuevo afiliado
+                        </h4>
+                      </a>
+                    </li>
 
+                </ul>
+              </li>
+              <li class="footer"><a href="#">Cerrar <i class="fa fa-chevron-up"></i> </a></li>
+            </ul>
+          </li>
+        @endcan
           <!-- User Account: style can be found in dropdown.less -->
           @guest
             <li class="nav-item">
@@ -80,79 +122,13 @@
                 @endif
             </li>
           @else
-            {{-- <li class="dropdown messages-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-envelope-o"></i>
-                <span class="label label-success">1</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">Tenes 1 mensaje</li>
-                <li>
-                  <!-- inner menu: contains the actual data -->
-                  <ul class="menu">
-                    <li><!-- start message -->
-                      <a href="#">
-                        <div class="pull-left">
-                          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                        </div>
-                        <h4>
-                          Support Team
-                          <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                        </h4>
-                        <p>Why not buy a new awesome theme?</p>
-                      </a>
-                    </li>
-                    <!-- end message -->
 
-                  </ul>
-                </li>
-                <li class="footer"><a href="#">Ver todos los mensajes</a></li>
-              </ul>
-            </li> --}}
+            {{-- @include('layouts.notifications') --}}
 
-
-            <!-- Notifications: style can be found in dropdown.less -->
-            @include('layouts.notifications')
-
-
-
-            <!-- Tasks: style can be found in dropdown.less -->
-            {{-- <li class="dropdown tasks-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-flag-o"></i>
-                <span class="label label-danger">1</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">Tenés una tarea</li>
-                <li>
-                  <!-- inner menu: contains the actual data -->
-                  <ul class="menu">
-                    <li><!-- Task item -->
-                      <a href="#">
-                        <h3>
-                          Design some buttons
-                          <small class="pull-right">20%</small>
-                        </h3>
-                        <div class="progress xs">
-                          <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                               aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                            <span class="sr-only">20% Complete</span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <!-- end task item -->
-                  </ul>
-                </li>
-                <li class="footer">
-                  <a href="#">Ver todas las tareas</a>
-                </li>
-              </ul>
-            </li> --}}
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-user-o"></i>
-                <span class="hidden-xs">Seba</span>
+                <span class="hidden-xs">{{{ isset(Auth::user()->person) ? Auth::user()->person->fullName() : Auth::user()->email }}}</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
@@ -160,18 +136,18 @@
                   <img src="\img\avatar.svg" class="img-circle" alt="User Image">
 
                   <p>
-                    Seba - Web Developer
-                    <small>Member since 1992</small>
+                    {{{ isset(Auth::user()->person) ? Auth::user()->person->fullName() : Auth::user()->email }}} -  {{Auth::user()->email}}
+                    <small>Miembro desde {{ Auth::user()->created_at}}</small>
                   </p>
                 </li>
                 <!-- Menu Body -->
                 <li class="user-body">
                   <div class="row">
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Ventas</a>
-                    </div>
-                    <div class="col-xs-8 text-center">
-                      <a href="#">Estadísticas de Uso</a>
+                    {{-- <div class="col-xs-4 text-center">
+                      <a href="#">Usuarios</a>
+                    </div> --}}
+                    <div class="col-xs-12 text-center">
+                      <a >{{Auth::user()->getRoleNames()->first()}}</a>
                     </div>
                   </div>
                   <!-- /.row -->
@@ -179,7 +155,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                    <a href="{{route('profile-show')}}" class="btn btn-default btn-flat">Perfil</a>
                   </div>
                   <div class="pull-right">
 
@@ -188,7 +164,7 @@
                                  document.getElementById('logout-form').submit();"> {{ __('Cerrar Sesión') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
+                      {{ csrf_field() }}
                     </form>
 
                   </div>
@@ -208,113 +184,105 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     @guest
-      Iniciar Sesión
+
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="treeview">
+          <a href={!! route('login') !!}>
+            <i class="fas fa-sitemap"></i> <span> Iniciar Sesión</span>
+          </a>
+
+        </li>
+
+    </ul>
     @else
       <section class="sidebar">
-        <!-- Sidebar user panel -->
 
-          {{-- <div class="user-panel">
-            <div class="pull-left image">
-              <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-              <p>Seba</p>
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-          </div> --}}
-          <!-- search form -->
-          {{-- <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Buscar...">
-              <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                    </button>
-                  </span>
-            </div>
-          </form> --}}
-          <!-- /.search form -->
-          <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MENÚ PRINCIPAL</li>
-            {{--  --}}
+
             <li>
-              <a href="{{ route('dashboard') }}">
-                <i class="fa fa-chart-line"></i> <span> Dashboard</span>
+              <a href="{{route('home')}}">
+                <i class="fa fa-chart-line"></i> <span> INICIO</span>
               </a>
             </li>
 
-            <li class=" treeview">
-              <a href="#">
-                <i class="fa fa-users"></i> <span> Clientes</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+            <li>
+              <a href="{{route('show-audits')}}">
+                <i class="fa fa-search"></i> <span> Auditorías</span>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="{{ route('show-clients') }}"><i class="fa fa-search"></i> Consultar</a></li>
-                <li><a href="{{ route('new-client') }}"><i class="fa fa-plus-circle "></i> Nuevo</a></li>
-              </ul>
             </li>
+            @hasanyrole('Administrador|Backoffice')
+              <li class=" treeview">
+                <a href="#">
+                  <i class="fa fa-users"></i> <span> Personas</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{{route('show-medics')}}"><i class="fa fa-search"></i> Medicos</a></li>
+                  <li><a href="{{route('show-auditors')}}"><i class="fa fa-plus-circle "></i> Auditores</a></li>
+                  <li><a href="{{route('show-patients')}}"><i class="fa fa-plus-circle "></i> Afiliados</a></li>
+                  <li><a href="{{route('show-vendors')}}"><i class="fa fa-search "></i> Prestadores</a></li>
+                  <li class="treeview">
+                    <a href="#">
+                      <i class="fa fa-search"></i> <span>Usuarios</span>
+                      <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </span>
+                    </a>
+                    <ul class="treeview-menu">
+                      <li><a href="{{route('users-show')}}"><i class="fa fa-search "></i> Usuarios</a></li>
+                      <li><a href="{{route('invite')}}"><i class="fa fa-plus "></i> Invitar</a></li>
+                    </ul>
+                  </li>
 
-            <li class=" treeview">
-              <a href="#">
-                <i class="fas fa-boxes"></i> <span> Productos</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-              <li><a href="{{ route('show-products') }}"><i class="fa fa-search"></i> Consultar</a></li>
-              <li><a href="{{ route('add-stock') }}"><i class="fa fa-th"></i> Agregar Stock</a></li>
-              <li><a href="{{ route('raise-price') }}"><i class="fa fa-arrow-up"></i> Remarcar precio en %</a></li>
-              </ul>
-            </li>
+                  {{-- <li><a href="{{route('show-users')}}"><i class="fa fa-plus-circle "></i> Usuarios</a></li> --}}
+                  {{-- <li><a href=""><i class="fa fa-plus-circle "></i> Prestadores</a></li> --}}
+                </ul>
+              </li>
 
-            <li class=" treeview">
-              <a href="#">
-                <i class="fas fa-sitemap"></i> <span> Categorías</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-              <li><a href="{{ route('show-categories') }}"><i class="fa fa-search"></i> Consultar</a></li>
-              <li><a href="{{ route('new-category') }}"><i class="fa fa-plus-circle"></i> Nueva</a></li>
-              </ul>
-            </li>
+              <li class=" treeview">
+                <a href="#">
+                  <i class="fas fa-boxes"></i> <span> Datos Maestros</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Diagnosticos</a></li>
+                <li><a href=""><i class="fa fa-search"></i> Tipos de Indicaciones</a></li>
+                <li><a href=""><i class="fa fa-search"></i> Estados de Auditoria</a></li> --}}
+                <li><a href="{{route('show-instructions')}}"><i class="fa fa-search"></i> Instrucciones</a></li>
+                 <li><a href="{{route('show-objectives')}}"><i class="fa fa-search"></i> Objetivos</a></li>
+                <li><a href="{{route('show-recommendations')}}"><i class="fa fa-search"></i> Recomendaciones</a></li>
+                <li><a href="{{route('show-status')}}"><i class="fa fa-search"></i> Estados</a></li>
+                <li><a href="{{route('show-diagnosisType')}}"><i class="fa fa-search"></i> Tipo Diagnostico</a></li>
+                <li><a href="{{route('show-indicationType')}}"><i class="fa fa-search"></i> Tipo Indicacion</a></li>
+                <li><a href="{!! route('show-clients') !!}"><i class="fa fa-search"></i> Clientes</a></li>
 
-            <li class=" treeview">
-              <a href="#">
-                <i class="fa fa-tags"></i> <span> Marcas</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-              <li><a href="{{ route('show-brand') }}"><i class="fa fa-search"></i> Consultar</a></li>
-              <li><a href="{{ route('new-brand') }}"><i class="fa fa-plus-circle"></i> Nueva</a></li>
-              </ul>
-            </li>
+                {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Prestaciones</a></li> --}}
 
-            <li class=" treeview">
-              <a href="#">
-                <i class="fa fa-shopping-cart"></i> <span> Ventas</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-              <li><a href="{{ route('show-sales') }}"><i class="fa fa-search"></i> Consultar</a></li>
-              <li><a href="{{ route('new-sale') }}"><i class="fa fa-plus-circle"></i> Nueva</a></li>
-              </ul>
-            </li>
+                </ul>
+              </li>
 
+              c
+            @endhasanyrole
+            @role('Auditor')
+              <li class=" treeview">
+                <a href="#">
+                  <i class="fas fa-sitemap"></i> <span>Auditor</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
 
+                   <li><a href="{{route('show-audior-asigned-services')}}"><i class="fa fa-search"></i> Pendientes de Aceptar</a></li>
 
-
-
-
-
+                </ul>
+              </li>
+            @endrole
 
       </section>
     @endguest
@@ -327,11 +295,26 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       @yield('content-header')
+      <ol class="breadcrumb">
+        @yield('breadcrumb-items')
+      </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-      @yield('content')
+      <div id="preloaders" class="preloader"
+        style="
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url('/img/logo.svg') 50% 50% no-repeat rgba(68, 68, 68, 0.32);
+                opacity: .8;"
+        ></div>
+        @yield('content')
+
     </section>
     <!-- /.content -->
   </div>
@@ -340,7 +323,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2018 <a href="">Nubecita</a>.</strong> Todos los derechos reservados.
+    <strong>Copyright &copy; 2019 <a href=""{{route('home')}}""> <img src="favicon.ico" alt="">Auditoría sanitaria</a>.</strong> Todos los derechos reservados.
   </footer>
 
   <!-- Control Sidebar -->
@@ -368,13 +351,20 @@
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
-<!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- ./wrapper -->
+<script type="text/javascript">
+  $(window).on('load', function()
+  {
+   $("#preloaders").fadeOut(100);
+   // $('body').removeClass('#preloaders');
+  });
+</script>
+<!-- jQuery 3 -->
+
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
@@ -415,6 +405,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready( function () {
 
@@ -431,8 +422,9 @@ $(document).ready( function () {
 
 
 } );
-$('.js-example-basic-single').select2({
-  placeholder: 'Select an option'
+$('.select2').select2({
+  placeholder: 'Seleccioná una opción',
+  theme: "classic"
   });
 
 </script>
@@ -449,9 +441,33 @@ $('.js-example-basic-single').select2({
   		closeClick	: false,
   		openEffect	: 'none',
   		closeEffect	: 'none',
-      type: 'ajax'
+      type: 'ajax',
+      afterClose: function(){
+        window.location.reload(true);
+        console.log('holi?');
+      }
   	});
   });
 </script>
+<script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
+<script>
+CKEDITOR.replace( 'report',{
+  removeButtons: '',
+  uiColor: '#d1cfc7',
+  });
+CKEDITOR.config.height = '500px'
+// CKEDITOR.config.toolbarLocation = 'bottom';
+// CKEDITOR.config.readOnly = true;
+</script>
+<script>
+CKEDITOR.replace( 'report1',{
+  removeButtons: '',
+  uiColor: '#d1cfc7',
+  });
+CKEDITOR.config.height = '500px'
+// CKEDITOR.config.toolbarLocation = 'bottom';
+// CKEDITOR.config.readOnly = true;
+</script>
+
 </body>
 </html>

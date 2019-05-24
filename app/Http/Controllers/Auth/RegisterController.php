@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Spatie\Permission\Models\Role;
+use App\Invite;
+use App\User;
 
 class RegisterController extends Controller
 {
@@ -20,7 +22,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+    protected $role;
     use RegistersUsers;
 
     /**
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/perfil';
 
     /**
      * Create a new controller instance.
@@ -48,11 +50,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+
+      $validate = Validator::make($data, [
+          //'name' => ['required', 'string', 'max:255'],
+          'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'exists:invites,email'],
+          'password' => ['required', 'string', 'min:8', 'confirmed'],
+      ]);
+        return $validate;
     }
 
     /**
@@ -63,10 +67,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+      $user = User::create([
+        //  'name' => $data['name'],
+          'email' => $data['email'],
+          'password' => Hash::make($data['password']),
+      ]);
+      $invite = Invite::where('email',$data['email'])->first();
+      $this->role = Role::where('id',$invite->role_id)->first();
+      $invite->delete();
+      if($invite->client_id){
+        $user->clients()->sync($invite->client_id);
+      }
+
+      $user->syncRoles($this->role);
+      // dd($this->role);
+      return $user;
     }
 }

@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use App\Diagnosis;
+use App\DiagnosisType;
+use App\Indication;
+use App\Expedient;
+
+class DiagnosesTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+          Expedient::all()->each(function ($expedient) {
+
+            for ($i=0; $i < rand(0,5); $i++) {
+              $diagnosis = new Diagnosis();
+              $diagnosis->expedient_id =  $expedient->id;
+              $diagnosis->diagnosisType_id =  DiagnosisType::inRandomOrder()->first()->id;
+              $diagnosis->save();
+            }
+
+             });
+
+
+    }
+}

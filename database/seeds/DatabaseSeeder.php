@@ -11,6 +11,43 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+         $this->call([
+           RolesTableSeeder::class,
+           GendersTableSeeder::class,
+           MedicaalServiceStatusTableSeeder::class,
+           VendorTypeTableSeeder::class,
+           ProvincesTableSeeder::class,
+           LocationsTableSeeder::class,
+           // LocationsFakeTableSeeder::class,
+           AddressesTableSeeder::class,
+           PeopleTableSeeder::class,
+           ClientTableSeeder::class,
+           UsersTableSeeder::class,
+           DiagnosisTypeTableSeeder::class,
+           StatusesTableSeeder::class,
+           InstructionsTableSeeder::class,
+           ObjectivesTableSeeder::class,
+           RecommendationsTableSeeder::class,
+           AuditorsTableSeeder::class,
+           ServiceTypesTableSeeder::class,
+           VendorsTableSeeder::class,
+           // ServicesTableSeeder::class,
+           // TransportServicesTableSeeder::class,
+           ModuleTypesTableSeeder::class,
+           ModuleCategoriesTableSeeder::class,
+           ModuleTableSeeder::class,
+           MedicTableSeeder::class,
+           IndicationTypesTableSeeder::class,
+           PatientTableSeeder::class,
+           AuditTableSeeder::class,
+           ExpedientModulesTableSeeder::class,
+           MedicalServicesTableSeeder::class,
+           DiagnosesTableSeeder::class,
+           IndicationstableSeeder::class,
+           CommentsTableSeeder::class,
+           ServiceSchedulesTableSeeder::class,
+
+           ]
+       );
     }
 }
