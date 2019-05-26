@@ -35,11 +35,13 @@
     @isset($audit->expedient->expedientModules)
       @foreach ($audit->expedient->expedientModules as $expedientModule )
          <div class="tab-pane" id="modtab_{{$expedientModule->id}}">
-           <h3>{{$expedientModule->module->moduleType->name}} - {{$expedientModule->module->moduleCategory->name}}
-             @can ('audit-edit-expedient')
-               <button data-toggle="tooltip" title="Agregar prestación"type="button" class="fancybox editButtonsModules btn btn-success btn-xs" href="{!! route('new-medical-service',compact('expedientModule')) !!}"><i class="fa fa-plus"></i></button>
-             @endcan
-           </h3>
+           @isset($expedientModule->module->moduleType)
+             <h3>{{$expedientModule->module->moduleType->name}} - {{$expedientModule->module->moduleCategory->name}}
+               @can ('audit-edit-expedient')
+                 <button data-toggle="tooltip" title="Agregar prestación"type="button" class="fancybox editButtonsModules btn btn-success btn-xs" href="{!! route('new-medical-service',compact('expedientModule')) !!}"><i class="fa fa-plus"></i></button>
+               @endcan
+             </h3>
+           @endisset
 
            @if ($expedientModule->medicalServices->count()==0)
                <small><strong> (Este Modulo no posee Prestaciones)</strong></small>

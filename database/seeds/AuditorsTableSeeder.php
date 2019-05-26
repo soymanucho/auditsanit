@@ -13,14 +13,18 @@ class AuditorsTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(Auditor::class, 5)->create();
+              factory(Auditor::class, 5)->create();
 
       $user = new App\User();
-      $user->password = Hash::make('auditor');
-      $user->email = 'auditor@auditor.com';
-    //  $user->name = 'Auditor';
-      $user->person_id = Auditor::inRandomOrder()->first()->person_id;
+      $user->password = Hash::make('migracion');
+      $user->email = 'migracion@migracion.com';
+      $user->person_id = 1;
       $user->save();
       $user->assignRole('Auditor');
+
+      $auditor = new App\Auditor();
+      $auditor->user_id = $user->id;
+      $auditor->person_id = 1;
+      $auditor->save();
     }
 }

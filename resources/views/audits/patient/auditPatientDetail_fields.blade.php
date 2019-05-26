@@ -2,15 +2,15 @@
 
 <div class="form-group col-sm-12 col-md-6 col-lg-2">
   <label>DNI</label>
-  <input class="form-control not-editable input" name="dni" type="text" value="@isset($audit->expedient->patient->person->dni){{old('dni',$audit->expedient->patient->person->dni)}} @endisset" placeholder="25579513">
+  <input class="form-control not-editable input" name="dni" type="text" value="@isset($audit->expedient->patient->person->dni){{old('dni',$audit->expedient->patient->person->dni)}} @endisset" placeholder="">
 </div>
 <div class="form-group col-sm-12 col-md-6 col-lg-5">
   <label>Nombre</label>
-  <input class="form-control not-editable input" name="name" type="text" value="@isset($audit->expedient->patient->person->name){{old('name',$audit->expedient->patient->person->name)}}@endisset" placeholder="Juan">
+  <input class="form-control not-editable input" name="name" type="text" value="@isset($audit->expedient->patient->person->name){{old('name',$audit->expedient->patient->person->name)}}@endisset" placeholder="">
 </div>
 <div class="form-group col-sm-12 col-md-6 col-lg-5">
   <label>Apellido</label>
-  <input class="form-control not-editable input" type="text" name="surname" value="@isset($audit->expedient->patient->person->surname){{old('surname',$audit->expedient->patient->person->surname)}}@endisset" placeholder="Pérez">
+  <input class="form-control not-editable input" type="text" name="surname" value="@isset($audit->expedient->patient->person->surname){{old('surname',$audit->expedient->patient->person->surname)}}@endisset" placeholder="">
 </div>
 <div class="form-group col-sm-12 col-md-6 col-lg-3">
   <label>Fecha de nacimiento</label>

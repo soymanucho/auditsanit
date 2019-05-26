@@ -12,6 +12,8 @@ class VendorsTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(Vendor::class, 15)->create();
+
+      DB::table('vendors')->insert(['name' => 'Migración','vendor_type_id'=>1,'snr_category'=>'Migración','jury_person'=>false,'address_id'=>null]);
+       factory(Vendor::class, 15)->create();
     }
 }

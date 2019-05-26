@@ -25,9 +25,9 @@
           @endisset
         </td>
         <td>
-          @isset($audit->currentStatus()->name)
+          @isset($audit->statuses->sortByDesc('id')->first()->name)
             @php
-                $status = $audit->currentStatus();
+                $status = $audit->statuses->sortByDesc('id')->first();
             @endphp
              <span class="badge" style="background:{{ $status->color}}">{{ $status->id}}. {{ $status->name}}</span>
           @endisset

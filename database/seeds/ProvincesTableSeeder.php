@@ -12,10 +12,11 @@ class ProvincesTableSeeder extends Seeder
      */
     public function run()
     {
-      //factory(Province::class, 23)->create();
+      
 
 
              $provinces = [
+                 ['id' => 1, 'cod' => 'MIGR', 'name' => 'MIGRADO'],
                  ['id' => 2, 'cod' => 'CABA', 'name' => 'CIUDAD AUTÓNOMA DE BUENOS AIRES'],
                  ['id' => 6, 'cod' => 'BA', 'name' => 'BUENOS AIRES'],
                  ['id' => 10, 'cod' => 'CT', 'name' => 'CATAMARCA'],

@@ -74,17 +74,10 @@
  <select class="form-control select2" name="location_id" id="location_id" data-placeholder="Seleccioná una localidad"
          style="width: 100%;">
 
-         @foreach ($locations as $location)
-           @if ($location->province->id == $patient->person->address->location->province->id)
-             <option
-             @isset($patient->person->address->location)
-               @if ($location->id == $patient->person->address->location->id)
-                 selected
-               @endif
-             @endisset
-             value="{{$location->id}}">{{$location->name}}</option>
-           @endif
-         @endforeach
+         @isset($patient->person->address->location)
+           <option selected value="{{$patient->person->address->location->id}}">{{$patient->person->address->location->name}}</option>
+        @endisset
+        
  </select>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

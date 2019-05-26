@@ -12,6 +12,7 @@ class ServicesTableSeeder extends Seeder
      */
     public function run()
     {
-      //factory(Service::class, 20)->create();
+      factory(Service::class, 20)->create();
+      DB::table('services')->insert(['vendor_id' => 1,'service_type_id'=>1]);
     }
 }

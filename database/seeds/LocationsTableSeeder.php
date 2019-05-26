@@ -16,6 +16,7 @@ class LocationsTableSeeder extends Seeder
         DB::table('locations')->delete();
 
         $cities= [
+            ['province_id'=>1, 'name'=>'MIGRADO', 'department'=>NULL, 'latitude'=>0.0, 'longitude'=>0.0],
             ['province_id'=>2, 'name'=>'CIUDAD DE BUENOS AIRES', 'department'=>NULL, 'latitude'=>-34.6132917290185, 'longitude'=>-58.3887517365082],
             ['province_id'=>2, 'name'=>'CONSTITUCION', 'department'=>'COMUNA 1', 'latitude'=>-34.6250478642294, 'longitude'=>-58.384387226424],
             ['province_id'=>2, 'name'=>'MONSERRAT', 'department'=>'COMUNA 1', 'latitude'=>-34.6126880821742, 'longitude'=>-58.379652044818],

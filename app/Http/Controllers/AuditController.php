@@ -42,7 +42,7 @@ class AuditController extends Controller
     }elseif ($roles->contains('Cliente') || $roles->contains('Cliente gerencial')) {
       $audits = Auth::user()->ClientAssignedAudits();
     }else{
-      $audits = Audit::orderBy('id', 'DESC')->with('expedient.patient.person')->get();
+      $audits = Audit::orderBy('id', 'DESC')->with('expedient.patient.person')->with('statuses')->get();
     }
 
     return view('audits.audits',compact('audits','roles'));
@@ -183,7 +183,7 @@ class AuditController extends Controller
   public function new()
   {
     $clients = Client::all();
-    $patients = Patient::all();
+    $patients = Patient::with('person')->get();
     // $patients = Patient::join('people','patients.person_id','=','people.id')->orderby('people.surname')->with('person')->get();
     // return redirect()->route('audit-detail-patient',compact('clients','patients'));
     return view('audits.newAudit',compact('clients','patients'));
@@ -243,7 +243,7 @@ class AuditController extends Controller
   }
   public function detailConclution(Audit $audit)
   {
-    $modules = Module::all();
+    $modules = Module::with('moduleType')->with('moduleCategory')->get();
     $recommendations = Recommendation::all();
     return view('audits.conclution.auditDetailConclution',compact('audit','recommendations','modules'));
   }

@@ -16,7 +16,7 @@ class CreateMedicalServicesTable extends Migration
         Schema::create('medical_services', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('expedient_module_id')->unsigned();
-            $table->bigInteger('service_id')->unsigned();
+            $table->bigInteger('service_id')->nullable()->unsigned();
             $table->bigInteger('transport_service_id')->nullable()->unsigned();
             $table->bigInteger('auditor_id')->nullable()->unsigned();
             $table->bigInteger('status_id')->unsigned();

@@ -22,7 +22,7 @@
 
   <div class="col-lg-3 col-xs-6">
     <!-- small box -->
-    <div class="small-box bg-red">
+    <div class="small-box bg-green">
       <div class="inner">
         <h3>{{$auditsCount}}</h3>
 
@@ -58,7 +58,7 @@
 </div>
 <div class="row">
 
-  <div class="col-md-4 col-xs-12">
+  <div class="col-12">
     <!-- DONUT CHART -->
     <div class="box box-danger">
       <div class="box-header with-border">
@@ -70,13 +70,31 @@
           <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
         </div>
       </div>
-      <div class="box-body">
+      <div class="box-body" style="height: 500px">
         <canvas id="expedientPerVendor" width="50" height="50"></canvas>
       </div>
       <!-- /.box-body -->
     </div>
   </div>
-  <div class="col-md-4 col-xs-12 col-lg-4">
+  <div class="col-12">
+    <!-- DONUT CHART -->
+    <div class="box box-danger">
+      <div class="box-header with-border">
+        <h3 class="box-title">Prestaciones por prestador</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="box-body" style="height: 500px">
+        <canvas id="modulesByType" width="50" height="50"></canvas>
+      </div>
+      <!-- /.box-body -->
+    </div>
+  </div>
+  <div class="col-12">
     <!-- DONUT CHART -->
     <div class="box box-danger">
       <div class="box-header with-border">
@@ -88,7 +106,7 @@
           <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
         </div>
       </div>
-      <div class="box-body">
+      <div class="box-body" style="height: 650px">
         <canvas id="difMods" width="20" height="20"></canvas>
       </div>
       <!-- /.box-body -->
@@ -100,6 +118,7 @@
 
 <script>
   var ctx = document.getElementById("expedientPerVendor").getContext('2d');
+
   var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -117,8 +136,41 @@
         }]
     },
     options: {
+      responsive: true,
+   maintainAspectRatio: false,
      scales: {
          yAxes: [{
+             ticks: {
+                 beginAtZero: true
+             }
+         }]
+     }
+ }
+});
+  </script>
+<script>
+  var ctx = document.getElementById("modulesByType").getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'horizontalBar',
+      data: {
+          labels: {!!json_encode($modulesByType->pluck("name"))!!},
+          datasets: [{
+              label: '# de módulos',
+              data: {!!json_encode($modulesByType->pluck("c"))!!},
+              backgroundColor:
+                'rgb(1,184,170)'
+            ,
+            borderColor:
+                'rgb(1,184,170)'
+            ,
+            borderWidth: 1
+        }]
+    },
+    options: {
+      responsive: true,
+   maintainAspectRatio: false,
+     scales: {
+         xAxes: [{
              ticks: {
                  beginAtZero: true
              }
@@ -161,23 +213,50 @@
   var myChart = new Chart(ctx, {
       type: 'line',
       data: {
-          labels: {!!json_encode($difMods->pluck("module"))!!},
+          labels: {!!json_encode($difMods->pluck("moduleName"))!!},
           datasets: [{
               label: '$',
-              data: {!!json_encode($difMods->pluck("recommended","original"))!!},
+              data: {!!json_encode($difMods->pluck("recommendedPrice"))!!},
               backgroundColor:
-                'rgb(1,184,170)'
-            ,
+              [
+              "rgba(1,184,170,0.4)"
+
+              ],
+
             borderColor:
-                'rgb(1,184,170)'
-            ,
+            [
+            "rgb(1,184,170)"
+
+            ],
+
             borderWidth: 1
-        }]
+        },
+        {
+            label: '$',
+            data: {!!json_encode($difMods->pluck("originalPrice"))!!},
+            backgroundColor:
+            [
+
+            "rgba(184, 1, 50,0.4)"
+            ],
+
+          borderColor:
+          [
+
+          "rgb(184, 1, 50)"
+          ],
+
+          borderWidth: 1
+      }]
     },
     options: {
+      responsive: true,
+   maintainAspectRatio: false,
         scales: {
-            yAxes: [{
-                stacked: true
+            xAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
             }]
         }
     }

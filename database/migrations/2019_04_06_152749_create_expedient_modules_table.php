@@ -15,7 +15,7 @@ class CreateExpedientModulesTable extends Migration
     {
         Schema::create('expedient_modules', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('module_id')->unsigned();
+            $table->bigInteger('module_id')->nullable()->unsigned();
             $table->decimal('price',12,2);
             $table->bigInteger('expedient_id')->unsigned();
             $table->bigInteger('recommended_module_id')->nullable()->unsigned();

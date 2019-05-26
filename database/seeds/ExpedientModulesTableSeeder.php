@@ -20,11 +20,12 @@ class ExpedientModulesTableSeeder extends Seeder
       foreach (Expedient::all() as $expedient) {
         for ($i=0; $i < rand(0,5) ; $i++) {
 
+          $module = Module::inRandomOrder()->first();
           $moduloExpediente = new Expedientmodule();
-          $moduloExpediente->module_id = Module::inRandomOrder()->first()->id;
+          $moduloExpediente->module_id = $module->id;
           $moduloExpediente->recommended_module_id = Module::inRandomOrder()->first()->id;
           $moduloExpediente->expedient_id = $expedient->id;
-          $moduloExpediente->price = 0;
+          $moduloExpediente->price = $module->price;
           $moduloExpediente->save();
         }
       }

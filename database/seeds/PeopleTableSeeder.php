@@ -13,5 +13,10 @@ class PeopleTableSeeder extends Seeder
     public function run()
     {
       factory(Person::class, 100)->create();
+      $person = new App\Person();
+      $person->name = 'Migracion';
+      $person->surname = 'Migracion';
+      $person->dni = 0;
+      $person->save();
     }
 }

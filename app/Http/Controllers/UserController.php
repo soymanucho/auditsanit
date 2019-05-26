@@ -13,6 +13,7 @@ use App\Location;
 use App\Address;
 use App\Client;
 use App\Province;
+use App\Auditor;
 
 use Illuminate\Http\Request;
 
@@ -55,10 +56,10 @@ class UserController extends Controller
     }
     // $user->person()->attach($person->id);
     $genders = Gender::all();
-    $locations = Location::all();
-    $provinces = Province::all();
+    // $locations = Location::all();
+    $provinces = Province::with('locations')->get();
     $function = "show";
-    return view('user.profileShow',compact('user','genders','locations','provinces','person','function'));
+    return view('user.profileShow',compact('user','genders','provinces','person','function'));
   }
 
   // public function save(Request $request)
@@ -158,10 +159,10 @@ class UserController extends Controller
     }
     // $user->person()->attach($person->id);
     $genders = Gender::all();
-    $locations = Location::all();
-    $provinces = Province::all();
+    //$locations = Location::all();
+    $provinces = Province::with('locations')->get();
     $function = "edit";
-    return view('user.profileEdit',compact('user','genders','locations','provinces','person','function'));
+    return view('user.profileEdit',compact('user','genders','provinces','person','function'));
   }
 
   public function update(User $user, Request $request)
@@ -179,6 +180,7 @@ class UserController extends Controller
           // 'tipoMatricula' => 'required', Rule::in(['nacional', 'provincial']),
           'cargo' => 'string|max:100',
           'telTrabajoInterno' => 'integer',
+          'intern' => 'integer',
           'celular' => 'integer',
           'street' => 'string|max:100',
           'number' => 'string|max:100',
@@ -202,6 +204,7 @@ class UserController extends Controller
         'tipoMatricula' => 'tipo de matrícula',
         'cargo' => 'cargo',
         'telTrabajoInterno' => 'teléfono laboral',
+        'intern' => 'intern',
         'celular' => 'celular',
         'street' => 'calle',
         'number' => 'número',
@@ -244,6 +247,7 @@ class UserController extends Controller
   $person->matricula = $request->matricula;
   $person->cargo = $request->cargo;
   $person->telTrabajoInterno = $request->telTrabajoInterno;
+  $person->intern = $request->intern;
   $person->celular = $request->celular;
 
   $person->save();
@@ -255,6 +259,12 @@ class UserController extends Controller
   $user->password = Hash::make($request->password);
   $user->save();
 
+  if ($user->getRoleNames()->contains('Auditor')) {
+    $auditor = new Auditor();
+    $auditor->user_id = $user->id;
+    $auditor->person_id = $person->id;
+    $auditor->save();
+  }
   return redirect()->route('home');
   }
 
