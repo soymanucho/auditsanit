@@ -1,0 +1,40 @@
+INSERT INTO audit_sanit_db.addresses (street,created_at,location_id)
+SELECT
+    old.domicilio, fecha_creacion, 1
+FROM
+    audit_sanit_orig_db.auditorias old;
+
+INSERT INTO audit_sanit_db.people (dni,name,surname,birthdate,created_at,address_id)
+SELECT dni,MAX(paciente),'',MAX(fecha_nacimiento),MAX(fecha_creacion),addre.id FROM audit_sanit_orig_db.auditorias ori, audit_sanit_db.addresses addre WHERE ori.domicilio = addre.street GROUP BY dni;
+
+
+INSERT INTO audit_sanit_db.patients (person_id)
+SELECT id FROM audit_sanit_db.people;
+
+
+INSERT INTO audit_sanit_db.expedients (client_id,patient_id)
+ SELECT 1,patients.id FROM audit_sanit_db.people
+ JOIN audit_sanit_orig_db.auditorias oldAudits
+ ON oldAudits.dni = people.dni
+ JOIN audit_sanit_db.patients
+ ON people.id = patients.person_id;
+
+INSERT INTO audit_sanit_db.audits (expedient_id, conclution, migration_id, created_at)
+SELECT NULL,conclusiones,id_auditoria, fecha_creacion FROM audit_sanit_orig_db.auditorias oldAudits;
+
+UPDATE audit_sanit_db.audits
+SET
+    expedient_id = id;
+
+
+INSERT INTO audit_sanit_db.expedient_modules (module_id,price,expedient_id,recommended_module_id,created_at)
+SELECT 97,0,exp.id,NULL,exp.created_at FROM audit_sanit_db.expedients exp;
+
+ INSERT INTO audit_sanit_db.medical_services(expedient_module_id, service_id,transport_service_id,auditor_id,status_id,report,created_at)
+ SELECT expMod.id,1,NULL,1,2,ori.informe,ori.fecha_creacion FROM audit_sanit_db.expedient_modules expMod, audit_sanit_db.audits aud,  audit_sanit_orig_db.auditorias ori WHERE expMod.expedient_id = aud.id AND aud.migration_id = ori.id_auditoria;
+
+
+
+INSERT INTO audit_sanit_db.audits_statuses(audit_id,status_id,created_at)
+SELECT aud.id,IF(ori.id_estado_auditoria = 4,6,1), ori.fecha_creacion
+FROM audit_sanit_db.audits aud, audit_sanit_orig_db.auditorias ori WHERE ori.id_auditoria = aud.migration_id;

@@ -13,7 +13,7 @@ class AuditorsTableSeeder extends Seeder
      */
     public function run()
     {
-              factory(Auditor::class, 5)->create();
+            //  factory(Auditor::class, 5)->create();
 
       $user = new App\User();
       $user->password = Hash::make('migracion');
