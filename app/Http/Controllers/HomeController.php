@@ -74,7 +74,7 @@ class HomeController extends Controller
        $recommendedModules = DB::table('expedient_modules')
                        ->join('modules', 'modules.id', '=', 'expedient_modules.recommended_module_id')
                        // ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
-                       ->select(DB::raw("expedient_modules.recommended_module_id, sum(modules.price) as recommendedPrice"))
+                       ->select(DB::raw("expedient_modules.recommended_module_id, sum(modules.price) as recommendedprice"))
                        ->groupBy("expedient_modules.recommended_module_id")
                        ->orderby('expedient_modules.recommended_module_id','ASC')
                        //->get() //comentado para subjoin
@@ -83,7 +83,7 @@ class HomeController extends Controller
                        ->join('modules', 'modules.id', '=', 'expedient_modules.module_id')
                        // ->join('modules', 'modules.id', '=', 'expedient_modules.recommended_module_id')
                        // ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
-                       ->select(DB::raw("expedient_modules.module_id, sum(modules.price) as originalPrice"))
+                       ->select(DB::raw("expedient_modules.module_id, sum(modules.price) as originalprice"))
                        ->groupBy("expedient_modules.module_id")
                        ->orderby('expedient_modules.module_id','ASC');
                       // ->get();
@@ -95,20 +95,20 @@ class HomeController extends Controller
                     ->leftjoinSub($recommendedModules, 'recommended_modules', function ($join) {
                       $join->on('modules.id', '=', 'recommended_modules.recommended_module_id');
                     })
-                    ->whereNotNull('original_modules.originalPrice')
-                    ->orWhereNotNull('recommended_modules.recommendedPrice')
+                    ->whereNotNull('original_modules.originalprice')
+                    ->orWhereNotNull('recommended_modules.recommendedprice')
                     ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
                     ->join('module_categories', 'module_categories.id', '=', 'modules.module_category_id')
-                    ->select(DB::raw("modules.id,CONCAT(module_types.name,', ',module_categories.name) as moduleName, recommended_modules.recommendedPrice,original_modules.originalPrice"))
+                    ->select(DB::raw("modules.id, CONCAT(module_types.name,', ',module_categories.name) as moduleName, recommended_modules.recommendedprice,original_modules.originalprice"))
                     ->orderBy('modules.id','ASC')
                     ->get();
                     $difMods->transform(function ($item,$key){
                       // dd($item,$key);
-                      if ($item->recommendedPrice == null) {
-                        $item->recommendedPrice = 0;
+                      if ($item->recommendedprice == null) {
+                        $item->recommendedprice = 0;
                       }
-                      if ($item->originalPrice == null) {
-                        $item->originalPrice = 0;
+                      if ($item->originalprice == null) {
+                        $item->originalprice = 0;
                       }
                       return $item;
                     });
