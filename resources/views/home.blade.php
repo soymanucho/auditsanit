@@ -56,6 +56,7 @@
   @endrole
 
 </div>
+@role('Administrador')
 <div class="row">
 
   <div class="col-12">
@@ -114,6 +115,7 @@
   </div>
 
 </div>
+@endrole
 
 
 <script>
