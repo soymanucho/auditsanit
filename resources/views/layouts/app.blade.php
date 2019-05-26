@@ -260,13 +260,25 @@
                 <li><a href="{{route('show-diagnosisType')}}"><i class="fa fa-search"></i> Tipo Diagnostico</a></li>
                 <li><a href="{{route('show-indicationType')}}"><i class="fa fa-search"></i> Tipo Indicacion</a></li>
                 <li><a href="{!! route('show-clients') !!}"><i class="fa fa-search"></i> Clientes</a></li>
-
+                <li class="treeview">
+                  <a href="#">
+                    <i class="fa fa-search"></i> <span>Módulo</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="{{route('show-moduletypes')}}"><i class="fa fa-search"></i> Tipos de modulo</a></li>
+                     <li><a href="{{route('show-modulecategories')}}"><i class="fa fa-search"></i> Categorias de Modulos</a></li>
+                  <li><a href="{{route('show-module')}}"><i class="fa fa-search"></i> Modulos</a></li>
+                  </ul>
+                </li>
                 {{-- <li><a href=""><i class="fa fa-search"></i> Tipos de Prestaciones</a></li> --}}
 
                 </ul>
               </li>
 
-              c
+
             @endhasanyrole
             @role('Auditor')
               <li class=" treeview">

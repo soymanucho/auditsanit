@@ -48,7 +48,11 @@
           DNI {{$audit->expedient->patient->person->dni}}<br>
           Dirección: {{$audit->expedient->patient->person->address->street}} {{$audit->expedient->patient->person->address->number}}, {{$audit->expedient->patient->person->address->location->name}} ({{$audit->expedient->patient->person->address->location->province->name}})<br>
           Edad: {{$audit->expedient->patient->person->age()}}<br>
-          Género: {{$audit->expedient->patient->person->gender->name}}
+          Género: @isset($audit->expedient->patient->person->gender)
+            {{$audit->expedient->patient->person->gender->name}}
+          @else
+            Indefinido
+          @endisset
         </address>
       </div>
       <!-- /.col -->
@@ -92,7 +96,9 @@
               @foreach ($expedientModule->medicalServices as $medicalService)
                 <tr>
                   <td>{{$medicalService->service->serviceType->name}}</td>
-                  <td>{{$medicalService->service->vendor->name}} ({{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}})</td>
+                  <td>{{$medicalService->service->vendor->name}} @isset($medicalService->service->vendor->address)
+                    ({{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}})
+                  @endisset </td>
                   <td>{{$medicalService->auditor->person->name}} {{$medicalService->auditor->person->surname}}</td>
                 </tr>
               @endforeach

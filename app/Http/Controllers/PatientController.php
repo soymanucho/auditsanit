@@ -37,9 +37,9 @@ class PatientController extends Controller
     $patient->person()->associate($person);
 
     $genders = Gender::all();
-    $provinces = Province::all();
-    $locations = Location::all();
-    return view('patients.newPatient',compact('patient','genders','provinces','locations'));
+    $provinces = Province::with('locations')->get();
+    // $locations = Location::all();
+    return view('patients.newPatient',compact('patient','genders','provinces'));
   }
 
   public function save(Request $request)

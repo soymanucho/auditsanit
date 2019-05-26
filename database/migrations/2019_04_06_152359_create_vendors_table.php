@@ -19,7 +19,7 @@ class CreateVendorsTable extends Migration
             $table->bigInteger('vendor_type_id')->unsigned();
             $table->string('snr_category');
             $table->boolean('jury_person');
-            $table->bigInteger('address_id')->unsigned();
+            $table->bigInteger('address_id')->nullable()->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

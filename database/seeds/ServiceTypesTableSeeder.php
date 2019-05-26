@@ -12,6 +12,7 @@ class ServiceTypesTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(ServiceType::class, 10)->create();
+       factory(ServiceType::class, 10)->create();
+      DB::table('service_types')->insert(['name' => 'Migración','is_transport_service'=>false]);
     }
 }

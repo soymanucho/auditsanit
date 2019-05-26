@@ -59,34 +59,63 @@ class HomeController extends Controller
                        ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
                        ->select(DB::raw("vendors.name, coalesce(count(expedients.id),0) as c"))
                        ->groupBy("vendors.name")
-                       ->orderby('vendors.name','ASC')
+                       ->orderby('c','DESC')
                        ->get();
+       $modulesByType = DB::table('expedients')
+                       ->join('expedient_modules', 'expedients.id', '=', 'expedient_modules.expedient_id')
+                       ->join('modules', 'modules.id', '=', 'expedient_modules.module_id')
+                       ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
+                       ->select(DB::raw("module_types.name, coalesce(count(expedients.id),0) as c"))
+                       ->groupBy("module_types.name")
+                       ->orderby('c','DESC')
+                       ->get();
+
                        // dd($expedientsPerVendor);
        $recommendedModules = DB::table('expedient_modules')
                        ->join('modules', 'modules.id', '=', 'expedient_modules.recommended_module_id')
-                       ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
-                       ->join('module_categories', 'module_categories.id', '=', 'modules.module_category_id')
                        // ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
-                       ->select(DB::raw("expedient_modules.id, CONCAT(module_types.name,', ',module_categories.name), sum(modules.price)"))
-                       ->groupBy("expedient_modules.id")
-                       ->groupBy("module_types.name")
-                       ->groupBy("module_categories.name")
-                       ->orderby('expedient_modules.id','ASC')
-                       ->get();
+                       ->select(DB::raw("expedient_modules.recommended_module_id, sum(modules.price) as recommendedPrice"))
+                       ->groupBy("expedient_modules.recommended_module_id")
+                       ->orderby('expedient_modules.recommended_module_id','ASC')
+                       //->get() //comentado para subjoin
+                       ;
        $originalModules = DB::table('expedient_modules')
                        ->join('modules', 'modules.id', '=', 'expedient_modules.module_id')
                        // ->join('modules', 'modules.id', '=', 'expedient_modules.recommended_module_id')
-                       ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
-                       ->join('module_categories', 'module_categories.id', '=', 'modules.module_category_id')
                        // ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
-                       ->select(DB::raw("expedient_modules.id, CONCAT(module_types.name,', ',module_categories.name), sum(modules.price)"))
-                       ->groupBy("expedient_modules.id")
-                       ->groupBy("module_types.name")
-                       ->groupBy("module_categories.name")
-                       ->orderby('expedient_modules.id','ASC')
-                       ->get();
+                       ->select(DB::raw("expedient_modules.module_id, sum(modules.price) as originalPrice"))
+                       ->groupBy("expedient_modules.module_id")
+                       ->orderby('expedient_modules.module_id','ASC');
+                      // ->get();
 
-      $difMods= $originalModules->merge($recommendedModules)->groupBy('expMod');
+                    $difMods = DB::table('modules')
+                    ->leftjoinSub($originalModules, 'original_modules', function ($join) {
+                      $join->on('modules.id', '=', 'original_modules.module_id');
+                    })
+                    ->leftjoinSub($recommendedModules, 'recommended_modules', function ($join) {
+                      $join->on('modules.id', '=', 'recommended_modules.recommended_module_id');
+                    })
+                    ->whereNotNull('original_modules.originalPrice')
+                    ->orWhereNotNull('recommended_modules.recommendedPrice')
+                    ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
+                    ->join('module_categories', 'module_categories.id', '=', 'modules.module_category_id')
+                    ->select(DB::raw("modules.id,CONCAT(module_types.name,', ',module_categories.name) as moduleName, recommended_modules.recommendedPrice,original_modules.originalPrice"))
+                    ->orderBy('modules.id','ASC')
+                    ->get();
+                    $difMods->transform(function ($item,$key){
+                      // dd($item,$key);
+                      if ($item->recommendedPrice == null) {
+                        $item->recommendedPrice = 0;
+                      }
+                      if ($item->originalPrice == null) {
+                        $item->originalPrice = 0;
+                      }
+                      return $item;
+                    });
+                    // dd($difMods);
+
+      //$difMods= $originalModules;//->toBase()->merge($recommendedModules->toBase());
+    //dd($difMods);//,$originalModules,$recommendedModules);
       // $difMods= $originalModules->merge($recommendedModules)->sort();
       // foreach ($originalModules as $orig) {
       //
@@ -139,6 +168,6 @@ class HomeController extends Controller
        }
       // $amountOfAudits = Audit::all()->count();
       // $totalAmountOfUsers = User::all()->count();
-      return view('home',compact('auditsCount','pendingAuditsCount','expedientsPerVendor','difMods'));//,'auditsByStatus','auditsByGender'));
+      return view('home',compact('auditsCount','pendingAuditsCount','expedientsPerVendor','difMods','modulesByType'));//,'auditsByStatus','auditsByGender'));
     }
 }

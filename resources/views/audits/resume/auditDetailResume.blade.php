@@ -77,7 +77,11 @@
         DNI {{$audit->expedient->patient->person->dni}}<br>
         Dirección: {{$audit->expedient->patient->person->address->street}} {{$audit->expedient->patient->person->address->number}}, {{$audit->expedient->patient->person->address->location->name}} ({{$audit->expedient->patient->person->address->location->province->name}})<br>
         Edad: {{$audit->expedient->patient->person->age()}}<br>
-        Género: {{$audit->expedient->patient->person->gender->name}}
+        Género: @isset($audit->expedient->patient->person->gender)
+          {{$audit->expedient->patient->person->gender->name}}
+        @else
+          Indefinido
+        @endisset
       </address>
     </div>
     <!-- /.col -->
@@ -124,7 +128,9 @@
             @foreach ($expedientModule->medicalServices as $medicalService)
               <tr>
                 <td>{{$medicalService->service->serviceType->name}}</td>
-                <td>{{$medicalService->service->vendor->name}} ({{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}})</td>
+                <td>{{$medicalService->service->vendor->name}} @isset($medicalService->service->vendor->address)
+                  ({{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}})
+                @endisset </td>
                 <td>{{$medicalService->auditor->person->name}} {{$medicalService->auditor->person->surname}}</td>
               </tr>
             @endforeach
@@ -178,7 +184,7 @@
   <!-- this row will not appear when printing -->
   <div class="row no-print">
     <div class="col-xs-12">
-      <a href="{!! route('audit-resume-print',compact('audit')) !!}" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</a>
+      {{-- <a href="{!! route('audit-resume-print',compact('audit')) !!}" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</a> --}}
       {{-- <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
       </button>
       <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">

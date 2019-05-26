@@ -72,7 +72,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="telTrabajoInterno" class="col-sm-2 control-label">Interno</label>
+    <label for="intern" class="col-sm-2 control-label">Interno</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="intern" placeholder="0000" value="{{ old('intern',$person->intern)}}">
     </div>
@@ -128,23 +128,10 @@
     <div class="col-sm-10">
       <select name="location_id" class="form-control select2" id="location_id" data-placeholder="Seleccioná una localidad" style="width: 100%;">
         <option value=""></option>
-        @isset($person->address->location->province->id)
-          @foreach ($locations as $location)
-            @if ($person->address->location->province->id == $location->province->id)
-              <option
-              @isset($person->address->location)
-                @if ($person->address->location->id == $location->id)
-                   selected
-                @endif
-              @else
-                @if (old('location_id') == $location->id)
-                   selected
-                @endif
-              @endisset
-              value="{{$location->id}}" >{{$location->name}}</option>
-            @endif
-          @endforeach
-        @endisset
+        @isset($person->address->location)
+              <option selected
+              value="{{ old('location_id',$person->address->location->id)}}" >{{$person->address->location->name}}</option>
+            @endisset
       </select>
     </div>
   </div>

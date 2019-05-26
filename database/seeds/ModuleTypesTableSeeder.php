@@ -54,5 +54,6 @@ class ModuleTypesTableSeeder extends Seeder
       DB::table('module_types')->insert(['name' => "Rehabilitación – Internación"]);
       DB::table('module_types')->insert(['name' => "Alimentación"]);
       DB::table('module_types')->insert(['name' => "Transporte"]);
+      DB::table('module_types')->insert(['name' => "Migracion"]);
     }
 }

@@ -36,9 +36,9 @@ class VendorController extends Controller
 
     $vendor->address()->associate($address);
 
-    $locations = Location::all();
-    $provinces = Province::all();
-    return view('vendors.newVendor',compact('vendor','provinces','locations'));
+    // $locations = Location::all();
+    $provinces = Province::with('locations')->get();
+    return view('vendors.newVendor',compact('vendor','provinces'));
   }
   public function save(Request $request)
   {
@@ -61,9 +61,9 @@ class VendorController extends Controller
   }
   public function edit(Vendor $vendor)
   {
-    $locations = Location::all();
-    $provinces = Province::all();
-    return view('vendors.editVendor',compact('vendor','provinces','locations'));
+    // $locations = Location::all();
+    $provinces = Province::with('locations')->get();
+    return view('vendors.editVendor',compact('vendor','provinces'));
   }
   public function update(Vendor $vendor, Request $request)
   {

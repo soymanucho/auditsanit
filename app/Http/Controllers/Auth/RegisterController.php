@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Spatie\Permission\Models\Role;
 use App\Invite;
+use App\Auditor;
 use App\User;
 
 class RegisterController extends Controller
@@ -78,7 +79,6 @@ class RegisterController extends Controller
       if($invite->client_id){
         $user->clients()->sync($invite->client_id);
       }
-
       $user->syncRoles($this->role);
       // dd($this->role);
       return $user;

@@ -62,7 +62,9 @@
 <div class="form-group col-sm-12 col-md-6 col-lg-3">
  <label>Localidad</label>
  <select class="form-control select2" name="location_id" id="location_id" data-placeholder="Seleccioná una localidad" style="width: 100%;">
-         @foreach ($locations as $location)
+         @foreach ($provinces as $province)
+           @foreach ($province->locations as $location)
+
            @if ($vendor->address->location->province->id == $location->province->id)
              <option
              @isset($vendor->address->location)
@@ -72,6 +74,7 @@
              @endisset
              value="{{$location->id}}">{{$location->name}}</option>
            @endif
+         @endforeach
          @endforeach
  </select>
 </div>

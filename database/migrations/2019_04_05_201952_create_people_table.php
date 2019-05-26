@@ -24,7 +24,7 @@ class CreatePeopleTable extends Migration
             $table->boolean('nacional')->nullable();
             $table->string('cargo')->nullable();
             $table->string('telTrabajoInterno')->nullable();
-            $table->string('interno')->nullable();
+            $table->string('intern')->nullable();
             $table->string('celular')->nullable();
             $table->bigInteger('address_id')->unsigned()->nullable();
             $table->bigInteger('gender_id')->unsigned()->nullable();

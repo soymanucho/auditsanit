@@ -17,6 +17,8 @@ class CreateAuditsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('expedient_id')->unsigned()->unique()->nullable();
             $table->longText('conclution')->nullable();
+            $table->bigInteger('migration_id')->unsigned()->unique()->nullable();
+
             // $table->longText('report')->nullable();
             $table->timestamps();
             $table->softDeletes();
