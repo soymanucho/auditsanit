@@ -259,6 +259,7 @@
                 <li><a href="{{route('show-status')}}"><i class="fa fa-search"></i> Estados</a></li>
                 <li><a href="{{route('show-diagnosisType')}}"><i class="fa fa-search"></i> Tipo Diagnostico</a></li>
                 <li><a href="{{route('show-indicationType')}}"><i class="fa fa-search"></i> Tipo Indicacion</a></li>
+                <li><a href="{{route('show-serviceType')}}"><i class="fa fa-search"></i> Tipo Prestación</a></li>
                 <li><a href="{!! route('show-clients') !!}"><i class="fa fa-search"></i> Clientes</a></li>
                 <li class="treeview">
                   <a href="#">

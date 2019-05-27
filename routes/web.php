@@ -33,6 +33,14 @@ Route::group(['middleware' => ['role:Administrador|Backoffice']], function () {
   Route::post('/tipos-indicacion/{indicationType}/editar/', 'IndicationTypeController@update')->name('update-indicationType');
   Route::get('/tipos-indicacion/{indicationType}/eliminar/', 'IndicationTypeController@delete')->name('delete-indicationType');
 
+  //TIPOS PRESTACION
+  Route::get('/tipos-prestacion/', 'ServiceTypeController@show')->name('show-serviceType');
+  Route::get('/tipos-prestacion/nuevo', 'ServiceTypeController@new')->name('new-serviceType');
+  Route::post('/tipos-prestacion/nuevo', 'ServiceTypeController@save')->name('save-serviceType');
+  Route::get('/tipos-prestacion/{serviceType}/editar/', 'ServiceTypeController@edit')->name('edit-serviceType');
+  Route::post('/tipos-prestacion/{serviceType}/editar/', 'ServiceTypeController@update')->name('update-serviceType');
+  Route::get('/tipos-prestacion/{serviceType}/eliminar/', 'ServiceTypeController@delete')->name('delete-serviceType');
+
   //TIPOS DIAGNOSTICO
   Route::get('/tipos-diagnostico/', 'DiagnosisTypeController@show')->name('show-diagnosisType');
   Route::get('/tipos-diagnostico/nuevo', 'DiagnosisTypeController@new')->name('new-diagnosisType');
