@@ -55,8 +55,8 @@ function toggleEditables(claseBoton,claseElementoEditable,inputEditable,toggle){
     }
 
 
-    console.log($("."+claseElementoEditable));
-    console.log($("."+inputEditable));
+    // console.log($("."+claseElementoEditable));
+    // console.log($("."+inputEditable));
   var togglebutton = document.getElementById(claseBoton);
   togglebutton.onclick = function(){toggleEditables(claseBoton,claseElementoEditable,inputEditable,!toggle)};
 }

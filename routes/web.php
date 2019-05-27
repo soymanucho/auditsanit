@@ -167,14 +167,6 @@ Route::get('/prestacion/{medicalService}/rechazar', 'MedicalServiceController@de
 Route::get('/medicalService/{medicalService}/reasignarAuditor', 'MedicalServiceController@editAuditor')->name('reasign-auditor-medical-service');
 Route::post('/medicalService/{medicalService}/reasignarAuditor', 'MedicalServiceController@updateAuditor')->name('update-auditor-medical-service');
 
-//STATUS
-Route::get('/estados/', 'StatusController@show')->name('show-status');
-Route::get('/estados/nuevo', 'StatusController@new')->name('new-status');
-Route::post('/estados/nuevo', 'StatusController@save')->name('save-status');
-Route::get('/estados/{status}/editar/', 'StatusController@update')->name('edit-status');
-Route::post('/estados/{status}/editar/', 'StatusController@edit')->name('update-status');
-Route::get('/estados/{status}/eliminar/', 'StatusController@delete')->name('delete-status');
-
 //UPDATE-STATUS-AUDIT
 Route::post('/auditoria/{audit}/estado/{status}/actualizar/', 'AuditController@updateStatus')->name('update-status-audit')->middleware('can:audit-edit-history');
 
@@ -184,7 +176,16 @@ Route::post('/auditoria/{audit}/agregar-comentario/', 'CommentController@add')->
 
 //API LOCATIONS
 Route::get('/localidades/get', 'LocationController@get')->name('api-locations');
+//API DIAGNOSES
+Route::get('/diagnoses/get/{params}', 'DiagnosisTypeController@get')->name('api-diagnoses');
 
+//STATUS
+Route::get('/estados/', 'StatusController@show')->name('show-status');
+Route::get('/estados/nuevo', 'StatusController@new')->name('new-status');
+Route::post('/estados/nuevo', 'StatusController@save')->name('save-status');
+Route::get('/estados/{status}/editar/', 'StatusController@edit')->name('edit-status');
+Route::post('/estados/{status}/editar/', 'StatusController@update')->name('update-status');
+Route::get('/estados/{status}/eliminar/', 'StatusController@delete')->name('delete-status');
 
 //AUDITS
 Route::get('/auditorias/', 'AuditController@show')->name('show-audits');

@@ -11,7 +11,27 @@ class DiagnosisTypeController extends Controller
   {
     $this->middleware('auth');
   }
-  
+
+  public function get(Request $request)
+  {
+
+    $term = trim($request->q);
+
+        if (empty($term)) {
+            return \Response::json([]);
+        }
+
+        $tags = DiagnosisType::search($term)->limit(5)->get();
+
+        $formatted_tags = [];
+
+        foreach ($tags as $tag) {
+            $formatted_tags[] = ['id' => $tag->id, 'text' => $tag->name];
+        }
+
+        return \Response::json($formatted_tags);
+  }
+
   public function show()
   {
     $diagnosisTypes = DiagnosisType::all();
@@ -35,7 +55,7 @@ class DiagnosisTypeController extends Controller
       $request,
       [
           'name' => 'required|max:60',
-          'code' => 'required|max:60',
+          'code' => 'max:60',
       ],
       [
       ],
@@ -59,7 +79,7 @@ class DiagnosisTypeController extends Controller
       $request,
       [
           'name' => 'required|max:60',
-          'code' => 'required|max:60',
+          'code' => 'max:60',
       ],
       [
       ],

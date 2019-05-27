@@ -5,6 +5,7 @@ namespace App\Exports;
 use App\Audit;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
+use Illuminate\Support\Facades\Auth;
 // use Maatwebsite\Excel\Concerns\FromCollection;
 
 class AuditExport implements FromView
@@ -13,6 +14,7 @@ class AuditExport implements FromView
   public function view(): View
   {
       return view('audits.datatable', [
+          'roles' =>Auth::user()->getRoleNames(),
           'audits' => Audit::all()
       ]);
   }
