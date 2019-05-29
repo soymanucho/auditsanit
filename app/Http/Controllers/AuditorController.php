@@ -16,7 +16,7 @@ class AuditorController extends Controller
   {
     //dd(Auditor::first()->numberOfTotalAudits());
 
-    $auditors = Auditor::all();
+    $auditors = Auditor::all()->except(1);
     return view('auditors.auditors',compact('auditors'));
   }
   public function export()

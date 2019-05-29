@@ -7,6 +7,7 @@ use App\Vendor;
 use App\Location;
 use App\Province;
 use App\Address;
+use App\VendorType;
 
 class VendorController extends Controller
 {
@@ -38,7 +39,8 @@ class VendorController extends Controller
 
     // $locations = Location::all();
     $provinces = Province::with('locations')->get();
-    return view('vendors.newVendor',compact('vendor','provinces'));
+    $vendorTypes = VendorType::all();
+    return view('vendors.newVendor',compact('vendor','provinces','vendorTypes'));
   }
   public function save(Request $request)
   {
@@ -47,11 +49,13 @@ class VendorController extends Controller
       $request,
       [
           'name' => 'required|max:60',
+          'vendor_type_id' => 'required|exists:vendor_types,id',
       ],
       [
       ],
       [
           'name' => 'nombre',
+          'vendor_type_id' => 'tipo de prestador',
       ]
   );
   $vendor = new Vendor;
@@ -63,7 +67,8 @@ class VendorController extends Controller
   {
     // $locations = Location::all();
     $provinces = Province::with('locations')->get();
-    return view('vendors.editVendor',compact('vendor','provinces'));
+    $vendorTypes = VendorType::all();
+    return view('vendors.editVendor',compact('vendor','provinces','vendorTypes'));
   }
   public function update(Vendor $vendor, Request $request)
   {
@@ -71,11 +76,13 @@ class VendorController extends Controller
       $request,
       [
           'name' => 'required|max:60',
+          'vendor_type_id' => 'required|exists:vendor_types,id',
       ],
       [
       ],
       [
           'name' => 'nombre',
+          'vendor_type_id' => 'tipo de prestador',
       ]
   );
   $vendor->fill($request->all());

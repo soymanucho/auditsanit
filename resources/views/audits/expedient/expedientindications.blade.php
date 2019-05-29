@@ -13,7 +13,7 @@
       <table class="table table-bordered table-hover display nowrap" style="width:100%">
         <tr>
           <th>Nombre</th>
-          <th># sesiones</th>
+          <th># sesiones semanales</th>
           <th>Adicional Dependencia</th>
           <th>Medico</th>
           @can ('audit-edit-expedient')

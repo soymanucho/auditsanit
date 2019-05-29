@@ -32,7 +32,7 @@ class RecommendationController extends Controller
     $this->validate(
       $request,
       [
-          'name' => 'required|max:60',
+          'name' => 'required|max:500',
       ],
       [
       ],
@@ -54,7 +54,7 @@ class RecommendationController extends Controller
     $this->validate(
       $request,
       [
-          'name' => 'required|max:60',
+          'name' => 'required|max:500',
       ],
       [
       ],

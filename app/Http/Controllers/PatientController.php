@@ -20,7 +20,7 @@ class PatientController extends Controller
 
   public function show()
   {
-    $patients = Patient::orderBy('created_at','DESC')->get();
+    $patients = Patient::orderBy('created_at','DESC')->get()->except(1);
     return view('patients.patients',compact('patients'));
   }
   public function new()
@@ -48,15 +48,15 @@ class PatientController extends Controller
         $request,
         [
             'name' => 'required|string|max:100',
-            'surname' => 'required|string|max:100',
-            'dni'     => 'required|string|max:10',
-            'birthdate' => 'required|date|before:today',
-            'street' => 'required|string|max:100',
-            'number' => 'required|string|max:100',
-            'floor' => 'required|string|max:100',
-            'location_id' => 'required|exists:locations,id',
-            'province_id' => 'required|exists:provinces,id',
-            'gender_id' => 'required|exists:genders,id',
+            'surname' => 'string|max:100',
+            'dni'     => 'string|max:10',
+            'birthdate' => 'date|before:today',
+            'street' => 'string|max:100',
+            'number' => 'string|max:100',
+            'floor' => 'string|max:100',
+            'location_id' => 'exists:locations,id',
+            'province_id' => 'exists:provinces,id',
+            'gender_id' => 'exists:genders,id',
         ],
         [
         ],
@@ -116,16 +116,16 @@ class PatientController extends Controller
     $this->validate(
         $request,
         [
-            'name' => 'required|string|max:100',
-            'surname' => 'required|string|max:100',
-            'dni'     => 'required|string|max:10',
-            'birthdate' => 'required|date|before:today',
-            'street' => 'required|string|max:100',
-            'number' => 'required|string|max:100',
-            'floor' => 'required|string|max:100',
-            'location_id' => 'required|exists:locations,id',
-            'province_id' => 'required|exists:provinces,id',
-            'gender_id' => 'required|exists:genders,id',
+            'name' => 'string|max:100',
+            'surname' => 'string|max:100',
+            'dni'     => 'string|max:10',
+            'birthdate' => 'date|before:today',
+            'street' => 'string|max:100',
+            'number' => 'string|max:100',
+            'floor' => 'string|max:100',
+            'location_id' => 'exists:locations,id',
+            'province_id' => 'exists:provinces,id',
+            'gender_id' => 'exists:genders,id',
         ],
         [
         ],

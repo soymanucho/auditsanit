@@ -62,6 +62,14 @@
          @endforeach
  </select>
 </div>
+<div class="form-group col-sm-12 col-md-6 col-lg-3">
+ <label>Tipo de prestador</label>
+ <select class="form-control select2" name="vendor_type_id" id="vendor_type_id" data-placeholder="Seleccioná un tipo" style="width: 100%;">
+         @foreach ($vendorTypes as $vendorType)
+           <option @if ($vendorType->id == $vendor->vendor_type_id) selected @endif value="{{$vendorType->id}}">{{$vendorType->name}}</option>
+         @endforeach
+ </select>
+</div>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

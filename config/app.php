@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost:8000'),
+    'url' => env('APP_URL', 'http://app.auditoriasanitaria.org.ar'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -168,7 +168,7 @@ return [
          Maatwebsite\Excel\ExcelServiceProvider::class,
          Laraveles\Spanish\SpanishServiceProvider::class,
          Spatie\Permission\PermissionServiceProvider::class,
-         Barryvdh\Debugbar\ServiceProvider::class,
+         // Barryvdh\Debugbar\ServiceProvider::class,
         /*
          * Application Service Providers...
          */

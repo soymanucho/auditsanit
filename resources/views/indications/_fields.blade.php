@@ -28,7 +28,7 @@
 </div>
 
 <div class="form-group form-group col-sm-12 col-md-6 col-lg-6">
-  <label for="name"># Sesiones:</label>
+  <label for="name"># Sesiones semanales:</label>
   <input type="number" min="0" step="1" class="form-control"name="numberOfSesions" id="numberOfSesions" value="{{ old('name',$indication->numberOfSesions)}}"/>
 </div>
 
