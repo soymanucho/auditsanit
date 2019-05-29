@@ -151,7 +151,7 @@
 
   <div class="row">
     <!-- accepted payments column -->
-    <div class="col-xs-6">
+    <div class="col-xs-12">
       <p class="lead">Conclusión de la coordinadora:</p>
       {{-- <img src="../../dist/img/credit/visa.png" alt="Visa">
       <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
@@ -163,7 +163,7 @@
       </p>
     </div>
     <!-- /.col -->
-    <div class="col-xs-6">
+    <div class="col-xs-12">
       <p class="lead">Recomendaciones de la coordinadora:</p>
 
       <div class="table-responsive">

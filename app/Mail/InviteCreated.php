@@ -29,7 +29,8 @@ class InviteCreated extends Mailable
      */
     public function build()
     {
-        return $this->from('from@example.com')
+        return $this->from('info@auditoriasanitaria.org.ar')
+                    ->subject("Invitación a participar de Auditoría Sanitaria")
                     ->view('emails.invite', ['invite' => $this->invite]);
     }
 }

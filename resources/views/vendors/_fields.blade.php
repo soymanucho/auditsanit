@@ -47,15 +47,8 @@
  <label>Provincia</label>
  <select class="form-control select2" name="province_id" id="province_id" data-placeholder="Seleccioná una provincia" style="width: 100%;">
          @foreach ($provinces as $province)
-           <option
-           @isset($vendor->address->location->province)
-             @if ($province->id == $vendor->address->location->province->id)
-               selected
-             @endif
-           @endisset
-           value="{{$province->id}}">{{$province->name}}</option>
+           <option @if ($province->id == $vendor->address->location->province->id) selected @endif value="{{$province->id}}">{{$province->name}}</option>
          @endforeach
-
  </select>
 </div>
 
@@ -64,17 +57,16 @@
  <select class="form-control select2" name="location_id" id="location_id" data-placeholder="Seleccioná una localidad" style="width: 100%;">
          @foreach ($provinces as $province)
            @foreach ($province->locations as $location)
-
-           @if ($vendor->address->location->province->id == $location->province->id)
-             <option
-             @isset($vendor->address->location)
-               @if ($location->id == $vendor->address->location->id)
-                 selected
-               @endif
-             @endisset
-             value="{{$location->id}}">{{$location->name}}</option>
-           @endif
+               <option @if ($location->id == $vendor->address->location->id) selected @endif value="{{$location->id}}">{{$location->name}}</option>
+           @endforeach
          @endforeach
+ </select>
+</div>
+<div class="form-group col-sm-12 col-md-6 col-lg-3">
+ <label>Tipo de prestador</label>
+ <select class="form-control select2" name="vendor_type_id" id="vendor_type_id" data-placeholder="Seleccioná un tipo" style="width: 100%;">
+         @foreach ($vendorTypes as $vendorType)
+           <option @if ($vendorType->id == $vendor->vendor_type_id) selected @endif value="{{$vendorType->id}}">{{$vendorType->name}}</option>
          @endforeach
  </select>
 </div>

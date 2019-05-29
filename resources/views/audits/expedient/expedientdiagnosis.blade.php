@@ -49,3 +49,31 @@
   }
 });
     </script>
+
+    {{-- <script>
+    $('select').select2({
+    minimumResultsForSearch: -1,
+    placeholder: function(){
+      $(this).data('placeholder');
+    }
+    });
+    $('select').select2({
+    placeholder: "Choose tags...",
+    minimumInputLength: 2,
+    ajax: {
+        url: '{{ url("/diagnoses/get") }}',
+        dataType: 'json',
+        data: function (params) {
+            return {
+                q: $.trim(params.term)
+            };
+        },
+        processResults: function (data) {
+            return {
+                results: data
+            };
+        },
+        cache: true
+    }
+    });
+    </script> --}}
