@@ -20,7 +20,7 @@ class PatientController extends Controller
 
   public function show()
   {
-    $patients = Patient::orderBy('created_at','DESC')->get()->except(1);
+    $patients = Patient::orderBy('created_at','DESC')->with('person')->get()->except(1);
     return view('patients.patients',compact('patients'));
   }
   public function new()
@@ -47,16 +47,16 @@ class PatientController extends Controller
     $this->validate(
         $request,
         [
-            'name' => 'required|string|max:100',
-            'surname' => 'string|max:100',
-            'dni'     => 'string|max:10',
-            'birthdate' => 'date|before:today',
-            'street' => 'string|max:100',
-            'number' => 'string|max:100',
-            'floor' => 'string|max:100',
-            'location_id' => 'exists:locations,id',
-            'province_id' => 'exists:provinces,id',
-            'gender_id' => 'exists:genders,id',
+            'name' => 'string|max:100|required',
+            'surname' => 'string|max:100|required',
+            'dni'     => 'string|max:10|required',
+            'birthdate' => 'date|before:today|nullable',
+            'street' => 'string|max:100|nullable',
+            'number' => 'string|max:100|nullable',
+            'floor' => 'string|max:100|nullable',
+            'location_id' => 'exists:locations,id|nullable',
+            'province_id' => 'exists:provinces,id|nullable',
+            'gender_id' => 'exists:genders,id|nullable',
         ],
         [
         ],
@@ -112,20 +112,21 @@ class PatientController extends Controller
   }
   public function update(Patient $patient, Request $request)
   {
-    $patient = Patient::findOrFail($patient)->first();
+    $patient = Patient::where('id',$patient->id)->firstOrFail();
+
     $this->validate(
         $request,
         [
-            'name' => 'string|max:100',
-            'surname' => 'string|max:100',
-            'dni'     => 'string|max:10',
-            'birthdate' => 'date|before:today',
-            'street' => 'string|max:100',
-            'number' => 'string|max:100',
-            'floor' => 'string|max:100',
-            'location_id' => 'exists:locations,id',
-            'province_id' => 'exists:provinces,id',
-            'gender_id' => 'exists:genders,id',
+            'name' => 'string|max:100|required',
+            'surname' => 'string|max:100|required',
+            'dni'     => 'string|max:10|required',
+            'birthdate' => 'date|before:today|nullable',
+            'street' => 'string|max:100|nullable',
+            'number' => 'string|max:100|nullable',
+            'floor' => 'string|max:100|nullable',
+            'location_id' => 'exists:locations,id|nullable',
+            'province_id' => 'exists:provinces,id|nullable',
+            'gender_id' => 'exists:genders,id|nullable',
         ],
         [
         ],
