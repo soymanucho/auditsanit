@@ -56,6 +56,7 @@
   @endrole
 
 </div>
+@role('Administrador')
 <div class="row">
 
   <div class="col-12">
@@ -114,6 +115,7 @@
   </div>
 
 </div>
+@endrole
 
 
 <script>
@@ -216,7 +218,7 @@
           labels: {!!json_encode($difMods->pluck("moduleName"))!!},
           datasets: [{
               label: '$',
-              data: {!!json_encode($difMods->pluck("recommendedPrice"))!!},
+              data: {!!json_encode($difMods->pluck("recommendedprice"))!!},
               backgroundColor:
               [
               "rgba(1,184,170,0.4)"
@@ -233,7 +235,7 @@
         },
         {
             label: '$',
-            data: {!!json_encode($difMods->pluck("originalPrice"))!!},
+            data: {!!json_encode($difMods->pluck("originalprice"))!!},
             backgroundColor:
             [
 

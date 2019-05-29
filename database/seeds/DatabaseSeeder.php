@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
                     // AddressesTableSeeder::class,
            PeopleTableSeeder::class,
            ClientTableSeeder::class,
-                    UsersTableSeeder::class,
+                    // UsersTableSeeder::class,
            DiagnosisTypeTableSeeder::class,
            StatusesTableSeeder::class,
                     // InstructionsTableSeeder::class,
