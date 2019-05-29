@@ -18,7 +18,7 @@ class VendorController extends Controller
 
   public function show()
   {
-    $vendors = Vendor::all();
+    $vendors = Vendor::all()->except(1);
     return view('vendors.vendors',compact('vendors'));
   }
   public function delete(Vendor $vendor)
@@ -44,7 +44,6 @@ class VendorController extends Controller
   }
   public function save(Request $request)
   {
-    $vendor = New Vendor();
     $this->validate(
       $request,
       [
