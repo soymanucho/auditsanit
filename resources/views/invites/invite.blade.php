@@ -23,6 +23,18 @@
         {{ method_field('post') }}
         {{ csrf_field() }}
         <div class="form-group col-sm-12 col-md-6 col-lg-6">
+          <label for="name">Nombre:</label>
+          <input class="form-control input" type="text" name="name" />
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+          <label for="name">Apellido:</label>
+          <input class="form-control input" type="text" name="surname" />
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+          <label for="name">DNI:</label>
+          <input class="form-control input" type="text" name="dni" />
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
           <label for="name">Email:</label>
           <input class="form-control input" type="email" name="email" />
         </div>

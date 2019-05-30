@@ -13,7 +13,7 @@ class Vendor extends Model
 
   use SoftDeletes;
 
-  protected $fillable = ['address_id','name','snr_category','jury_person','dependency_additional','vendor_type_id'];
+  protected $fillable = ['address_id','name','snr_category','jury_person','vendor_type_id'];
 
   public function address()
   {

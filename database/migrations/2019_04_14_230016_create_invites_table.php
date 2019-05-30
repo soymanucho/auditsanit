@@ -18,6 +18,9 @@ class CreateInvitesTable extends Migration
             $table->string('email');
             $table->bigInteger('role_id')->unsigned();
             $table->bigInteger('client_id')->unsigned()->nullable();
+            $table->string('name');
+            $table->string('surname');
+            $table->integer('dni');
             $table->string('token',16)->unique();
             $table->timestamps();
         });

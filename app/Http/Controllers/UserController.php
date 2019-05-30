@@ -42,6 +42,12 @@ class UserController extends Controller
       // code...
     }
     $user->syncRoles($role);
+    if ($role->name == 'Auditor') {
+      $auditor = new Auditor;
+      $auditor->user_id = $user->id;
+      $auditor->person_id = $user->person->id;
+      $auditor->save();
+    }
     $user->save();
     return redirect()->route('users-show');
   }
@@ -87,18 +93,18 @@ class UserController extends Controller
           'name' => 'required|string|max:100',
           'surname' => 'required|string|max:100',
           'dni'     => 'required|string|max:10',
-          'birthdate' => 'date|before:today',
+          'birthdate' => 'date|before:today|nullable',
           'email' => 'required|email|max:50',
-          'profesion' => 'string|max:100',
+          'profesion' => 'string|max:100|nullable',
 
           // 'tipoMatricula' => 'required', Rule::in(['nacional', 'provincial']),
-          'cargo' => 'string|max:100',
-          'telTrabajoInterno' => 'integer',
-          'intern' => 'integer',
-          'celular' => 'integer',
-          'street' => 'string|max:100',
-          'number' => 'string|max:100',
-          'floor' => 'string|max:100',
+          'cargo' => 'string|max:100|nullable',
+          'telTrabajoInterno' => 'integer|nullable',
+          'intern' => 'integer|nullable',
+          'celular' => 'integer|nullable',
+          'street' => 'required|string|max:100',
+          'number' => 'required|string|max:100',
+          'floor' => 'string|max:100|nullable',
           'location_id' => 'exists:locations,id',
           'province_id' => 'exists:provinces,id',
           'gender_id' => 'exists:genders,id',

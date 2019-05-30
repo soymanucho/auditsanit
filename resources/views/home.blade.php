@@ -56,7 +56,7 @@
   @endrole
 
 </div>
-@role('Administrador')
+@hasanyrole('Administrador|Cliente gerencial')
 <div class="row">
 
   <div class="col-12">

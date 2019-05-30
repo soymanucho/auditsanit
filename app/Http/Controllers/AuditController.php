@@ -40,7 +40,9 @@ class AuditController extends Controller
     if($roles->contains('Auditor')){
       $audits = Auth::user()->AuditorAssignedAudits();
     }elseif ($roles->contains('Cliente') || $roles->contains('Cliente gerencial')) {
-      $audits = Auth::user()->ClientAssignedAudits();
+      $client = Auth::user()->clients()->first();
+      $audits = Audit::whereIn('id',$client->audits()->pluck('id'))->get();
+      // $audits = Auth::user()->ClientAssignedAudits();
     }else{
       $audits = Audit::orderBy('id', 'DESC')->with('expedient.patient.person')->with('statuses')->get();
     }

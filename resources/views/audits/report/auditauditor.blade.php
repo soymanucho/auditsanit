@@ -5,7 +5,11 @@
     <div class="box box-info">
       <div class="box-header">
          <h3 class="box-title"><i class="fa fa-info-circle"></i>
-           Informe de {{$medicalService->auditor->person->fullName()}}
+           @isset($medicalService->auditor->person)
+             Informe de {{$medicalService->auditor->person->fullName()}}
+            @else
+              Informe de auditor
+           @endisset
         </h3>
         <!-- tools box -->
         <div class="box-tools pull-right">
