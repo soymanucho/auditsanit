@@ -29,7 +29,7 @@ class Address extends Model
   }
   public function fullAddress()
   {
-    return $this->street . ' ' . $this->number . ' Dpt: ' . $this->floor;
+    return $this->street . ' ' . $this->number . ', ' . $this->location->name.', '.$this->location->province->name;
   }
 
 }

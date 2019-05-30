@@ -71,6 +71,7 @@ class MedicalServiceController extends Controller
             'auditor_id' => 'required|exists:auditors,id',
             'service_id' => 'required|exists:vendors,id',
             'medical_service_type_id' => 'required|exists:service_types,id',
+
        ],
        [
        ],
@@ -80,6 +81,8 @@ class MedicalServiceController extends Controller
          'transport_service_id' => 'transporte',
          'medical_service_type_id' => 'tipo de prestacion',
          'transport_service_type_id' => 'tipo de transporte',
+         'km_per_month' => 'kilometros por mes',
+
        ]
    );
 
@@ -104,7 +107,7 @@ class MedicalServiceController extends Controller
 
       $transportService = new TransportService();
       $transportService->service_id = $service2->id;
-      $transportService->km_per_month = 0;
+      $transportService->km_per_month = $request->km_per_month;
       $transportService->save();
       $medicalService->transport_service_id = $transportService->id; //aca puede que sea el id de transserver not sure...
       $medicalService->save();

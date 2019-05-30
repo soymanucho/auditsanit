@@ -121,10 +121,27 @@ class VendorController extends Controller
         'vendor_type_id' => 'tipo de prestador',
       ]
   );
-  $address = Address::where('id',$vendor->address_id)->firstOrCreate(['street'=>$request->street,'floor'=>$request->floor,'number'=>$request->number,'location_id'=>$request->location_id,]);
-
-  $address->save();
+  $address = Address::where('id',$vendor->address_id)->first();
+  if ($vendor->address_id) {
+    $vendor->address->street = $request->street;
+    $vendor->address->floor= $request->floor;
+    $vendor->address->number= $request->number;
+    $vendor->address->location_id= $request->location_id;
+    $vendor->address->street= $request->street;
+    $vendor->address->save();
+  }else {
+    $address = new Address();
+    $address->street= $request->street;
+    $address->floor= $request->floor;
+    $address->number= $request->number;
+    $address->location_id= $request->location_id;
+    $address->street= $request->street;
+    $address->save();
+  }
   $vendor->fill($request->all());
+  if (!$vendor->address_id) {
+    $vendor->address_id = $address->id;
+  }
   $vendor->save();
   return redirect()->route('show-vendors');
   }

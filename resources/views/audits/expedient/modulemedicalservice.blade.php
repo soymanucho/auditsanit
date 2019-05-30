@@ -62,7 +62,13 @@
        </table>
      @endisset
      @isset($medicalService->transportService)
-       <strong><i class="fa  fa-ambulance"></i> Transporte: </strong>{{$medicalService->transportService->service->vendor->address->street}} {{$medicalService->transportService->service->vendor->address->number}}
+       @isset($medicalService->transportService->service->vendor->address)
+         <strong><i class="fa  fa-ambulance"></i> Transporte: </strong>{{$medicalService->transportService->service->vendor->address->street}} {{$medicalService->transportService->service->vendor->address->number}}
+       @else
+         <strong><i class="fa  fa-ambulance"></i> Transporte: </strong> {{$medicalService->transportService->service->vendor->name}}
+       @endisset
+       <br>
+       <strong><i class="fa  fa-ambulance"></i> Km/mes: </strong>{{$medicalService->transportService->km_per_month}}
        <br>
       <strong><i class="fa fa-clock-o"></i> Horarios del servicio: </strong>
 
