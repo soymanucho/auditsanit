@@ -18,6 +18,13 @@ class CreateServiceSchedulesTable extends Migration
             $table->dateTime('initial_datetime');
             $table->dateTime('final_datetime');
             $table->bigInteger('service_id')->unsigned();
+            $table->boolean('monday')->default(0);
+            $table->boolean('tuesday')->default(0);
+            $table->boolean('wednesday')->default(0);
+            $table->boolean('thursday')->default(0);
+            $table->boolean('friday')->default(0);
+            $table->boolean('saturday')->default(0);
+            $table->boolean('sunday')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

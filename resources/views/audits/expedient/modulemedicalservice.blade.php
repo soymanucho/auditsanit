@@ -43,14 +43,30 @@
          <tr>
            <th>Inicio</th>
            <th>Fin</th>
-           {{-- <th class="editMode">Editar</th> --}}
-           {{-- <th class="editMode">Eliminar</th> --}}
+           <th>Lunes</th>
+           <th>Martes</th>
+           <th>Miercoles</th>
+           <th>Jueves</th>
+           <th>Viernes</th>
+           <th>Sabado</th>
+           <th>Domingo</th>
+           <th>Eliminar</th>
+
          </tr>
 
          @foreach ($medicalService->service->serviceSchedules as $serviceSchedule)
            <tr>
-             <td>{{$serviceSchedule->initial_datetime}}</td>
-             <td>{{$serviceSchedule->final_datetime}}</td>
+             <td>{{date('H:i', strtotime($serviceSchedule->initial_datetime))}}</td>
+             <td>{{date('H:i', strtotime($serviceSchedule->final_datetime))}}</td>
+             @if ($serviceSchedule->monday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
+             @if ($serviceSchedule->tuesday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
+             @if ($serviceSchedule->wednesday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
+             @if ($serviceSchedule->thursday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
+             @if ($serviceSchedule->friday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
+             @if ($serviceSchedule->saturday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
+             @if ($serviceSchedule->sunday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
+
+
              <td >  <a  data-toggle="tooltip" title="Eliminar horario" href="{!! route('delete-schedule-service',compact('serviceSchedule')) !!}" onclick="return confirm('Seguro que quiere eliminar este horario?')" class="  editButtonsModules btn btn-danger btn-xs">
                <i class="fa fa-trash btn btn-danger btn-xs"></i>
              </a></td>
@@ -70,13 +86,28 @@
          <tr>
            <th>Inicio</th>
            <th>Fin</th>
+           <th>Lunes</th>
+           <th>Martes</th>
+           <th>Miercoles</th>
+           <th>Jueves</th>
+           <th>Viernes</th>
+           <th>Sabado</th>
+           <th>Domingo</th>
+           <th>Eliminar</th>
 
            {{-- <th class="editMode">Eliminar</th> --}}
          </tr>
          @foreach ($medicalService->transportService->service->serviceSchedules as $serviceSchedule)
            <tr>
-             <td>{{$serviceSchedule->initial_datetime}}</td>
-             <td>{{$serviceSchedule->final_datetime}}</td>
+             <td>{{date('H:i', strtotime($serviceSchedule->initial_datetime))}}</td>
+             <td>{{date('H:i', strtotime($serviceSchedule->final_datetime))}}</td>
+             @if ($serviceSchedule->monday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
+             @if ($serviceSchedule->tuesday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
+             @if ($serviceSchedule->wednesday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
+             @if ($serviceSchedule->thursday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
+             @if ($serviceSchedule->friday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
+             @if ($serviceSchedule->saturday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
+             @if ($serviceSchedule->sunday)  <td><b>SI</b></td> @else  <td>NO</td>  @endif
              <td >  <a  data-toggle="tooltip" title="Eliminar horario" href="{!! route('delete-schedule-service',compact('serviceSchedule')) !!}" onclick="return confirm('Seguro que quiere eliminar este horario?')" class="  editButtonsModules btn btn-danger btn-xs">
                  <i class="fa fa-trash btn btn-danger btn-xs"></i>
                </a></td>

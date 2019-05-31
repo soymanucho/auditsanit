@@ -11,7 +11,7 @@ class ServiceSchedule extends Model
 
   use SoftDeletes;
 
-  protected $fillable = ['initial_datetime','final_datetime','service_id'];
+  protected $fillable = ['initial_datetime','final_datetime','service_id','monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
 
   public function service()
   {
