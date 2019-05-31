@@ -53,11 +53,7 @@ class NewComment extends Notification
                     ->greeting('Hola!')
                     ->line('Tenés un nuevo comentario en la auditoría n° '.$this->audit->id.', hace click en el siguiente botón para ir directamente.')
                     ->action('Ir a la auditoría', $url)
-                    if (isset($this->user->person)) {
-                      ->line($this->user->person->fullName()' dice: "'.$this->comment->text.'".')
-                    }else {
-                      ->line($this->user->email' dice: "'.$this->comment->text.'".')
-                    }
+                    ->line($this->user->email.' dice: "'.$this->comment->text.'".')
                     ->line('Gracias por usar nuestra aplicación!')
                     ->salutation('Saludos!');
     }

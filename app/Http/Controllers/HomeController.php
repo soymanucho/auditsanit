@@ -33,7 +33,7 @@ class HomeController extends Controller
       $modulesByType = collect();
       $difMods = collect();
 
-       if (Auth::user()->hasAnyRole('Administrador|Cliente gerencial')) {
+       if (Auth::user()->hasAnyRole('Administrador|Cliente gerencial|Coordinador')) {
          $expedientsPerVendor = DB::table('vendors')
                          ->join('services', 'services.vendor_id', '=', 'vendors.id')
                          ->join('medical_services', 'medical_services.service_id', '=', 'services.id')

@@ -17,12 +17,9 @@
 
 @section('body')
   @foreach($medicalServices as $medicalService)
+    @isset($medicalService->expedientModule)
       <tr>
-        @isset($medicalService->expedientModule)
-          <td>  {{ $medicalService->expedientModule->expedient->audit->id}} </td>
-        @else
-          <td> Indefinido </td>
-        @endisset
+        <td>  {{ $medicalService->expedientModule->expedient->audit->id}} </td>
         <td>  {{ $medicalService->service->serviceType->name}} </td>
         <td>  {{ $medicalService->service->vendor->name}} </td>
         @isset($medicalService->service->vendor->address)
@@ -38,5 +35,6 @@
         {{--  --}}
 
       </tr>
-    @endforeach
+    @endisset
+  @endforeach
 @endsection

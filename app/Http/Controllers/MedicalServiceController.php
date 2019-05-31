@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notification;
 use App\Notifications\ServiceAssigned;
 use App\Notifications\AcceptMedicalService;
 use App\Notifications\DeclineMedicalService;
+use Barryvdh\Debugbar\Facade as Debugbar;
 use App\ExpedientModule;
 use App\Auditor;
 use App\Vendor;
@@ -46,7 +47,8 @@ class MedicalServiceController extends Controller
   {
     $personid = Auth::user()->person->id;
     $auditor = Auditor::where('person_id','=',$personid)->get()->first();
-    $medicalServices = $auditor->medicalServices->where('status_id','=',1);
+    $medicalServices = $auditor->medicalServices()->where('status_id','=',1)->get();
+    Debugbar::info($medicalServices);
     return view('medicalServices.auditorPendingMedicalServices',compact('medicalServices'));
   }
   public function new(ExpedientModule $moduleExpedient)
