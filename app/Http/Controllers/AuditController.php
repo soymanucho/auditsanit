@@ -21,7 +21,9 @@ use App\Instruction;
 use App\Objective;
 use App\Recommendation;
 use App\MedicalService;
+use Barryvdh\Debugbar\Facade as Debugbar;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuditController extends Controller
 {
@@ -41,7 +43,20 @@ class AuditController extends Controller
       $audits = Auth::user()->AuditorAssignedAudits();
     }elseif ($roles->contains('Cliente') || $roles->contains('Cliente gerencial')) {
       $client = Auth::user()->clients()->first();
-      $audits = Auth::user()->ClientAssignedAudits();
+      $audits = Audit::orderBy('id', 'DESC')->with('expedient.patient.person')->with('statuses')->with('expedient.client')->get();
+
+      $audits = $audits->filter(function ($audit, $key) use ($client){
+          return $audit->expedient->client = $client;
+      });
+
+
+      // $audits = DB::table('audits')
+      //           ->join('expedients','expedients.id', '=', 'audits.expedient_id')
+      //           ->where('expedients.client_id', '=', $client->id)
+      //           ->get();
+      // Debugbar::info($audits);
+      // $audits = $audits->fresh('statuses');
+      // $audits = Audit::where();
     }else{
       $audits = Audit::orderBy('id', 'DESC')->with('expedient.patient.person')->with('statuses')->get();
     }

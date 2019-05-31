@@ -35,7 +35,6 @@ class Audit extends Model
       return $this->belongsTo(Expedient::class,'id');
     }
 
-
     public function recommendations()
     {
       return $this->belongsToMany(Recommendation::class,'audit_recommendations')->withTimestamps();

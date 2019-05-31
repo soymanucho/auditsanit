@@ -18,7 +18,7 @@
   @foreach($audits as $audit)
       <tr>
         <td>  {{ $audit->id}} </td>
-        <td>  {{ $audit->created_at->format('m')}}/{{ $audit->created_at->format('Y')}} </td>
+        <td>  {{ Carbon\Carbon::parse($audit->created_at)->format('m')}}/{{ Carbon\Carbon::parse($audit->created_at)->format('Y')}} </td>
         <td>
           @isset($audit->expedient->patient->person)
             {{ $audit->expedient->patient->person->surname}}, {{ $audit->expedient->patient->person->name}}
