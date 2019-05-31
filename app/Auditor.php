@@ -26,7 +26,7 @@ class Auditor extends Model
   }
   public function medicalServices()//prestaciones a los que audita
   {
-    return $this->hasMany(MedicalService::class);
+    return $this->hasMany(MedicalService::class)->with('expedientModule')->with('service')->with('service.vendor')->with('service.vendor.address');
   }
 
   public function numberOfTotalAudits($value='')

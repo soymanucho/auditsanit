@@ -6,7 +6,7 @@
       <div class="box-header">
          <h3 class="box-title"><i class="fa fa-info-circle"></i>
            @isset($medicalService->auditor->person)
-             Informe de {{$medicalService->auditor->person->fullName()}}
+             Informe de {{$medicalService->auditor->person->fullName()}} - {{$medicalService->service->serviceType->name}} 
             @else
               Informe de auditor
            @endisset

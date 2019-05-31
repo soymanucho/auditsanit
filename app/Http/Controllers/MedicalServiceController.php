@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use App\Notifications\ServiceAssigned;
 use App\Notifications\AcceptMedicalService;
 use App\Notifications\DeclineMedicalService;
@@ -24,8 +25,9 @@ class MedicalServiceController extends Controller
   $medicalService->status_id = 2;
   $medicalService->save();
 
-  $coordinators = User::role('Coordinador')->get();
+  Notification::route('mail', 'auditoriasanitaria@gmail.com')->notify(new AcceptMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
 
+  $coordinators = User::role('Coordinador')->get();
   $coordinators->each->notify(new AcceptMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
   return redirect()->back();
   }
@@ -34,8 +36,9 @@ class MedicalServiceController extends Controller
   {
     $medicalService->status_id = 3;
     $medicalService->save();
+    Notification::route('mail', 'auditoriasanitaria@gmail.com')->notify(new DeclineMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
     $coordinators = User::role('Coordinador')->get();
-      $coordinators->each->notify(new DeclineMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
+    $coordinators->each->notify(new DeclineMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
     return redirect()->back();
   }
 

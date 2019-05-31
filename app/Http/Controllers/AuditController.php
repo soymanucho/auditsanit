@@ -41,7 +41,6 @@ class AuditController extends Controller
       $audits = Auth::user()->AuditorAssignedAudits();
     }elseif ($roles->contains('Cliente') || $roles->contains('Cliente gerencial')) {
       $client = Auth::user()->clients()->first();
-      $audits = $client->audits();
       // $audits = Auth::user()->ClientAssignedAudits();
     }else{
       $audits = Audit::orderBy('id', 'DESC')->with('expedient.patient.person')->with('statuses')->get();
@@ -71,7 +70,7 @@ class AuditController extends Controller
     $this->validate(
        $request,
        [
-            'conclution' => 'required|max:1000',
+            'conclution' => 'required|max:1000000',
             'recommendations' => 'array',
             'recommendations.*' => 'exists:recommendations,id',
 
@@ -106,7 +105,7 @@ class AuditController extends Controller
     $this->validate(
        $request,
        [
-            $reportfield => 'required|max:1000',
+            $reportfield => 'required|max:1000000',
             'medicalService' => 'required|exists:medical_services,id',
 
        ],

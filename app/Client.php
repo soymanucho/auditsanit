@@ -14,7 +14,7 @@ class Client extends Model
 
   public function expedients()
   {
-    return $this->hasMany(Expedient::class, 'client_id', 'id')->with('audit');
+    return $this->hasMany(Expedient::class, 'client_id', 'id')->with('audit')->with('patient.person');
   }
 
   public function audits()
