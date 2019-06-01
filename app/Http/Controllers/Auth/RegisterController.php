@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Role;
 use App\Invite;
 use App\Auditor;
 use App\User;
+use App\Person;
 
 class RegisterController extends Controller
 {
@@ -24,6 +25,9 @@ class RegisterController extends Controller
     |
     */
     protected $role;
+    protected $name;
+    protected $surname;
+    protected $dni;
     use RegistersUsers;
 
     /**
@@ -75,10 +79,19 @@ class RegisterController extends Controller
       ]);
       $invite = Invite::where('email',$data['email'])->first();
       $this->role = Role::where('id',$invite->role_id)->first();
+      $this->name = $invite->name;
+      $this->surname = $invite->surname;
+      $this->dni = $invite->dni;
       $invite->delete();
       if($invite->client_id){
         $user->clients()->sync($invite->client_id);
       }
+      $person = new Person;
+      $person->name = $this->name;
+      $person->surname = $this->surname;
+      $person->dni = $this->dni;
+      $person->save();
+      $user->person_id = $person->id;
       $user->syncRoles($this->role);
       // dd($this->role);
       return $user;

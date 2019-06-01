@@ -17,11 +17,16 @@
 
 @section('body')
   @foreach($medicalServices as $medicalService)
+    @isset($medicalService->expedientModule)
       <tr>
         <td>  {{ $medicalService->expedientModule->expedient->audit->id}} </td>
         <td>  {{ $medicalService->service->serviceType->name}} </td>
         <td>  {{ $medicalService->service->vendor->name}} </td>
-        <td>  {{ $medicalService->service->vendor->address->fullAddress()}} </td>
+        @isset($medicalService->service->vendor->address)
+          <td>  {{ $medicalService->service->vendor->address->fullAddress()}} </td>
+        @else
+          <td>  Indefinido </td>
+        @endisset
         <td class="text-center ">
           <a class="btn btn-success" href="{{ route('accept-asigned-service', compact('medicalService')) }}">Aceptar</a>
           <a class="btn btn-danger" href="{{ route('decline-asigned-service', compact('medicalService')) }}">Rechazar</a>
@@ -30,5 +35,6 @@
         {{--  --}}
 
       </tr>
-    @endforeach
+    @endisset
+  @endforeach
 @endsection

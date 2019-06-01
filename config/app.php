@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://app.auditoriasanitaria.org.ar'),
+    'url' => env('APP_URL', '127.0.0.1'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -229,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

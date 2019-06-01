@@ -13,6 +13,10 @@ class ExpedientModule extends Model
 
   use SoftDeletes;
 
+
+
+  protected $table = 'expedient_modules';
+
   protected $fillable = ['module_id','price','expedient_id','recommended_module_id'];
 
   public function moduleRecommended()

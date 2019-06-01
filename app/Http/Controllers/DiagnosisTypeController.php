@@ -54,7 +54,7 @@ class DiagnosisTypeController extends Controller
     $this->validate(
       $request,
       [
-          'name' => 'required|max:60',
+          'name' => 'required|max:1000',
           'code' => 'max:60',
       ],
       [
@@ -78,7 +78,7 @@ class DiagnosisTypeController extends Controller
     $this->validate(
       $request,
       [
-          'name' => 'required|max:60',
+          'name' => 'required|max:1000',
           'code' => 'max:60',
       ],
       [

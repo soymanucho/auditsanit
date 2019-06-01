@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use App\Notifications\ServiceAssigned;
 use App\Notifications\AcceptMedicalService;
 use App\Notifications\DeclineMedicalService;
+use Barryvdh\Debugbar\Facade as Debugbar;
 use App\ExpedientModule;
 use App\Auditor;
 use App\Vendor;
@@ -24,8 +26,9 @@ class MedicalServiceController extends Controller
   $medicalService->status_id = 2;
   $medicalService->save();
 
-  $coordinators = User::role('Coordinador')->get();
+  Notification::route('mail', 'auditoriasanitaria@gmail.com')->notify(new AcceptMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
 
+  $coordinators = User::role('Coordinador')->get();
   $coordinators->each->notify(new AcceptMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
   return redirect()->back();
   }
@@ -34,8 +37,9 @@ class MedicalServiceController extends Controller
   {
     $medicalService->status_id = 3;
     $medicalService->save();
+    Notification::route('mail', 'auditoriasanitaria@gmail.com')->notify(new DeclineMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
     $coordinators = User::role('Coordinador')->get();
-      $coordinators->each->notify(new DeclineMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
+    $coordinators->each->notify(new DeclineMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
     return redirect()->back();
   }
 
@@ -43,7 +47,8 @@ class MedicalServiceController extends Controller
   {
     $personid = Auth::user()->person->id;
     $auditor = Auditor::where('person_id','=',$personid)->get()->first();
-    $medicalServices = $auditor->medicalServices->where('status_id','=',1);
+    $medicalServices = $auditor->medicalServices()->where('status_id','=',1)->get();
+    Debugbar::info($medicalServices);
     return view('medicalServices.auditorPendingMedicalServices',compact('medicalServices'));
   }
   public function new(ExpedientModule $moduleExpedient)
@@ -71,6 +76,7 @@ class MedicalServiceController extends Controller
             'auditor_id' => 'required|exists:auditors,id',
             'service_id' => 'required|exists:vendors,id',
             'medical_service_type_id' => 'required|exists:service_types,id',
+
        ],
        [
        ],
@@ -80,6 +86,8 @@ class MedicalServiceController extends Controller
          'transport_service_id' => 'transporte',
          'medical_service_type_id' => 'tipo de prestacion',
          'transport_service_type_id' => 'tipo de transporte',
+         'km_per_month' => 'kilometros por mes',
+
        ]
    );
 
@@ -104,7 +112,7 @@ class MedicalServiceController extends Controller
 
       $transportService = new TransportService();
       $transportService->service_id = $service2->id;
-      $transportService->km_per_month = 0;
+      $transportService->km_per_month = $request->km_per_month;
       $transportService->save();
       $medicalService->transport_service_id = $transportService->id; //aca puede que sea el id de transserver not sure...
       $medicalService->save();

@@ -54,13 +54,19 @@
 <div class="form-group form-group col-sm-12 col-md-6 col-lg-6">
   <label for="transport_service_type_id">Tipo de transporte:</label>
   <select class="form-control select2" name="transport_service_type_id" id="transport_service_type_id" data-placeholder="Seleccioná un tipo de prestacion (opcional)"
-          style="width: 100%;">
-          <option value=""></option>
-          @foreach ($transportServiceTypes as $transportServiceType)
-            <option value="{{$transportServiceType->id}}">{{$transportServiceType->name}}</option>
-          @endforeach
-  </select>
+  style="width: 100%;">
+  <option value=""></option>
+  @foreach ($transportServiceTypes as $transportServiceType)
+    <option value="{{$transportServiceType->id}}">{{$transportServiceType->name}}</option>
+  @endforeach
+</select>
 </div>
+
+<div class="form-group form-group col-sm-12 col-md-6 col-lg-6">
+  <label for="km_per_month">Km/mes:</label>
+  <input type="text" name="km_per_month" id="km_per_month" value=""/>
+</div>
+
 
 
 

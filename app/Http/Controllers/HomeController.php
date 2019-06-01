@@ -29,122 +29,74 @@ class HomeController extends Controller
      */
     public function index()
     {
+      $expedientsPerVendor = collect();
+      $modulesByType = collect();
+      $difMods = collect();
 
-       // $auditsByStatus = DB::table('audits')
-       //               ->join('audits_statuses', 'audits.id', '=', 'audits_statuses.audit_id')
-       //               ->join('statuses',  'audits_statuses.status_id', '=', 'statuses.id')
-       //               ->select(DB::raw('statuses.name, count(audits_statuses.audit_id) as count'))
-       //               ->groupBy('statuses.name')
-       //               ->groupBy('statuses.name')
-       //               ->orderby('count','DESC')
-       //               ->havingRaw('count > 0')
-       //               ->get();
-       // $auditsByGender = DB::table('audits')
-       //         ->join('expedients', 'audits.expedient_id', '=', 'expedients.id')
-       //         ->join('patients', 'expedients.patient_id', '=', 'patients.id')
-       //         ->join('people', 'patients.person_id', '=', 'people.id')
-       //         ->join('genders', 'people.gender_id', '=', 'genders.id')
-       //         ->select(DB::raw('genders.name, count(audits.id) as count'))
-       //         ->groupBy('genders.name')
-       //         ->orderby('count','DESC')
-       //         ->havingRaw('count > 0')
-       //         ->get();
-       // $today = Carbon::now();
+       if (Auth::user()->hasAnyRole('Administrador|Cliente gerencial|Coordinador')) {
+         $expedientsPerVendor = DB::table('vendors')
+                         ->join('services', 'services.vendor_id', '=', 'vendors.id')
+                         ->join('medical_services', 'medical_services.service_id', '=', 'services.id')
+                         ->join('expedient_modules', 'expedient_modules.id', '=', 'medical_services.expedient_module_id')
+                         ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
+                         ->select(DB::raw("vendors.name, coalesce(count(expedients.id),0) as c"))
+                         ->groupBy("vendors.name")
+                         ->orderby('c','DESC')
+                         ->get();
+         $modulesByType = DB::table('expedients')
+                         ->join('expedient_modules', 'expedients.id', '=', 'expedient_modules.expedient_id')
+                         ->join('modules', 'modules.id', '=', 'expedient_modules.module_id')
+                         ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
+                         ->select(DB::raw("module_types.name, coalesce(count(expedients.id),0) as c"))
+                         ->groupBy("module_types.name")
+                         ->orderby('c','DESC')
+                         ->get();
 
+                         // dd($expedientsPerVendor);
+         $recommendedModules = DB::table('expedient_modules')
+                         ->join('modules', 'modules.id', '=', 'expedient_modules.recommended_module_id')
+                         // ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
+                         ->select(DB::raw("expedient_modules.recommended_module_id, sum(modules.price) as recommendedprice"))
+                         ->groupBy("expedient_modules.recommended_module_id")
+                         ->orderby('expedient_modules.recommended_module_id','ASC')
+                         //->get() //comentado para subjoin
+                         ;
+         $originalModules = DB::table('expedient_modules')
+                         ->join('modules', 'modules.id', '=', 'expedient_modules.module_id')
+                         // ->join('modules', 'modules.id', '=', 'expedient_modules.recommended_module_id')
+                         // ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
+                         ->select(DB::raw("expedient_modules.module_id, sum(modules.price) as originalprice"))
+                         ->groupBy("expedient_modules.module_id")
+                         ->orderby('expedient_modules.module_id','ASC');
+                        // ->get();
 
-       $expedientsPerVendor = DB::table('vendors')
-                       ->join('services', 'services.vendor_id', '=', 'vendors.id')
-                       ->join('medical_services', 'medical_services.service_id', '=', 'services.id')
-                       ->join('expedient_modules', 'expedient_modules.id', '=', 'medical_services.expedient_module_id')
-                       ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
-                       ->select(DB::raw("vendors.name, coalesce(count(expedients.id),0) as c"))
-                       ->groupBy("vendors.name")
-                       ->orderby('c','DESC')
-                       ->get();
-       $modulesByType = DB::table('expedients')
-                       ->join('expedient_modules', 'expedients.id', '=', 'expedient_modules.expedient_id')
-                       ->join('modules', 'modules.id', '=', 'expedient_modules.module_id')
-                       ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
-                       ->select(DB::raw("module_types.name, coalesce(count(expedients.id),0) as c"))
-                       ->groupBy("module_types.name")
-                       ->orderby('c','DESC')
-                       ->get();
-
-                       // dd($expedientsPerVendor);
-       $recommendedModules = DB::table('expedient_modules')
-                       ->join('modules', 'modules.id', '=', 'expedient_modules.recommended_module_id')
-                       // ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
-                       ->select(DB::raw("expedient_modules.recommended_module_id, sum(modules.price) as recommendedprice"))
-                       ->groupBy("expedient_modules.recommended_module_id")
-                       ->orderby('expedient_modules.recommended_module_id','ASC')
-                       //->get() //comentado para subjoin
-                       ;
-       $originalModules = DB::table('expedient_modules')
-                       ->join('modules', 'modules.id', '=', 'expedient_modules.module_id')
-                       // ->join('modules', 'modules.id', '=', 'expedient_modules.recommended_module_id')
-                       // ->join('expedients', 'expedients.id', '=', 'expedient_modules.expedient_id')
-                       ->select(DB::raw("expedient_modules.module_id, sum(modules.price) as originalprice"))
-                       ->groupBy("expedient_modules.module_id")
-                       ->orderby('expedient_modules.module_id','ASC');
-                      // ->get();
-
-                    $difMods = DB::table('modules')
-                    ->leftjoinSub($originalModules, 'original_modules', function ($join) {
-                      $join->on('modules.id', '=', 'original_modules.module_id');
-                    })
-                    ->leftjoinSub($recommendedModules, 'recommended_modules', function ($join) {
-                      $join->on('modules.id', '=', 'recommended_modules.recommended_module_id');
-                    })
-                    ->whereNotNull('original_modules.originalprice')
-                    ->orWhereNotNull('recommended_modules.recommendedprice')
-                    ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
-                    ->join('module_categories', 'module_categories.id', '=', 'modules.module_category_id')
-                    ->select(DB::raw("modules.id, CONCAT(module_types.name,', ',module_categories.name) as moduleName, recommended_modules.recommendedprice,original_modules.originalprice"))
-                    ->orderBy('modules.id','ASC')
-                    ->get();
-                    $difMods->transform(function ($item,$key){
-                      // dd($item,$key);
-                      if ($item->recommendedprice == null) {
-                        $item->recommendedprice = 0;
-                      }
-                      if ($item->originalprice == null) {
-                        $item->originalprice = 0;
-                      }
-                      return $item;
-                    });
-                    // dd($difMods);
-
-      //$difMods= $originalModules;//->toBase()->merge($recommendedModules->toBase());
-    //dd($difMods);//,$originalModules,$recommendedModules);
-      // $difMods= $originalModules->merge($recommendedModules)->sort();
-      // foreach ($originalModules as $orig) {
-      //
-      // }
-
-      // $difMods= $recommendedModules->union($originalModules)->values();
-
-      // $difMods= $originalModules->mapWithKeys(function ($item, $key) {
-      //     $single = $recommendedModules->where('expMod',$item->expMod);
-      //     return collect($item)->merge($single);
-      // });
-      // dd($recommendedModules,$originalModules,$difMods);
+                      $difMods = DB::table('modules')
+                      ->leftjoinSub($originalModules, 'original_modules', function ($join) {
+                        $join->on('modules.id', '=', 'original_modules.module_id');
+                      })
+                      ->leftjoinSub($recommendedModules, 'recommended_modules', function ($join) {
+                        $join->on('modules.id', '=', 'recommended_modules.recommended_module_id');
+                      })
+                      ->whereNotNull('original_modules.originalprice')
+                      ->orWhereNotNull('recommended_modules.recommendedprice')
+                      ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
+                      ->join('module_categories', 'module_categories.id', '=', 'modules.module_category_id')
+                      ->select(DB::raw("modules.id, CONCAT(module_types.name,', ',module_categories.name) as moduleName, recommended_modules.recommendedprice,original_modules.originalprice"))
+                      ->orderBy('modules.id','ASC')
+                      ->get();
+                      $difMods->transform(function ($item,$key){
+                        // dd($item,$key);
+                        if ($item->recommendedprice == null) {
+                          $item->recommendedprice = 0;
+                        }
+                        if ($item->originalprice == null) {
+                          $item->originalprice = 0;
+                        }
+                        return $item;
+                      });
+       }
 
 
-      // dd($recommendedModules,$originalModules,$difModules);
-
-       // $vendorTypesPerVendor = DB::table('vendors')
-       //                 ->join('services', 'services.vendor_id', '=', 'vendors.id')
-       //                 ->join('medical_services', 'medical_services.service_id', '=', 'services.id')
-       //                 ->join('expedient_modules', 'expedient_modules.id', '=', 'medical_services.expedient_module_id')
-       //                 ->join('modules', 'modules.id', '=', 'expedient_modules.module_id')
-       //                 ->join('module_types', 'module_types.id', '=', 'modules.module_type_id')
-       //                 ->select(DB::raw("vendors.name as name, coalesce(count(expedients.id),0) as count"))
-       //                 // ->whereMonth("created_at", $today->month)
-       //                 // ->whereYear('created_at', $today->year)
-       //                 ->groupBy("vendors.name")
-       //                 ->orderby('count','ASC')
-       //                 // ->havingRaw('count > 0')
-       //                 ->get();
        $pendingAuditsCount=0;
        if(Auth::user()->hasRole('Auditor')){
          $auditor = Auth::user()->person->auditors->first();

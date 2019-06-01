@@ -39,7 +39,7 @@ class ModueleExpedientController extends Controller
 
   public function delete(ExpedientModule $expedientModule)
   {
-  
+    $expedientModule->medicalServices()->delete();
     $expedientModule->delete();
     return redirect()->back();
   }

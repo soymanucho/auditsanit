@@ -23,7 +23,7 @@ class MedicalService extends Model
   }
   public function expedientModule()
   {
-    return $this->belongsTo(ExpedientModule::class);
+    return $this->belongsTo(ExpedientModule::class,'expedient_module_id','id')->with('expedient')->with('expedient.audit');
   }
   public function transportService()
   {

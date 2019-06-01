@@ -36,11 +36,17 @@ class InviteController extends Controller
       [
       'email'=>'required|email|unique:users,email|unique:invites,email',
       'role_id'=>'required|exists:roles,id',
+      'name'=>'required|max:100',
+      'surname'=>'required|max:100',
+      'dni'=>'required',
       ]
     ,[]
     ,[
       'email'=>'correo electrónico',
-      'role_id'=>'rol'
+      'role_id'=>'rol',
+      'name'=>'nombre',
+      'surname'=>'apellido',
+      'dni'=>'dni',
     ]);
     //dd($request);
     do {
@@ -55,6 +61,9 @@ class InviteController extends Controller
         'token' => $token,
         'role_id' => $request->get('role_id'),
         'client_id' => $request->get('client_id'),
+        'name' => $request->get('name'),
+        'surname' => $request->get('surname'),
+        'dni' => $request->get('dni'),
     ]);
 
     // send the email
