@@ -40,15 +40,17 @@ class User extends Authenticatable
       $audits = [];
       if($this->clients()->first())// in case it has no client set up
       {
-        $audits = $this->clients()->first()->audits();
-
-        $audits = $audits->filter(function ($item, $key) {
-
-            return $item->currentStatus()->name == "Finalizada";
+        //$audits = $this->clients()->first()->audits();
+        $audits = Audit::orderBy('id', 'DESC')->with('expedient.patient.person')->with('statuses')->with('expedient.client')->get();
+        $client = $this->clients()->first();
+        $audits = $audits->filter(function ($item, $key) use($client) {
+            return $item->expedient->client->id == $client->id
+                   &&
+                   $item->statuses->sortByDesc('id')->first()->isFinal;
         });
 
       }
-      
+
       return $audits;
     }
 

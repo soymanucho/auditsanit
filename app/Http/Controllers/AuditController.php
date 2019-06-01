@@ -43,7 +43,7 @@ class AuditController extends Controller
       $audits = Auth::user()->ClientAssignedAudits();
     }else{
       $audits = Audit::orderBy('id', 'DESC')->with('expedient.patient.person')->with('statuses')->get();
-    }
+    } 
 
     return view('audits.audits',compact('audits','roles'));
   }
