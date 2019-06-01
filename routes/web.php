@@ -177,6 +177,7 @@ Route::post('/medicalService/{medicalService}/reasignarAuditor', 'MedicalService
 
 //UPDATE-STATUS-AUDIT
 Route::post('/auditoria/{audit}/estado/{status}/actualizar/', 'AuditController@updateStatus')->name('update-status-audit')->middleware('can:audit-edit-history');
+Route::post('/auditoria/{audit}/estado/{status}/aInicial/', 'AuditController@updateStatusToInicial')->name('update-status-to-Inicial')->middleware('can:audit-edit-history');
 
 //COMMENTS
 Route::post('/auditoria/{audit}/agregar-comentario/', 'CommentController@add')->name('add-comment');

@@ -90,4 +90,13 @@
 
         </form>
       @endcan
+      @can ('audit-edit-conclution')
+        <form action="{!! route('update-status-to-Inicial',['audit'=>$audit,'status'=>$audit->currentStatus()]) !!}" method="post">
+              {{ csrf_field() }}
+              <input type="submit" class="form-control btn btn-success " @if ($audit->currentStatus()->id != 4)
+                disabled
+              @endif name="updateStatus" value="Devolver al Auditor">
+
+        </form>
+      @endcan
     </div>

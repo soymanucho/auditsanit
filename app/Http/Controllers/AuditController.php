@@ -44,7 +44,7 @@ class AuditController extends Controller
     }elseif ($roles->contains('Cliente') || $roles->contains('Cliente gerencial')) {
 
       $audits = Auth::user()->ClientAssignedAudits();
-      
+
 
     }else{
       $audits = Audit::orderBy('id', 'DESC')->with('expedient.patient.person')->with('statuses')->get();
@@ -68,6 +68,17 @@ class AuditController extends Controller
 
     return redirect()->back();
   }
+
+
+  public function updateStatusToInicial(Audit $audit, Status $status)
+  {
+
+    $nextStatus = Status::where('id',3)->first();
+    $audit->statuses()->attach($nextStatus);
+    $audit->save();
+    return redirect()->back();
+  }
+
 
   public function updateConclution(Request $request,Audit $audit)
   {
