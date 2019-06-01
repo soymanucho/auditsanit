@@ -41,7 +41,14 @@ class User extends Authenticatable
       if($this->clients()->first())// in case it has no client set up
       {
         $audits = $this->clients()->first()->audits();
+
+        $audits = $audits->filter(function ($item, $key) {
+
+            return $item->currentStatus()->name == "Finalizada";
+        });
+
       }
+      
       return $audits;
     }
 

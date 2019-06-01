@@ -24,7 +24,9 @@
    <!-- /.box-header -->
    <div class="box-body with-border">
      @isset($medicalService->service->vendor->address)
-       <strong><i class="fa fa-user-md"></i> Prestador: </strong> {{$medicalService->service->vendor->name}} {{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}}
+       <strong><i class="fa fa-user-md"></i> Prestador: </strong> {{$medicalService->service->vendor->name}}
+       <br>
+       <strong><i class="fa fa-home"></i> Dirección: </strong>  {{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}}
        <br>
      @endisset
      @isset($medicalService->auditor->person)
