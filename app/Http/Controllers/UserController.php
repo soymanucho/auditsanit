@@ -48,6 +48,12 @@ class UserController extends Controller
       $auditor->person_id = $user->person->id;
       $auditor->save();
     }
+
+    if ($role->name == 'Cliente' || $role->name == 'Cliente gerencial') {
+      $user->clients()->sync($request->client_id);
+    }
+
+
     $user->save();
     return redirect()->route('users-show');
   }
