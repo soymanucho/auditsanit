@@ -159,7 +159,7 @@
       <img src="../../dist/img/credit/paypal2.png" alt="Paypal"> --}}
 
       <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-        {{$audit->conclution}}
+        {!!$audit->conclution!!}
       </p>
     </div>
     <!-- /.col -->
