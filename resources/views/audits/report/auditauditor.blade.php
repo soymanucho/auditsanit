@@ -6,7 +6,7 @@
       <div class="box-header">
          <h3 class="box-title"><i class="fa fa-info-circle"></i>
            @isset($medicalService->auditor->person)
-             Informe de {{$medicalService->auditor->person->fullName()}} - {{$medicalService->service->serviceType->name}} 
+             Informe de {{$medicalService->auditor->person->fullName()}} - {{$medicalService->service->serviceType->name}}
             @else
               Informe de auditor
            @endisset
@@ -26,7 +26,11 @@
           <form method="post">
                 {{ csrf_field() }}
 
-                <textarea id="report_{{$medicalService->id}}" class="editMode ckeditor" name="report_{{$medicalService->id}}" rows="10" cols="80">
+                <textarea id="report_{{$medicalService->id}}" class="editMode ckeditor" name="report_{{$medicalService->id}}" rows="10" cols="80"
+                  @if ($audit->currentStatus()->id  !=3 && !(Auth::user()->hasRole('Administrador')))
+                    disabled
+                  @endif
+                  >
                   @isset($medicalService->report)
                     {{$medicalService->report}}
                   @endisset
@@ -34,7 +38,7 @@
                 </textarea>
                   <input type="hidden" name="medicalService" id="medicalService" value="{{$medicalService->id}}" >
                 @can ('audit-edit-report')
-                  <input type="submit" class="form-control editMode btn btn-success " @if ($audit->currentStatus()->id > 3 && !(Auth::user()->hasRole('Administrador')))
+                  <input type="submit" class="form-control editMode btn btn-success " @if ($audit->currentStatus()->id  !=3 && !(Auth::user()->hasRole('Administrador')))
                     disabled
                   @endif  name="updateReport" value="Guardar informe">
                 @endcan
