@@ -48,6 +48,40 @@
 <!-- /.row -->
 
 <!-- Table row -->
+
+<div class="row">
+    <div class="col-xs-12">
+  <h4 class="lead">Objetivos:</h4>
+
+  <div class="table-responsive">
+    <table class="table">
+      @foreach ($audit->objectives as $objective)
+        <tr>
+          <th> - {{$objective->name }}</th>
+        </tr>
+      @endforeach
+    </table>
+  </div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+  <h4 class="lead">Metodos de trabajo:</h4>
+
+  <div class="table-responsive">
+    <table class="table">
+      @foreach ($audit->instructions as $instruction)
+        <tr>
+          <th> - {{$instruction->name }}</th>
+        </tr>
+      @endforeach
+    </table>
+  </div>
+  </div>
+</div>
+
+
 <div class="row">
   @foreach ($audit->expedient->expedientModules as $expedientModule )
 
