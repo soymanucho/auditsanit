@@ -31,7 +31,7 @@ class MedicalService extends Model
   }
   public function auditor()
   {
-    return $this->belongsTo(Auditor::class);
+    return $this->belongsTo(Auditor::class)->withTrashed();
   }
 
   public function status()
