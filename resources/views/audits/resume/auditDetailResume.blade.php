@@ -158,9 +158,9 @@
       <img src="../../dist/img/credit/american-express.png" alt="American Express">
       <img src="../../dist/img/credit/paypal2.png" alt="Paypal"> --}}
 
-      <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+      <div class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
         {!!$audit->conclution!!}
-      </p>
+      </div>
     </div>
     <!-- /.col -->
     <div class="col-xs-12">
