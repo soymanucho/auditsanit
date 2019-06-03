@@ -12,7 +12,7 @@ class Medic extends Model
 
   public function person()
   {
-     return $this->belongsTo(Person::class,'id');
+     return $this->belongsTo(Person::class,'id')->withTrashed();
   }
-  
+
 }

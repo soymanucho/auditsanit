@@ -11,12 +11,12 @@ class Location extends Model
 {
 
   use SoftDeletes;
-  
+
   protected $fillable = ['name','province_id'];
 
   public function province()
   {
-    return $this->belongsTo(Province::class);
+    return $this->belongsTo(Province::class)->withTrashed();
   }
 
   public function adresses()
