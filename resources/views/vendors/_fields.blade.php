@@ -1,5 +1,36 @@
 {{ csrf_field() }}
-
+<style media="screen">
+.spin {
+-webkit-animation: spin 2s infinite linear;
+-moz-animation: spin 2s infinite linear;
+-o-animation: spin 2s infinite linear;
+animation: spin 2s infinite linear;
+}
+@-moz-keyframes spin {
+from {
+  -moz-transform: rotate(0deg);
+}
+to {
+  -moz-transform: rotate(360deg);
+}
+}
+@-webkit-keyframes spin {
+from {
+  -webkit-transform: rotate(0deg);
+}
+to {
+  -webkit-transform: rotate(360deg);
+}
+}
+@keyframes spin {
+from {
+  transform: rotate(0deg);
+}
+to {
+  transform: rotate(360deg);
+}
+}
+</style>
 
 <div class="form-group col-sm-12 col-md-6 col-lg-3">
   <label for="name">Nombre</label>
@@ -61,7 +92,7 @@
 </div>
 
 <div class="form-group col-sm-12 col-md-6 col-lg-3">
- <label>Localidad</label>
+ <label>Localidad</label><i class="fa fa-spinner spin" id="locationspiner"></i>
  <select class="form-control select2" name="location_id" id="location_id" data-placeholder="Seleccioná una localidad" style="width: 100%;">
          @foreach ($provinces as $province)
            @foreach ($province->locations as $location)
@@ -87,7 +118,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-
+  $('#locationspiner').hide();
   $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -95,10 +126,22 @@ $(document).ready(function(){
 });
   $('#province_id').change('click',function() {
 
+    //tramoyeta falopa para deshabilitar el select
+    $(this).select2('destroy');
+    $(this).prop('disabled', true);
+    $(this).select2();
+    $('#locationspiner').show();
+//tramoyeta falopa para deshabilitar el select
+    $('#location_id').select2('destroy');
+    $('#location_id').prop('disabled', true);
+    $('#location_id').select2();
+
     var province = $(this).children("option:selected").val();
     var $selectLocations = $('#location_id');
     $("#location_id").select2("close");
+
     $selectLocations.empty();
+
     $.ajax({
       type:"GET",
       url: "/localidades/get", success: function(result){
@@ -110,9 +153,17 @@ $(document).ready(function(){
         }
       });
 
+      //tramoyeta falopa para deshabilitar el select
+      $('#location_id').select2('destroy');
+      $('#location_id').prop('disabled', false);
+      $('#location_id').select2();
+      //tramoyeta falopa para deshabilitar el select
       $("#location_id").select2("open");
-      //
-      // $("#location_id").select2();
+      $('#province_id').select2('destroy');
+      $('#province_id').prop('disabled', false);
+      $('#province_id').select2();
+      $('#locationspiner').hide();
+
     }});
 
 
