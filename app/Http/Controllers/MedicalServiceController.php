@@ -26,7 +26,7 @@ class MedicalServiceController extends Controller
   $medicalService->status_id = 2;
   $medicalService->save();
 
-  Notification::route('mail', 'auditoriasanitaria@gmail.com')->notify(new AcceptMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
+  //Notification::route('mail', 'auditoriasanitaria@gmail.com')->notify(new AcceptMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
 
   $coordinators = User::role('Coordinador')->get();
   $coordinators->each->notify(new AcceptMedicalService($medicalService->auditor,$medicalService->expedientModule->expedient->audit));
