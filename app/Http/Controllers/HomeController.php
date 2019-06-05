@@ -100,26 +100,35 @@ class HomeController extends Controller
        $pendingAuditsCount=0;
        if(Auth::user()->hasRole('Auditor')){
          $auditor = Auth::user()->person->auditors->first();
-         // $auditor = Auditor::where('user_id',Auth::user()->id)->first();
+
          $auditsCount = $auditor->numberOfTotalAudits();
          $pendingAuditsCount = $auditor->numberOfPendingAudits();
        }elseif(Auth::user()->hasRole('Cliente') || Auth::user()->hasRole('Cliente gerencial')){
          $user = Auth::user();
-         // $client = Client::whereHas('user_id',$user->id)->get();
+
          $client = Client::whereHas('users', function ($q) use ($user) {
             $q->where('user_id', $user->id);
         })->first();
-         // $client = Auth::user()->with('clients')->get();
-         // dd($client);
+
          $audits = $client->audits();
          $auditsCount= count($audits);
-         // dd($audits,$auditsCount);
+
+         //Eliminar los vendors migracion para las vistas de cliente
+         $expedientsPerVendor = $expedientsPerVendor->filter(function ($item) {
+                return $item->name!='Migración';
+              })->values();
+
+          //Eliminar los modulos migracion para las vistas de cliente
+          $modulesByType = $modulesByType->filter(function ($item) {
+                 return $item->name!='Migración';
+               })->values();
+
+
        }else {
          $audits = Audit::all();
          $auditsCount= count($audits);
        }
-      // $amountOfAudits = Audit::all()->count();
-      // $totalAmountOfUsers = User::all()->count();
+
       return view('home',compact('auditsCount','pendingAuditsCount','expedientsPerVendor','difMods','modulesByType'));//,'auditsByStatus','auditsByGender'));
     }
 }
