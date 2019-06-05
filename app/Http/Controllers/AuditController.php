@@ -238,6 +238,7 @@ class AuditController extends Controller
 
   public function detailPatient(Audit $audit)
   {
+
     $function = 'show';
     return view('audits.patient.auditDetailPatient',compact('audit','function'));
   }
