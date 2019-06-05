@@ -35,19 +35,29 @@ class CommentController extends Controller
     $user = Auth::user();
 
     $comment = new Comment;
-
     $comment->user_id = $user->id;
     $comment->text = $request->text;
-
     $comment->audit_id = $audit->id;
-
     $comment->save();
+
     $usersToNotify = collect();
+
+
+
     if ($comment) {
+
+      //Notificar a quienes comentaron sin repetir
       foreach ($audit->comments as $commenta) {
         if (!($usersToNotify->search($commenta->user->id)) && ($user->id != $commenta->user->id)) {
           $usersToNotify->put('id', $commenta->user->id);
           $commenta->user->notify(new NewComment($audit,$comment,$user));
+        }
+        //Notificar a coordinadores sin repetir
+        foreach ($coordinators = User::role('Coordinador')->get() as $coordinator) {
+          if (!($usersToNotify->search($coordinator->id)) && ($user->id != $coordinator->id)) {
+            $usersToNotify->put('id', $coordinator->id);
+            $coordinator->notify(new NewComment($audit,$comment,$user));
+          }
         }
       }
 
