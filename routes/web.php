@@ -215,15 +215,15 @@ Route::post('/auditoria/{audit}/detalle/informe-auditor/', 'AuditController@upda
 Route::get('/auditoria/{audit}/detalle/conclusion/', 'AuditController@detailConclution')->name('audit-detail-conclution')->middleware('can:audit-read-conclution');
 Route::post('/auditoria/{audit}/detalle/conclusion/', 'AuditController@updateConclution')->name('update-conclution')->middleware('can:audit-edit-conclution');
 
-Route::get('/auditoria/{audit}/detalle/historial/', 'AuditController@detailHistory')->name('audit-detail-history')->middleware('can:audit-read-history');
+Route::get('/auditoria/{audit}/detalle/historial/', 'AuditController@detailHistory')->name('audit-detail-history')->middleware('can:audit-read-history')->middleware('auditgatekeeper');
 
-Route::get('/auditoria/{audit}/detalle/resumen/', 'AuditController@detailResume')->name('audit-detail-resume')->middleware('can:audit-read-resume');
-Route::get('/auditoria/{audit}/detalle/resumen/imprimir', 'AuditController@detailResumePrint')->name('audit-resume-print');
+Route::get('/auditoria/{audit}/detalle/resumen/', 'AuditController@detailResume')->name('audit-detail-resume')->middleware('can:audit-read-resume')->middleware('auditgatekeeper');
+Route::get('/auditoria/{audit}/detalle/resumen/imprimir', 'AuditController@detailResumePrint')->name('audit-resume-print')->middleware('auditgatekeeper');
 
 Route::get('/auditorias/exportar', 'AuditController@export')->name('export-audits')->middleware('can:audit-export');
 
 
-Route::get('/auditoria/{audit}/detalle/paciente/', 'AuditController@detailPatient')->name('audit-detail-patient')->middleware('can:audit-read-patient');
+Route::get('/auditoria/{audit}/detalle/paciente/', 'AuditController@detailPatient')->name('audit-detail-patient')->middleware('can:audit-read-patient')->middleware('auditgatekeeper');
 
 
 //PATIENTS
