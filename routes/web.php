@@ -234,4 +234,9 @@ Route::post('/afiliados/nuevo', 'PatientController@save')->name('save-patients')
 Route::get('/afiliados/{patient}/editar/', 'PatientController@edit')->name('edit-patients')->middleware('can:audit-read-patient');
 Route::post('/afiliados/{patient}/editar/', 'PatientController@update')->name('update-patients')->middleware('can:audit-edit-patient');
 
+
+// CAMBIAR ESTADO DE AUDITORIA
+Route::get('/editarEstadoAuditoria/', 'AuditStatusController@edit')->name('edit-audit-status');
+Route::post('/editarEstadoAuditoria/', 'AuditStatusController@update')->name('update-audit-status');
+
 Auth::routes();

@@ -25,9 +25,9 @@
           @endisset
         </td>
         <td>
-          @isset($audit->statuses->sortByDesc('id')->first()->name)
+          @isset($audit->statuses->sortBy('created_at')->last()->name)
             @php
-                $status = $audit->statuses->sortByDesc('id')->first();
+                $status = $audit->statuses->sortBy('created_at')->last();
             @endphp
              <span class="badge" style="background:{{ $status->color}}">{{ $status->id}}. {{ $status->name}}</span>
           @endisset

@@ -281,6 +281,13 @@
 
 
             @endhasanyrole
+            @hasanyrole('Administrador')
+            <li>
+              <a href="{{route('edit-audit-status')}}">
+                <i class="fa fa-exchange"></i> <span> Cambiar estado de Auditorías</span>
+              </a>
+            </li>
+              @endhasanyrole
             @role('Auditor')
               <li class=" treeview">
                 <a href="#">
