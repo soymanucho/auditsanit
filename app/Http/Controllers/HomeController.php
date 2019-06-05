@@ -120,7 +120,7 @@ class HomeController extends Controller
 
           //Eliminar los modulos migracion para las vistas de cliente
           $modulesByType = $modulesByType->filter(function ($item) {
-                 return $item->name!='Migración';
+                 return $item->name!='Migracion';
                })->values();
 
 
