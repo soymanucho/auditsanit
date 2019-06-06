@@ -52,6 +52,7 @@ class CommentController extends Controller
           $usersToNotify->put('id', $commenta->user->id);
           $commenta->user->notify(new NewComment($audit,$comment,$user));
         }
+        }
         //Notificar a coordinadores sin repetir
         foreach ($coordinators = User::role('Coordinador')->get() as $coordinator) {
           if (!($usersToNotify->search($coordinator->id)) && ($user->id != $coordinator->id)) {
@@ -59,7 +60,7 @@ class CommentController extends Controller
             $coordinator->notify(new NewComment($audit,$comment,$user));
           }
         }
-      }
+
 
 
     }
