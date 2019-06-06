@@ -143,9 +143,17 @@
      scales: {
          yAxes: [{
              ticks: {
-                 beginAtZero: true
+                 beginAtZero: true,
+                  precision: 0
              }
-         }]
+         }],
+         xAxes: [{
+                ticks: {
+                    autoSkip: false,
+                    maxRotation: 90,
+                    minRotation: 90
+                }
+            }]
      }
  }
 });
@@ -174,42 +182,16 @@
      scales: {
          xAxes: [{
              ticks: {
-                 beginAtZero: true
+                 beginAtZero: true,
+
+                 precision: 0
              }
          }]
      }
  }
 });
   </script>
-{{-- <script>
-  var ctx = document.getElementById("vendorTypesPerVendor").getContext('2d');
-  var myChart = new Chart(ctx, {
-      type: 'horizontalBar',
-      data: {
-          labels: {!!json_encode($vendorTypesPerVendor->pluck("name"))!!},
-          datasets: [{
-              label: '# de prestaciones',
-              data: {!!json_encode($vendorTypesPerVendor->pluck("count"))!!},
-              backgroundColor:
-                'rgb(1,184,170)'
-            ,
-            borderColor:
-                'rgb(1,184,170)'
-            ,
-            borderWidth: 1
-        }]
-    },
-    options: {
-     scales: {
-         yAxes: [{
-             ticks: {
-                 beginAtZero: true
-             }
-         }]
-     }
- }
-});
-  </script> --}}
+
 <script>
   var ctx = document.getElementById("difMods").getContext('2d');
   var myChart = new Chart(ctx, {
@@ -217,7 +199,7 @@
       data: {
           labels: {!!json_encode($difMods->pluck("moduleName"))!!},
           datasets: [{
-              label: '$',
+              label: 'Recomendado',
               data: {!!json_encode($difMods->pluck("recommendedprice"))!!},
               backgroundColor:
               [
@@ -234,7 +216,7 @@
             borderWidth: 1
         },
         {
-            label: '$',
+            label: 'Real',
             data: {!!json_encode($difMods->pluck("originalprice"))!!},
             backgroundColor:
             [
@@ -255,11 +237,15 @@
       responsive: true,
    maintainAspectRatio: false,
         scales: {
+
             xAxes: [{
-              ticks: {
-                  beginAtZero: true
-              }
-            }]
+                   ticks: {
+                       autoSkip: true,
+                       maxRotation: 90,
+                       minRotation: 90,
+                       beginAtZero: true
+                   }
+               }]
         }
     }
 });
