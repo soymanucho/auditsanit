@@ -12,7 +12,7 @@ class Indication extends Model
 {
 
   use SoftDeletes;
-
+  protected $dates = ['created_at','updated_at','deleted_at'];
   public function indicationType()
   {
      return $this->belongsTo(IndicationType::class,'indicationType_id');
