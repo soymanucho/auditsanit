@@ -14,6 +14,7 @@ class Patient extends Model
   use SoftDeletes;
 
   protected $fillable = ['person_id'];
+  protected $dates = ['created_at','updated_at','deleted_at'];
 
   public function person()
   {

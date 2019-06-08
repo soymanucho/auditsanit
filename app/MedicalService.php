@@ -16,6 +16,7 @@ class MedicalService extends Model
   use SoftDeletes;
 
   protected $fillable = ['expedient_module_id','service_id','transport_service_id','auditor_id'];
+  protected $dates = ['created_at','updated_at','deleted_at'];
 
   public function service()
   {

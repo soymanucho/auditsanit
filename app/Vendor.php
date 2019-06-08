@@ -14,6 +14,7 @@ class Vendor extends Model
   use SoftDeletes;
 
   protected $fillable = ['address_id','name','snr_category','jury_person','vendor_type_id'];
+  protected $dates = ['created_at','updated_at','deleted_at'];
 
   public function address()
   {
