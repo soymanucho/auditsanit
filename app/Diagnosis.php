@@ -12,7 +12,7 @@ class Diagnosis extends Model
 {
 
   use SoftDeletes;
-
+protected $dates = ['created_at','updated_at','deleted_at'];
   public function expedient()
   {
      return $this->belongsTo(Expedient::class,'expedient_id');

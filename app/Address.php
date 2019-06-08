@@ -11,6 +11,7 @@ use App\Vendor;
 class Address extends Model
 {
   use SoftDeletes;
+  protected $dates = ['created_at','updated_at','deleted_at'];
 
   protected $fillable = ['street','number','floor','location_id','latitude','longitude'];
 

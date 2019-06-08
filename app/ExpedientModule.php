@@ -18,6 +18,7 @@ class ExpedientModule extends Model
   protected $table = 'expedient_modules';
 
   protected $fillable = ['module_id','price','expedient_id','recommended_module_id'];
+  protected $dates = ['created_at','updated_at','deleted_at'];
 
   public function moduleRecommended()
   {

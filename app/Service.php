@@ -16,6 +16,7 @@ class Service extends Model
   use SoftDeletes;
 
   protected $fillable = ['vendor_id','service_type_id'];
+  protected $dates = ['created_at','updated_at','deleted_at'];
 
   public function serviceSchedules()
   {

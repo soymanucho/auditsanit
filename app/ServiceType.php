@@ -12,6 +12,7 @@ class ServiceType extends Model
   use SoftDeletes;
 
   protected $fillable = ['name','is_transport_service'];
+  protected $dates = ['created_at','updated_at','deleted_at'];
 
   public function services()
   {

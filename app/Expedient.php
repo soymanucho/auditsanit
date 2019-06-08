@@ -17,6 +17,7 @@ class Expedient extends Model
   use SoftDeletes;
 
   protected $fillable = ['client_id','patient_id'];
+  protected $dates = ['created_at','updated_at','deleted_at'];
 
   public function client()
   {
