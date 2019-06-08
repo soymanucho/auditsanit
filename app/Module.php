@@ -13,17 +13,17 @@ class Module extends Model
 {
 
   use SoftDeletes;
-  
+
   protected $fillable = ['module_type_id','module_category_id','price'];
 
 
   public function moduleType()
   {
-    return $this->belongsTo(ModuleType::class);
+    return $this->belongsTo(ModuleType::class)->withTrashed();
   }
   public function moduleCategory()
   {
-    return $this->belongsTo(ModuleCategory::class);
+    return $this->belongsTo(ModuleCategory::class)->withTrashed();
   }
   public function expedientModules()
   {
