@@ -20,7 +20,7 @@ class Indication extends Model
 
   public function medic()
   {
-     return $this->belongsTo(Medic::class,'medic_id');
+     return $this->belongsTo(Medic::class,'medic_id')->withTrashed();
   }
 
   public function expedient()

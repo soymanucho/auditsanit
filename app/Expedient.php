@@ -30,7 +30,7 @@ class Expedient extends Model
 
   public function indications()
   {
-    return $this->hasMany(Indication::class,'expedient_id', 'id');
+    return $this->hasMany(Indication::class,'expedient_id', 'id')->withTrashed();
   }
   public function audit()
   {

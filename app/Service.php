@@ -31,10 +31,10 @@ class Service extends Model
   }
   public function vendor()
   {
-    return $this->belongsTo(Vendor::class);
+    return $this->belongsTo(Vendor::class)->withTrashed();
   }
   public function serviceType()
   {
-    return $this->belongsTo(ServiceType::class);
+    return $this->belongsTo(ServiceType::class)->withTrashed();
   }
 }

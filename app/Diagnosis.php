@@ -20,7 +20,7 @@ class Diagnosis extends Model
 
   public function diagnosisType()
   {
-    return $this->belongsTo(DiagnosisType::class,'diagnosisType_id');
+    return $this->belongsTo(DiagnosisType::class,'diagnosisType_id')->withTrashed();
   }
 
 
