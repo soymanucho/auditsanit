@@ -129,6 +129,24 @@ class HomeController extends Controller
          $auditsCount= count($audits);
        }
 
-      return view('home',compact('auditsCount','pendingAuditsCount','expedientsPerVendor','difMods','modulesByType'));//,'auditsByStatus','auditsByGender'));
+       $maxstatus = DB::table('audits_statuses')
+       ->select( DB::raw('audit_id,MAX(id) as maxid'))
+       ->groupBy('audit_id');
+
+       $auditsByStatus = DB::table('audits_statuses')
+           ->joinSub($maxstatus, 'finalstatus', function ($join) {
+               $join->on('finalstatus.maxid', '=', 'audits_statuses.id');
+           })
+           ->join('statuses','statuses.id','=','audits_statuses.status_id')
+           ->select(DB::raw('statuses.name, statuses.color, coalesce(count(statuses.name),0) as count'))
+           ->where('isFinal', '!=' , 1)
+           ->groupBy("statuses.name", "statuses.color")
+           ->get();
+
+           //dd($auditsByStatus);
+
+
+
+      return view('home',compact('auditsCount','pendingAuditsCount','expedientsPerVendor','difMods','modulesByType','auditsByStatus'));//,'auditsByStatus','auditsByGender'));
     }
 }
