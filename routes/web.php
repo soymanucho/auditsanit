@@ -16,9 +16,42 @@ Route::get('/', function () {
 });
 
 
-
-
 Route::group(['middleware' => ['role:Administrador|Backoffice']], function () {
+
+  //INVITACIONES
+  Route::get('/invitar','InviteController@invite')->name('invite');
+  Route::post('/invitar', 'InviteController@process')->name('process');
+
+  //PERFIL USUARIO
+  Route::get('/usuarios','UserController@show')->name('users-show');
+  Route::get('/usuarios/{user}/editar-rol','UserController@editRole')->name('users-edit-role');
+  Route::post('/usuarios/{user}/editar-rol','UserController@updateRole')->name('users-update-role');
+
+  //MODULE TYPE
+  Route::get('/tiposdemodulo/', 'ModueTypeController@show')->name('show-moduletypes');
+  Route::get('/tiposdemodulo/nuevo', 'ModueTypeController@new')->name('new-moduletype');
+  Route::post('/tiposdemodulo/nuevo', 'ModueTypeController@save')->name('save-moduletype');
+  Route::get('/tiposdemodulo/{moduleType}/editar/', 'ModueTypeController@edit')->name('edit-moduletype');
+  Route::post('/tiposdemodulo/{moduleType}/editar/', 'ModueTypeController@update')->name('update-moduletype');
+  Route::get('/tiposdemodulo/{moduleType}/eliminar/', 'ModueTypeController@delete')->name('delete-moduletype');
+
+  //MODULE CATEGORY
+  Route::get('/categoriasdemodulo/', 'ModueleCategoryController@show')->name('show-modulecategories');
+  Route::get('/categoriasdemodulo/nuevo', 'ModueleCategoryController@new')->name('new-modulecategory');
+  Route::post('/categoriasdemodulo/nuevo', 'ModueleCategoryController@save')->name('save-modulecategory');
+  Route::get('/categoriasdemodulo/{modulecategory}/editar/', 'ModueleCategoryController@edit')->name('edit-modulecategory');
+  Route::post('/categoriasdemodulo/{modulecategory}/editar/', 'ModueleCategoryController@update')->name('update-modulecategory');
+  Route::get('/categoriasdemodulo/{modulecategory}/eliminar/', 'ModueleCategoryController@delete')->name('delete-modulecategory');
+
+  //MODULE
+  Route::get('/modulos/', 'ModueleController@show')->name('show-module');
+  Route::get('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/editar', 'ModueleController@edit')->name('edit-module');
+  Route::post('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/editar', 'ModueleController@update')->name('update-module');
+  Route::get('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/nuevo', 'ModueleController@new')->name('new-module');
+  Route::post('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/nuevo', 'ModueleController@save')->name('save-module');
+});
+
+Route::group(['middleware' => ['role:Administrador|Backoffice|Coordinador']], function () {
 
   //INDICATION
   Route::get('auditoria/{audit}/indicacion/nuevo', 'IndicationController@new')->name('new-indication');
@@ -78,15 +111,6 @@ Route::group(['middleware' => ['role:Administrador|Backoffice']], function () {
   Route::post('/prestadores/{vendor}/editar/', 'VendorController@update')->name('update-vendors');
   Route::get('/prestadores/{vendor}/eliminar/', 'VendorController@delete')->name('delete-vendors');
 
-  //PERFIL USUARIO
-  Route::get('/usuarios','UserController@show')->name('users-show');
-  Route::get('/usuarios/{user}/editar-rol','UserController@editRole')->name('users-edit-role');
-  Route::post('/usuarios/{user}/editar-rol','UserController@updateRole')->name('users-update-role');
-
-  //INVITACIONES
-  Route::get('/invitar','InviteController@invite')->name('invite');
-  Route::post('/invitar', 'InviteController@process')->name('process');
-
   //CLIENTS
   Route::get('/clientes/', 'ClientController@show')->name('show-clients');
   Route::get('/clientes/nuevo', 'ClientController@new')->name('new-clients');
@@ -111,28 +135,6 @@ Route::group(['middleware' => ['role:Administrador|Backoffice']], function () {
   Route::post('/recomendaciones/{recommendation}/editar/', 'RecommendationController@update')->name('update-recommendations');
   Route::get('/recomendaciones/{recommendation}/eliminar/', 'RecommendationController@delete')->name('delete-recommendations');
 
-  //MODULE TYPE
-  Route::get('/tiposdemodulo/', 'ModueTypeController@show')->name('show-moduletypes');
-  Route::get('/tiposdemodulo/nuevo', 'ModueTypeController@new')->name('new-moduletype');
-  Route::post('/tiposdemodulo/nuevo', 'ModueTypeController@save')->name('save-moduletype');
-  Route::get('/tiposdemodulo/{moduleType}/editar/', 'ModueTypeController@edit')->name('edit-moduletype');
-  Route::post('/tiposdemodulo/{moduleType}/editar/', 'ModueTypeController@update')->name('update-moduletype');
-  Route::get('/tiposdemodulo/{moduleType}/eliminar/', 'ModueTypeController@delete')->name('delete-moduletype');
-
-  //MODULE CATEGORY
-  Route::get('/categoriasdemodulo/', 'ModueleCategoryController@show')->name('show-modulecategories');
-  Route::get('/categoriasdemodulo/nuevo', 'ModueleCategoryController@new')->name('new-modulecategory');
-  Route::post('/categoriasdemodulo/nuevo', 'ModueleCategoryController@save')->name('save-modulecategory');
-  Route::get('/categoriasdemodulo/{modulecategory}/editar/', 'ModueleCategoryController@edit')->name('edit-modulecategory');
-  Route::post('/categoriasdemodulo/{modulecategory}/editar/', 'ModueleCategoryController@update')->name('update-modulecategory');
-  Route::get('/categoriasdemodulo/{modulecategory}/eliminar/', 'ModueleCategoryController@delete')->name('delete-modulecategory');
-
-  //MODULE
-  Route::get('/modulos/', 'ModueleController@show')->name('show-module');
-  Route::get('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/editar', 'ModueleController@edit')->name('edit-module');
-  Route::post('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/editar', 'ModueleController@update')->name('update-module');
-  Route::get('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/nuevo', 'ModueleController@new')->name('new-module');
-  Route::post('/modulos/tipo/{moduleType}/categoria/{moduleCategory}/nuevo', 'ModueleController@save')->name('save-module');
 });
 
 
