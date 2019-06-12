@@ -104,13 +104,8 @@ class HomeController extends Controller
          $auditsCount = $auditor->numberOfTotalAudits();
          $pendingAuditsCount = $auditor->numberOfPendingAudits();
        }elseif(Auth::user()->hasRole('Cliente') || Auth::user()->hasRole('Cliente gerencial')){
-         $user = Auth::user();
 
-         $client = Client::whereHas('users', function ($q) use ($user) {
-            $q->where('user_id', $user->id);
-        })->first();
-
-         $audits = $client->audits();
+         $audits = Auth::user()->ClientAssignedAudits();
          $auditsCount= count($audits);
 
          //Eliminar los vendors migracion para las vistas de cliente
