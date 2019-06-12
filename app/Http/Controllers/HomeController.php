@@ -133,13 +133,17 @@ class HomeController extends Controller
        ->select( DB::raw('audit_id,MAX(id) as maxid'))
        ->groupBy('audit_id');
 
+
+
        $auditsByStatus = DB::table('audits_statuses')
            ->joinSub($maxstatus, 'finalstatus', function ($join) {
                $join->on('finalstatus.maxid', '=', 'audits_statuses.id');
            })
+
+        //  dd($auditsByStatus->get());
            ->join('statuses','statuses.id','=','audits_statuses.status_id')
-           ->select(DB::raw('statuses.name, statuses.color, coalesce(count(statuses.name),0) as count'))
-           ->where('isFinal', '!=' , 1)
+           ->select(DB::raw('statuses.name, statuses.color, coalesce(count(*),0) as count'))
+          // ->where('isFinal', '!=' , 1)
            ->groupBy("statuses.name", "statuses.color")
            ->get();
 

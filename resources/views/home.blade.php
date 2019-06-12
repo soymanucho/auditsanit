@@ -37,50 +37,52 @@
     </div>
   </div>
 
-@hasanyrole('Administrador|Backoffice|Coordinador')
+{{-- @hasanyrole('Administrador|Backoffice|Coordinador') --}}
 
-  @role('Auditor')
+@role('Auditor')
+  <div class="col-lg-4 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-red">
+      <div class="inner">
+        <h3>{{$pendingAuditsCount}}</h3>
+
+        <p>Auditorías pendientes</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-pie-graph"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        {{-- More info <i class="fa fa-arrow-circle-right"></i> --}}
+      </a>
+    </div>
+  </div>
+@endrole
+
+@hasanyrole('Administrador|Coordinador|Backoffice')
+  @foreach ($auditsByStatus as $auditStatus)
     <div class="col-lg-4 col-xs-6">
       <!-- small box -->
-      <div class="small-box bg-red">
+      <div class="small-box" style="background-color: {{$auditStatus->color}};">
         <div class="inner">
-          <h3>{{$pendingAuditsCount}}</h3>
+          <h3>{{$auditStatus->count}}</h3>
 
-          <p>Auditorías pendientes</p>
+          <p>{{$auditStatus->name}}</p>
         </div>
         <div class="icon">
-          <i class="ion ion-pie-graph"></i>
+          {{-- <i class="ion ion-pie-graph"></i> --}}
         </div>
         <a href="#" class="small-box-footer">
           {{-- More info <i class="fa fa-arrow-circle-right"></i> --}}
         </a>
       </div>
     </div>
+  @endforeach
   @endrole
 
-  @hasanyrole('Administrador|Cliente gerencial|Coordinador')
-    @foreach ($auditsByStatus as $auditStatus)
-      <div class="col-lg-4 col-xs-6">
-        <!-- small box -->
-        <div class="small-box" style="background-color: {{$auditStatus->color}};">
-          <div class="inner">
-            <h3>{{$auditStatus->count}}</h3>
 
-            <p>{{$auditStatus->name}}</p>
-          </div>
-          <div class="icon">
-            {{-- <i class="ion ion-pie-graph"></i> --}}
-          </div>
-          <a href="#" class="small-box-footer">
-            {{-- More info <i class="fa fa-arrow-circle-right"></i> --}}
-          </a>
-        </div>
-      </div>
-    @endforeach
-
-  @endrole
 </div>
 
+@hasanyrole('Administrador|Cliente gerencial|Coordinador|Backoffice')
 <div class="row">
 
   <div class="col-12">
