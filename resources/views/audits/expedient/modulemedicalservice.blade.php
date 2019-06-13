@@ -26,7 +26,7 @@
      @isset($medicalService->service->vendor->address)
        <strong><i class="fa fa-user-md"></i> Prestador: </strong> {{$medicalService->service->vendor->name}}
        <br>
-       <strong><i class="fa fa-home"></i> Dirección: </strong>  {{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}} {{$medicalService->service->vendor->address->number}} {{$medicalService->service->vendor->address->location->name}}, {{$medicalService->service->vendor->address->location->province->name}}
+       <strong><i class="fa fa-home"></i> Dirección: </strong>  {{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}} {{$medicalService->service->vendor->address->floor}}, {{$medicalService->service->vendor->address->location->name}}, {{$medicalService->service->vendor->address->location->province->name}}
        <br>
      @endisset
      @isset($medicalService->auditor->person)
@@ -80,11 +80,11 @@
        </table>
      @endisset
      @isset($medicalService->transportService)
-       @isset($medicalService->transportService->service->vendor->address)
-         <strong><i class="fa  fa-ambulance"></i> Transporte: </strong>{{$medicalService->transportService->service->vendor->address->street}} {{$medicalService->transportService->service->vendor->address->number}}
-       @else
-         <strong><i class="fa  fa-ambulance"></i> Transporte: </strong> {{$medicalService->transportService->service->vendor->name}}
-       @endisset
+
+      <strong><i class="fa  fa-ambulance"></i> Transporte: </strong> {{$medicalService->transportService->service->vendor->name}}
+      @isset($medicalService->transportService->service->vendor->address)
+        <br><strong><i class="fa  fa-home"></i> Direccion: </strong>{{$medicalService->transportService->service->vendor->address->street}} {{$medicalService->transportService->service->vendor->address->number}}
+      @endisset
        <br>
        <strong><i class="fa  fa-ambulance"></i> Km/mes: </strong>{{$medicalService->transportService->km_per_month}}
        <br>
