@@ -26,7 +26,7 @@
      @isset($medicalService->service->vendor->address)
        <strong><i class="fa fa-user-md"></i> Prestador: </strong> {{$medicalService->service->vendor->name}}
        <br>
-       <strong><i class="fa fa-home"></i> Dirección: </strong>  {{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}}
+       <strong><i class="fa fa-home"></i> Dirección: </strong>  {{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}} {{$medicalService->service->vendor->address->number}} {{$medicalService->service->vendor->address->location->name}}, {{$medicalService->service->vendor->address->location->province->name}}
        <br>
      @endisset
      @isset($medicalService->auditor->person)
