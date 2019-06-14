@@ -104,13 +104,8 @@ class HomeController extends Controller
          $auditsCount = $auditor->numberOfTotalAudits();
          $pendingAuditsCount = $auditor->numberOfPendingAudits();
        }elseif(Auth::user()->hasRole('Cliente') || Auth::user()->hasRole('Cliente gerencial')){
-         $user = Auth::user();
 
-         $client = Client::whereHas('users', function ($q) use ($user) {
-            $q->where('user_id', $user->id);
-        })->first();
-
-         $audits = $client->audits();
+         $audits = Auth::user()->ClientAssignedAudits();
          $auditsCount= count($audits);
 
          //Eliminar los vendors migracion para las vistas de cliente
@@ -129,6 +124,28 @@ class HomeController extends Controller
          $auditsCount= count($audits);
        }
 
-      return view('home',compact('auditsCount','pendingAuditsCount','expedientsPerVendor','difMods','modulesByType'));//,'auditsByStatus','auditsByGender'));
+       $maxstatus = DB::table('audits_statuses')
+       ->select( DB::raw('audit_id,MAX(id) as maxid'))
+       ->groupBy('audit_id');
+
+
+
+       $auditsByStatus = DB::table('audits_statuses')
+           ->joinSub($maxstatus, 'finalstatus', function ($join) {
+               $join->on('finalstatus.maxid', '=', 'audits_statuses.id');
+           })
+
+        //  dd($auditsByStatus->get());
+           ->join('statuses','statuses.id','=','audits_statuses.status_id')
+           ->select(DB::raw('statuses.name, statuses.color, coalesce(count(*),0) as count'))
+          // ->where('isFinal', '!=' , 1)
+           ->groupBy("statuses.name", "statuses.color")
+           ->get();
+
+           //dd($auditsByStatus);
+
+
+
+      return view('home',compact('auditsCount','pendingAuditsCount','expedientsPerVendor','difMods','modulesByType','auditsByStatus'));//,'auditsByStatus','auditsByGender'));
     }
 }

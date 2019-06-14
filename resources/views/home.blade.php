@@ -20,7 +20,7 @@
 @section('content')
 <div class="row">
 
-  <div class="col-lg-3 col-xs-6">
+  <div class="col-lg-4 col-xs-6">
     <!-- small box -->
     <div class="small-box bg-green">
       <div class="inner">
@@ -32,31 +32,57 @@
         <i class="ion ion-pie-graph"></i>
       </div>
       <a href="{!! route('show-audits') !!}" class="small-box-footer">
-        Ver todas <i class="fa fa-arrow-circle-right"></i>
+        {{-- Ver todas <i class="fa fa-arrow-circle-right"></i> --}}
       </a>
     </div>
   </div>
-  @role('Auditor')
-    <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-red">
-        <div class="inner">
-          <h3>{{$pendingAuditsCount}}</h3>
 
-          <p>Auditorías pendientes</p>
+{{-- @hasanyrole('Administrador|Backoffice|Coordinador') --}}
+
+@role('Auditor')
+  <div class="col-lg-4 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-red">
+      <div class="inner">
+        <h3>{{$pendingAuditsCount}}</h3>
+
+        <p>Auditorías pendientes</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-pie-graph"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        {{-- More info <i class="fa fa-arrow-circle-right"></i> --}}
+      </a>
+    </div>
+  </div>
+@endrole
+
+@hasanyrole('Administrador|Coordinador|Backoffice')
+  @foreach ($auditsByStatus as $auditStatus)
+    <div class="col-lg-4 col-xs-6">
+      <!-- small box -->
+      <div class="small-box" style="background-color: {{$auditStatus->color}};">
+        <div class="inner">
+          <h3>{{$auditStatus->count}}</h3>
+
+          <p>{{$auditStatus->name}}</p>
         </div>
         <div class="icon">
-          <i class="ion ion-pie-graph"></i>
+          {{-- <i class="ion ion-pie-graph"></i> --}}
         </div>
         <a href="#" class="small-box-footer">
-          More info <i class="fa fa-arrow-circle-right"></i>
+          {{-- More info <i class="fa fa-arrow-circle-right"></i> --}}
         </a>
       </div>
     </div>
+  @endforeach
   @endrole
 
+
 </div>
-@hasanyrole('Administrador|Cliente gerencial|Coordinador')
+
+@hasanyrole('Administrador|Cliente gerencial|Coordinador|Backoffice')
 <div class="row">
 
   <div class="col-12">
