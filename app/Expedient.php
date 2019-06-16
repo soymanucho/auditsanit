@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Client;
 use App\Diagnosis;
 use App\Indication;
+use App\IndicationType;
 use App\Audit;
 use App\ExpedientModule;
 use App\Patient;
+use App\Medic;
+use App\Person;
 
 class Expedient extends Model
 {
@@ -31,7 +34,7 @@ class Expedient extends Model
 
   public function indications()
   {
-    return $this->hasMany(Indication::class,'expedient_id', 'id')->withTrashed();
+    return $this->hasMany(Indication::class,'expedient_id', 'id')->with('medic.person','indicationType');
   }
   public function audit()
   {
