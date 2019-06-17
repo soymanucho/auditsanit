@@ -12,7 +12,7 @@ class Medic extends Model
   protected $dates = ['created_at','updated_at','deleted_at'];
   public function person()
   {
-     return $this->belongsTo(Person::class,'id')->withTrashed();
+     return $this->belongsTo(Person::class)->withTrashed();
   }
 
 }

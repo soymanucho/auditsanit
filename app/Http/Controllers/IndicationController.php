@@ -14,7 +14,7 @@ class IndicationController extends Controller
   {
     $this->middleware('auth');
   }
-  
+
   public function new(Audit $audit)
   {
     $indicationTypes = IndicationType::all();
@@ -61,5 +61,31 @@ class IndicationController extends Controller
 
     return response($request, 200)
     ->header('Content-Type', 'text/plain');
+  }
+
+  public function get(Request $request, Audit $audit)
+  {
+    //dd($audit);
+    $indications = $audit->expedient->indications;
+
+
+    //dd($indications);
+  //  $indications = $audit->expedient->indications;
+    //$term = trim($request->q);
+
+        // if (empty($term)) {
+        //     return \Response::json([]);
+        // }
+        //
+        // $tags = DiagnosisType::search($term)->limit(5)->get();
+
+        // $formatted_tags = [];
+        //
+        // // foreach ($tags as $tag) {
+        // //     $formatted_tags[] = ['id' => $tag->id, 'text' => $tag->name];
+        // // }
+        //  $formatted_tags[] = ['id' => 1, 'text' => 'testText'];
+
+        return \Response::json($indications);
   }
 }

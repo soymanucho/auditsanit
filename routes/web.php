@@ -189,6 +189,8 @@ Route::post('/auditoria/{audit}/agregar-comentario/', 'CommentController@add')->
 Route::get('/localidades/get', 'LocationController@get')->name('api-locations');
 //API DIAGNOSES
 Route::get('/diagnoses/get/{params}', 'DiagnosisTypeController@get')->name('api-diagnoses');
+//API INDICATIONS
+Route::get('/indication/get/{audit}', 'IndicationController@get')->name('api-indications');
 
 //STATUS
 Route::get('/estados/', 'StatusController@show')->name('show-status');

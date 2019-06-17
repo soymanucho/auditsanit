@@ -281,40 +281,6 @@
 
 
             @endhasanyrole
-            @hasanyrole('Coordinador')
-            <li class=" treeview">
-              <a href="#">
-                <i class="fa fa-users"></i> <span> Personas</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{route('show-medics')}}"><i class="fa fa-search"></i> Medicos</a></li>
-                <li><a href="{{route('show-auditors')}}"><i class="fa fa-plus-circle "></i> Auditores</a></li>
-                <li><a href="{{route('show-patients')}}"><i class="fa fa-plus-circle "></i> Afiliados</a></li>
-                <li><a href="{{route('show-vendors')}}"><i class="fa fa-search "></i> Prestadores</a></li>
-
-              </ul>
-            </li>
-            <li class=" treeview">
-              <a href="#">
-                <i class="fas fa-boxes"></i> <span> Datos Maestros</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-              {{-- <li><a href="{{route('show-instructions')}}"><i class="fa fa-search"></i> Instrucciones</a></li>
-              <li><a href="{{route('show-objectives')}}"><i class="fa fa-search"></i> Objetivos</a></li>
-              <li><a href="{{route('show-recommendations')}}"><i class="fa fa-search"></i> Recomendaciones</a></li> --}}
-              <li><a href="{{route('show-diagnosisType')}}"><i class="fa fa-search"></i> Tipo Diagnostico</a></li>
-              <li><a href="{{route('show-indicationType')}}"><i class="fa fa-search"></i> Tipo Indicacion</a></li>
-              <li><a href="{{route('show-serviceType')}}"><i class="fa fa-search"></i> Tipo Prestación</a></li>
-
-              </ul>
-            </li>
-            @endhasanyrole
             @hasanyrole('Administrador')
             <li>
               <a href="{{route('edit-audit-status')}}">
@@ -498,7 +464,7 @@ $('.select2').select2({
       type: 'ajax',
       afterClose: function(){
         window.location.reload(true);
-        console.log('holi?');
+
       }
   	});
   });
