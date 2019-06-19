@@ -278,6 +278,6 @@ class AuditController extends Controller
   }
   public function export()
   {
-      return Excel::download(new AuditExport, 'auditorias.xlsx');
+      return Excel::download(new AuditExport, 'Listado de auditorias al '.\Carbon\Carbon::now()->format('d-m-Y').'.xlsx');
   }
 }

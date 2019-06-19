@@ -13,8 +13,8 @@ class AuditExport implements FromView
 
   public function view(): View
   {
-      return view('audits.datatable', [
-          'roles' =>Auth::user()->getRoleNames(),
+      return view('audits.datatableExport', [
+          // 'roles' =>Auth::user()->getRoleNames(),
           'audits' => Audit::all()
       ]);
   }
