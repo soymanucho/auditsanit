@@ -25,11 +25,13 @@
     <th>Coordinador</th>
     <th>Objetivo</th>
     <th>Informe</th>
-    <th>Audit or designado</th>
+    <th>Auditor designado</th>
     <th>Modulo recomendado</th>
+    <th>Tipo de prestacion apoyo recomendada</th>
     <th>Adicional por dependencia recomendado</th>
     <th>Costo modulo recomendado</th>
     <th>Costo dependencia recomendado</th>
+    <th>Costo total recomendado</th>
     <th>Resultado auditoria</th>
     <th>Conclusiones auditoria</th>
     <th>Recomendaciones</th>
@@ -38,6 +40,11 @@
 
 @section('body')
   @foreach($audits as $audit)
+    @foreach ($audit->expedient->expedientModules as $expedientModule)
+      @php
+        $audit = $expedientModule->expedient->audit;
+      @endphp
+
       <tr>
         <td> {{-- Nº auditoria --}} {{ $audit->id}} </td>
         <td>{{-- Cliente --}}
@@ -75,126 +82,147 @@
           @endisset
         </td>
         <td>{{-- Modulo autorizado --}}
-          @isset($audit->expedient->expedientModules)
-            @foreach ($audit->expedient->expedientModules as $expedientModule)
+          @isset($expedientModule)
+            {{-- @foreach ($audit->expedient->expedientModules as $expedientModule) --}}
               - {{$expedientModule->module->moduleType->name}} ({{$expedientModule->module->moduleCategory->name}}) <br>
-            @endforeach
+            {{-- @endforeach --}}
           @endisset
         </td>
         <td>{{-- Tipo de prestación apoyo --}}
           N/A
         </td>
         <td>{{-- Red prestacional --}}
-          @isset($audit->expedient->expedientModules)
-            @foreach ($audit->expedient->expedientModules as $expedientModule)
+          @isset($expedientModule)
+            {{-- @foreach ($audit->expedient->expedientModules as $expedientModule) --}}
               @foreach ($expedientModule->medicalServices as $medicalService)
                 - {{$medicalService->service->vendor->name}} <br>
               @endforeach
-            @endforeach
+            {{-- @endforeach --}}
           @endisset
         </td>
         <td>{{-- Domicilio prestación --}}
-          @isset($audit->expedient->expedientModules)
-            @foreach ($audit->expedient->expedientModules as $expedientModule)
+          @isset($expedientModule)
+            {{-- @foreach ($audit->expedient->expedientModules as $expedientModule) --}}
               @foreach ($expedientModule->medicalServices as $medicalService)
                 @isset($medicalService->service->vendor->address)
                   - {{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}} {{$medicalService->service->vendor->address->floor}}, {{$medicalService->service->vendor->address->location->name}}, {{$medicalService->service->vendor->address->street}} <br>
                 @endisset
               @endforeach
-            @endforeach
+            {{-- @endforeach --}}
           @endisset
         </td>
         <td>{{-- Costo modulo autorizado --}}
-          @isset($var)
-
+          @isset($expedientModule)
+            {{$expedientModule->price}}
           @endisset
         </td>
         <td>{{-- Adicional por dependencia autorizado --}}
-          @isset($var)
-
+          @isset($audit->expedient->indications)
+            @foreach ($audit->expedient->indications as $indication)
+              @if ($indication->aditionalDependence = 0)
+                - No <br>
+              @else
+                - Si <br>
+              @endif
+            @endforeach
           @endisset
         </td>
         <td>{{-- Costo dependencia autorizado --}}
-          @isset($var)
 
-          @endisset
+            0
+
         </td>
         <td>{{-- Fecha de inicio de módulo --}}
-          @isset($var)
 
-          @endisset
         </td>
         <td>{{-- Fecha de cese del módulo --}}
-          @isset($var)
 
-          @endisset
         </td>
         <td>{{-- Costo total autorizado --}}
+          @isset($expedientModule)
+            {{$expedientModule->price}}
+          @endisset
+        </td>
+        <td>{{-- Medico solicitante --}}
+          @isset($audit->expedient->indications)
+            @foreach ($audit->expedient->indications as $indication)
+              - {{$indication->medic->person->surname}}, {{$indication->medic->person->name}} <br>
+            @endforeach
+          @endisset
+        </td>
+        <td>{{-- Coordinador --}}
+          Homero Giles
+        </td>
+        <td>{{--     <th>Objetivo</th> --}}
+          @isset($audit->objectives)
+            @foreach ($audit->objectives as $objective)
+              - {{$objective->name}} <br>
+            @endforeach
+          @endisset
+        </td>
+        <td>{{-- Informe --}}
+          @isset($expedientModule)
+            @foreach ($expedientModule->medicalServices as $medicalService)
+              @isset($medicalService->service->vendor->address)
+                - {{$medicalService->report}} <br>
+              @endisset
+            @endforeach
+          @endisset
+        </td>
+        <td>{{-- Auditor designado --}}
+          @isset($expedientModule)
+            @foreach ($expedientModule->medicalServices as $medicalService)
+              @isset($medicalService->service->vendor->address)
+                - {{$medicalService->auditor->person->surname}},{{$medicalService->auditor->person->name}} <br>
+              @endisset
+            @endforeach
+          @endisset
+        </td>
+        <td>{{-- Modulo recomendado --}}
+          @isset($expedientModule->recommendedModule)
+            {{$expedientModule->recommendedModule->moduleType->name}}({{$expedientModule->recommendedModule->moduleCategory->name}})
+          @endisset
+        </td>
+        <td>{{-- Tipo de prestacion apoyo recomendada --}}
           @isset($var)
 
           @endisset
         </td>
-        <td>{{-- address --}}
+        <td>{{-- Adicional por dependencia recomendado --}}
           @isset($var)
 
           @endisset
         </td>
-        <td>{{-- address --}}
-          @isset($var)
-
+        <td>{{-- Costo modulo recomendado --}}
+          @isset($expedientModule->recommendedModule)
+            {{$expedientModule->recommendedModule->price}}
           @endisset
         </td>
-        <td>{{-- address --}}
-          @isset($var)
-
+        <td>{{-- Costo dependencia recomendado --}}
+          0
+        </td>
+        <td>{{-- Costo total recomendado --}}
+          @isset($expedientModule->recommendedModule)
+            {{$expedientModule->recommendedModule->price}}
           @endisset
         </td>
-        <td>{{-- address --}}
-          @isset($var)
-
+        <td>{{-- Resultado auditoria --}}
+            Sin Observaciones
+        </td>
+        <td>{{-- Conclusiones auditoria --}}
+          @isset($audit->conclution)
+            {{$audit->conclution}}
           @endisset
         </td>
-        <td>{{-- address --}}
-          @isset($var)
-
-          @endisset
-        </td>
-        <td>{{-- address --}}
-          @isset($var)
-
-          @endisset
-        </td>
-        <td>{{-- address --}}
-          @isset($var)
-
-          @endisset
-        </td>
-        <td>{{-- address --}}
-          @isset($var)
-
-          @endisset
-        </td>
-        <td>{{-- address --}}
-          @isset($var)
-
-          @endisset
-        </td>
-        <td>{{-- address --}}
-          @isset($var)
-
-          @endisset
-        </td>
-        <td>{{-- address --}}
-          @isset($var)
-
-          @endisset
-        </td>
-        <td>{{-- address --}}
-          @isset($var)
-
+        <td>{{-- Recomendaciones --}}
+          @isset($audit->recommendations)
+            @foreach ($audit->recommendations as $recommendation)
+              - {{$recommendation->name}} <br>
+            @endforeach
           @endisset
         </td>
 
       </tr>
+      @endforeach
     @endforeach
 @endsection
