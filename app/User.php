@@ -46,7 +46,7 @@ class User extends Authenticatable
         $audits = $audits->filter(function ($item, $key) use($client) {
             return $item->expedient->client->id == $client->id
                    &&
-                   $item->statuses->sortByDesc('audits_statuses.created_at')->first()->isFinal;
+                   $item->statuses->sortByDesc('audits_statuses.created_at')->last()->isFinal;
         });
 
       }
