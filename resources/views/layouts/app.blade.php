@@ -211,6 +211,13 @@
                 <i class="fa fa-search"></i> <span> Auditorías</span>
               </a>
             </li>
+            @hasanyrole('Administrador|Backoffice|Coordinador')
+            <li>
+              <a href="{{route('show-medical-service')}}">
+                <i class="fa fa-search"></i> <span> Estado de prestaciones</span>
+              </a>
+            </li>
+            @endhasanyrole
             @hasanyrole('Administrador|Backoffice')
               <li class=" treeview">
                 <a href="#">

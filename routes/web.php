@@ -137,6 +137,7 @@ Route::group(['middleware' => ['role:Administrador|Backoffice|Coordinador']], fu
 
 });
 
+// ESTADO DE PRESTACION
 
 //DASHBOARD INICIO
 Route::get('/home', 'HomeController@index')->name('home');
@@ -167,6 +168,8 @@ Route::get('/moduloExpediente/{moduleExpedient}/prestacion/nuevo', 'MedicalServi
 Route::post('/moduloExpediente/{moduleExpedient}/prestacion/nuevo', 'MedicalServiceController@save')->name('save-medical-service');
 Route::get('/moduloExpediente/{medicalService}/prestacion/delete', 'MedicalServiceController@delete')->name('delete-medical-service');
 
+
+Route::get('/prestaciones/', 'MedicalServiceController@show')->name('show-medical-service');
 
 
 
