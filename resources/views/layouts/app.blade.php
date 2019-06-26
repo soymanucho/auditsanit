@@ -214,7 +214,7 @@
             @hasanyrole('Administrador|Backoffice|Coordinador')
             <li>
               <a href="{{route('show-medical-service')}}">
-                <i class="fa fa-search"></i> <span> Estado de prestaciones</span>
+                <i class="fa fa-search"></i> <span> Estado de Asignaciones</span>
               </a>
             </li>
             @endhasanyrole

@@ -7,7 +7,7 @@
 
 @section('content')
 
-  <h1>Prestaciones</h1>
+  <h1>Asignaciones</h1>
 
   <br>
 
