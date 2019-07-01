@@ -20,7 +20,20 @@ use App\User;
 
 class MedicalServiceController extends Controller
 {
-
+  public function __construct()
+  {
+    // $this->middleware('auth', [
+    //     'except' => ['show']
+    //     'only' => ['show']
+    // ]); // OTHERS EXAMPLES
+    $this->middleware('auth');
+  }
+  
+  public function show()
+  {
+    $medicalServices = MedicalService::orderBy('id', 'DESC')->with('auditor.person')->with('expedientModule.expedient.audit')->with('service.servicetype')->with('status')->get();
+    return view('medicalServices.medicalServices',compact('medicalServices'));
+  }
   public function accept(MedicalService $medicalService)
   {
   $medicalService->status_id = 2;
