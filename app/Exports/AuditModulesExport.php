@@ -11,11 +11,12 @@ use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\WithTitle;
 // use Maatwebsite\Excel\Concerns\FromCollection;
 
-class AuditExport implements FromView, WithTitle
+class AuditModulesExport implements FromView, WithTitle
 {
+
   public function view(): View
   {
-    return view('audits.datatableExportAudits', [
+    return view('audits.datatableExportModules', [
         'audits' => Audit::all()
     ]);
   }
@@ -28,6 +29,6 @@ class AuditExport implements FromView, WithTitle
     // }
     public function title(): string
     {
-        return 'Auditorias';
+        return 'Modulos-prestaciones';
     }
 }
