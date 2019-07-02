@@ -25,13 +25,11 @@
 
 
         @php
-          $audit = $expedientModule->expedient->audit;
-          $expedientModule = $medicalService->expedientModule;
+          // $expedientModule = $medicalService->expedientModule;
+          // $audit = $expedientModule->expedient->audit;
           $service = $medicalService->service;
           $serviceType = $service->serviceType;
-          if($serviceType->name == 'Transporte') {
-             $transports = $service->transportServices;
-          }
+
 
         @endphp
 
@@ -54,15 +52,13 @@
           </td>
 
           <td>
-            @isset($transports)
-              @foreach ($transports as $transport)
-                {{$transport->km_per_month}} <br>
-              @endforeach
+            @isset($medicalService->transportService)
+                {{$medicalService->transportService->km_per_month}}
             @endisset
           </td>
           <td>{{-- Domicilio prestación --}}
               @isset($medicalService->service->vendor->address)
-                - {{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}} {{$medicalService->service->vendor->address->floor}}, {{$medicalService->service->vendor->address->location->name}}, {{$medicalService->service->vendor->address->street}} <br>
+                {{$medicalService->service->vendor->address->street}} {{$medicalService->service->vendor->address->number}} {{$medicalService->service->vendor->address->floor}}, {{$medicalService->service->vendor->address->location->name}}, {{$medicalService->service->vendor->address->location->province->name}}
               @endisset
           </td>
           <td>{{-- Costo modulo autorizado --}}
