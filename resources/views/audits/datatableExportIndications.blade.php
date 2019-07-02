@@ -8,6 +8,7 @@
     <th>Tipo de indicación</th>
 
     <th>Adicional por dependencia autorizado</th>
+    <th>Cantidad de sesiones semanales</th>
 
     <th>Medico solicitante</th>
 
@@ -34,6 +35,11 @@
           @endisset
         </td>
 
+        <td>{{-- Medico solicitante --}}
+          @isset($indication)
+               {{$indication->numberOfSesions}}
+          @endisset
+        </td>
         <td>{{-- Medico solicitante --}}
           @isset($indication)
                {{$indication->medic->person->surname}}, {{$indication->medic->person->name}}
