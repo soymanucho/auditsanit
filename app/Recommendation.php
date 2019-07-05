@@ -14,8 +14,8 @@ class Recommendation extends Model
   protected $fillable = ['name'];
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  public function audits()
+  public function audit()
   {
-    return $this->belongsToMany(Audit::class,'audit_recommendations');
+    return $this->belongsTo(Audit::class);
   }
 }
