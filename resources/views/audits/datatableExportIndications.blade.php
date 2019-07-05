@@ -4,12 +4,9 @@
 
 {{--1	Registro por auditoría	M.Cliente	M.TipoAuditoria	M.Beneficiario	M.Beneficiario	Calculo	M.Beneficiario	M.Diagnostico	M.Modulo	M.PrestacionApoyo	M.Prestadores	M.Prestadores	M.Modulo	Si | No	Calculo	dd/mm/aaaa	dd/mm/aaaa	Calculo	M.MedicoSolicitante	M.Coordinadores	M.Objetivos	M.Auditor	M.Modulos	M.PrestacionApoyo	Si | No	M.Modulos	Calculo	Calculo	M.Resultados	Campo Libre	Campo Libre --}}
     <th>N° auditoría</th>
-
     <th>Tipo de indicación</th>
-
     <th>Adicional por dependencia autorizado</th>
     <th>Cantidad de sesiones semanales</th>
-
     <th>Medico solicitante</th>
 
 
@@ -24,10 +21,9 @@
         <td> {{-- Tipo de indicación --}}
           {{ $indication->indicationType->name}}
         </td>
-
         <td>{{-- Adicional por dependencia autorizado --}}
           @isset($indication)
-              @if ($indication->aditionalDependence = 0)
+              @if ($indication->aditionalDependance == 0)
                  No
               @else
                  Si

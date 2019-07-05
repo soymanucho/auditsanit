@@ -6,10 +6,13 @@
     <th>N° auditoría</th>
     <th>Cliente</th>
     <th>Tipo de auditoría</th>
+    <th>DNI afiliado</th>
     <th>Apellido y Nombre afiliado</th>
     <th>Fecha de nacimiento</th>
     <th>Edad</th>
     <th>Domicilio</th>
+    <th>Localidad</th>
+    <th>Provincia</th>
     <th>Conclusiones auditoria</th>
 
 
@@ -25,6 +28,11 @@
           @endisset
         </td>
         <td> {{-- Tipo de auditoria --}} Discapacidad </td>
+        <td>{{-- DNI Afiliado --}}
+          @isset($audit->expedient->patient->person)
+            {{ $audit->expedient->patient->person->dni}}
+          @endisset
+        </td>
         <td>{{-- Afiliado apellido y nombre --}}
           @isset($audit->expedient->patient->person)
             {{ $audit->expedient->patient->person->surname}}, {{ $audit->expedient->patient->person->name}}
@@ -37,12 +45,22 @@
         </td>
         <td>{{-- Edad --}}
           @isset($audit->expedient->patient->person)
-            {{  \Carbon\Carbon::now()->diffInYears($audit->expedient->patient->person->birthdate) }}
+            {{ \Carbon\Carbon::now()->diffInYears($audit->expedient->patient->person->birthdate) }}
           @endisset
         </td>
         <td>{{-- Domicilio --}}
           @isset($audit->expedient->patient->person->address)
-            {{$audit->expedient->patient->person->address->street}} {{$audit->expedient->patient->person->address->number}} {{$audit->expedient->patient->person->address->floor}}, @isset($audit->expedient->patient->person->address->location) {{$audit->expedient->patient->person->address->location->name}} - {{$audit->expedient->patient->person->address->location->province->name}} @endisset
+            {{$audit->expedient->patient->person->address->street}} {{$audit->expedient->patient->person->address->number}} {{$audit->expedient->patient->person->address->floor}}
+          @endisset
+        </td>
+        <td>{{-- Localidad --}}
+          @isset($audit->expedient->patient->person->address->location)
+            {{$audit->expedient->patient->person->address->location->name}}
+          @endisset
+        </td>
+        <td>{{-- Provincia --}}
+          @isset($audit->expedient->patient->person->address->location->province)
+             {{$audit->expedient->patient->person->address->location->province->name}}
           @endisset
         </td>
         <td>{{-- Conclusiones auditoria --}}
