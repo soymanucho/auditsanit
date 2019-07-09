@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\AuditExport;
+use App\Exports\AuditsExport;
 use App\Audit;
 use App\Patient;
 use App\Location;
@@ -283,6 +283,29 @@ class AuditController extends Controller
   }
   public function export()
   {
-      return Excel::download(new AuditExport, 'auditorias.xlsx');
+      // Excel::create('Listado de auditorias al '.\Carbon\Carbon::now()->format('d-m-Y').'.xlsx', function($excel) {
+      //
+      //   $excel->sheet('Auditorias', function($sheet) {
+      //       $sheet->loadView('audits.datatableExportAudits', ['audits' => Audit::all()]);
+      //   });
+      //   $excel->sheet('Diagnosticos', function($sheet) {
+      //       $sheet->loadView('audits.datatableExportDiagnoses', ['audits' => Audit::all()]);
+      //   });
+      //   $excel->sheet('Modulos', function($sheet) {
+      //       $sheet->loadView('audits.datatableExportModules', ['audits' => Audit::all()]);
+      //   });
+      //   $excel->sheet('Recomendaciones', function($sheet) {
+      //       $sheet->loadView('audits.datatableExportRecommendations', ['audits' => Audit::all()]);
+      //   });
+      //   $excel->sheet('Objetivos', function($sheet) {
+      //       $sheet->loadView('audits.datatableExportObjetives', ['audits' => Audit::all()]);
+      //   });
+      //   $excel->sheet('Indicaciones', function($sheet) {
+      //       $sheet->loadView('audits.datatableExportIndications', ['audits' => Audit::all()]);
+      //   });
+      //
+      // })->download('xls');
+
+      return Excel::download(new AuditsExport, 'Listado de auditorias al '.\Carbon\Carbon::now()->format('d-m-Y').'.xlsx');
   }
 }

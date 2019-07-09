@@ -20,9 +20,9 @@ class ExpedientModule extends Model
   protected $fillable = ['module_id','price','expedient_id','recommended_module_id'];
   protected $dates = ['created_at','updated_at','deleted_at'];
 
-  public function moduleRecommended()
+  public function recommendedModule()
   {
-    return $this->belongsTo(Module::class)->where('id',$this->recommended_module_id);
+    return $this->belongsTo(Module::class,'recommended_module_id','id')->with('moduleType')->with('moduleCategory');
   }
   public function module()
   {
