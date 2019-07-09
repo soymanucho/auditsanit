@@ -6,6 +6,7 @@
     <th>Mes/Año</th>
     <th>Afiliado</th>
     <th>Estado</th>
+    <th>Fecha de creacion</th>
 
     <th></th>
 
@@ -18,7 +19,7 @@
   @foreach($audits as $audit)
       <tr>
         <td>  {{ $audit->id}} </td>
-        <td>  {{ Carbon\Carbon::parse($audit->created_at)->format('m')}}/{{ Carbon\Carbon::parse($audit->created_at)->format('Y')}} </td>
+        <td>  {{ $audit->month}}/{{$audit->year}} </td>
         <td>
           @isset($audit->expedient->patient->person)
             {{ $audit->expedient->patient->person->surname}}, {{ $audit->expedient->patient->person->name}}
@@ -32,7 +33,7 @@
              <span class="badge" style="background:{{ $status->color}}">{{ $status->id}}. {{ $status->name}}</span>
           @endisset
         </td>
-
+          <td>  {{ $audit->created_at}} </td>
           @if ($roles->contains('Administrador') || $roles->contains('Backoffice') || $roles->contains('Auditor') || $roles->contains('Coordinador'))
             <td class="text-center"> <a  href="{{ route('audit-detail-patient', compact('audit')) }}"><b class="fa fa-eye "></b></a> </td>
           @endif

@@ -211,6 +211,8 @@ class AuditController extends Controller
         [
             'client_id' => 'required|exists:clients,id',
             'patient_id' => 'required|exists:patients,id',
+            'month' => 'required|integer|min:1|max:12',
+            'year' => 'required|integer|min:1970|max:9999',
         ],
         [
         ],
@@ -223,8 +225,11 @@ class AuditController extends Controller
     $expedient = New Expedient;
     $expedient->patient_id = $request->patient_id;
     $expedient->client_id = $request->client_id;
+
     $expedient->save();
     $audit = New Audit;
+    $audit->month = $request->month;
+    $audit->year = $request->year;
     $audit->save();
     $status = Status::find(1)->take(1)->get();
     $audit->statuses()->attach($status);

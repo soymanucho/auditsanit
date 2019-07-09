@@ -21,7 +21,7 @@
         <div class="box-body">
       	  {{ method_field('post') }}
           {{ csrf_field() }}
-          <div class="form-group col-sm-12 col-md-6 col-lg-4">
+          <div class="form-group col-sm-12 col-md-6 col-lg-6">
             <label>Obra social</label>
             <select class="form-control select2" name="client_id" id="client_id" data-placeholder="Seleccioná una obra social"
                     style="width: 100%;">
@@ -31,7 +31,7 @@
                     @endforeach
             </select>
           </div>
-          <div class="form-group col-sm-12 col-md-6 col-lg-4">
+          <div class="form-group col-sm-12 col-md-6 col-lg-6">
             <label for="dni">Afiliado </label>
             <select class="form-control select2" id="patient_id" name="patient_id" data-placeholder="Seleccioná un afiliado"
                     style="width: 100%;">
@@ -41,9 +41,49 @@
                     @endforeach
             </select>
           </div>
+
+          <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="dni">Mes </label>
+          <select class="form-control select2" id="month" name="month" data-placeholder="Seleccioná un mes"
+                  style="width: 100%;">
+                  <option value=""></option>
+                  @for ($i=1; $i < 13; $i++)
+                      <option value="{{$i}}"
+                        @if ($i==date('m'))
+                           selected
+                        @endif
+                      >{{$i}}</option>
+                  @endfor
+
+
+          </select>
+          </div>
+
+          <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="dni">Año</label>
+          <select class="form-control select2" id="year" name="year" data-placeholder="Seleccioná un año"
+                  style="width: 100%;">
+                  <option value=""></option>
+                  @for ($i=date('Y')-10; $i < date('Y')+10; $i++)
+                      <option value="{{$i}}"
+                      <option value="{{$i}}"
+                        @if ($i==date('Y'))
+                           selected
+                        @endif
+                      >{{$i}}</option>
+                  @endfor
+
+
+          </select>
+          </div>
+
+
           <div class="form-group col-sm-12 col-md-6 col-lg-4">
             <a class="btn btn-success btn-xs" href="{!! route('new-patients') !!}">Crear nuevo afiliado</a>
           </div>
+
+
+        </div>
 
 
         </div>
